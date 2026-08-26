@@ -1,0 +1,313 @@
+\documentclass[12pt]{article}
+
+% Codificación e idioma
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Matemáticas
+\usepackage{amsmath,amssymb,amsfonts}
+
+% Formato y utilidades
+\usepackage[letterpaper,margin=2.5cm]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% Formato de párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% Compatibilidad con listas provenientes de Pandoc
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+
+% Entorno para ejemplos
+\newenvironment{Ejem}
+{\par\medskip\noindent\textbf{Ejemplo.}\ }
+{\par\medskip}
+
+% Enlaces
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% Encabezados y pies de página
+\setlength{\headheight}{15pt}
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{Tecnológico Nacional de México}
+\fancyhead[R]{Álgebra Lineal}
+
+\fancyfoot[L]{Carlos Ernesto Martínez}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{mrdgzcarlose@gmail.com}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Datos del documento
+\title{
+    \textbf{Álgebra Lineal}\\[0.3cm]
+    \large Tecnológico Nacional de México\\[0.2cm]
+    \normalsize Clave ACF-0903
+}
+\author{Carlos Ernesto Martínez}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Presentación del curso}
+% ============================================================
+
+El Álgebra Lineal constituye una de las herramientas fundamentales para
+el estudio y modelación de fenómenos lineales en matemáticas, ciencias
+e ingeniería.
+
+A lo largo del curso se desarrollarán progresivamente los conceptos de
+números complejos, sistemas de ecuaciones lineales, matrices,
+determinantes, espacios vectoriales y transformaciones lineales.
+
+El objetivo es construir no solamente técnicas de cálculo, sino también
+una comprensión de las estructuras algebraicas que permiten formular,
+analizar y resolver problemas de naturaleza lineal.
+
+% ============================================================
+\section{Unidad 1. Números complejos}
+% ============================================================
+
+\subsection{Competencia específica}
+
+Utilizar los números complejos, sus representaciones y las operaciones
+entre ellos como base para su posterior aplicación en ecuaciones
+diferenciales y diferentes problemas de ingeniería.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Motivación y origen de los números complejos.
+    \item Definición de número complejo.
+    \item Parte real y parte imaginaria.
+    \item Igualdad de números complejos.
+    \item Operaciones algebraicas con números complejos.
+    \item Potencias de la unidad imaginaria $i$.
+    \item Conjugado de un número complejo.
+    \item Módulo de un número complejo.
+    \item Representación geométrica en el plano complejo.
+    \item Forma rectangular o cartesiana.
+    \item Forma polar.
+    \item Argumento de un número complejo.
+    \item Transformación entre forma rectangular y polar.
+    \item Fórmula de Euler.
+    \item Forma exponencial de un número complejo.
+    \item Producto y cociente en forma polar.
+    \item Teorema de De Moivre.
+    \item Potencias de números complejos.
+    \item Raíces de números complejos.
+    \item Ecuaciones polinómicas con raíces complejas.
+    \item Logaritmos de números complejos.
+    \item Aplicaciones en ingeniería.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} 15 horas, distribuidas en 9 horas teóricas
+y 6 horas prácticas, equivalentes aproximadamente a tres semanas.
+
+% ============================================================
+\section{Unidad 2. Sistemas de ecuaciones lineales}
+% ============================================================
+
+\subsection{Competencia específica}
+
+Resolver problemas de aplicación en ingeniería mediante sistemas de
+ecuaciones lineales, interpretando las soluciones y utilizando métodos
+algebraicos y matriciales apropiados.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Definición de ecuación lineal.
+    \item Sistemas de ecuaciones lineales.
+    \item Representación matricial de un sistema.
+    \item Sistemas homogéneos y no homogéneos.
+    \item Interpretación geométrica de los sistemas lineales.
+    \item Tipos de solución.
+    \item Sistemas compatibles e incompatibles.
+    \item Operaciones elementales por renglones.
+    \item Forma escalonada.
+    \item Forma escalonada reducida.
+    \item Método de eliminación de Gauss.
+    \item Método de Gauss--Jordan.
+    \item Solución mediante matriz inversa.
+    \item Regla de Cramer.
+    \item Sistemas con parámetros.
+    \item Rango y consistencia de sistemas lineales.
+    \item Aplicaciones de sistemas lineales en ingeniería.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} 10 horas, distribuidas en 6 horas teóricas
+y 4 horas prácticas, equivalentes aproximadamente a dos semanas.
+
+% ============================================================
+\section{Unidad 3. Matrices y determinantes}
+% ============================================================
+
+\subsection{Competencia específica}
+
+Utilizar las matrices, sus propiedades, los determinantes y las
+operaciones matriciales para resolver problemas en matemáticas e
+ingeniería.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Definición de matriz.
+    \item Orden de una matriz.
+    \item Igualdad de matrices.
+    \item Tipos de matrices.
+    \item Matrices cuadradas.
+    \item Matriz diagonal.
+    \item Matriz identidad.
+    \item Matriz triangular.
+    \item Matriz simétrica.
+    \item Operaciones con matrices.
+    \item Suma de matrices.
+    \item Multiplicación por un escalar.
+    \item Producto de matrices.
+    \item Propiedades del producto matricial.
+    \item Transpuesta de una matriz.
+    \item Matriz inversa.
+    \item Obtención de la inversa mediante Gauss--Jordan.
+    \item Definición de determinante.
+    \item Determinantes de orden dos y tres.
+    \item Menores y cofactores.
+    \item Expansión por cofactores.
+    \item Propiedades de los determinantes.
+    \item Matriz adjunta.
+    \item Obtención de la inversa mediante la adjunta.
+    \item Rango de una matriz.
+    \item Núcleo asociado a una matriz.
+    \item Aplicaciones matriciales.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} 10 horas, distribuidas en 6 horas teóricas
+y 4 horas prácticas, equivalentes aproximadamente a dos semanas.
+
+% ============================================================
+\section{Unidad 4. Espacios vectoriales}
+% ============================================================
+
+\subsection{Competencia específica}
+
+Comprender la definición de espacio vectorial como una estructura
+algebraica abstracta y relacionarla con diferentes áreas de las
+matemáticas.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Motivación del concepto de espacio vectorial.
+    \item Definición formal de espacio vectorial.
+    \item Axiomas de espacio vectorial.
+    \item Ejemplos de espacios vectoriales.
+    \item Espacios $\mathbb{R}^n$.
+    \item Espacios de matrices.
+    \item Espacios de polinomios.
+    \item Espacios de funciones.
+    \item Subespacios vectoriales.
+    \item Criterio de subespacio.
+    \item Combinaciones lineales.
+    \item Espacio generado.
+    \item Dependencia lineal.
+    \item Independencia lineal.
+    \item Conjuntos generadores.
+    \item Bases de un espacio vectorial.
+    \item Coordenadas respecto de una base.
+    \item Dimensión.
+    \item Teoremas fundamentales sobre bases y dimensión.
+    \item Cambio de base.
+    \item Matrices de transición.
+    \item Producto interno.
+    \item Espacios euclidianos.
+    \item Ortogonalidad.
+    \item Conjuntos ortogonales y ortonormales.
+    \item Proceso de Gram--Schmidt.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} 25 horas, distribuidas en 15 horas teóricas
+y 10 horas prácticas, equivalentes aproximadamente a cinco semanas.
+
+% ============================================================
+\section{Unidad 5. Transformaciones lineales}
+% ============================================================
+
+\subsection{Competencia específica}
+
+Utilizar la definición de transformación lineal y sus propiedades para
+estudiar y representar matricialmente aplicaciones entre espacios
+vectoriales.
+
+\subsection{Subtemas}
+
+\begin{enumerate}
+    \item Definición de transformación entre espacios vectoriales.
+    \item Definición de transformación lineal.
+    \item Propiedades de las transformaciones lineales.
+    \item Ejemplos y contraejemplos.
+    \item Núcleo de una transformación lineal.
+    \item Imagen de una transformación lineal.
+    \item Núcleo e imagen como subespacios vectoriales.
+    \item Nulidad.
+    \item Rango.
+    \item Teorema rango--nulidad.
+    \item Representación matricial de una transformación lineal.
+    \item Matriz asociada respecto de bases dadas.
+    \item Construcción de una transformación a partir de una matriz.
+    \item Composición de transformaciones lineales.
+    \item Matriz de una composición.
+    \item Transformaciones inyectivas y suprayectivas.
+    \item Transformaciones invertibles.
+    \item Isomorfismos.
+    \item Cambio de base como transformación lineal.
+    \item Transformaciones geométricas en $\mathbb{R}^2$ y $\mathbb{R}^3$.
+    \item Reflexiones.
+    \item Rotaciones.
+    \item Dilataciones.
+    \item Contracciones.
+    \item Aplicaciones en ingeniería.
+\end{enumerate}
+
+\textbf{Tiempo previsto:} 20 horas, distribuidas en 12 horas teóricas
+y 8 horas prácticas, equivalentes aproximadamente a cuatro semanas.
+
+% ============================================================
+\section{Distribución temporal del curso}
+% ============================================================
+
+\begin{center}
+\begin{tabular}{|c|l|c|c|}
+\hline
+\textbf{Unidad} & \textbf{Tema} & \textbf{Horas} & \textbf{Semanas} \\ \hline
+1 & Números complejos                & 15 & 3 \\ \hline
+2 & Sistemas de ecuaciones lineales  & 10 & 2 \\ \hline
+3 & Matrices y determinantes         & 10 & 2 \\ \hline
+4 & Espacios vectoriales             & 25 & 5 \\ \hline
+5 & Transformaciones lineales        & 20 & 4 \\ \hline
+\multicolumn{2}{|r|}{\textbf{Total}} & \textbf{80} & \textbf{16} \\ \hline
+\end{tabular}
+\end{center}
+
+\end{document}
