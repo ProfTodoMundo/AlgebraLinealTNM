@@ -16,6 +16,13 @@
 \usepackage{xcolor}
 \usepackage{hyperref}
 \usepackage{fancyhdr}
+\newtheorem{Ejer}{Ejercicio}
+\newtheorem{Ejem}{Ejemplo}
+
+\newtheorem{Prop}{Proposici\'on}
+\newtheorem{Def}{Definici\'on}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Coro}{Corolario}
 
 % Formato de párrafos
 \setlength{\parindent}{0pt}
@@ -27,10 +34,6 @@
   \setlength{\parskip}{0pt}
 }
 
-% Entorno para ejemplos
-\newenvironment{Ejem}
-{\par\medskip\noindent\textbf{Ejemplo.}\ }
-{\par\medskip}
 
 % Enlaces
 \hypersetup{
@@ -50,8 +53,8 @@
 \fancyfoot[L]{Carlos Ernesto Martínez}
 \fancyfoot[C]{\thepage}
 \fancyfoot[R]{mrdgzcarlose@gmail.com}
-
-\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
 % Datos del documento
@@ -65,151 +68,73 @@
 
 \maketitle
 \tableofcontents
-\newpage
+
 
 
 \begin{center}
-    \includegraphics[width=0.22\textwidth]{QR_Notas_CD_Numeros_Complejos.png}
+    \includegraphics[width=0.7\textwidth]{QR_Notas_AlgebraLineal_TNM.png}
 
     \small
     Escanea el código QR para acceder a las notas de esta unidad.
 \end{center}
 
 
-% ============================================================
+% ========================================================
 % UNIDAD 1. NÚMEROS COMPLEJOS
 % PARTE I: FUNDAMENTOS ALGEBRAICOS
 % Versión ampliada, formal y con ejemplos para guía docente
-% ============================================================
+% ========================================================
 
 \section{Números complejos}
 
-\subsection{Motivación: ampliación de los sistemas numéricos}
 
-Los sistemas numéricos que se utilizan en matemáticas pueden entenderse como
-extensiones sucesivas construidas para resolver ecuaciones u operaciones que
-no son posibles dentro de un sistema previo.
+Los sistemas numéricos que se utilizan en matemáticas pueden entenderse como extensiones sucesivas construidas para resolver ecuaciones u operaciones que no son posibles dentro de un sistema previo.
 
-Por ejemplo, la ecuación
-\[
-x+3=1
-\]
-no posee solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$. De manera análoga,
-\[
-2x=1
-\]
-no posee solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$. Finalmente,
-\[
-x^2=2
-\]
-no posee solución en $\mathbb{Q}$, pero sí en $\mathbb{R}$.
+Por ejemplo, la ecuación $x+3=1$ no posee solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$. De manera análoga, $2x=1$ no posee solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$. Finalmente, $x^2=2$ no posee solución en $\mathbb{Q}$, pero sí en $\mathbb{R}$.
 
 Esto conduce a la cadena de inclusiones
 \[
 \mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.
 \]
 
-Sin embargo, incluso el sistema de los números reales es insuficiente para
-resolver todas las ecuaciones polinómicas.
+Sin embargo, incluso el sistema de los números reales es insuficiente para resolver todas las ecuaciones polinómicas.
 
-Consideremos
-\[
-x^2+1=0.
-\]
-La ecuación equivale a
-\[
-x^2=-1.
-\]
-Pero para todo $x\in\mathbb{R}$,
-\[
-x^2\geq 0.
-\]
-Por tanto,
-\[
-x^2=-1
-\]
-no posee solución en $\mathbb{R}$.
+Consideremos $x^2+1=0$. La ecuación equivale a $x^2=-1$. Pero para todo $x\in\mathbb{R}$, $x^2\geq 0$. Por tanto, $x^2=-1$ no posee solución en $\mathbb{R}$.
 
-La construcción de los números complejos responde precisamente a la necesidad
-de extender $\mathbb{R}$ de manera que esta ecuación, y más generalmente todo
-polinomio no constante, pueda estudiarse dentro de un sistema algebraicamente
-más completo.
+La construcción de los números complejos responde precisamente a la necesidad de extender $\mathbb{R}$ de manera que esta ecuación, y más generalmente todo polinomio no constante, pueda estudiarse dentro de un sistema algebraicamente más completo.
 
-\textbf{Observación docente.}
-Es importante enfatizar que una extensión numérica no elimina el sistema
-anterior: lo contiene como subconjunto. El objetivo es ampliar el universo de
-objetos sin perder las reglas algebraicas ya conocidas.
+\begin{Ejem}
+La ecuación $x+5=2$ no tiene solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$: $x=-3$.
+\end{Ejem}
 
-\paragraph{Ejemplo 1.}
-La ecuación
-\[
-x+5=2
-\]
-no tiene solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$:
-\[
-x=-3.
-\]
+\begin{Ejem}
+La ecuación $3x=1$ no tiene solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$: $x=\frac13$.
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
-La ecuación
-\[
-3x=1
-\]
-no tiene solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$:
-\[
-x=\frac13.
-\]
 
-\paragraph{Ejemplo 3.}
-La ecuación
-\[
-x^2=3
-\]
-no tiene solución racional, pero sí real:
-\[
-x=\pm\sqrt3.
-\]
+\begin{Ejem}
+La ecuación $x^2=3$ no tiene solución racional, pero sí real: $x=\pm\sqrt3$.
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
-La ecuación
-\[
-x^2+4=0
-\]
-equivale a
-\[
-x^2=-4.
-\]
-No posee solución real, pero en el sistema complejo tendrá soluciones
-\[
-x=\pm 2i.
-\]
+\begin{Ejem}
+La ecuación $x^2+4=0$ equivale a $x^2=-4$. No posee solución real, pero en el sistema complejo tendrá soluciones $x=\pm 2i$.
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
-La ecuación
-\[
-x^2-2x+5=0
-\]
-tiene discriminante
-\[
-\Delta=b^2-4ac=(-2)^2-4(1)(5)=4-20=-16.
-\]
-Por tanto, no tiene raíces reales. Más adelante veremos que sus soluciones
-complejas son
-\[
-x=1\pm 2i.
-\]
+\begin{Ejem}
+La ecuación $x^2-2x+5=0$ tiene discriminante  $\Delta=b^2-4ac=(-2)^2-4(1)(5)=4-20=-16$. Por tanto, no tiene raíces reales. Más adelante veremos que sus soluciones complejas son $x=1\pm 2i$.
+\end{Ejem}
 
-% ============================================================
-\subsection{La unidad imaginaria y sus potencias}
-% ============================================================
 
-\textbf{Definición.}
-Se introduce un nuevo elemento $i$, denominado \emph{unidad imaginaria}, que
-satisface la relación
+% ======================================================
+\subsection*{El n\'umero $i$}
+% ======================================================
+
+\begin{Def}
+Se introduce un nuevo elemento $i$, denominado \emph{unidad imaginaria}, que satisface la relación
 \[
 \boxed{i^2=-1.}
 \]
-
+\end{Def}
 La propiedad anterior es la relación algebraica fundamental de la unidad
 imaginaria. A partir de ella se obtienen todas sus potencias.
 
@@ -244,7 +169,7 @@ entonces
 i^n=i^r.
 \]
 
-\textbf{Proposición.}
+\begin{Prop}
 Para todo $n\in\mathbb{N}$,
 \[
 i^n=
@@ -255,7 +180,7 @@ i, & n\equiv 1 \pmod 4,\\
 -i, & n\equiv 3 \pmod 4.
 \end{cases}
 \]
-
+\end{Prop}
 \textbf{Demostración.}
 Sea $n=4q+r$ con $r\in\{0,1,2,3\}$. Entonces
 \[
@@ -264,27 +189,33 @@ i^n=i^{4q+r}=(i^4)^qi^r=1^qi^r=i^r.
 Basta sustituir los cuatro valores posibles de $r$.
 \hfill$\square$
 
-\paragraph{Ejemplo 1.}
+
+\begin{Ejem}
+
 \[
 i^{18}=i^{4(4)+2}=i^2=-1.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+\begin{Ejem}
 \[
 i^{35}=i^{4(8)+3}=i^3=-i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+\begin{Ejem}
 \[
 i^{100}=i^{4(25)}=1.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
+\begin{Ejem}
 \[
 i^{2026}=i^{4(506)+2}=i^2=-1.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
+\begin{Ejem}
 Simplifiquemos
 \[
 i^{17}+i^{28}-i^{39}.
@@ -302,12 +233,14 @@ i^{17}+i^{28}-i^{39}
 =
 \boxed{1+2i}.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Definición de número complejo, parte real e imaginaria}
-% ============================================================
 
-\textbf{Definición.}
+% ======================================================
+\subsection*{Definición de número complejo, parte real e imaginaria}
+% ======================================================
+
+\begin{Def}
 Un número complejo es una expresión de la forma
 \[
 \boxed{z=a+bi,}
@@ -320,7 +253,9 @@ e
 \[
 i^2=-1.
 \]
+\end{Def}
 
+\begin{Def}
 El conjunto de todos los números complejos se denota por
 \[
 \boxed{\mathbb{C}}.
@@ -346,7 +281,7 @@ y
 \[
 \boxed{\operatorname{Im}(z)=b.}
 \]
-
+\end{Def}
 Es esencial observar que la parte imaginaria de $z$ es $b$, no $bi$.
 
 La representación
@@ -356,13 +291,14 @@ z=a+bi
 se denomina \emph{forma binómica}, \emph{forma rectangular} o
 \emph{forma cartesiana}.
 
-\textbf{Definición.}
+\begin{Def}
 Un número complejo $z=a+bi$ es:
 \begin{itemize}
     \item real si $b=0$;
     \item imaginario puro si $a=0$ y $b\neq 0$;
     \item complejo no real si $b\neq 0$.
 \end{itemize}
+\end{Def}
 
 Todo número real puede identificarse con el complejo
 \[
@@ -373,7 +309,7 @@ Por tanto,
 \boxed{\mathbb{R}\subset\mathbb{C}.}
 \]
 
-\textbf{Proposición de unicidad.}
+\begin{Prop}
 Si
 \[
 a+bi=c+di,
@@ -393,8 +329,9 @@ a+bi=c+di
 a=c\ \text{y}\ b=d.
 }
 \]
+\end{Prop}
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
 Para
 \[
 z=4-7i
@@ -405,8 +342,9 @@ se tiene
 \qquad
 \operatorname{Im}(z)=-7.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+\begin{Ejem}
 El número
 \[
 z=-5
@@ -416,8 +354,9 @@ puede escribirse como
 z=-5+0i.
 \]
 Por tanto, es un número real considerado como elemento de $\mathbb{C}$.
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+\begin{Ejem}
 El número
 \[
 z=\frac32 i
@@ -429,8 +368,9 @@ tiene
 \operatorname{Im}(z)=\frac32,
 \]
 por lo que es imaginario puro.
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
+\begin{Ejem}
 Si
 \[
 (2x-1)+(y+3)i=7-4i,
@@ -445,9 +385,9 @@ Así,
 \[
 \boxed{x=4,\qquad y=-7.}
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
-Determine $a$ y $b$ si
+\begin{Ejem} Determine $a$ y $b$ si
 \[
 (a+2)+(3b-1)i=5+8i.
 \]
@@ -461,10 +401,11 @@ Por tanto,
 \[
 \boxed{a=3,\qquad b=3.}
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Construcción formal de $\mathbb{C}$ a partir de $\mathbb{R}^2$}
-% ============================================================
+% ======================================================
+\subsection*{Construcción formal de $\mathbb{C}$}
+% ======================================================
 
 La notación $a+bi$ es conveniente, pero los números complejos pueden
 construirse rigurosamente sin asumir previamente la existencia de $i$.
@@ -530,13 +471,8 @@ lo que justifica la notación
 (a,b)\equiv a+bi.
 \]
 
-\textbf{Observación docente.}
-Esta construcción muestra que los números complejos no son objetos
-``misteriosos'': son pares ordenados de números reales equipados con una
-multiplicación específicamente diseñada para que $(0,1)^2=(-1,0)$.
 
-\paragraph{Ejemplo 1.}
-En la construcción por pares,
+\begin{Ejem}En la construcción por pares,
 \[
 (2,3)+(4,-1)
 =
@@ -546,9 +482,9 @@ Esto corresponde a
 \[
 (2+3i)+(4-i)=6+2i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
-\[
+\begin{Ejem}\[
 (1,2)(3,4)
 =
 (3-8,4+6)
@@ -559,9 +495,9 @@ En forma binómica:
 \[
 (1+2i)(3+4i)=-5+10i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
-El real $7$ se identifica con
+\begin{Ejem}Se identifica con
 \[
 (7,0).
 \]
@@ -573,9 +509,9 @@ es decir,
 \[
 7+2i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
-La unidad imaginaria es
+\begin{Ejem} La unidad imaginaria es
 \[
 i=(0,1).
 \]
@@ -583,9 +519,9 @@ Por tanto,
 \[
 3i=(0,3).
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
-El producto
+\begin{Ejem} El producto
 \[
 (0,2)(0,5)
 \]
@@ -599,10 +535,11 @@ por lo que
 \[
 (2i)(5i)=-10.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Suma, resta y estructura aditiva}
-% ============================================================
+% ======================================================
+\subsection*{Suma, resta y estructura aditiva}
+% ======================================================
 
 Sean
 \[
@@ -663,24 +600,28 @@ z+0=z,
 z+(-z)=0.
 \]
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
 \[
 (3+2i)+(5-7i)=8-5i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+\begin{Ejem}
 \[
 (-4+6i)+(2+9i)=-2+15i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+\begin{Ejem}
+
 \[
 (7-3i)-(2+5i)
 =
 5-8i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
+\begin{Ejem}
 El inverso aditivo de
 \[
 z=4-9i
@@ -689,8 +630,9 @@ es
 \[
 -z=-4+9i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
+\begin{Ejem}
 Simplifiquemos
 \[
 (2+3i)-(5-i)+(4+2i).
@@ -701,10 +643,12 @@ Agrupando partes reales e imaginarias:
 =
 \boxed{1+6i}.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Producto de números complejos}
-% ============================================================
+
+% ======================================================
+\subsection*{Producto de números complejos}
+% ======================================================
 
 Sean
 \[
@@ -749,7 +693,7 @@ zw=wz,
 z(w+u)=zw+zu.
 \]
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
 \[
 (2+3i)(4-i)
 =
@@ -758,7 +702,9 @@ z(w+u)=zw+zu.
 \boxed{11+10i}.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+\begin{Ejem}
 \[
 (1+i)^2
 =
@@ -766,8 +712,9 @@ z(w+u)=zw+zu.
 =
 \boxed{2i}.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+\begin{Ejem}
 \[
 (3-2i)(3+2i)
 =
@@ -775,8 +722,9 @@ z(w+u)=zw+zu.
 =
 \boxed{13}.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
+\begin{Ejem}
 \[
 (-2+5i)(1-3i)
 =
@@ -785,7 +733,9 @@ z(w+u)=zw+zu.
 \boxed{13+11i}.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+\begin{Ejem}
 Simplifiquemos
 \[
 (1+i)(1-i)(2+i).
@@ -800,12 +750,14 @@ Por tanto,
 =
 \boxed{4+2i}.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Conjugado complejo}
-% ============================================================
 
-\textbf{Definición.}
+% ======================================================
+\subsection*{Conjugado complejo}
+% ======================================================
+
+\begin{Def}
 Sea
 \[
 z=a+bi.
@@ -814,10 +766,11 @@ El \emph{conjugado complejo} de $z$ es
 \[
 \boxed{\overline z=a-bi.}
 \]
+\end{Def}
 
 La conjugación cambia el signo de la parte imaginaria y conserva la parte real.
 
-\textbf{Proposición.}
+\begin{Prop}
 Para $z,w\in\mathbb{C}$:
 \[
 \boxed{\overline{\overline z}=z,}
@@ -854,7 +807,7 @@ y
 \frac{z-\overline z}{2i}.
 }
 \]
-
+\end{Prop}
 \textbf{Caracterización.}
 \[
 z\in\mathbb{R}
@@ -862,7 +815,7 @@ z\in\mathbb{R}
 z=\overline z.
 \]
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
 Si
 \[
 z=3+5i,
@@ -871,8 +824,9 @@ entonces
 \[
 \overline z=3-5i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+\begin{Ejem}
 Si
 \[
 z=-4-7i,
@@ -881,8 +835,9 @@ entonces
 \[
 \overline z=-4+7i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+\begin{Ejem}
 Para
 \[
 z=2+3i,
@@ -898,9 +853,9 @@ y por tanto
 \[
 \operatorname{Re}(z)=2.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
-Para
+\begin{Ejem} Para
 \[
 z=1-4i,
 \]
@@ -919,9 +874,9 @@ Entonces
 =
 -4.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
-Verifiquemos
+\begin{Ejem} Verifiquemos
 \[
 \overline{zw}=\overline z\,\overline w
 \]
@@ -950,12 +905,14 @@ y
 (1-2i)(3+i)=5-5i.
 \]
 Por tanto, la identidad se verifica.
+\end{Ejem}
 
-% ============================================================
-\subsection{Módulo de un número complejo}
-% ============================================================
 
-\textbf{Definición.}
+% ======================================================
+\subsection*{Módulo de un número complejo}
+% ======================================================
+
+\begin{Def}
 Para
 \[
 z=a+bi,
@@ -966,7 +923,7 @@ se define el módulo de $z$ mediante
 |z|=\sqrt{a^2+b^2}.
 }
 \]
-
+\end{Def}
 Como
 \[
 z\overline z
@@ -996,11 +953,10 @@ También
 |\overline z|=|z|.
 \]
 
-\textbf{Observación.}
 El módulo será interpretado geométricamente como la distancia del punto
 $z$ al origen en el plano complejo.
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
 Si
 \[
 z=3+4i,
@@ -1010,8 +966,9 @@ entonces
 |z|=\sqrt{3^2+4^2}=5.
 \]
 
-\paragraph{Ejemplo 2.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 z=-5+12i,
 \]
@@ -1019,9 +976,9 @@ entonces
 \[
 |z|=\sqrt{25+144}=13.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
-Si
+\begin{Ejem} Si
 \[
 z=7i,
 \]
@@ -1030,8 +987,9 @@ entonces
 |z|=7.
 \]
 
-\paragraph{Ejemplo 4.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 z=-6,
 \]
@@ -1040,8 +998,9 @@ entonces
 |z|=6.
 \]
 
-\paragraph{Ejemplo 5.}
-Sea
+\end{Ejem}
+
+\begin{Ejem} Sea
 \[
 z=2-3i.
 \]
@@ -1067,10 +1026,12 @@ Así,
 \[
 z\overline z=|z|^2.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{División e inverso multiplicativo}
-% ============================================================
+
+% ======================================================
+\subsection*{División e inverso multiplicativo}
+% ======================================================
 
 Sea
 \[
@@ -1132,8 +1093,9 @@ Expresado en coordenadas:
 }
 \]
 
-\paragraph{Ejemplo 1.}
-Calculemos
+
+
+\begin{Ejem} Calculemos
 \[
 \frac{1}{2+i}.
 \]
@@ -1152,8 +1114,9 @@ Por tanto,
 \frac25-\frac15 i.
 }
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+\begin{Ejem} 
 \[
 \frac{3+2i}{1-i}
 =
@@ -1169,9 +1132,9 @@ Así,
 \frac12+\frac52 i.
 }
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
-El inverso de
+\begin{Ejem} El inverso de
 \[
 z=3-4i
 \]
@@ -1186,7 +1149,9 @@ z^{-1}
 }.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+\begin{Ejem} 
 \[
 \frac{2-i}{2+i}
 =
@@ -1203,7 +1168,9 @@ Por tanto,
 }
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+\begin{Ejem} 
 Simplifiquemos
 \[
 \frac{i}{1+i}.
@@ -1225,13 +1192,13 @@ Por tanto,
 \frac12+\frac12 i.
 }
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{$\mathbb{C}$ como campo}
-% ============================================================
+% ======================================================
+\subsection*{$\mathbb{C}$ como campo}
+% ======================================================
 
-El conjunto $\mathbb{C}$, equipado con las operaciones usuales de suma y
-producto, constituye un campo.
+El conjunto $\mathbb{C}$, equipado con las operaciones usuales de suma y producto, constituye un campo.
 
 Esto significa que para cualesquiera $z,w,u\in\mathbb{C}$ se satisfacen
 los axiomas:
@@ -1262,9 +1229,10 @@ Además,
 y las operaciones de $\mathbb{C}$ restringidas a $\mathbb{R}$ coinciden con
 las operaciones usuales de los números reales.
 
-\textbf{Teorema.}
+\begin{Teo}
 No existe un orden total sobre $\mathbb{C}$ compatible con las operaciones
 de campo que extienda el orden usual de $\mathbb{R}$.
+\end{Teo}
 
 \textbf{Idea de demostración.}
 En un campo ordenado, el cuadrado de todo elemento no nulo debe ser positivo.
@@ -1284,22 +1252,24 @@ contradicción con el orden usual de $\mathbb{R}$.
 Por tanto, $\mathbb{C}$ no puede ser un campo ordenado.
 \hfill$\square$
 
-\paragraph{Ejemplo 1.}
-La suma
+
+\begin{Ejem} La suma
 \[
 (2+i)+(3-5i)=5-4i
 \]
 permanece en $\mathbb{C}$, mostrando cerradura aditiva.
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+\begin{Ejem} 
 El producto
 \[
 (1+i)(2-3i)=5-i
 \]
 permanece en $\mathbb{C}$, mostrando cerradura multiplicativa.
 
-\paragraph{Ejemplo 3.}
-El inverso aditivo de
+\end{Ejem}
+
+\begin{Ejem} El inverso aditivo de
 \[
 z=-2+7i
 \]
@@ -1308,8 +1278,9 @@ es
 2-7i.
 \]
 
-\paragraph{Ejemplo 4.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=1+i\neq0,
 \]
@@ -1326,8 +1297,9 @@ En efecto,
 1.
 \]
 
-\paragraph{Ejemplo 5.}
-La expresión
+\end{Ejem}
+
+\begin{Ejem} La expresión
 \[
 i>0
 \]
@@ -1335,10 +1307,12 @@ no tiene un significado compatible con la estructura de campo de
 $\mathbb{C}$ como sí ocurre en $\mathbb{R}$. Esto explica por qué las
 desigualdades complejas requieren conceptos diferentes, típicamente
 basados en el módulo.
+\end{Ejem}
 
-% ============================================================
-\subsection{Resumen algebraico de la primera parte}
-% ============================================================
+
+% =====================================================
+\subsection*{Resumen}
+% ======================================================
 
 La construcción algebraica de los números complejos puede resumirse mediante
 
@@ -1383,32 +1357,23 @@ desarrollar posteriormente la geometría del plano complejo, la forma polar,
 la fórmula de Euler, el teorema de De Moivre, las raíces complejas y el
 logaritmo complejo.
 
-
-% ============================================================
-% UNIDAD 1. NÚMEROS COMPLEJOS
-% PARTE II: GEOMETRÍA, FORMA POLAR, EULER, DE MOIVRE,
-% RAÍCES, TFA Y LOGARITMO COMPLEJO
-% Versión ampliada, formal y con ejemplos para guía docente
-% ============================================================
-
-% ============================================================
+% =======================================================
 \section{Geometría de los números complejos}
-% ============================================================
+% =====================================================
 
-\subsection{El plano complejo}
+\subsection*{El plano complejo}
 
 Sea
 \[
 z=a+bi.
 \]
 
-Como $z$ queda determinado de manera única por el par ordenado $(a,b)$,
-podemos representar a $z$ como el punto
+Como $z$ queda determinado de manera única por el par ordenado $(a,b)$, podemos representar a $z$ como el punto
 \[
 (a,b)\in\mathbb{R}^2.
 \]
 
-Esta representación da lugar al \emph{plano complejo} o \emph{plano de Argand}.
+Esta representación da lugar al \emph{plano complejo} 
 
 En él:
 \begin{itemize}
@@ -1429,17 +1394,14 @@ y también con el vector que va del origen al punto $(a,b)$.
 Esta identificación permite interpretar geométricamente muchas operaciones
 complejas.
 
-\textbf{Observación docente.}
-Conviene insistir en que la identificación
+La identificación
 \[
 \mathbb{C}\leftrightarrow\mathbb{R}^2
 \]
-es una identificación de conjuntos y, además, de espacios vectoriales reales,
-pero el producto complejo no coincide con el producto componente a componente
-de $\mathbb{R}^2$.
+es una identificación de conjuntos y, además, de espacios vectoriales reales, pero el producto complejo no coincide con el producto componente a componente de $\mathbb{R}^2$.
 
-\paragraph{Ejemplo 1.}
-\[
+
+\begin{Ejem} \[
 z=3+2i
 \]
 se representa por el punto
@@ -1447,8 +1409,9 @@ se representa por el punto
 (3,2).
 \]
 
-\paragraph{Ejemplo 2.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=-4+i
 \]
 se representa por
@@ -1456,7 +1419,9 @@ se representa por
 (-4,1).
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+\begin{Ejem} 
 \[
 z=-2-5i
 \]
@@ -1465,8 +1430,9 @@ se representa por
 (-2,-5).
 \]
 
-\paragraph{Ejemplo 4.}
-El número real
+\end{Ejem}
+
+\begin{Ejem} El número real
 \[
 z=6
 \]
@@ -1476,8 +1442,9 @@ se representa por el punto
 \]
 sobre el eje real.
 
-\paragraph{Ejemplo 5.}
-El número imaginario puro
+\end{Ejem}
+
+\begin{Ejem} El número imaginario puro
 \[
 z=-3i
 \]
@@ -1486,10 +1453,12 @@ se representa por
 (0,-3),
 \]
 sobre el eje imaginario.
+\end{Ejem}
 
-% ============================================================
-\subsection{Módulo como distancia al origen}
-% ============================================================
+
+% ======================================================
+\subsection*{Módulo como distancia al origen}
+% ======================================================
 
 Sea
 \[
@@ -1518,7 +1487,7 @@ se obtiene
 \boxed{|z|^2=z\overline z.}
 \]
 
-\textbf{Proposición.}
+\begin{Prop}
 Para todo $z\in\mathbb{C}$:
 \[
 |z|\geq 0,
@@ -1527,37 +1496,41 @@ y
 \[
 \boxed{|z|=0\iff z=0.}
 \]
+\end{Prop}
 
-\paragraph{Ejemplo 1.}
-\[
+\begin{Ejem} \[
 z=3+4i
 \quad\Longrightarrow\quad
 |z|=5.
 \]
 
-\paragraph{Ejemplo 2.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=-5+12i
 \quad\Longrightarrow\quad
 |z|=13.
 \]
 
-\paragraph{Ejemplo 3.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=7i
 \quad\Longrightarrow\quad
 |z|=7.
 \]
 
-\paragraph{Ejemplo 4.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=-8
 \quad\Longrightarrow\quad
 |z|=8.
 \]
 
-\paragraph{Ejemplo 5.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=1-\sqrt3\,i
 \]
 satisface
@@ -1568,10 +1541,12 @@ satisface
 =
 2.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Distancia entre números complejos}
-% ============================================================
+
+% =======================================================
+\subsection*{Distancia entre números complejos}
+% ======================================================
 
 Sean
 \[
@@ -1601,8 +1576,8 @@ y por tanto
 \]
 que es exactamente la distancia euclidiana entre los puntos $(a,b)$ y $(c,d)$.
 
-\paragraph{Ejemplo 1.}
-Entre
+
+\begin{Ejem} Entre
 \[
 z_1=1+i,
 \qquad
@@ -1617,8 +1592,9 @@ la distancia es
 5.
 \]
 
-\paragraph{Ejemplo 2.}
-Entre
+\end{Ejem}
+
+\begin{Ejem} Entre
 \[
 z_1=-2+3i,
 \qquad
@@ -1632,20 +1608,23 @@ d(z_1,z_2)
 5.
 \]
 
-\paragraph{Ejemplo 3.}
-La distancia del complejo $z$ al origen es
+\end{Ejem}
+
+\begin{Ejem} La distancia del complejo $z$ al origen es
 \[
 |z-0|=|z|.
 \]
 
-\paragraph{Ejemplo 4.}
-La circunferencia de centro $z_0$ y radio $r>0$ se expresa como
+\end{Ejem}
+
+\begin{Ejem} La circunferencia de centro $z_0$ y radio $r>0$ se expresa como
 \[
 \boxed{|z-z_0|=r.}
 \]
 
-\paragraph{Ejemplo 5.}
-La región
+\end{Ejem}
+
+\begin{Ejem} La región
 \[
 |z-(2-i)|<3
 \]
@@ -1654,16 +1633,21 @@ representa el disco abierto de centro
 2-i
 \]
 y radio $3$.
+\end{Ejem}
 
-% ============================================================
-\subsection{Propiedades del módulo}
-% ============================================================
 
-\textbf{Teorema.}
+% ======================================================
+\subsection*{Propiedades del módulo}
+% =======================================================
+
+
+\begin{Teo} 
 Para cualesquiera $z,w\in\mathbb{C}$:
 \[
 \boxed{|zw|=|z||w|.}
 \]
+\end{Teo}
+
 
 \textbf{Demostración.}
 Usando
@@ -1706,8 +1690,7 @@ También:
 \boxed{|\overline z|=|z|.}
 \]
 
-\paragraph{Ejemplo 1.}
-Si
+\begin{Ejem} Si
 \[
 z=1+i,
 \qquad
@@ -1724,8 +1707,9 @@ Por tanto
 |zw|=\sqrt{10}.
 \]
 
-\paragraph{Ejemplo 2.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=3-4i,
 \]
@@ -1739,8 +1723,9 @@ z=3-4i,
 |z|.
 \]
 
-\paragraph{Ejemplo 3.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 z=2+2i,
 \qquad
@@ -1755,14 +1740,16 @@ entonces
 2.
 \]
 
-\paragraph{Ejemplo 4.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 |i^n|=1
 \]
 para todo entero $n$, porque $|i|=1$.
 
-\paragraph{Ejemplo 5.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 |z|=3
 \]
@@ -1780,12 +1767,15 @@ entonces
 =
 576.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Desigualdad triangular}
-% ============================================================
 
-\textbf{Teorema.}
+% ======================================================
+\subsection*{Desigualdad del tri\'angulo}
+% ======================================================
+
+
+\begin{Teo} 
 Para todo $z,w\in\mathbb{C}$,
 \[
 \boxed{
@@ -1794,6 +1784,8 @@ Para todo $z,w\in\mathbb{C}$,
 |z|+|w|.
 }
 \]
+\end{Teo}
+
 
 \textbf{Demostración.}
 Partimos de
@@ -1833,6 +1825,9 @@ Como ambos lados son no negativos,
 \hfill$\square$
 
 Una consecuencia importante es la desigualdad triangular inversa:
+
+
+\begin{Teo} 
 \[
 \boxed{
 \bigl||z|-|w|\bigr|
@@ -1840,7 +1835,9 @@ Una consecuencia importante es la desigualdad triangular inversa:
 |z-w|.
 }
 \]
+\end{Teo}
 
+ 
 \textbf{Demostración.}
 Por la desigualdad triangular,
 \[
@@ -1870,7 +1867,8 @@ Por tanto,
 \]
 \hfill$\square$
 
-\paragraph{Ejemplo 1.}
+
+\begin{Ejem} 
 Sea
 \[
 z=1+i,
@@ -1896,7 +1894,9 @@ Así,
 2\leq2\sqrt2.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+\begin{Ejem} 
 Si
 \[
 z=2,
@@ -1908,8 +1908,9 @@ entonces hay igualdad:
 |z+w|=5=|z|+|w|.
 \]
 
-\paragraph{Ejemplo 3.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 z=2,
 \qquad
@@ -1920,8 +1921,9 @@ entonces
 |z+w|=1<5.
 \]
 
-\paragraph{Ejemplo 4.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=3+4i,
 \qquad
@@ -1938,8 +1940,9 @@ es decir,
 4\leq\sqrt{20}.
 \]
 
-\paragraph{Ejemplo 5.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 |z|<2
 \]
@@ -1953,10 +1956,12 @@ entonces
 <
 5.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Argumento de un número complejo}
-% ============================================================
+
+% ======================================================
+\subsection*{Argumento de un número complejo}
+% ======================================================
 
 Sea
 \[
@@ -1992,7 +1997,7 @@ Por tanto,
 
 El argumento es, por naturaleza, multivaluado.
 
-\textbf{Definición.}
+\begin{Def} 
 El \emph{argumento principal} de $z$, denotado por
 \[
 \operatorname{Arg}(z),
@@ -2001,6 +2006,8 @@ es el único argumento que pertenece al intervalo
 \[
 (-\pi,\pi].
 \]
+\end{Def}
+
 
 Así,
 \[
@@ -2011,16 +2018,14 @@ Así,
 }
 \]
 
-\textbf{Observación docente.}
 No debe utilizarse ciegamente
 \[
 \theta=\arctan\left(\frac ba\right),
 \]
-porque la función arctangente no distingue cuadrantes. Es necesario inspeccionar
-los signos de $a$ y $b$, o utilizar una función de dos argumentos tipo
-$\operatorname{atan2}(b,a)$.
+porque la función arctangente no distingue cuadrantes. Es necesario inspeccionar los signos de $a$ y $b$, o utilizar una función de dos argumentos tipo $\operatorname{atan2}(b,a)$.
 
-\paragraph{Ejemplo 1.}
+
+\begin{Ejem} 
 Para
 \[
 z=1+i,
@@ -2029,8 +2034,9 @@ z=1+i,
 \operatorname{Arg}(z)=\frac{\pi}{4}.
 \]
 
-\paragraph{Ejemplo 2.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=-1+i,
 \]
@@ -2039,8 +2045,9 @@ el punto está en el segundo cuadrante y
 \operatorname{Arg}(z)=\frac{3\pi}{4}.
 \]
 
-\paragraph{Ejemplo 3.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=-1-i,
 \]
@@ -2048,8 +2055,9 @@ z=-1-i,
 \operatorname{Arg}(z)=-\frac{3\pi}{4}.
 \]
 
-\paragraph{Ejemplo 4.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=-2,
 \]
@@ -2057,18 +2065,21 @@ z=-2,
 \operatorname{Arg}(z)=\pi.
 \]
 
-\paragraph{Ejemplo 5.}
-Para
+\end{Ejem}
+
+\begin{Ejem} Para
 \[
 z=-3i,
 \]
 \[
 \operatorname{Arg}(z)=-\frac{\pi}{2}.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Forma polar o trigonométrica}
-% ============================================================
+
+% ======================================================
+\subsection*{Forma polar o trigonométrica}
+% ======================================================
 
 Sea
 \[
@@ -2115,8 +2126,7 @@ a=r\cos\theta,
 b=r\sin\theta.
 \]
 
-\paragraph{Ejemplo 1.}
-\[
+\begin{Ejem} \[
 z=1+i.
 \]
 Entonces
@@ -2135,9 +2145,9 @@ z
 +i\sin\frac{\pi}{4}
 \right).
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
-\[
+\begin{Ejem} \[
 z=-1+i.
 \]
 Entonces
@@ -2157,8 +2167,9 @@ z
 \right).
 \]
 
-\paragraph{Ejemplo 3.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=-2-2i.
 \]
 Entonces
@@ -2168,8 +2179,9 @@ r=2\sqrt2,
 \theta=-\frac{3\pi}{4}.
 \]
 
-\paragraph{Ejemplo 4.}
-Convirtamos
+\end{Ejem}
+
+\begin{Ejem} Convirtamos
 \[
 z
 =
@@ -2189,16 +2201,18 @@ z
 \boxed{2+2\sqrt3\,i}.
 \]
 
-\paragraph{Ejemplo 5.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 z=5\left(\cos\pi+i\sin\pi\right)
 =
 -5.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Producto y cociente en forma polar}
-% ============================================================
+% =====================================================
+\subsection*{Producto y cociente en forma polar}
+% ======================================================
 
 Sean
 \[
@@ -2248,8 +2262,7 @@ Si $z_2\neq0$,
 }
 \]
 
-\paragraph{Ejemplo 1.}
-Sea
+\begin{Ejem} Sea
 \[
 z_1=2\left(\cos\frac{\pi}{6}+i\sin\frac{\pi}{6}\right),
 \]
@@ -2266,9 +2279,9 @@ z_1z_2
 +i\sin\frac{5\pi}{12}
 \right).
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
-Con los mismos números,
+\begin{Ejem} Con los mismos números,
 \[
 \frac{z_1}{z_2}
 =
@@ -2279,8 +2292,9 @@ Con los mismos números,
 \right).
 \]
 
-\paragraph{Ejemplo 3.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 z_1=4e^{i\pi/3},
 \qquad
@@ -2295,8 +2309,9 @@ z_1z_2
 8i.
 \]
 
-\paragraph{Ejemplo 4.}
-\[
+\end{Ejem}
+
+\begin{Ejem} \[
 \frac{6e^{i5\pi/6}}{3e^{i\pi/3}}
 =
 2e^{i\pi/2}
@@ -2304,8 +2319,9 @@ z_1z_2
 2i.
 \]
 
-\paragraph{Ejemplo 5.}
-Si
+\end{Ejem}
+
+\begin{Ejem} Si
 \[
 |z_1|=5,\quad \arg z_1=\frac{\pi}{7},
 \]
@@ -2325,10 +2341,12 @@ y
 -\frac{2\pi}{35}
 \pmod{2\pi}.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Fórmula de Euler}
-% ============================================================
+
+% ======================================================
+\subsection*{Fórmula de Euler}
+% ======================================================
 
 La fórmula de Euler conecta la exponencial compleja con las funciones
 trigonométricas.
@@ -2387,7 +2405,7 @@ e^{i\theta}
 }
 \]
 
-\textbf{Corolarios.}
+\begin{Coro}
 \[
 \boxed{
 \cos\theta
@@ -2404,36 +2422,49 @@ y
 }
 \]
 
-\paragraph{Ejemplo 1.}
+\end{Coro}
+
+\begin{Ejem} 
 \[
 e^{i0}=1.
 \]
 
-\paragraph{Ejemplo 2.}
 \[
 e^{i\pi/2}=i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+
+\begin{Ejem}
+
 \[
 e^{i\pi}=-1.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 e^{i3\pi/2}=-i.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 e^{i\pi/3}
 =
 \frac12+\frac{\sqrt3}{2}i.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Forma exponencial}
-% ============================================================
+
+
+% ======================================================
+\subsection*{Forma exponencial}
+% ======================================================
 
 Usando Euler, la forma polar
 \[
@@ -2461,7 +2492,9 @@ k\in\mathbb{Z}.
 }
 \]
 
-\textbf{Proposición.}
+
+
+\begin{Prop}
 Si
 \[
 z_1=r_1e^{i\theta_1},
@@ -2475,44 +2508,60 @@ z_1z_2
 r_1r_2e^{i(\theta_1+\theta_2)}.
 \]
 
-\paragraph{Ejemplo 1.}
+\end{Prop}
+
+
+\begin{Ejem}
 \[
 1+i
 =
 \sqrt2\,e^{i\pi/4}.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+
+\begin{Ejem}
 \[
 -1+i
 =
 \sqrt2\,e^{i3\pi/4}.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 -2
 =
 2e^{i\pi}.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 -3i
 =
 3e^{-i\pi/2}.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 2e^{i\pi/6}
 =
 \sqrt3+i.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Identidad de Euler}
-% ============================================================
+
+% ====================================================
+\subsection*{Identidad de Euler}
+% ======================================================
 
 Tomando
 \[
@@ -2539,36 +2588,52 @@ Esta identidad reúne las constantes
 0,\quad1,\quad e,\quad i,\quad\pi.
 \]
 
-\paragraph{Ejemplo 1.}
+
+\begin{Ejem}
 \[
 e^{i\pi}=-1.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+
+\begin{Ejem}
 \[
 e^{2\pi i}=1.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 e^{3\pi i}=-1.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 e^{(2k+1)\pi i}=-1.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
+
+\begin{Ejem}
 \[
 e^{2k\pi i}=1.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Teorema de De Moivre}
-% ============================================================
 
-\textbf{Teorema de De Moivre.}
+
+% ======================================================
+\subsection*{Teorema de De Moivre}
+% ======================================================
+
+
+\begin{Teo}
+
 Para todo entero $n$,
 \[
 \boxed{
@@ -2577,6 +2642,8 @@ Para todo entero $n$,
 \cos(n\theta)+i\sin(n\theta).
 }
 \]
+
+
 
 Más generalmente, si
 \[
@@ -2593,6 +2660,9 @@ r^n
 \right).
 }
 \]
+\end{Teo}
+
+
 
 \textbf{Demostración mediante Euler.}
 Como
@@ -2622,7 +2692,8 @@ r^n
 \]
 \hfill$\square$
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
+
 Calcular
 \[
 (1+i)^4.
@@ -2641,7 +2712,10 @@ Como
 \boxed{-4}.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 \left(
 \cos\frac{\pi}{6}
@@ -2654,14 +2728,20 @@ Como
 i.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 (2e^{i\pi/3})^5
 =
 32e^{i5\pi/3}.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 (-1+i)^6.
 \]
@@ -2679,7 +2759,10 @@ Como
 8i.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Usando De Moivre:
 \[
 (\cos\theta+i\sin\theta)^2
@@ -2693,10 +2776,13 @@ Comparando partes reales e imaginarias se recuperan:
 \[
 \sin2\theta=2\sin\theta\cos\theta.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Raíces $n$-ésimas de un número complejo}
-% ============================================================
+
+
+% ======================================================
+\subsection*{Raíces $n$-ésimas de un número complejo}
+% ======================================================
 
 Queremos resolver
 \[
@@ -2764,7 +2850,8 @@ y están separadas por un ángulo constante
 \frac{2\pi}{n}.
 \]
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
+
 Resolver
 \[
 w^2=1.
@@ -2776,7 +2863,10 @@ w_0=1,
 w_1=-1.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Resolver
 \[
 w^2=-1.
@@ -2795,7 +2885,10 @@ Así,
 \boxed{w=\pm i}.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Resolver
 \[
 w^3=1.
@@ -2809,7 +2902,10 @@ e^{2\pi i/3},
 e^{4\pi i/3}.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Resolver
 \[
 w^4=16.
@@ -2834,7 +2930,10 @@ Así,
 \boxed{2,\ 2i,\ -2,\ -2i}.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Resolver
 \[
 w^3=8i.
@@ -2850,10 +2949,13 @@ w_k
 2e^{i(\pi/2+2k\pi)/3},
 \qquad k=0,1,2.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Raíces $n$-ésimas de la unidad}
-% ============================================================
+
+
+% =====================================================
+\subsection*{Raíces $n$-ésimas de la unidad}
+% ====================================================
 
 Consideremos
 \[
@@ -2886,13 +2988,17 @@ escribirse como
 1,\omega,\omega^2,\ldots,\omega^{n-1}.
 \]
 
-\textbf{Proposición.}
+
+\begin{Prop}
 La suma de las raíces $n$-ésimas de la unidad, para $n>1$, es cero:
 \[
 \boxed{
 1+\omega+\omega^2+\cdots+\omega^{n-1}=0.
 }
 \]
+\end{Prop}
+
+
 
 \textbf{Demostración.}
 Como $\omega\neq1$ y $\omega^n=1$,
@@ -2905,13 +3011,18 @@ Como $\omega\neq1$ y $\omega^n=1$,
 \]
 \hfill$\square$
 
-\paragraph{Ejemplo 1.}
+
+
+\begin{Ejem}
 Para $n=2$:
 \[
 1,-1.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Para $n=3$:
 \[
 1,\quad
@@ -2919,13 +3030,19 @@ Para $n=3$:
 -\frac12-\frac{\sqrt3}{2}i.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Para $n=4$:
 \[
 1,\ i,\ -1,\ -i.
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Las raíces quintas de la unidad son
 \[
 e^{2\pi ik/5},
@@ -2933,18 +3050,21 @@ e^{2\pi ik/5},
 k=0,\ldots,4.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Para las raíces cúbicas de la unidad,
 \[
 1+\omega+\omega^2=0.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Polinomios con raíces complejas}
-% ============================================================
+% ======================================================
+\subsection*{Polinomios con raíces complejas}
+% ======================================================
 
-Los números complejos permiten estudiar de manera completa las raíces de
-polinomios.
+Los números complejos permiten estudiar de manera completa las raíces de polinomios.
 
 Si
 \[
@@ -2955,14 +3075,20 @@ una raíz de $p$ es un número $z_0$ tal que
 p(z_0)=0.
 \]
 
-\textbf{Teorema del factor.}
+
+\begin{Teo}
+
 \[
 p(z_0)=0
 \iff
 (z-z_0)\text{ divide a }p(z).
 \]
+\end{Teo}
 
-\paragraph{Ejemplo 1.}
+
+\begin{Ejem}
+
+
 \[
 z^2+1=0
 \]
@@ -2971,7 +3097,10 @@ tiene raíces
 \pm i.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 z^2-2z+5=0
 \]
@@ -2979,14 +3108,19 @@ tiene raíces
 \[
 1\pm2i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 3.}
+
+\begin{Ejem}
 \[
 z^3-1=0
 \]
 tiene las tres raíces cúbicas de la unidad.
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 z^4-16=0
 \]
@@ -2999,25 +3133,28 @@ cuyas raíces son
 2,\ 2i,\ -2,\ -2i.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Si
 \[
 p(z)=z^2-6z+13,
 \]
 entonces
 \[
-z
-=
-\frac{6\pm\sqrt{36-52}}{2}
-=
-3\pm2i.
+z=\frac{6\pm\sqrt{36-52}}{2}=3\pm2i.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Teorema Fundamental del Álgebra}
-% ============================================================
 
-\textbf{Teorema Fundamental del Álgebra.}
+
+% ======================================================
+\subsection*{Teorema Fundamental del Álgebra}
+% ======================================================
+
+
+\begin{Teo}{Teorema Fundamental del Álgebra.}
 
 Todo polinomio no constante con coeficientes complejos posee al menos una raíz
 en $\mathbb{C}$.
@@ -3039,31 +3176,41 @@ Por ello se dice que
 \mathbb{C}\text{ es algebraicamente cerrado}.
 }
 \]
+\end{Teo}
 
-\textbf{Observación docente.}
+
 La demostración completa del Teorema Fundamental del Álgebra requiere
 herramientas que exceden el nivel habitual de un primer curso de Álgebra
 Lineal. Conviene enunciarlo, discutir su significado y usarlo, pero no
 demostrarlo en esta unidad.
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
 Todo polinomio cuadrático complejo tiene dos raíces contando multiplicidad.
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 z^2+1
 =
 (z-i)(z+i).
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 z^3-1
 =
 (z-1)(z-\omega)(z-\omega^2).
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 z^2-2z+1
 =
@@ -3071,15 +3218,19 @@ z^2-2z+1
 \]
 La raíz $z=1$ tiene multiplicidad $2$.
 
-\paragraph{Ejemplo 5.}
-Un polinomio de grado $5$ posee exactamente cinco raíces complejas contando
-multiplicidad.
+\end{Ejem}
 
-% ============================================================
-\subsection{Raíces conjugadas de polinomios reales}
-% ============================================================
 
-\textbf{Teorema.}
+\begin{Ejem}
+Un polinomio de grado $5$ posee exactamente cinco raíces complejas contando multiplicidad.
+\end{Ejem}
+
+
+% =====================================================
+\subsection*{Raíces conjugadas de polinomios reales}
+% ======================================================
+
+\begin{Teo}
 Sea
 \[
 p(z)=a_nz^n+\cdots+a_0
@@ -3093,6 +3244,9 @@ es raíz de $p$, entonces
 \overline{z_0}
 \]
 también es raíz.
+\end{Teo}
+
+
 
 \textbf{Demostración.}
 Si
@@ -3109,9 +3263,7 @@ Como los coeficientes son reales,
 \]
 Por tanto,
 \[
-\overline{p(z_0)}
-=
-p(\overline{z_0}),
+\overline{p(z_0)}=p(\overline{z_0}),
 \]
 de donde
 \[
@@ -3119,7 +3271,9 @@ p(\overline{z_0})=0.
 \]
 \hfill$\square$
 
-\paragraph{Ejemplo 1.}
+
+
+\begin{Ejem}
 Si
 \[
 2+3i
@@ -3129,7 +3283,10 @@ es raíz de un polinomio real, también lo es
 2-3i.
 \]
 
-\paragraph{Ejemplo 2.}
+\end{Ejem}
+
+
+\begin{Ejem}
 El polinomio
 \[
 z^2-4z+13
@@ -3139,19 +3296,24 @@ tiene raíces
 2\pm3i.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 El factor real asociado al par
 \[
 a\pm bi
 \]
 es
 \[
-(z-(a+bi))(z-(a-bi))
-=
-z^2-2az+(a^2+b^2).
+(z-(a+bi))(z-(a-bi))=z^2-2az+(a^2+b^2).
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
+
 Las raíces
 \[
 1\pm2i
@@ -3161,13 +3323,18 @@ generan el factor
 z^2-2z+5.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Un polinomio real de grado impar tiene al menos una raíz real, porque las
 raíces no reales aparecen en pares conjugados.
+\end{Ejem}
 
-% ============================================================
-\subsection{Exponencial compleja}
-% ============================================================
+
+% ======================================================
+\subsection*{Exponencial compleja}
+% ======================================================
 
 Para
 \[
@@ -3200,7 +3367,8 @@ e^{z+2\pi i}=e^z,
 \]
 por lo que la exponencial compleja es periódica con periodo $2\pi i$.
 
-\paragraph{Ejemplo 1.}
+\begin{Ejem}
+
 \[
 e^{1+i\pi}
 =
@@ -3208,8 +3376,10 @@ e(-1)
 =
 -e.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+
+\begin{Ejem}
 \[
 e^{2+i\pi/2}
 =
@@ -3218,17 +3388,24 @@ e^2\left(\cos\frac{\pi}{2}+i\sin\frac{\pi}{2}\right)
 ie^2.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 \[
 |e^{3-2i}|=e^3.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 4.}
+
+\begin{Ejem}
 \[
 e^{z+4\pi i}=e^z.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 5.}
+
+\begin{Ejem}
 Resolver
 \[
 e^z=1.
@@ -3237,10 +3414,14 @@ Las soluciones son
 \[
 \boxed{z=2k\pi i,\qquad k\in\mathbb{Z}.}
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Logaritmo complejo}
-% ============================================================
+
+
+
+% ======================================================
+\subsection*{Logaritmo complejo}
+% ======================================================
 
 Queremos resolver
 \[
@@ -3302,7 +3483,9 @@ k\in\mathbb{Z}.
 
 El logaritmo complejo es multivaluado.
 
-\textbf{Definición.}
+
+\begin{Def}
+
 El \emph{logaritmo principal} se define mediante
 \[
 \boxed{
@@ -3313,51 +3496,53 @@ El \emph{logaritmo principal} se define mediante
 i\operatorname{Arg}(z).
 }
 \]
+\end{Def}
 
-\textbf{Observación docente.}
 Conviene enfatizar que las identidades logarítmicas complejas requieren
 cuidado por la multivaluación del argumento.
 
-\paragraph{Ejemplo 1.}
+
+\begin{Ejem}
+
 Para
 \[
 z=1,
 \]
 \[
-\log 1
-=
-2k\pi i.
+\log 1=2k\pi i.
 \]
+\end{Ejem}
 
-\paragraph{Ejemplo 2.}
+
+\begin{Ejem}
 Para
 \[
 z=-1,
 \]
 \[
-\log(-1)
-=
-i(\pi+2k\pi).
+\log(-1)=i(\pi+2k\pi).
 \]
 En particular,
 \[
 \operatorname{Log}(-1)=i\pi.
 \]
 
-\paragraph{Ejemplo 3.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Para
 \[
 z=i,
 \]
 \[
-\log i
-=
-i\left(
-\frac{\pi}{2}+2k\pi
-\right).
+\log i=i\left(\frac{\pi}{2}+2k\pi\right).
 \]
 
-\paragraph{Ejemplo 4.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Para
 \[
 z=1+i,
@@ -3369,111 +3554,29 @@ z=1+i,
 \]
 Entonces
 \[
-\operatorname{Log}(1+i)
-=
-\frac12\ln2
-+
-i\frac{\pi}{4}.
+\operatorname{Log}(1+i)=\frac12\ln2+i\frac{\pi}{4}.
 \]
 
-\paragraph{Ejemplo 5.}
+\end{Ejem}
+
+
+\begin{Ejem}
 Para
 \[
 z=-2i,
 \]
 \[
-|z|=2,
-\qquad
-\operatorname{Arg}(z)=-\frac{\pi}{2}.
+|z|=2, \qquad \operatorname{Arg}(z)=-\frac{\pi}{2}.
 \]
 Por tanto,
 \[
-\operatorname{Log}(-2i)
-=
-\ln2-\frac{\pi}{2}i.
+\operatorname{Log}(-2i)= \ln2-\frac{\pi}{2}i.
 \]
+\end{Ejem}
 
-% ============================================================
-\subsection{Aplicaciones en ingeniería}
-% ============================================================
-
-Los números complejos aparecen de manera natural en numerosos modelos de
-ingeniería.
-
-Entre las aplicaciones más frecuentes se encuentran:
-\begin{itemize}
-    \item análisis de circuitos de corriente alterna;
-    \item fasores;
-    \item procesamiento de señales;
-    \item transformadas de Fourier;
-    \item sistemas de control;
-    \item vibraciones;
-    \item electromagnetismo;
-    \item ecuaciones diferenciales;
-    \item mecánica cuántica;
-    \item comunicaciones.
-\end{itemize}
-
-La fórmula de Euler permite representar señales sinusoidales mediante
-exponenciales complejas. Por ejemplo,
-\[
-A\cos(\omega t+\phi)
-=
-\operatorname{Re}
-\left(
-Ae^{i(\omega t+\phi)}
-\right).
-\]
-
-Esta representación transforma muchas operaciones trigonométricas en
-operaciones algebraicas más sencillas.
-
-\paragraph{Ejemplo 1.}
-Una señal
-\[
-v(t)=10\cos(\omega t)
-\]
-puede representarse mediante el fasor
-\[
-10e^{i0}.
-\]
-
-\paragraph{Ejemplo 2.}
-\[
-v(t)=5\cos(\omega t+\pi/3)
-\]
-corresponde al fasor
-\[
-5e^{i\pi/3}.
-\]
-
-\paragraph{Ejemplo 3.}
-La multiplicación por
-\[
-e^{i\theta}
-\]
-representa geométricamente una rotación de ángulo $\theta$.
-
-\paragraph{Ejemplo 4.}
-Multiplicar por
-\[
-re^{i\theta}
-\]
-combina una dilatación de factor $r$ con una rotación de ángulo $\theta$.
-
-\paragraph{Ejemplo 5.}
-En análisis de señales, la identidad
-\[
-\cos(\omega t)
-=
-\frac{e^{i\omega t}+e^{-i\omega t}}{2}
-\]
-permite expresar una señal real como combinación de dos exponenciales
-complejas.
-
-% ============================================================
-\subsection{Resumen conceptual de la segunda parte}
-% ============================================================
+% ======================================================
+\subsection*{Resumen}
+% ======================================================
 
 La estructura geométrica y analítica de los números complejos puede resumirse
 mediante
@@ -3521,9 +3624,232 @@ e^z,\ \log z
 }
 \]
 
-Esta segunda parte completa la transición entre la estructura algebraica de
-$\mathbb{C}$ y su interpretación geométrica, preparando el terreno para
-aplicaciones posteriores en Álgebra Lineal, ecuaciones diferenciales, señales
-y sistemas de ingeniería.
+% =====================================================
+\section{Ejercicios}
+% ======================================================
+
+Los siguientes ejercicios están organizados por tema y nivel de dificultad. Se recomienda resolverlos sin apoyo de software en una primera etapa y utilizar herramientas computacionales únicamente para verificación.
+
+\subsection*{Potencias de la unidad imaginaria}
+\begin{enumerate}
+\item Calcule $i^{17}$.
+\item Calcule $i^{38}$.
+\item Calcule $i^{73}$.
+\item Calcule $i^{2026}$.
+\item Simplifique $i^{11}+i^{22}+i^{33}+i^{44}$.
+\item Simplifique $i^{15}-2i^{26}+3i^{37}-i^{48}$.
+\end{enumerate}
+
+\subsection*{Forma binómica, parte real e imaginaria}
+\begin{enumerate}
+\item Determine $\operatorname{Re}(z)$ y $\operatorname{Im}(z)$ para $z=5-7i$.
+\item Determine $\operatorname{Re}(z)$ y $\operatorname{Im}(z)$ para $z=-3+\frac{5}{2}i$.
+\item Escriba $-8$ en forma binómica e identifique sus partes real e imaginaria.
+\item Escriba $6i$ en forma binómica e identifique sus partes real e imaginaria.
+\item Clasifique como real, imaginario puro o complejo no real: $4$, $-3i$, $2+7i$, $0$, $5-2i$.
+\item Determine $a,b\in\mathbb{R}$ si $z=(2a-1)+(3b+4)i=7-5i$.
+\end{enumerate}
+
+\subsection*{Igualdad de números complejos}
+\begin{enumerate}
+\item Determine $x$ y $y$ si $(x+2)+(y-1)i=5+4i$.
+\item Determine $x$ y $y$ si $(2x-3)+(3y+2)i=7-10i$.
+\item Determine $a$ y $b$ si $(a-b)+(a+b)i=4+2i$.
+\item Determine $x$ y $y$ si $(x^2-1)+(2y+3)i=8+7i$ y $x>0$.
+\item Determine $x$ y $y$ si $(3x+y)+(x-2y)i=7-i$.
+\item Pruebe que si $a+bi=0$, entonces $a=b=0$.
+\end{enumerate}
+
+\subsection*{Suma y resta de números complejos}
+\begin{enumerate}
+\item Calcule $(3+5i)+(7-2i)$.
+\item Calcule $(-4+9i)+(6-11i)$.
+\item Calcule $(8-3i)-(2+7i)$.
+\item Simplifique $(2+i)-(5-3i)+(7+4i)$.
+\item Sean $z_1=3-2i$, $z_2=-1+5i$, $z_3=4+i$. Calcule $2z_1-z_2+3z_3$.
+\item Verifique explícitamente la asociatividad de la suma para $z_1=1+i$, $z_2=2-3i$, $z_3=-4+2i$.
+\end{enumerate}
+
+\subsection*{Producto de números complejos}
+\begin{enumerate}
+\item Calcule $(2+3i)(4-i)$.
+\item Calcule $(1-5i)(-2+3i)$.
+\item Calcule $(3+2i)^2$.
+\item Simplifique $(1+i)^4$ usando primero multiplicación directa.
+\item Calcule $(2-i)(2+i)(1+3i)$.
+\item Determine todos los $z=a+bi$ tales que $(1+i)z=4+2i$.
+\end{enumerate}
+
+\subsection*{Conjugado complejo}
+\begin{enumerate}
+\item Determine $\overline z$ para $z=7-5i$.
+\item Calcule $z+\overline z$ y $z-\overline z$ para $z=-3+4i$.
+\item Exprese $\operatorname{Re}(z)$ en términos de $z$ y $\overline z$.
+\item Exprese $\operatorname{Im}(z)$ en términos de $z$ y $\overline z$.
+\item Verifique que $\overline{zw}=\overline z\,\overline w$ para $z=2+i$, $w=3-4i$.
+\item Demuestre que $z$ es real si y sólo si $z=\overline z$.
+\end{enumerate}
+
+\subsection*{Módulo de números complejos}
+\begin{enumerate}
+\item Calcule $|3+4i|$.
+\item Calcule $|-5+12i|$.
+\item Calcule $|1-\sqrt3\,i|$.
+\item Encuentre todos los $z=a+bi$ tales que $|z|=5$ y $a=3$.
+\item Demuestre que $|z|^2=z\overline z$.
+\item Demuestre que $|z|=0$ si y sólo si $z=0$.
+\end{enumerate}
+
+\subsection*{División e inverso multiplicativo}
+\begin{enumerate}
+\item Calcule $\dfrac{1}{2+i}$.
+\item Calcule $\dfrac{3+2i}{1-i}$.
+\item Calcule $\dfrac{4-5i}{2+3i}$.
+\item Determine $(3-4i)^{-1}$.
+\item Simplifique $\dfrac{1+i}{1-i}$.
+\item Demuestre que para $z\neq0$, $z^{-1}=\dfrac{\overline z}{|z|^2}$.
+\end{enumerate}
+
+\subsection*{El plano complejo y lugares geométricos}
+\begin{enumerate}
+\item Represente en el plano complejo $z=3+2i$, $z=-2+4i$, $z=-3i$ y $z=5$.
+\item Describa geométricamente el conjunto $\{z\in\mathbb{C}: |z|=4\}$.
+\item Describa geométricamente $\{z: |z-(2-i)|<3\}$.
+\item Describa geométricamente $\{z: |z+1+2i|\le 2\}$.
+\item Determine el lugar geométrico de los puntos que satisfacen $|z-1|=|z+1|$.
+\item Determine el lugar geométrico de los puntos que satisfacen $|z-i|=2|z+i|$.
+\end{enumerate}
+
+\subsection*{Distancia y desigualdades}
+\begin{enumerate}
+\item Calcule la distancia entre $z_1=1+i$ y $z_2=4+5i$.
+\item Calcule la distancia entre $z_1=-2+3i$ y $z_2=1-i$.
+\item Verifique la desigualdad triangular para $z=1+i$ y $w=1-i$.
+\item Verifique la desigualdad triangular inversa para $z=3+4i$ y $w=1$.
+\item Demuestre que $|z+w|\le |z|+|w|$.
+\item Demuestre la identidad del paralelogramo: $|z+w|^2+|z-w|^2=2(|z|^2+|w|^2)$.
+\end{enumerate}
+
+\subsection*{Argumento y argumento principal}
+\begin{enumerate}
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=1+i$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-1+i$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-1-i$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-4$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-3i$.
+\item Explique por qué $\arg z$ es multivaluado y $\operatorname{Arg}(z)$ no.
+\end{enumerate}
+
+\subsection*{Conversión entre forma rectangular y polar}
+\begin{enumerate}
+\item Convierta $1+i$ a forma polar.
+\item Convierta $-1+\sqrt3\,i$ a forma polar.
+\item Convierta $-2-2i$ a forma polar.
+\item Convierta $4\left(\cos\frac{\pi}{3}+i\sin\frac{\pi}{3}\right)$ a forma rectangular.
+\item Convierta $5\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)$ a forma rectangular.
+\item Exprese $-3i$ en forma polar utilizando un argumento principal y un argumento general.
+\end{enumerate}
+
+\subsection*{Producto y cociente en forma polar}
+\begin{enumerate}
+\item Multiplique $2\operatorname{cis}\frac{\pi}{6}$ y $3\operatorname{cis}\frac{\pi}{4}$.
+\item Divida $6\operatorname{cis}\frac{5\pi}{6}$ entre $3\operatorname{cis}\frac{\pi}{3}$.
+\item Calcule el módulo y argumento de $(1+i)(\sqrt3+i)$ sin convertir primero a forma rectangular.
+\item Calcule $\dfrac{2e^{i\pi/3}}{4e^{-i\pi/6}}$.
+\item Si $|z_1|=3$, $|z_2|=5$, $\arg z_1=\frac{\pi}{7}$ y $\arg z_2=-\frac{\pi}{4}$, determine módulo y argumento de $z_1z_2$.
+\item Demuestre en forma polar que $|z_1z_2|=|z_1||z_2|$.
+\end{enumerate}
+
+\subsection*{Fórmula de Euler y forma exponencial}
+\begin{enumerate}
+\item Evalúe $e^{i\pi/6}$.
+\item Evalúe $e^{i3\pi/4}$.
+\item Exprese $1-i$ en forma exponencial.
+\item Exprese $-2+2i$ en forma exponencial.
+\item Demuestre que $\cos\theta=\dfrac{e^{i\theta}+e^{-i\theta}}{2}$.
+\item Demuestre que $\sin\theta=\dfrac{e^{i\theta}-e^{-i\theta}}{2i}$.
+\end{enumerate}
+
+\subsection*{Teorema de De Moivre y potencias}
+\begin{enumerate}
+\item Calcule $(1+i)^8$ usando De Moivre.
+\item Calcule $(-1+i)^6$ usando De Moivre.
+\item Calcule $(\sqrt3+i)^{10}$.
+\item Calcule $\left(2e^{i\pi/5}\right)^7$.
+\item Use De Moivre para deducir una fórmula para $\cos(3\theta)$.
+\item Use De Moivre para deducir una fórmula para $\sin(4\theta)$.
+\end{enumerate}
+
+\subsection*{Raíces $n$-ésimas}
+\begin{enumerate}
+\item Encuentre las raíces cuadradas de $i$.
+\item Encuentre las raíces cúbicas de $8$.
+\item Encuentre las raíces cúbicas de $8i$.
+\item Encuentre las raíces cuartas de $-16$.
+\item Encuentre las cinco raíces de $32$.
+\item Demuestre que las raíces $n$-ésimas de un número complejo no nulo están igualmente espaciadas angularmente.
+\end{enumerate}
+
+\subsection*{Raíces de la unidad}
+\begin{enumerate}
+\item Encuentre las raíces cúbicas de la unidad y represéntelas geométricamente.
+\item Encuentre las raíces cuartas de la unidad.
+\item Encuentre las raíces sextas de la unidad.
+\item Determine cuáles de las raíces octavas de la unidad son primitivas.
+\item Demuestre que la suma de las raíces $n$-ésimas de la unidad es cero para $n>1$.
+\item Factorice $z^5-1$ completamente sobre $\mathbb{C}$.
+\end{enumerate}
+
+\subsection*{Ecuaciones polinómicas}
+\begin{enumerate}
+\item Resuelva $z^2+1=0$.
+\item Resuelva $z^2-2z+5=0$.
+\item Resuelva $z^3-8=0$.
+\item Resuelva $z^4+16=0$.
+\item Factorice $z^4-1$ sobre $\mathbb{C}$.
+\item Construya un polinomio mónico real de grado $4$ cuyas raíces incluyan $1+2i$ y $-3+i$.
+\end{enumerate}
+
+\subsection*{Teorema Fundamental del Álgebra y conjugación}
+\begin{enumerate}
+\item Explique qué significa que $\mathbb{C}$ sea algebraicamente cerrado.
+\item ¿Cuántas raíces posee, contando multiplicidad, un polinomio complejo de grado $7$?
+\item Si $2+3i$ es raíz de un polinomio real, ¿qué otra raíz debe aparecer?
+\item Construya el factor cuadrático real asociado al par de raíces $4\pm5i$.
+\item Demuestre que las raíces no reales de un polinomio real aparecen en pares conjugados.
+\item Explique por qué todo polinomio real de grado impar tiene al menos una raíz real.
+\end{enumerate}
+
+\subsection*{Exponencial y logaritmo complejo}
+\begin{enumerate}
+\item Calcule $e^{1+i\pi}$.
+\item Calcule $e^{2+i\pi/2}$.
+\item Resuelva $e^z=1$.
+\item Determine todos los valores de $\log(-1)$.
+\item Calcule $\operatorname{Log}(1+i)$.
+\item Calcule $\operatorname{Log}(-2i)$.
+\end{enumerate}
+
+\subsection*{Problemas}
+\begin{enumerate}
+\item Sea $z=1+i$. Calcule sucesivamente $\overline z$, $|z|$, $\operatorname{Arg}(z)$, su forma polar, su forma exponencial, $z^8$ y sus raíces cúbicas.
+\item Sea $z=-1+\sqrt3\,i$. Exprese $z$ en forma polar y exponencial y calcule $z^{12}$.
+\item Resuelva completamente $z^4=16i$ y represente geométricamente las soluciones.
+\item Determine el lugar geométrico definido por $|z-1|+|z+1|=4$ e interprete el resultado.
+\item Sea $p(z)=z^4+5z^2+4$. Factorice completamente $p$ sobre $\mathbb{R}$ y sobre $\mathbb{C}$.
+\item Pruebe que la transformación $T(z)=e^{i\theta}z$ preserva distancias: $|T(z_1)-T(z_2)|=|z_1-z_2|$.
+\end{enumerate}
+
+\subsection*{Ejercicios tipo examen}
+\begin{enumerate}
+\item Sin usar calculadora, simplifique $\dfrac{(1+i)^{10}}{(1-i)^6}$.
+\item Determine todas las soluciones de $z^3=-8i$ y expréselas en forma rectangular.
+\item Sea $z$ tal que $|z|=2$ y $\operatorname{Arg}(z)=\frac{2\pi}{3}$. Calcule $z^5$.
+\item Encuentre todos los $z$ que satisfacen simultáneamente $|z|=2$ y $|z-2|=2$.
+\item Factorice completamente $z^6-1$ sobre $\mathbb{C}$.
+\item Determine todos los valores de $w$ tales que $e^w=1+i$.
+\end{enumerate}
+
+
 
 \end{document}
