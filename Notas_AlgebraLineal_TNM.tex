@@ -1,0 +1,3529 @@
+\documentclass[12pt]{article}
+
+% Codificación e idioma
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Matemáticas
+\usepackage{amsmath,amssymb,amsfonts}
+
+% Formato y utilidades
+\usepackage[letterpaper,margin=2.5cm]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+
+% Formato de párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% Compatibilidad con listas provenientes de Pandoc
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+
+% Entorno para ejemplos
+\newenvironment{Ejem}
+{\par\medskip\noindent\textbf{Ejemplo.}\ }
+{\par\medskip}
+
+% Enlaces
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% Pie de página
+\pagestyle{fancy}
+\fancyhf{} % limpia encabezados y pies
+
+\fancyhead[L]{Tecnológico Nacional de México}
+\fancyhead[R]{\'Algebra Lineal}
+
+\fancyfoot[L]{Carlos Ernesto Martínez}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{mrdgzcarlose@gmail.com}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Datos del documento
+\title{
+    Notas para el curso de \'Algebra Lineal\\[0.5em]
+    \large Unidad 1: N\'umeros Complejos
+}\author{Carlos Ernesto Martínez}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+
+\begin{center}
+    \includegraphics[width=0.22\textwidth]{QR_Notas_CD_Numeros_Complejos.png}
+
+    \small
+    Escanea el código QR para acceder a las notas de esta unidad.
+\end{center}
+
+
+% ============================================================
+% UNIDAD 1. NÚMEROS COMPLEJOS
+% PARTE I: FUNDAMENTOS ALGEBRAICOS
+% Versión ampliada, formal y con ejemplos para guía docente
+% ============================================================
+
+\section{Números complejos}
+
+\subsection{Motivación: ampliación de los sistemas numéricos}
+
+Los sistemas numéricos que se utilizan en matemáticas pueden entenderse como
+extensiones sucesivas construidas para resolver ecuaciones u operaciones que
+no son posibles dentro de un sistema previo.
+
+Por ejemplo, la ecuación
+\[
+x+3=1
+\]
+no posee solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$. De manera análoga,
+\[
+2x=1
+\]
+no posee solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$. Finalmente,
+\[
+x^2=2
+\]
+no posee solución en $\mathbb{Q}$, pero sí en $\mathbb{R}$.
+
+Esto conduce a la cadena de inclusiones
+\[
+\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.
+\]
+
+Sin embargo, incluso el sistema de los números reales es insuficiente para
+resolver todas las ecuaciones polinómicas.
+
+Consideremos
+\[
+x^2+1=0.
+\]
+La ecuación equivale a
+\[
+x^2=-1.
+\]
+Pero para todo $x\in\mathbb{R}$,
+\[
+x^2\geq 0.
+\]
+Por tanto,
+\[
+x^2=-1
+\]
+no posee solución en $\mathbb{R}$.
+
+La construcción de los números complejos responde precisamente a la necesidad
+de extender $\mathbb{R}$ de manera que esta ecuación, y más generalmente todo
+polinomio no constante, pueda estudiarse dentro de un sistema algebraicamente
+más completo.
+
+\textbf{Observación docente.}
+Es importante enfatizar que una extensión numérica no elimina el sistema
+anterior: lo contiene como subconjunto. El objetivo es ampliar el universo de
+objetos sin perder las reglas algebraicas ya conocidas.
+
+\paragraph{Ejemplo 1.}
+La ecuación
+\[
+x+5=2
+\]
+no tiene solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$:
+\[
+x=-3.
+\]
+
+\paragraph{Ejemplo 2.}
+La ecuación
+\[
+3x=1
+\]
+no tiene solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$:
+\[
+x=\frac13.
+\]
+
+\paragraph{Ejemplo 3.}
+La ecuación
+\[
+x^2=3
+\]
+no tiene solución racional, pero sí real:
+\[
+x=\pm\sqrt3.
+\]
+
+\paragraph{Ejemplo 4.}
+La ecuación
+\[
+x^2+4=0
+\]
+equivale a
+\[
+x^2=-4.
+\]
+No posee solución real, pero en el sistema complejo tendrá soluciones
+\[
+x=\pm 2i.
+\]
+
+\paragraph{Ejemplo 5.}
+La ecuación
+\[
+x^2-2x+5=0
+\]
+tiene discriminante
+\[
+\Delta=b^2-4ac=(-2)^2-4(1)(5)=4-20=-16.
+\]
+Por tanto, no tiene raíces reales. Más adelante veremos que sus soluciones
+complejas son
+\[
+x=1\pm 2i.
+\]
+
+% ============================================================
+\subsection{La unidad imaginaria y sus potencias}
+% ============================================================
+
+\textbf{Definición.}
+Se introduce un nuevo elemento $i$, denominado \emph{unidad imaginaria}, que
+satisface la relación
+\[
+\boxed{i^2=-1.}
+\]
+
+La propiedad anterior es la relación algebraica fundamental de la unidad
+imaginaria. A partir de ella se obtienen todas sus potencias.
+
+Tenemos
+\[
+i^0=1,
+\qquad
+i^1=i,
+\qquad
+i^2=-1,
+\]
+y
+\[
+i^3=i^2i=-i,
+\qquad
+i^4=i^2i^2=(-1)(-1)=1.
+\]
+
+A partir de $i^4=1$ se sigue que las potencias de $i$ son periódicas de
+periodo $4$:
+\[
+\boxed{i^{n+4}=i^n.}
+\]
+
+Más precisamente, si
+\[
+n=4q+r,
+\qquad r\in\{0,1,2,3\},
+\]
+entonces
+\[
+i^n=i^r.
+\]
+
+\textbf{Proposición.}
+Para todo $n\in\mathbb{N}$,
+\[
+i^n=
+\begin{cases}
+1, & n\equiv 0 \pmod 4,\\
+i, & n\equiv 1 \pmod 4,\\
+-1, & n\equiv 2 \pmod 4,\\
+-i, & n\equiv 3 \pmod 4.
+\end{cases}
+\]
+
+\textbf{Demostración.}
+Sea $n=4q+r$ con $r\in\{0,1,2,3\}$. Entonces
+\[
+i^n=i^{4q+r}=(i^4)^qi^r=1^qi^r=i^r.
+\]
+Basta sustituir los cuatro valores posibles de $r$.
+\hfill$\square$
+
+\paragraph{Ejemplo 1.}
+\[
+i^{18}=i^{4(4)+2}=i^2=-1.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+i^{35}=i^{4(8)+3}=i^3=-i.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+i^{100}=i^{4(25)}=1.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+i^{2026}=i^{4(506)+2}=i^2=-1.
+\]
+
+\paragraph{Ejemplo 5.}
+Simplifiquemos
+\[
+i^{17}+i^{28}-i^{39}.
+\]
+Tenemos
+\[
+i^{17}=i,\qquad
+i^{28}=1,\qquad
+i^{39}=i^3=-i.
+\]
+Por tanto,
+\[
+i^{17}+i^{28}-i^{39}
+=i+1-(-i)
+=
+\boxed{1+2i}.
+\]
+
+% ============================================================
+\subsection{Definición de número complejo, parte real e imaginaria}
+% ============================================================
+
+\textbf{Definición.}
+Un número complejo es una expresión de la forma
+\[
+\boxed{z=a+bi,}
+\]
+donde
+\[
+a,b\in\mathbb{R}
+\]
+e
+\[
+i^2=-1.
+\]
+
+El conjunto de todos los números complejos se denota por
+\[
+\boxed{\mathbb{C}}.
+\]
+Así,
+\[
+\boxed{
+\mathbb{C}
+=
+\{a+bi:\;a,b\in\mathbb{R}\}.
+}
+\]
+
+Si
+\[
+z=a+bi,
+\]
+se define
+\[
+\boxed{\operatorname{Re}(z)=a}
+\]
+y
+\[
+\boxed{\operatorname{Im}(z)=b.}
+\]
+
+Es esencial observar que la parte imaginaria de $z$ es $b$, no $bi$.
+
+La representación
+\[
+z=a+bi
+\]
+se denomina \emph{forma binómica}, \emph{forma rectangular} o
+\emph{forma cartesiana}.
+
+\textbf{Definición.}
+Un número complejo $z=a+bi$ es:
+\begin{itemize}
+    \item real si $b=0$;
+    \item imaginario puro si $a=0$ y $b\neq 0$;
+    \item complejo no real si $b\neq 0$.
+\end{itemize}
+
+Todo número real puede identificarse con el complejo
+\[
+a=a+0i.
+\]
+Por tanto,
+\[
+\boxed{\mathbb{R}\subset\mathbb{C}.}
+\]
+
+\textbf{Proposición de unicidad.}
+Si
+\[
+a+bi=c+di,
+\]
+con $a,b,c,d\in\mathbb{R}$, entonces
+\[
+a=c
+\qquad\text{y}\qquad
+b=d.
+\]
+
+Equivalentemente,
+\[
+\boxed{
+a+bi=c+di
+\iff
+a=c\ \text{y}\ b=d.
+}
+\]
+
+\paragraph{Ejemplo 1.}
+Para
+\[
+z=4-7i
+\]
+se tiene
+\[
+\operatorname{Re}(z)=4,
+\qquad
+\operatorname{Im}(z)=-7.
+\]
+
+\paragraph{Ejemplo 2.}
+El número
+\[
+z=-5
+\]
+puede escribirse como
+\[
+z=-5+0i.
+\]
+Por tanto, es un número real considerado como elemento de $\mathbb{C}$.
+
+\paragraph{Ejemplo 3.}
+El número
+\[
+z=\frac32 i
+\]
+tiene
+\[
+\operatorname{Re}(z)=0,
+\qquad
+\operatorname{Im}(z)=\frac32,
+\]
+por lo que es imaginario puro.
+
+\paragraph{Ejemplo 4.}
+Si
+\[
+(2x-1)+(y+3)i=7-4i,
+\]
+la igualdad de números complejos implica
+\[
+2x-1=7,
+\qquad
+y+3=-4.
+\]
+Así,
+\[
+\boxed{x=4,\qquad y=-7.}
+\]
+
+\paragraph{Ejemplo 5.}
+Determine $a$ y $b$ si
+\[
+(a+2)+(3b-1)i=5+8i.
+\]
+Igualando componentes:
+\[
+a+2=5,
+\qquad
+3b-1=8.
+\]
+Por tanto,
+\[
+\boxed{a=3,\qquad b=3.}
+\]
+
+% ============================================================
+\subsection{Construcción formal de $\mathbb{C}$ a partir de $\mathbb{R}^2$}
+% ============================================================
+
+La notación $a+bi$ es conveniente, pero los números complejos pueden
+construirse rigurosamente sin asumir previamente la existencia de $i$.
+
+Consideremos
+\[
+\mathbb{R}^2
+=
+\{(a,b):a,b\in\mathbb{R}\}.
+\]
+
+Definimos la suma
+\[
+(a,b)+(c,d)
+=
+(a+c,b+d)
+\]
+y la multiplicación
+\[
+\boxed{
+(a,b)(c,d)
+=
+(ac-bd,ad+bc).
+}
+\]
+
+Identificamos cada número real $a$ con el par
+\[
+(a,0).
+\]
+De esta manera,
+\[
+0=(0,0),
+\qquad
+1=(1,0).
+\]
+
+Definimos
+\[
+i=(0,1).
+\]
+Entonces
+\[
+i^2
+=
+(0,1)(0,1)
+=
+(-1,0),
+\]
+y como $(-1,0)$ representa al número real $-1$,
+\[
+\boxed{i^2=-1.}
+\]
+
+Además,
+\[
+(a,b)
+=
+(a,0)+(b,0)(0,1),
+\]
+lo que justifica la notación
+\[
+(a,b)\equiv a+bi.
+\]
+
+\textbf{Observación docente.}
+Esta construcción muestra que los números complejos no son objetos
+``misteriosos'': son pares ordenados de números reales equipados con una
+multiplicación específicamente diseñada para que $(0,1)^2=(-1,0)$.
+
+\paragraph{Ejemplo 1.}
+En la construcción por pares,
+\[
+(2,3)+(4,-1)
+=
+(6,2).
+\]
+Esto corresponde a
+\[
+(2+3i)+(4-i)=6+2i.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+(1,2)(3,4)
+=
+(3-8,4+6)
+=
+(-5,10).
+\]
+En forma binómica:
+\[
+(1+2i)(3+4i)=-5+10i.
+\]
+
+\paragraph{Ejemplo 3.}
+El real $7$ se identifica con
+\[
+(7,0).
+\]
+Entonces
+\[
+(7,0)+(0,2)=(7,2),
+\]
+es decir,
+\[
+7+2i.
+\]
+
+\paragraph{Ejemplo 4.}
+La unidad imaginaria es
+\[
+i=(0,1).
+\]
+Por tanto,
+\[
+3i=(0,3).
+\]
+
+\paragraph{Ejemplo 5.}
+El producto
+\[
+(0,2)(0,5)
+\]
+es
+\[
+(0\cdot0-2\cdot5,\;0\cdot5+2\cdot0)
+=
+(-10,0),
+\]
+por lo que
+\[
+(2i)(5i)=-10.
+\]
+
+% ============================================================
+\subsection{Suma, resta y estructura aditiva}
+% ============================================================
+
+Sean
+\[
+z_1=a+bi,
+\qquad
+z_2=c+di.
+\]
+
+La suma se define componente a componente:
+\[
+\boxed{
+z_1+z_2
+=
+(a+c)+(b+d)i.
+}
+\]
+
+La resta se define mediante la suma con el inverso aditivo:
+\[
+z_1-z_2
+=
+z_1+(-z_2),
+\]
+de modo que
+\[
+\boxed{
+z_1-z_2
+=
+(a-c)+(b-d)i.
+}
+\]
+
+El inverso aditivo de
+\[
+z=a+bi
+\]
+es
+\[
+\boxed{-z=-a-bi.}
+\]
+
+El elemento neutro aditivo es
+\[
+0=0+0i.
+\]
+
+La suma de complejos satisface:
+\[
+z+w=w+z,
+\]
+\[
+(z+w)+u=z+(w+u),
+\]
+\[
+z+0=z,
+\]
+\[
+z+(-z)=0.
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+(3+2i)+(5-7i)=8-5i.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+(-4+6i)+(2+9i)=-2+15i.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+(7-3i)-(2+5i)
+=
+5-8i.
+\]
+
+\paragraph{Ejemplo 4.}
+El inverso aditivo de
+\[
+z=4-9i
+\]
+es
+\[
+-z=-4+9i.
+\]
+
+\paragraph{Ejemplo 5.}
+Simplifiquemos
+\[
+(2+3i)-(5-i)+(4+2i).
+\]
+Agrupando partes reales e imaginarias:
+\[
+(2-5+4)+(3+1+2)i
+=
+\boxed{1+6i}.
+\]
+
+% ============================================================
+\subsection{Producto de números complejos}
+% ============================================================
+
+Sean
+\[
+z_1=a+bi,
+\qquad
+z_2=c+di.
+\]
+
+El producto se obtiene utilizando distributividad y la relación $i^2=-1$:
+\begin{align*}
+(a+bi)(c+di)
+&=
+ac+adi+bci+bdi^2\\
+&=
+ac+adi+bci-bd.
+\end{align*}
+
+Por tanto,
+\[
+\boxed{
+(a+bi)(c+di)
+=
+(ac-bd)+(ad+bc)i.
+}
+\]
+
+El producto es cerrado en $\mathbb{C}$, es decir,
+\[
+z,w\in\mathbb{C}
+\quad\Longrightarrow\quad
+zw\in\mathbb{C}.
+\]
+
+Además, satisface
+\[
+zw=wz,
+\]
+\[
+(zw)u=z(wu),
+\]
+\[
+z(w+u)=zw+zu.
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+(2+3i)(4-i)
+=
+8-2i+12i-3i^2
+=
+\boxed{11+10i}.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+(1+i)^2
+=
+1+2i+i^2
+=
+\boxed{2i}.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+(3-2i)(3+2i)
+=
+9-4i^2
+=
+\boxed{13}.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+(-2+5i)(1-3i)
+=
+-2+6i+5i-15i^2
+=
+\boxed{13+11i}.
+\]
+
+\paragraph{Ejemplo 5.}
+Simplifiquemos
+\[
+(1+i)(1-i)(2+i).
+\]
+Primero,
+\[
+(1+i)(1-i)=1-i^2=2.
+\]
+Por tanto,
+\[
+2(2+i)
+=
+\boxed{4+2i}.
+\]
+
+% ============================================================
+\subsection{Conjugado complejo}
+% ============================================================
+
+\textbf{Definición.}
+Sea
+\[
+z=a+bi.
+\]
+El \emph{conjugado complejo} de $z$ es
+\[
+\boxed{\overline z=a-bi.}
+\]
+
+La conjugación cambia el signo de la parte imaginaria y conserva la parte real.
+
+\textbf{Proposición.}
+Para $z,w\in\mathbb{C}$:
+\[
+\boxed{\overline{\overline z}=z,}
+\]
+\[
+\boxed{\overline{z+w}=\overline z+\overline w,}
+\]
+\[
+\boxed{\overline{zw}=\overline z\,\overline w.}
+\]
+
+Además,
+\[
+z+\overline z=2\operatorname{Re}(z),
+\]
+y
+\[
+z-\overline z=2i\operatorname{Im}(z).
+\]
+
+Por tanto,
+\[
+\boxed{
+\operatorname{Re}(z)
+=
+\frac{z+\overline z}{2}
+}
+\]
+y
+\[
+\boxed{
+\operatorname{Im}(z)
+=
+\frac{z-\overline z}{2i}.
+}
+\]
+
+\textbf{Caracterización.}
+\[
+z\in\mathbb{R}
+\iff
+z=\overline z.
+\]
+
+\paragraph{Ejemplo 1.}
+Si
+\[
+z=3+5i,
+\]
+entonces
+\[
+\overline z=3-5i.
+\]
+
+\paragraph{Ejemplo 2.}
+Si
+\[
+z=-4-7i,
+\]
+entonces
+\[
+\overline z=-4+7i.
+\]
+
+\paragraph{Ejemplo 3.}
+Para
+\[
+z=2+3i,
+\]
+\[
+z+\overline z
+=
+(2+3i)+(2-3i)
+=
+4,
+\]
+y por tanto
+\[
+\operatorname{Re}(z)=2.
+\]
+
+\paragraph{Ejemplo 4.}
+Para
+\[
+z=1-4i,
+\]
+\[
+z-\overline z
+=
+(1-4i)-(1+4i)
+=
+-8i.
+\]
+Entonces
+\[
+\operatorname{Im}(z)
+=
+\frac{-8i}{2i}
+=
+-4.
+\]
+
+\paragraph{Ejemplo 5.}
+Verifiquemos
+\[
+\overline{zw}=\overline z\,\overline w
+\]
+para
+\[
+z=1+2i,
+\qquad
+w=3-i.
+\]
+Primero,
+\[
+zw=5+5i,
+\]
+por lo que
+\[
+\overline{zw}=5-5i.
+\]
+Además,
+\[
+\overline z=1-2i,
+\qquad
+\overline w=3+i,
+\]
+y
+\[
+(1-2i)(3+i)=5-5i.
+\]
+Por tanto, la identidad se verifica.
+
+% ============================================================
+\subsection{Módulo de un número complejo}
+% ============================================================
+
+\textbf{Definición.}
+Para
+\[
+z=a+bi,
+\]
+se define el módulo de $z$ mediante
+\[
+\boxed{
+|z|=\sqrt{a^2+b^2}.
+}
+\]
+
+Como
+\[
+z\overline z
+=
+(a+bi)(a-bi)
+=
+a^2+b^2,
+\]
+se obtiene
+\[
+\boxed{
+z\overline z=|z|^2.
+}
+\]
+
+De esta identidad se deduce que
+\[
+|z|\geq 0
+\]
+y
+\[
+\boxed{|z|=0\iff z=0.}
+\]
+
+También
+\[
+|\overline z|=|z|.
+\]
+
+\textbf{Observación.}
+El módulo será interpretado geométricamente como la distancia del punto
+$z$ al origen en el plano complejo.
+
+\paragraph{Ejemplo 1.}
+Si
+\[
+z=3+4i,
+\]
+entonces
+\[
+|z|=\sqrt{3^2+4^2}=5.
+\]
+
+\paragraph{Ejemplo 2.}
+Si
+\[
+z=-5+12i,
+\]
+entonces
+\[
+|z|=\sqrt{25+144}=13.
+\]
+
+\paragraph{Ejemplo 3.}
+Si
+\[
+z=7i,
+\]
+entonces
+\[
+|z|=7.
+\]
+
+\paragraph{Ejemplo 4.}
+Si
+\[
+z=-6,
+\]
+entonces
+\[
+|z|=6.
+\]
+
+\paragraph{Ejemplo 5.}
+Sea
+\[
+z=2-3i.
+\]
+Entonces
+\[
+z\overline z
+=
+(2-3i)(2+3i)
+=
+4+9
+=
+13.
+\]
+Por otra parte,
+\[
+|z|^2
+=
+(\sqrt{13})^2
+=
+13.
+\]
+Así,
+\[
+z\overline z=|z|^2.
+\]
+
+% ============================================================
+\subsection{División e inverso multiplicativo}
+% ============================================================
+
+Sea
+\[
+z=a+bi\neq0.
+\]
+
+Buscamos un número
+\[
+z^{-1}=x+yi
+\]
+tal que
+\[
+zz^{-1}=1.
+\]
+
+Utilizando el conjugado:
+\[
+z\overline z=|z|^2.
+\]
+Por tanto,
+\[
+z\frac{\overline z}{|z|^2}=1,
+\]
+y obtenemos
+\[
+\boxed{
+z^{-1}
+=
+\frac{\overline z}{|z|^2},
+\qquad z\neq0.
+}
+\]
+
+Si
+\[
+z_1=a+bi
+\]
+y
+\[
+z_2=c+di\neq0,
+\]
+entonces
+\[
+\frac{z_1}{z_2}
+=
+z_1z_2^{-1}
+=
+\frac{z_1\overline{z_2}}{|z_2|^2}.
+\]
+
+Expresado en coordenadas:
+\[
+\boxed{
+\frac{a+bi}{c+di}
+=
+\frac{ac+bd}{c^2+d^2}
++
+\frac{bc-ad}{c^2+d^2}i.
+}
+\]
+
+\paragraph{Ejemplo 1.}
+Calculemos
+\[
+\frac{1}{2+i}.
+\]
+Multiplicando por el conjugado:
+\[
+\frac{1}{2+i}
+\frac{2-i}{2-i}
+=
+\frac{2-i}{5}.
+\]
+Por tanto,
+\[
+\boxed{
+\frac{1}{2+i}
+=
+\frac25-\frac15 i.
+}
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+\frac{3+2i}{1-i}
+=
+\frac{(3+2i)(1+i)}{(1-i)(1+i)}
+=
+\frac{1+5i}{2}.
+\]
+Así,
+\[
+\boxed{
+\frac{3+2i}{1-i}
+=
+\frac12+\frac52 i.
+}
+\]
+
+\paragraph{Ejemplo 3.}
+El inverso de
+\[
+z=3-4i
+\]
+es
+\[
+z^{-1}
+=
+\frac{3+4i}{25}
+=
+\boxed{
+\frac3{25}+\frac4{25}i
+}.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+\frac{2-i}{2+i}
+=
+\frac{(2-i)^2}{5}
+=
+\frac{3-4i}{5}.
+\]
+Por tanto,
+\[
+\boxed{
+\frac{2-i}{2+i}
+=
+\frac35-\frac45 i.
+}
+\]
+
+\paragraph{Ejemplo 5.}
+Simplifiquemos
+\[
+\frac{i}{1+i}.
+\]
+Entonces
+\[
+\frac{i}{1+i}
+\frac{1-i}{1-i}
+=
+\frac{i-i^2}{2}
+=
+\frac{1+i}{2}.
+\]
+Por tanto,
+\[
+\boxed{
+\frac{i}{1+i}
+=
+\frac12+\frac12 i.
+}
+\]
+
+% ============================================================
+\subsection{$\mathbb{C}$ como campo}
+% ============================================================
+
+El conjunto $\mathbb{C}$, equipado con las operaciones usuales de suma y
+producto, constituye un campo.
+
+Esto significa que para cualesquiera $z,w,u\in\mathbb{C}$ se satisfacen
+los axiomas:
+
+\begin{enumerate}
+    \item cerradura de la suma;
+    \item asociatividad de la suma;
+    \item conmutatividad de la suma;
+    \item existencia del neutro aditivo $0$;
+    \item existencia del inverso aditivo $-z$;
+    \item cerradura del producto;
+    \item asociatividad del producto;
+    \item conmutatividad del producto;
+    \item existencia del neutro multiplicativo $1$;
+    \item existencia del inverso multiplicativo $z^{-1}$ para $z\neq0$;
+    \item distributividad del producto respecto de la suma.
+\end{enumerate}
+
+Por tanto,
+\[
+\boxed{\mathbb{C}\text{ es un campo}.}
+\]
+
+Además,
+\[
+\boxed{\mathbb{R}\subset\mathbb{C}}
+\]
+y las operaciones de $\mathbb{C}$ restringidas a $\mathbb{R}$ coinciden con
+las operaciones usuales de los números reales.
+
+\textbf{Teorema.}
+No existe un orden total sobre $\mathbb{C}$ compatible con las operaciones
+de campo que extienda el orden usual de $\mathbb{R}$.
+
+\textbf{Idea de demostración.}
+En un campo ordenado, el cuadrado de todo elemento no nulo debe ser positivo.
+Si $\mathbb{C}$ fuera ordenado, entonces
+\[
+i^2>0.
+\]
+Pero
+\[
+i^2=-1,
+\]
+lo cual implicaría
+\[
+-1>0,
+\]
+contradicción con el orden usual de $\mathbb{R}$.
+Por tanto, $\mathbb{C}$ no puede ser un campo ordenado.
+\hfill$\square$
+
+\paragraph{Ejemplo 1.}
+La suma
+\[
+(2+i)+(3-5i)=5-4i
+\]
+permanece en $\mathbb{C}$, mostrando cerradura aditiva.
+
+\paragraph{Ejemplo 2.}
+El producto
+\[
+(1+i)(2-3i)=5-i
+\]
+permanece en $\mathbb{C}$, mostrando cerradura multiplicativa.
+
+\paragraph{Ejemplo 3.}
+El inverso aditivo de
+\[
+z=-2+7i
+\]
+es
+\[
+2-7i.
+\]
+
+\paragraph{Ejemplo 4.}
+Para
+\[
+z=1+i\neq0,
+\]
+el inverso multiplicativo es
+\[
+z^{-1}
+=
+\frac{1-i}{2}.
+\]
+En efecto,
+\[
+(1+i)\frac{1-i}{2}
+=
+1.
+\]
+
+\paragraph{Ejemplo 5.}
+La expresión
+\[
+i>0
+\]
+no tiene un significado compatible con la estructura de campo de
+$\mathbb{C}$ como sí ocurre en $\mathbb{R}$. Esto explica por qué las
+desigualdades complejas requieren conceptos diferentes, típicamente
+basados en el módulo.
+
+% ============================================================
+\subsection{Resumen algebraico de la primera parte}
+% ============================================================
+
+La construcción algebraica de los números complejos puede resumirse mediante
+
+\[
+\boxed{
+\begin{array}{c}
+\mathbb{R}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+i^2=-1
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z=a+bi
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\operatorname{Re}(z),\operatorname{Im}(z)
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{suma y producto}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\overline z,\ |z|
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z^{-1}=\dfrac{\overline z}{|z|^2}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\mathbb{C}\text{ es un campo}
+\end{array}
+}
+\]
+
+Esta primera parte proporciona la estructura algebraica necesaria para
+desarrollar posteriormente la geometría del plano complejo, la forma polar,
+la fórmula de Euler, el teorema de De Moivre, las raíces complejas y el
+logaritmo complejo.
+
+
+% ============================================================
+% UNIDAD 1. NÚMEROS COMPLEJOS
+% PARTE II: GEOMETRÍA, FORMA POLAR, EULER, DE MOIVRE,
+% RAÍCES, TFA Y LOGARITMO COMPLEJO
+% Versión ampliada, formal y con ejemplos para guía docente
+% ============================================================
+
+% ============================================================
+\section{Geometría de los números complejos}
+% ============================================================
+
+\subsection{El plano complejo}
+
+Sea
+\[
+z=a+bi.
+\]
+
+Como $z$ queda determinado de manera única por el par ordenado $(a,b)$,
+podemos representar a $z$ como el punto
+\[
+(a,b)\in\mathbb{R}^2.
+\]
+
+Esta representación da lugar al \emph{plano complejo} o \emph{plano de Argand}.
+
+En él:
+\begin{itemize}
+    \item el eje horizontal se denomina \emph{eje real};
+    \item el eje vertical se denomina \emph{eje imaginario}.
+\end{itemize}
+
+El número
+\[
+z=a+bi
+\]
+se identifica entonces con el punto
+\[
+(a,b)
+\]
+y también con el vector que va del origen al punto $(a,b)$.
+
+Esta identificación permite interpretar geométricamente muchas operaciones
+complejas.
+
+\textbf{Observación docente.}
+Conviene insistir en que la identificación
+\[
+\mathbb{C}\leftrightarrow\mathbb{R}^2
+\]
+es una identificación de conjuntos y, además, de espacios vectoriales reales,
+pero el producto complejo no coincide con el producto componente a componente
+de $\mathbb{R}^2$.
+
+\paragraph{Ejemplo 1.}
+\[
+z=3+2i
+\]
+se representa por el punto
+\[
+(3,2).
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+z=-4+i
+\]
+se representa por
+\[
+(-4,1).
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+z=-2-5i
+\]
+se representa por
+\[
+(-2,-5).
+\]
+
+\paragraph{Ejemplo 4.}
+El número real
+\[
+z=6
+\]
+se representa por el punto
+\[
+(6,0),
+\]
+sobre el eje real.
+
+\paragraph{Ejemplo 5.}
+El número imaginario puro
+\[
+z=-3i
+\]
+se representa por
+\[
+(0,-3),
+\]
+sobre el eje imaginario.
+
+% ============================================================
+\subsection{Módulo como distancia al origen}
+% ============================================================
+
+Sea
+\[
+z=a+bi.
+\]
+
+El módulo de $z$ es
+\[
+\boxed{|z|=\sqrt{a^2+b^2}.}
+\]
+
+Geométricamente, $|z|$ es la distancia euclidiana desde el origen $(0,0)$ al
+punto $(a,b)$.
+
+Por el Teorema de Pitágoras,
+\[
+|z|^2=a^2+b^2.
+\]
+
+Además, como
+\[
+z\overline z=a^2+b^2,
+\]
+se obtiene
+\[
+\boxed{|z|^2=z\overline z.}
+\]
+
+\textbf{Proposición.}
+Para todo $z\in\mathbb{C}$:
+\[
+|z|\geq 0,
+\]
+y
+\[
+\boxed{|z|=0\iff z=0.}
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+z=3+4i
+\quad\Longrightarrow\quad
+|z|=5.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+z=-5+12i
+\quad\Longrightarrow\quad
+|z|=13.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+z=7i
+\quad\Longrightarrow\quad
+|z|=7.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+z=-8
+\quad\Longrightarrow\quad
+|z|=8.
+\]
+
+\paragraph{Ejemplo 5.}
+\[
+z=1-\sqrt3\,i
+\]
+satisface
+\[
+|z|
+=
+\sqrt{1+3}
+=
+2.
+\]
+
+% ============================================================
+\subsection{Distancia entre números complejos}
+% ============================================================
+
+Sean
+\[
+z_1=a+bi,
+\qquad
+z_2=c+di.
+\]
+
+La distancia entre ellos se define mediante
+\[
+\boxed{
+d(z_1,z_2)=|z_1-z_2|.
+}
+\]
+
+En efecto,
+\[
+z_1-z_2
+=
+(a-c)+(b-d)i,
+\]
+y por tanto
+\[
+|z_1-z_2|
+=
+\sqrt{(a-c)^2+(b-d)^2},
+\]
+que es exactamente la distancia euclidiana entre los puntos $(a,b)$ y $(c,d)$.
+
+\paragraph{Ejemplo 1.}
+Entre
+\[
+z_1=1+i,
+\qquad
+z_2=4+5i,
+\]
+la distancia es
+\[
+|z_1-z_2|
+=
+|-3-4i|
+=
+5.
+\]
+
+\paragraph{Ejemplo 2.}
+Entre
+\[
+z_1=-2+3i,
+\qquad
+z_2=1-i,
+\]
+\[
+d(z_1,z_2)
+=
+|-3+4i|
+=
+5.
+\]
+
+\paragraph{Ejemplo 3.}
+La distancia del complejo $z$ al origen es
+\[
+|z-0|=|z|.
+\]
+
+\paragraph{Ejemplo 4.}
+La circunferencia de centro $z_0$ y radio $r>0$ se expresa como
+\[
+\boxed{|z-z_0|=r.}
+\]
+
+\paragraph{Ejemplo 5.}
+La región
+\[
+|z-(2-i)|<3
+\]
+representa el disco abierto de centro
+\[
+2-i
+\]
+y radio $3$.
+
+% ============================================================
+\subsection{Propiedades del módulo}
+% ============================================================
+
+\textbf{Teorema.}
+Para cualesquiera $z,w\in\mathbb{C}$:
+\[
+\boxed{|zw|=|z||w|.}
+\]
+
+\textbf{Demostración.}
+Usando
+\[
+|z|^2=z\overline z
+\]
+y
+\[
+\overline{zw}=\overline z\,\overline w,
+\]
+tenemos
+\[
+|zw|^2
+=
+zw\,\overline{zw}
+=
+zw\,\overline z\,\overline w
+=
+(z\overline z)(w\overline w)
+=
+|z|^2|w|^2.
+\]
+Como ambos lados son no negativos,
+\[
+|zw|=|z||w|.
+\]
+\hfill$\square$
+
+Como consecuencia, si $w\neq0$,
+\[
+\boxed{
+\left|\frac zw\right|
+=
+\frac{|z|}{|w|}.
+}
+\]
+
+También:
+\[
+\boxed{|\overline z|=|z|.}
+\]
+
+\paragraph{Ejemplo 1.}
+Si
+\[
+z=1+i,
+\qquad
+w=2-i,
+\]
+entonces
+\[
+|z|=\sqrt2,
+\qquad
+|w|=\sqrt5.
+\]
+Por tanto
+\[
+|zw|=\sqrt{10}.
+\]
+
+\paragraph{Ejemplo 2.}
+Para
+\[
+z=3-4i,
+\]
+\[
+|\overline z|
+=
+|3+4i|
+=
+5
+=
+|z|.
+\]
+
+\paragraph{Ejemplo 3.}
+Si
+\[
+z=2+2i,
+\qquad
+w=1-i,
+\]
+entonces
+\[
+\left|\frac zw\right|
+=
+\frac{2\sqrt2}{\sqrt2}
+=
+2.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+|i^n|=1
+\]
+para todo entero $n$, porque $|i|=1$.
+
+\paragraph{Ejemplo 5.}
+Si
+\[
+|z|=3
+\]
+y
+\[
+|w|=4,
+\]
+entonces
+\[
+|z^2w^3|
+=
+|z|^2|w|^3
+=
+9\cdot64
+=
+576.
+\]
+
+% ============================================================
+\subsection{Desigualdad triangular}
+% ============================================================
+
+\textbf{Teorema.}
+Para todo $z,w\in\mathbb{C}$,
+\[
+\boxed{
+|z+w|
+\leq
+|z|+|w|.
+}
+\]
+
+\textbf{Demostración.}
+Partimos de
+\[
+|z+w|^2
+=
+(z+w)(\overline z+\overline w).
+\]
+Entonces
+\[
+|z+w|^2
+=
+|z|^2+|w|^2+z\overline w+\overline z w.
+\]
+Pero
+\[
+z\overline w+\overline z w
+=
+2\operatorname{Re}(z\overline w)
+\leq
+2|z\overline w|
+=
+2|z||w|.
+\]
+Por tanto,
+\[
+|z+w|^2
+\leq
+|z|^2+2|z||w|+|w|^2
+=
+(|z|+|w|)^2.
+\]
+Como ambos lados son no negativos,
+\[
+|z+w|\leq |z|+|w|.
+\]
+\hfill$\square$
+
+Una consecuencia importante es la desigualdad triangular inversa:
+\[
+\boxed{
+\bigl||z|-|w|\bigr|
+\leq
+|z-w|.
+}
+\]
+
+\textbf{Demostración.}
+Por la desigualdad triangular,
+\[
+|z|
+=
+|(z-w)+w|
+\leq
+|z-w|+|w|.
+\]
+De aquí,
+\[
+|z|-|w|
+\leq
+|z-w|.
+\]
+Intercambiando $z$ y $w$,
+\[
+|w|-|z|
+\leq
+|z-w|.
+\]
+Por tanto,
+\[
+\bigl||z|-|w|\bigr|
+\leq
+|z-w|.
+\]
+\hfill$\square$
+
+\paragraph{Ejemplo 1.}
+Sea
+\[
+z=1+i,
+\qquad
+w=1-i.
+\]
+Entonces
+\[
+|z+w|
+=
+|2|
+=
+2,
+\]
+mientras que
+\[
+|z|+|w|
+=
+2\sqrt2.
+\]
+Así,
+\[
+2\leq2\sqrt2.
+\]
+
+\paragraph{Ejemplo 2.}
+Si
+\[
+z=2,
+\qquad
+w=3,
+\]
+entonces hay igualdad:
+\[
+|z+w|=5=|z|+|w|.
+\]
+
+\paragraph{Ejemplo 3.}
+Si
+\[
+z=2,
+\qquad
+w=-3,
+\]
+entonces
+\[
+|z+w|=1<5.
+\]
+
+\paragraph{Ejemplo 4.}
+Para
+\[
+z=3+4i,
+\qquad
+w=1,
+\]
+la desigualdad triangular inversa da
+\[
+\bigl|5-1\bigr|
+\leq
+|2+4i|,
+\]
+es decir,
+\[
+4\leq\sqrt{20}.
+\]
+
+\paragraph{Ejemplo 5.}
+Si
+\[
+|z|<2
+\]
+y
+\[
+|w|<3,
+\]
+entonces
+\[
+|z+w|
+<
+5.
+\]
+
+% ============================================================
+\subsection{Argumento de un número complejo}
+% ============================================================
+
+Sea
+\[
+z=a+bi\neq0.
+\]
+
+Un \emph{argumento} de $z$ es cualquier ángulo $\theta$ que satisface
+\[
+a=|z|\cos\theta
+\]
+y
+\[
+b=|z|\sin\theta.
+\]
+
+Si $\theta$ es un argumento, entonces
+\[
+\theta+2k\pi,
+\qquad
+k\in\mathbb{Z},
+\]
+también lo es.
+
+Por tanto,
+\[
+\boxed{
+\arg z
+=
+\theta+2k\pi,
+\qquad k\in\mathbb{Z}.
+}
+\]
+
+El argumento es, por naturaleza, multivaluado.
+
+\textbf{Definición.}
+El \emph{argumento principal} de $z$, denotado por
+\[
+\operatorname{Arg}(z),
+\]
+es el único argumento que pertenece al intervalo
+\[
+(-\pi,\pi].
+\]
+
+Así,
+\[
+\boxed{
+\arg z
+=
+\operatorname{Arg}(z)+2k\pi.
+}
+\]
+
+\textbf{Observación docente.}
+No debe utilizarse ciegamente
+\[
+\theta=\arctan\left(\frac ba\right),
+\]
+porque la función arctangente no distingue cuadrantes. Es necesario inspeccionar
+los signos de $a$ y $b$, o utilizar una función de dos argumentos tipo
+$\operatorname{atan2}(b,a)$.
+
+\paragraph{Ejemplo 1.}
+Para
+\[
+z=1+i,
+\]
+\[
+\operatorname{Arg}(z)=\frac{\pi}{4}.
+\]
+
+\paragraph{Ejemplo 2.}
+Para
+\[
+z=-1+i,
+\]
+el punto está en el segundo cuadrante y
+\[
+\operatorname{Arg}(z)=\frac{3\pi}{4}.
+\]
+
+\paragraph{Ejemplo 3.}
+Para
+\[
+z=-1-i,
+\]
+\[
+\operatorname{Arg}(z)=-\frac{3\pi}{4}.
+\]
+
+\paragraph{Ejemplo 4.}
+Para
+\[
+z=-2,
+\]
+\[
+\operatorname{Arg}(z)=\pi.
+\]
+
+\paragraph{Ejemplo 5.}
+Para
+\[
+z=-3i,
+\]
+\[
+\operatorname{Arg}(z)=-\frac{\pi}{2}.
+\]
+
+% ============================================================
+\subsection{Forma polar o trigonométrica}
+% ============================================================
+
+Sea
+\[
+z=a+bi\neq0.
+\]
+
+Definimos
+\[
+r=|z|.
+\]
+
+Si $\theta$ es un argumento de $z$, entonces
+\[
+a=r\cos\theta,
+\qquad
+b=r\sin\theta.
+\]
+
+Sustituyendo en
+\[
+z=a+bi,
+\]
+obtenemos
+\[
+\boxed{
+z
+=
+r(\cos\theta+i\sin\theta).
+}
+\]
+
+Esta expresión se denomina \emph{forma polar} o \emph{forma trigonométrica}.
+
+La conversión rectangular-polar se realiza mediante
+\[
+r=\sqrt{a^2+b^2},
+\]
+y una elección adecuada de $\theta$.
+
+La conversión polar-rectangular se realiza mediante
+\[
+a=r\cos\theta,
+\qquad
+b=r\sin\theta.
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+z=1+i.
+\]
+Entonces
+\[
+r=\sqrt2,
+\qquad
+\theta=\frac{\pi}{4}.
+\]
+Por tanto,
+\[
+z
+=
+\sqrt2
+\left(
+\cos\frac{\pi}{4}
++i\sin\frac{\pi}{4}
+\right).
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+z=-1+i.
+\]
+Entonces
+\[
+r=\sqrt2,
+\qquad
+\theta=\frac{3\pi}{4}.
+\]
+Así,
+\[
+z
+=
+\sqrt2
+\left(
+\cos\frac{3\pi}{4}
++i\sin\frac{3\pi}{4}
+\right).
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+z=-2-2i.
+\]
+Entonces
+\[
+r=2\sqrt2,
+\qquad
+\theta=-\frac{3\pi}{4}.
+\]
+
+\paragraph{Ejemplo 4.}
+Convirtamos
+\[
+z
+=
+4\left(
+\cos\frac{\pi}{3}
++i\sin\frac{\pi}{3}
+\right)
+\]
+a forma rectangular:
+\[
+z
+=
+4\left(
+\frac12+i\frac{\sqrt3}{2}
+\right)
+=
+\boxed{2+2\sqrt3\,i}.
+\]
+
+\paragraph{Ejemplo 5.}
+\[
+z=5\left(\cos\pi+i\sin\pi\right)
+=
+-5.
+\]
+
+% ============================================================
+\subsection{Producto y cociente en forma polar}
+% ============================================================
+
+Sean
+\[
+z_1=r_1(\cos\theta_1+i\sin\theta_1),
+\]
+\[
+z_2=r_2(\cos\theta_2+i\sin\theta_2).
+\]
+
+Entonces
+\[
+\boxed{
+z_1z_2
+=
+r_1r_2
+\left[
+\cos(\theta_1+\theta_2)
++i\sin(\theta_1+\theta_2)
+\right].
+}
+\]
+
+Por tanto:
+\[
+\boxed{
+|z_1z_2|=|z_1||z_2|
+}
+\]
+y
+\[
+\arg(z_1z_2)
+=
+\arg z_1+\arg z_2
+\pmod{2\pi}.
+\]
+
+Si $z_2\neq0$,
+\[
+\boxed{
+\frac{z_1}{z_2}
+=
+\frac{r_1}{r_2}
+\left[
+\cos(\theta_1-\theta_2)
++i\sin(\theta_1-\theta_2)
+\right].
+}
+\]
+
+\paragraph{Ejemplo 1.}
+Sea
+\[
+z_1=2\left(\cos\frac{\pi}{6}+i\sin\frac{\pi}{6}\right),
+\]
+\[
+z_2=3\left(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4}\right).
+\]
+Entonces
+\[
+z_1z_2
+=
+6
+\left(
+\cos\frac{5\pi}{12}
++i\sin\frac{5\pi}{12}
+\right).
+\]
+
+\paragraph{Ejemplo 2.}
+Con los mismos números,
+\[
+\frac{z_1}{z_2}
+=
+\frac23
+\left(
+\cos\left(-\frac{\pi}{12}\right)
++i\sin\left(-\frac{\pi}{12}\right)
+\right).
+\]
+
+\paragraph{Ejemplo 3.}
+Si
+\[
+z_1=4e^{i\pi/3},
+\qquad
+z_2=2e^{i\pi/6},
+\]
+entonces
+\[
+z_1z_2
+=
+8e^{i\pi/2}
+=
+8i.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+\frac{6e^{i5\pi/6}}{3e^{i\pi/3}}
+=
+2e^{i\pi/2}
+=
+2i.
+\]
+
+\paragraph{Ejemplo 5.}
+Si
+\[
+|z_1|=5,\quad \arg z_1=\frac{\pi}{7},
+\]
+\[
+|z_2|=2,\quad \arg z_2=-\frac{\pi}{5},
+\]
+entonces
+\[
+|z_1z_2|=10
+\]
+y
+\[
+\arg(z_1z_2)
+=
+\frac{\pi}{7}-\frac{\pi}{5}
+=
+-\frac{2\pi}{35}
+\pmod{2\pi}.
+\]
+
+% ============================================================
+\subsection{Fórmula de Euler}
+% ============================================================
+
+La fórmula de Euler conecta la exponencial compleja con las funciones
+trigonométricas.
+
+Recordemos las series de Maclaurin:
+\[
+e^x
+=
+\sum_{n=0}^{\infty}\frac{x^n}{n!},
+\]
+\[
+\cos x
+=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n}}{(2n)!},
+\]
+\[
+\sin x
+=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n+1}}{(2n+1)!}.
+\]
+
+Sustituyendo $x=i\theta$:
+\[
+e^{i\theta}
+=
+1+i\theta+\frac{(i\theta)^2}{2!}
++\frac{(i\theta)^3}{3!}+\cdots.
+\]
+
+Separando términos reales e imaginarios:
+\[
+e^{i\theta}
+=
+\left(
+1-\frac{\theta^2}{2!}
++\frac{\theta^4}{4!}
+-\cdots
+\right)
++
+i
+\left(
+\theta-\frac{\theta^3}{3!}
++\frac{\theta^5}{5!}
+-\cdots
+\right).
+\]
+
+Por identificación con las series de $\cos\theta$ y $\sin\theta$,
+\[
+\boxed{
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+}
+\]
+
+\textbf{Corolarios.}
+\[
+\boxed{
+\cos\theta
+=
+\frac{e^{i\theta}+e^{-i\theta}}{2}
+}
+\]
+y
+\[
+\boxed{
+\sin\theta
+=
+\frac{e^{i\theta}-e^{-i\theta}}{2i}.
+}
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+e^{i0}=1.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+e^{i\pi/2}=i.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+e^{i\pi}=-1.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+e^{i3\pi/2}=-i.
+\]
+
+\paragraph{Ejemplo 5.}
+\[
+e^{i\pi/3}
+=
+\frac12+\frac{\sqrt3}{2}i.
+\]
+
+% ============================================================
+\subsection{Forma exponencial}
+% ============================================================
+
+Usando Euler, la forma polar
+\[
+z=r(\cos\theta+i\sin\theta)
+\]
+puede escribirse como
+\[
+\boxed{
+z=re^{i\theta}.
+}
+\]
+
+Debido a la periodicidad
+\[
+e^{i(\theta+2k\pi)}
+=
+e^{i\theta},
+\]
+la representación exponencial completa es
+\[
+\boxed{
+z=re^{i(\theta+2k\pi)},
+\qquad
+k\in\mathbb{Z}.
+}
+\]
+
+\textbf{Proposición.}
+Si
+\[
+z_1=r_1e^{i\theta_1},
+\qquad
+z_2=r_2e^{i\theta_2},
+\]
+entonces
+\[
+z_1z_2
+=
+r_1r_2e^{i(\theta_1+\theta_2)}.
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+1+i
+=
+\sqrt2\,e^{i\pi/4}.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+-1+i
+=
+\sqrt2\,e^{i3\pi/4}.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+-2
+=
+2e^{i\pi}.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+-3i
+=
+3e^{-i\pi/2}.
+\]
+
+\paragraph{Ejemplo 5.}
+\[
+2e^{i\pi/6}
+=
+\sqrt3+i.
+\]
+
+% ============================================================
+\subsection{Identidad de Euler}
+% ============================================================
+
+Tomando
+\[
+\theta=\pi
+\]
+en la fórmula de Euler:
+\[
+e^{i\pi}
+=
+\cos\pi+i\sin\pi
+=
+-1.
+\]
+
+Por tanto,
+\[
+\boxed{
+e^{i\pi}+1=0.
+}
+\]
+
+Esta identidad reúne las constantes
+\[
+0,\quad1,\quad e,\quad i,\quad\pi.
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+e^{i\pi}=-1.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+e^{2\pi i}=1.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+e^{3\pi i}=-1.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+e^{(2k+1)\pi i}=-1.
+\]
+
+\paragraph{Ejemplo 5.}
+\[
+e^{2k\pi i}=1.
+\]
+
+% ============================================================
+\subsection{Teorema de De Moivre}
+% ============================================================
+
+\textbf{Teorema de De Moivre.}
+Para todo entero $n$,
+\[
+\boxed{
+(\cos\theta+i\sin\theta)^n
+=
+\cos(n\theta)+i\sin(n\theta).
+}
+\]
+
+Más generalmente, si
+\[
+z=r(\cos\theta+i\sin\theta),
+\]
+entonces
+\[
+\boxed{
+z^n
+=
+r^n
+\left(
+\cos(n\theta)+i\sin(n\theta)
+\right).
+}
+\]
+
+\textbf{Demostración mediante Euler.}
+Como
+\[
+z=re^{i\theta},
+\]
+entonces
+\[
+z^n
+=
+r^ne^{in\theta}.
+\]
+Aplicando Euler:
+\[
+e^{in\theta}
+=
+\cos(n\theta)+i\sin(n\theta).
+\]
+Por tanto,
+\[
+z^n
+=
+r^n
+\left(
+\cos(n\theta)+i\sin(n\theta)
+\right).
+\]
+\hfill$\square$
+
+\paragraph{Ejemplo 1.}
+Calcular
+\[
+(1+i)^4.
+\]
+Como
+\[
+1+i=\sqrt2\,e^{i\pi/4},
+\]
+\[
+(1+i)^4
+=
+(\sqrt2)^4e^{i\pi}
+=
+4(-1)
+=
+\boxed{-4}.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+\left(
+\cos\frac{\pi}{6}
++i\sin\frac{\pi}{6}
+\right)^3
+=
+\cos\frac{\pi}{2}
++i\sin\frac{\pi}{2}
+=
+i.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+(2e^{i\pi/3})^5
+=
+32e^{i5\pi/3}.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+(-1+i)^6.
+\]
+Como
+\[
+-1+i
+=
+\sqrt2\,e^{i3\pi/4},
+\]
+\[
+(-1+i)^6
+=
+8e^{i9\pi/2}
+=
+8i.
+\]
+
+\paragraph{Ejemplo 5.}
+Usando De Moivre:
+\[
+(\cos\theta+i\sin\theta)^2
+=
+\cos2\theta+i\sin2\theta.
+\]
+Comparando partes reales e imaginarias se recuperan:
+\[
+\cos2\theta=\cos^2\theta-\sin^2\theta,
+\]
+\[
+\sin2\theta=2\sin\theta\cos\theta.
+\]
+
+% ============================================================
+\subsection{Raíces $n$-ésimas de un número complejo}
+% ============================================================
+
+Queremos resolver
+\[
+w^n=z,
+\]
+donde
+\[
+z=re^{i\theta},
+\qquad
+r>0.
+\]
+
+Escribimos
+\[
+w=\rho e^{i\varphi}.
+\]
+
+Entonces
+\[
+w^n
+=
+\rho^ne^{in\varphi}.
+\]
+
+Para que $w^n=z$ debe cumplirse
+\[
+\rho^n=r
+\]
+y
+\[
+n\varphi
+=
+\theta+2k\pi.
+\]
+
+Por tanto,
+\[
+\rho=r^{1/n}
+\]
+y
+\[
+\varphi
+=
+\frac{\theta+2k\pi}{n}.
+\]
+
+Las $n$ raíces distintas son
+\[
+\boxed{
+w_k
+=
+r^{1/n}
+e^{i(\theta+2k\pi)/n},
+\qquad
+k=0,1,\ldots,n-1.
+}
+\]
+
+Geométricamente, se encuentran sobre una circunferencia de radio
+\[
+r^{1/n}
+\]
+y están separadas por un ángulo constante
+\[
+\frac{2\pi}{n}.
+\]
+
+\paragraph{Ejemplo 1.}
+Resolver
+\[
+w^2=1.
+\]
+Las raíces son
+\[
+w_0=1,
+\qquad
+w_1=-1.
+\]
+
+\paragraph{Ejemplo 2.}
+Resolver
+\[
+w^2=-1.
+\]
+Como
+\[
+-1=e^{i\pi},
+\]
+\[
+w_k
+=
+e^{i(\pi+2k\pi)/2}.
+\]
+Así,
+\[
+\boxed{w=\pm i}.
+\]
+
+\paragraph{Ejemplo 3.}
+Resolver
+\[
+w^3=1.
+\]
+Las raíces son
+\[
+1,
+\qquad
+e^{2\pi i/3},
+\qquad
+e^{4\pi i/3}.
+\]
+
+\paragraph{Ejemplo 4.}
+Resolver
+\[
+w^4=16.
+\]
+Como
+\[
+16=16e^{i0},
+\]
+las raíces tienen módulo
+\[
+16^{1/4}=2.
+\]
+Por tanto,
+\[
+w_k
+=
+2e^{ik\pi/2},
+\qquad k=0,1,2,3.
+\]
+Así,
+\[
+\boxed{2,\ 2i,\ -2,\ -2i}.
+\]
+
+\paragraph{Ejemplo 5.}
+Resolver
+\[
+w^3=8i.
+\]
+Tenemos
+\[
+8i=8e^{i\pi/2}.
+\]
+Entonces
+\[
+w_k
+=
+2e^{i(\pi/2+2k\pi)/3},
+\qquad k=0,1,2.
+\]
+
+% ============================================================
+\subsection{Raíces $n$-ésimas de la unidad}
+% ============================================================
+
+Consideremos
+\[
+z^n=1.
+\]
+
+Como
+\[
+1=e^{2k\pi i},
+\]
+las soluciones son
+\[
+\boxed{
+\omega_k=e^{2\pi i k/n},
+\qquad
+k=0,\ldots,n-1.
+}
+\]
+
+Estas raíces se distribuyen uniformemente sobre la circunferencia unidad y
+forman los vértices de un polígono regular de $n$ lados.
+
+Una raíz
+\[
+\omega=e^{2\pi i/n}
+\]
+se denomina raíz primitiva $n$-ésima de la unidad, y todas las raíces pueden
+escribirse como
+\[
+1,\omega,\omega^2,\ldots,\omega^{n-1}.
+\]
+
+\textbf{Proposición.}
+La suma de las raíces $n$-ésimas de la unidad, para $n>1$, es cero:
+\[
+\boxed{
+1+\omega+\omega^2+\cdots+\omega^{n-1}=0.
+}
+\]
+
+\textbf{Demostración.}
+Como $\omega\neq1$ y $\omega^n=1$,
+\[
+1+\omega+\cdots+\omega^{n-1}
+=
+\frac{\omega^n-1}{\omega-1}
+=
+0.
+\]
+\hfill$\square$
+
+\paragraph{Ejemplo 1.}
+Para $n=2$:
+\[
+1,-1.
+\]
+
+\paragraph{Ejemplo 2.}
+Para $n=3$:
+\[
+1,\quad
+-\frac12+\frac{\sqrt3}{2}i,\quad
+-\frac12-\frac{\sqrt3}{2}i.
+\]
+
+\paragraph{Ejemplo 3.}
+Para $n=4$:
+\[
+1,\ i,\ -1,\ -i.
+\]
+
+\paragraph{Ejemplo 4.}
+Las raíces quintas de la unidad son
+\[
+e^{2\pi ik/5},
+\qquad
+k=0,\ldots,4.
+\]
+
+\paragraph{Ejemplo 5.}
+Para las raíces cúbicas de la unidad,
+\[
+1+\omega+\omega^2=0.
+\]
+
+% ============================================================
+\subsection{Polinomios con raíces complejas}
+% ============================================================
+
+Los números complejos permiten estudiar de manera completa las raíces de
+polinomios.
+
+Si
+\[
+p(z)=a_nz^n+\cdots+a_1z+a_0,
+\]
+una raíz de $p$ es un número $z_0$ tal que
+\[
+p(z_0)=0.
+\]
+
+\textbf{Teorema del factor.}
+\[
+p(z_0)=0
+\iff
+(z-z_0)\text{ divide a }p(z).
+\]
+
+\paragraph{Ejemplo 1.}
+\[
+z^2+1=0
+\]
+tiene raíces
+\[
+\pm i.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+z^2-2z+5=0
+\]
+tiene raíces
+\[
+1\pm2i.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+z^3-1=0
+\]
+tiene las tres raíces cúbicas de la unidad.
+
+\paragraph{Ejemplo 4.}
+\[
+z^4-16=0
+\]
+equivale a
+\[
+z^4=16,
+\]
+cuyas raíces son
+\[
+2,\ 2i,\ -2,\ -2i.
+\]
+
+\paragraph{Ejemplo 5.}
+Si
+\[
+p(z)=z^2-6z+13,
+\]
+entonces
+\[
+z
+=
+\frac{6\pm\sqrt{36-52}}{2}
+=
+3\pm2i.
+\]
+
+% ============================================================
+\subsection{Teorema Fundamental del Álgebra}
+% ============================================================
+
+\textbf{Teorema Fundamental del Álgebra.}
+
+Todo polinomio no constante con coeficientes complejos posee al menos una raíz
+en $\mathbb{C}$.
+
+Equivalentemente, todo polinomio de grado $n\geq1$ puede factorizarse como
+\[
+\boxed{
+p(z)
+=
+a_n
+(z-z_1)\cdots(z-z_n),
+}
+\]
+donde las raíces se cuentan con multiplicidad.
+
+Por ello se dice que
+\[
+\boxed{
+\mathbb{C}\text{ es algebraicamente cerrado}.
+}
+\]
+
+\textbf{Observación docente.}
+La demostración completa del Teorema Fundamental del Álgebra requiere
+herramientas que exceden el nivel habitual de un primer curso de Álgebra
+Lineal. Conviene enunciarlo, discutir su significado y usarlo, pero no
+demostrarlo en esta unidad.
+
+\paragraph{Ejemplo 1.}
+Todo polinomio cuadrático complejo tiene dos raíces contando multiplicidad.
+
+\paragraph{Ejemplo 2.}
+\[
+z^2+1
+=
+(z-i)(z+i).
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+z^3-1
+=
+(z-1)(z-\omega)(z-\omega^2).
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+z^2-2z+1
+=
+(z-1)^2.
+\]
+La raíz $z=1$ tiene multiplicidad $2$.
+
+\paragraph{Ejemplo 5.}
+Un polinomio de grado $5$ posee exactamente cinco raíces complejas contando
+multiplicidad.
+
+% ============================================================
+\subsection{Raíces conjugadas de polinomios reales}
+% ============================================================
+
+\textbf{Teorema.}
+Sea
+\[
+p(z)=a_nz^n+\cdots+a_0
+\]
+un polinomio con coeficientes reales. Si
+\[
+z_0
+\]
+es raíz de $p$, entonces
+\[
+\overline{z_0}
+\]
+también es raíz.
+
+\textbf{Demostración.}
+Si
+\[
+p(z_0)=0,
+\]
+entonces
+\[
+\overline{p(z_0)}=0.
+\]
+Como los coeficientes son reales,
+\[
+\overline{a_k}=a_k.
+\]
+Por tanto,
+\[
+\overline{p(z_0)}
+=
+p(\overline{z_0}),
+\]
+de donde
+\[
+p(\overline{z_0})=0.
+\]
+\hfill$\square$
+
+\paragraph{Ejemplo 1.}
+Si
+\[
+2+3i
+\]
+es raíz de un polinomio real, también lo es
+\[
+2-3i.
+\]
+
+\paragraph{Ejemplo 2.}
+El polinomio
+\[
+z^2-4z+13
+\]
+tiene raíces
+\[
+2\pm3i.
+\]
+
+\paragraph{Ejemplo 3.}
+El factor real asociado al par
+\[
+a\pm bi
+\]
+es
+\[
+(z-(a+bi))(z-(a-bi))
+=
+z^2-2az+(a^2+b^2).
+\]
+
+\paragraph{Ejemplo 4.}
+Las raíces
+\[
+1\pm2i
+\]
+generan el factor
+\[
+z^2-2z+5.
+\]
+
+\paragraph{Ejemplo 5.}
+Un polinomio real de grado impar tiene al menos una raíz real, porque las
+raíces no reales aparecen en pares conjugados.
+
+% ============================================================
+\subsection{Exponencial compleja}
+% ============================================================
+
+Para
+\[
+z=x+iy,
+\]
+definimos
+\[
+e^z
+=
+e^x e^{iy}.
+\]
+
+Usando Euler:
+\[
+\boxed{
+e^{x+iy}
+=
+e^x(\cos y+i\sin y).
+}
+\]
+
+De aquí se obtiene
+\[
+\boxed{|e^z|=e^{\operatorname{Re}(z)}.}
+\]
+
+Además,
+\[
+e^{z+2\pi i}=e^z,
+\]
+por lo que la exponencial compleja es periódica con periodo $2\pi i$.
+
+\paragraph{Ejemplo 1.}
+\[
+e^{1+i\pi}
+=
+e(-1)
+=
+-e.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+e^{2+i\pi/2}
+=
+e^2\left(\cos\frac{\pi}{2}+i\sin\frac{\pi}{2}\right)
+=
+ie^2.
+\]
+
+\paragraph{Ejemplo 3.}
+\[
+|e^{3-2i}|=e^3.
+\]
+
+\paragraph{Ejemplo 4.}
+\[
+e^{z+4\pi i}=e^z.
+\]
+
+\paragraph{Ejemplo 5.}
+Resolver
+\[
+e^z=1.
+\]
+Las soluciones son
+\[
+\boxed{z=2k\pi i,\qquad k\in\mathbb{Z}.}
+\]
+
+% ============================================================
+\subsection{Logaritmo complejo}
+% ============================================================
+
+Queremos resolver
+\[
+e^w=z,
+\qquad
+z\neq0.
+\]
+
+Escribimos
+\[
+z=re^{i\theta}
+\]
+y
+\[
+w=u+iv.
+\]
+
+Entonces
+\[
+e^w
+=
+e^u e^{iv}.
+\]
+
+Para que
+\[
+e^w=z,
+\]
+debe cumplirse
+\[
+e^u=r
+\]
+y
+\[
+v=\theta+2k\pi.
+\]
+
+Por tanto,
+\[
+u=\ln r
+\]
+y
+\[
+v=\theta+2k\pi.
+\]
+
+Así,
+\[
+\boxed{
+\log z
+=
+\ln|z|
++
+i(\theta+2k\pi),
+\qquad
+k\in\mathbb{Z}.
+}
+\]
+
+El logaritmo complejo es multivaluado.
+
+\textbf{Definición.}
+El \emph{logaritmo principal} se define mediante
+\[
+\boxed{
+\operatorname{Log}(z)
+=
+\ln|z|
++
+i\operatorname{Arg}(z).
+}
+\]
+
+\textbf{Observación docente.}
+Conviene enfatizar que las identidades logarítmicas complejas requieren
+cuidado por la multivaluación del argumento.
+
+\paragraph{Ejemplo 1.}
+Para
+\[
+z=1,
+\]
+\[
+\log 1
+=
+2k\pi i.
+\]
+
+\paragraph{Ejemplo 2.}
+Para
+\[
+z=-1,
+\]
+\[
+\log(-1)
+=
+i(\pi+2k\pi).
+\]
+En particular,
+\[
+\operatorname{Log}(-1)=i\pi.
+\]
+
+\paragraph{Ejemplo 3.}
+Para
+\[
+z=i,
+\]
+\[
+\log i
+=
+i\left(
+\frac{\pi}{2}+2k\pi
+\right).
+\]
+
+\paragraph{Ejemplo 4.}
+Para
+\[
+z=1+i,
+\]
+\[
+|z|=\sqrt2,
+\qquad
+\operatorname{Arg}(z)=\frac{\pi}{4}.
+\]
+Entonces
+\[
+\operatorname{Log}(1+i)
+=
+\frac12\ln2
++
+i\frac{\pi}{4}.
+\]
+
+\paragraph{Ejemplo 5.}
+Para
+\[
+z=-2i,
+\]
+\[
+|z|=2,
+\qquad
+\operatorname{Arg}(z)=-\frac{\pi}{2}.
+\]
+Por tanto,
+\[
+\operatorname{Log}(-2i)
+=
+\ln2-\frac{\pi}{2}i.
+\]
+
+% ============================================================
+\subsection{Aplicaciones en ingeniería}
+% ============================================================
+
+Los números complejos aparecen de manera natural en numerosos modelos de
+ingeniería.
+
+Entre las aplicaciones más frecuentes se encuentran:
+\begin{itemize}
+    \item análisis de circuitos de corriente alterna;
+    \item fasores;
+    \item procesamiento de señales;
+    \item transformadas de Fourier;
+    \item sistemas de control;
+    \item vibraciones;
+    \item electromagnetismo;
+    \item ecuaciones diferenciales;
+    \item mecánica cuántica;
+    \item comunicaciones.
+\end{itemize}
+
+La fórmula de Euler permite representar señales sinusoidales mediante
+exponenciales complejas. Por ejemplo,
+\[
+A\cos(\omega t+\phi)
+=
+\operatorname{Re}
+\left(
+Ae^{i(\omega t+\phi)}
+\right).
+\]
+
+Esta representación transforma muchas operaciones trigonométricas en
+operaciones algebraicas más sencillas.
+
+\paragraph{Ejemplo 1.}
+Una señal
+\[
+v(t)=10\cos(\omega t)
+\]
+puede representarse mediante el fasor
+\[
+10e^{i0}.
+\]
+
+\paragraph{Ejemplo 2.}
+\[
+v(t)=5\cos(\omega t+\pi/3)
+\]
+corresponde al fasor
+\[
+5e^{i\pi/3}.
+\]
+
+\paragraph{Ejemplo 3.}
+La multiplicación por
+\[
+e^{i\theta}
+\]
+representa geométricamente una rotación de ángulo $\theta$.
+
+\paragraph{Ejemplo 4.}
+Multiplicar por
+\[
+re^{i\theta}
+\]
+combina una dilatación de factor $r$ con una rotación de ángulo $\theta$.
+
+\paragraph{Ejemplo 5.}
+En análisis de señales, la identidad
+\[
+\cos(\omega t)
+=
+\frac{e^{i\omega t}+e^{-i\omega t}}{2}
+\]
+permite expresar una señal real como combinación de dos exponenciales
+complejas.
+
+% ============================================================
+\subsection{Resumen conceptual de la segunda parte}
+% ============================================================
+
+La estructura geométrica y analítica de los números complejos puede resumirse
+mediante
+\[
+\boxed{
+\begin{array}{c}
+z=a+bi
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+(a,b)\in\mathbb{R}^2
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+|z|,\ \arg z
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z=r(\cos\theta+i\sin\theta)
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z=re^{i\theta}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{De Moivre}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{potencias y raíces}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{raíces de la unidad}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{Teorema Fundamental del Álgebra}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+e^z,\ \log z
+\end{array}
+}
+\]
+
+Esta segunda parte completa la transición entre la estructura algebraica de
+$\mathbb{C}$ y su interpretación geométrica, preparando el terreno para
+aplicaciones posteriores en Álgebra Lineal, ecuaciones diferenciales, señales
+y sistemas de ingeniería.
+
+\end{document}
