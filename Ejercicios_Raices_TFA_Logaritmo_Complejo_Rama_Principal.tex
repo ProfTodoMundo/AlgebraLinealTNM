@@ -1,0 +1,3420 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry}
+\usepackage{enumitem}
+\geometry{letterpaper,margin=2.5cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\newtheorem{teorema}{Teorema}[section]
+\newtheorem{proposicion}[teorema]{Proposición}
+\theoremstyle{definition}
+\newtheorem{ejemplo}{Ejemplo}[section]
+\newtheorem{ejercicio}{Ejercicio}[section]
+\theoremstyle{remark}
+\newtheorem{observacion}{Observación}[section]
+\newcommand{\C}{\mathbb{C}}
+
+\title{\textbf{Variable Compleja}\\[0.2cm]\Large Raíces de polinomios y Teorema Fundamental del Álgebra}
+\author{Carlos Ernesto Martínez Rodríguez}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Propósito}
+Estas notas complementarias fortalecen el cálculo de raíces de ecuaciones
+polinomiales en $\C$ y utilizan los ejemplos para ilustrar el Teorema
+Fundamental del Álgebra (TFA). La dificultad es deliberadamente mayor que en
+los casos elementales $z^n=1$, $z^n=-1$ y $z^n=r$, pero se conservan
+estructuras que permiten una solución completa en clase.
+
+\section{Recordatorio: raíces $n$-ésimas}
+Si
+\[
+w=\rho e^{i\theta},\qquad \rho>0,
+\]
+entonces las soluciones de $z^n=w$ son
+\[
+\boxed{z_k=\rho^{1/n}e^{i(\theta+2k\pi)/n}},
+\qquad k=0,1,\ldots,n-1.
+\]
+En forma trigonométrica:
+\[
+z_k=\rho^{1/n}\left[
+\cos\left(\frac{\theta+2k\pi}{n}\right)
++i\sin\left(\frac{\theta+2k\pi}{n}\right)\right].
+\]
+Todas tienen módulo $\rho^{1/n}$ y los argumentos consecutivos difieren en
+$2\pi/n$.
+
+
+\section{Ejemplos desarrollados paso a paso}
+
+\begin{ejemplo}
+Resolver
+\[
+z^3=-8+8\sqrt3\,i.
+\]
+
+\textbf{Paso 1. Escribir el número del lado derecho en forma polar.}
+
+Sea
+\[
+w=-8+8\sqrt3\,i.
+\]
+Su módulo es
+\[
+|w|=\sqrt{(-8)^2+(8\sqrt3)^2}
+=\sqrt{64+192}
+=\sqrt{256}=16.
+\]
+Como $\Re(w)<0$ e $\Im(w)>0$, $w$ se encuentra en el segundo cuadrante.
+Además,
+\[
+\tan\theta=\frac{8\sqrt3}{-8}=-\sqrt3.
+\]
+El ángulo de referencia es $\pi/3$; en el segundo cuadrante:
+\[
+\theta=\pi-\frac{\pi}{3}=\frac{2\pi}{3}.
+\]
+Por tanto,
+\[
+w=16e^{i2\pi/3}.
+\]
+
+\textbf{Paso 2. Aplicar la fórmula de las raíces cúbicas.}
+
+Si $z^3=w$, entonces
+\[
+z_k=16^{1/3}
+e^{i(2\pi/3+2k\pi)/3},
+\qquad k=0,1,2.
+\]
+Como
+\[
+16^{1/3}=2\sqrt[3]{2},
+\]
+obtenemos
+\[
+z_k=2\sqrt[3]{2}\,
+e^{i(2\pi/9+2k\pi/3)}.
+\]
+
+\textbf{Paso 3. Enumerar las tres raíces.}
+\[
+\boxed{
+\begin{aligned}
+z_0&=2\sqrt[3]{2}\,e^{i2\pi/9},\\
+z_1&=2\sqrt[3]{2}\,e^{i8\pi/9},\\
+z_2&=2\sqrt[3]{2}\,e^{i14\pi/9}.
+\end{aligned}}
+\]
+Las tres raíces tienen módulo $2\sqrt[3]{2}$ y están separadas angularmente por
+$2\pi/3$.
+\end{ejemplo}
+
+\begin{ejemplo}
+Resolver
+\[
+z^4=-16+16i.
+\]
+
+\textbf{Paso 1. Forma polar.}
+\[
+|-16+16i|=\sqrt{256+256}=16\sqrt2.
+\]
+El número está en el segundo cuadrante y su ángulo de referencia es $\pi/4$,
+por lo que
+\[
+\theta=\frac{3\pi}{4}.
+\]
+Así,
+\[
+-16+16i=16\sqrt2\,e^{i3\pi/4}.
+\]
+
+\textbf{Paso 2. Extraer las cuatro raíces.}
+\[
+z_k=(16\sqrt2)^{1/4}
+e^{i(3\pi/4+2k\pi)/4},
+\qquad k=0,1,2,3.
+\]
+Como
+\[
+(16\sqrt2)^{1/4}=2\,2^{1/8},
+\]
+resulta
+\[
+z_k=2\,2^{1/8}e^{i(3\pi/16+k\pi/2)}.
+\]
+
+\textbf{Paso 3. Enumerar.}
+\[
+\boxed{
+\begin{aligned}
+z_0&=2\,2^{1/8}e^{i3\pi/16},\\
+z_1&=2\,2^{1/8}e^{i11\pi/16},\\
+z_2&=2\,2^{1/8}e^{i19\pi/16},\\
+z_3&=2\,2^{1/8}e^{i27\pi/16}.
+\end{aligned}}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Reducción mediante sustitución]
+Resolver
+\[
+z^6+7z^3-8=0.
+\]
+
+\textbf{Paso 1. Reconocer la estructura.}
+El polinomio es cuadrático en $z^3$. Definimos
+\[
+u=z^3.
+\]
+Entonces
+\[
+u^2+7u-8=0.
+\]
+
+\textbf{Paso 2. Resolver la ecuación auxiliar.}
+\[
+u^2+7u-8=(u-1)(u+8)=0,
+\]
+por lo que
+\[
+u=1\qquad\text{o}\qquad u=-8.
+\]
+Regresando a $z$:
+\[
+z^3=1
+\qquad\text{o}\qquad
+z^3=-8.
+\]
+
+\textbf{Paso 3. Resolver $z^3=1$.}
+\[
+1=e^{i2k\pi},
+\]
+de modo que
+\[
+z_k=e^{i2k\pi/3},\qquad k=0,1,2.
+\]
+Así,
+\[
+1,\qquad
+-\frac12+\frac{\sqrt3}{2}i,\qquad
+-\frac12-\frac{\sqrt3}{2}i.
+\]
+
+\textbf{Paso 4. Resolver $z^3=-8$.}
+\[
+-8=8e^{i(\pi+2k\pi)}.
+\]
+Por tanto,
+\[
+z_k=2e^{i(\pi+2k\pi)/3},\qquad k=0,1,2,
+\]
+y obtenemos
+\[
+1+\sqrt3\,i,\qquad -2,\qquad 1-\sqrt3\,i.
+\]
+
+\textbf{Conclusión.}
+\[
+\boxed{
+1,\;
+-\frac12+\frac{\sqrt3}{2}i,\;
+-\frac12-\frac{\sqrt3}{2}i,\;
+1+\sqrt3 i,\;
+-2,\;
+1-\sqrt3 i.
+}
+\]
+Son seis raíces distintas, como corresponde al grado $6$.
+\end{ejemplo}
+
+\begin{ejemplo}[Polinomio bicuadrado]
+Resolver
+\[
+z^4-6z^2+25=0.
+\]
+
+\textbf{Paso 1. Sustitución.}
+Sea $u=z^2$. Entonces
+\[
+u^2-6u+25=0.
+\]
+
+\textbf{Paso 2. Fórmula general.}
+\[
+u=\frac{6\pm\sqrt{36-100}}{2}
+=\frac{6\pm\sqrt{-64}}{2}
+=3\pm4i.
+\]
+
+\textbf{Paso 3. Resolver $z^2=3+4i$.}
+Buscamos $z=a+bi$. Entonces
+\[
+(a+bi)^2=(a^2-b^2)+2ab\,i=3+4i.
+\]
+Por comparación,
+\[
+a^2-b^2=3,\qquad 2ab=4.
+\]
+Una solución evidente es $a=2$, $b=1$:
+\[
+(2+i)^2=3+4i.
+\]
+Las dos raíces son
+\[
+2+i,\qquad -2-i.
+\]
+
+\textbf{Paso 4. Resolver $z^2=3-4i$.}
+Análogamente,
+\[
+(2-i)^2=3-4i,
+\]
+por lo que las raíces son
+\[
+2-i,\qquad -2+i.
+\]
+
+\textbf{Conclusión.}
+\[
+\boxed{2+i,\;-2-i,\;2-i,\;-2+i.}
+\]
+Y la factorización completa es
+\[
+\boxed{
+z^4-6z^2+25=
+(z-(2+i))(z+(2+i))(z-(2-i))(z+(2-i)).
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Raíces desplazadas]
+Resolver
+\[
+(z-1)^4=-16.
+\]
+
+\textbf{Paso 1. Trasladar la variable.}
+Sea
+\[
+w=z-1.
+\]
+Entonces
+\[
+w^4=-16.
+\]
+
+\textbf{Paso 2. Forma polar.}
+\[
+-16=16e^{i(\pi+2k\pi)}.
+\]
+Por tanto,
+\[
+w_k=2e^{i(\pi+2k\pi)/4}
+=2e^{i(\pi/4+k\pi/2)}.
+\]
+
+\textbf{Paso 3. Obtener las cuatro raíces de $w$.}
+\[
+\begin{aligned}
+w_0&=2e^{i\pi/4}=\sqrt2+i\sqrt2,\\
+w_1&=2e^{i3\pi/4}=-\sqrt2+i\sqrt2,\\
+w_2&=2e^{i5\pi/4}=-\sqrt2-i\sqrt2,\\
+w_3&=2e^{i7\pi/4}=\sqrt2-i\sqrt2.
+\end{aligned}
+\]
+
+\textbf{Paso 4. Regresar a $z$.}
+Como $z=w+1$:
+\[
+\boxed{
+\begin{aligned}
+z_0&=1+\sqrt2+i\sqrt2,\\
+z_1&=1-\sqrt2+i\sqrt2,\\
+z_2&=1-\sqrt2-i\sqrt2,\\
+z_3&=1+\sqrt2-i\sqrt2.
+\end{aligned}}
+\]
+Geométricamente, las cuatro raíces están sobre la circunferencia
+\[
+|z-1|=2.
+\]
+\end{ejemplo}
+
+\section{Batería de ejercicios resueltos para clase}
+
+\subsection{Nivel I: forma polar y raíces $n$-ésimas}
+
+\begin{ejercicio}
+Resolver
+\[
+z^3=-8+8i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo es
+\[
+\rho=\sqrt{(-8)^2+8^2}=8\sqrt2,
+\]
+y un argumento es
+\[
+\theta=\frac{3\pi}{4}.
+\]
+Así,
+\[
+-8+8i=8\sqrt2\,e^{i3\pi/4}.
+\]
+Por tanto,
+\[
+z_k=(8\sqrt2)^{1/3}
+e^{i(3\pi/4+2k\pi)/3},\qquad k=0,1,2.
+\]
+Como $(8\sqrt2)^{1/3}=2\,2^{1/6}$,
+\[
+\boxed{
+z_k=2\,2^{1/6}e^{i(\pi/4+2k\pi/3)},\quad k=0,1,2.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^4=16i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+16i=16e^{i(\pi/2+2k\pi)}.
+\]
+Entonces
+\[
+z_k=2e^{i(\pi/8+k\pi/2)},\qquad k=0,1,2,3.
+\]
+Por tanto,
+\[
+\boxed{
+2e^{i\pi/8},\;
+2e^{i5\pi/8},\;
+2e^{i9\pi/8},\;
+2e^{i13\pi/8}.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^5=-32i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Podemos tomar
+\[
+-32i=32e^{-i\pi/2}.
+\]
+Así,
+\[
+z_k=2e^{i(-\pi/2+2k\pi)/5}
+=2e^{i(-\pi/10+2k\pi/5)},
+\quad k=0,\ldots,4.
+\]
+Por tanto,
+\[
+\boxed{
+z_k=2e^{i(-\pi/10+2k\pi/5)},\quad k=0,\ldots,4.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^4=8(1-i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Primero,
+\[
+|8(1-i)|=8\sqrt2,\qquad \arg(1-i)=-\frac{\pi}{4}.
+\]
+Entonces
+\[
+8(1-i)=8\sqrt2\,e^{-i\pi/4}.
+\]
+Las raíces son
+\[
+\boxed{
+z_k=(8\sqrt2)^{1/4}
+e^{i(-\pi/16+k\pi/2)},\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^6=-64.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+-64=64e^{i(\pi+2k\pi)}.
+\]
+Como $64^{1/6}=2$,
+\[
+z_k=2e^{i(\pi+2k\pi)/6}
+=2e^{i(\pi/6+k\pi/3)},
+\quad k=0,\ldots,5.
+\]
+Así,
+\[
+\boxed{
+\sqrt3+i,\;
+2i,\;
+-\sqrt3+i,\;
+-\sqrt3-i,\;
+-2i,\;
+\sqrt3-i.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^5=16(1+\sqrt3\,i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|16(1+\sqrt3 i)|=16\sqrt{1+3}=32,
+\]
+y
+\[
+\arg(1+\sqrt3 i)=\frac{\pi}{3}.
+\]
+Por tanto,
+\[
+16(1+\sqrt3 i)=32e^{i\pi/3}.
+\]
+Como $32^{1/5}=2$,
+\[
+\boxed{
+z_k=2e^{i(\pi/15+2k\pi/5)},\quad k=0,\ldots,4.
+}
+\]
+
+\subsection{Nivel II: sustitución y estructura algebraica}
+
+\begin{ejercicio}
+Resolver
+\[
+z^4+8z^2+16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+z^4+8z^2+16=(z^2+4)^2.
+\]
+Por tanto,
+\[
+z^2=-4,
+\]
+de donde
+\[
+z=\pm2i.
+\]
+Como el factor está al cuadrado,
+\[
+\boxed{2i\text{ y }-2i,\quad\text{cada una de multiplicidad }2.}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^6-7z^3-8=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^3$:
+\[
+u^2-7u-8=(u-8)(u+1)=0.
+\]
+Así,
+\[
+z^3=8\qquad\text{o}\qquad z^3=-1.
+\]
+Para $z^3=8$:
+\[
+z=2e^{2k\pi i/3},\quad k=0,1,2.
+\]
+Para $z^3=-1$:
+\[
+z=e^{i(\pi+2k\pi)/3},\quad k=0,1,2.
+\]
+Por tanto,
+\[
+\boxed{
+2,\;-1+i\sqrt3,\;-1-i\sqrt3,\;
+\frac12+\frac{\sqrt3}{2}i,\;-1,\;
+\frac12-\frac{\sqrt3}{2}i.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^8-17z^4+16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^4$:
+\[
+u^2-17u+16=(u-1)(u-16)=0.
+\]
+Luego
+\[
+z^4=1\qquad\text{o}\qquad z^4=16.
+\]
+Del primer caso:
+\[
+1,\ i,\ -1,\ -i.
+\]
+Del segundo:
+\[
+2,\ 2i,\ -2,\ -2i.
+\]
+Por tanto hay ocho raíces distintas:
+\[
+\boxed{\pm1,\;\pm i,\;\pm2,\;\pm2i.}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^6+2z^3+5=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^3$:
+\[
+u^2+2u+5=0.
+\]
+Entonces
+\[
+u=-1\pm2i.
+\]
+Para cada uno de estos dos números debemos calcular tres raíces cúbicas.
+
+Sea
+\[
+-1+2i=\sqrt5\,e^{i\theta},
+\qquad
+\theta=\pi-\arctan 2.
+\]
+Entonces
+\[
+z_k=5^{1/6}e^{i(\theta+2k\pi)/3},
+\quad k=0,1,2.
+\]
+Para el conjugado,
+\[
+-1-2i=\sqrt5\,e^{-i\theta},
+\]
+y
+\[
+z_k=5^{1/6}e^{i(-\theta+2k\pi)/3},
+\quad k=0,1,2.
+\]
+Así se obtienen las seis raíces:
+\[
+\boxed{
+5^{1/6}e^{i(\pm\theta+2k\pi)/3},
+\quad k=0,1,2,\qquad
+\theta=\pi-\arctan2.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^8+2z^4+4=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^4$:
+\[
+u^2+2u+4=0.
+\]
+Entonces
+\[
+u=-1\pm i\sqrt3.
+\]
+Estos números tienen módulo $2$ y argumentos $\pm2\pi/3$:
+\[
+u=2e^{\pm i2\pi/3}.
+\]
+Por tanto, para cada signo,
+\[
+z_k=2^{1/4}
+e^{i(\pm2\pi/3+2k\pi)/4},
+\qquad k=0,1,2,3.
+\]
+En total:
+\[
+\boxed{
+z_k=2^{1/4}e^{i(\pm\pi/6+k\pi/2)},
+\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^{10}-31z^5-32=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^5$:
+\[
+u^2-31u-32=(u-32)(u+1)=0.
+\]
+Así,
+\[
+z^5=32\qquad\text{o}\qquad z^5=-1.
+\]
+Del primer caso:
+\[
+z_k=2e^{2k\pi i/5},\quad k=0,\ldots,4.
+\]
+Del segundo:
+\[
+z_k=e^{i(\pi+2k\pi)/5},\quad k=0,\ldots,4.
+\]
+Por tanto:
+\[
+\boxed{
+\{2e^{2k\pi i/5}\}_{k=0}^4
+\cup
+\{e^{i(\pi+2k\pi)/5}\}_{k=0}^4.
+}
+\]
+
+\subsection{Nivel III: desplazamientos y composiciones algebraicas}
+
+\begin{ejercicio}
+Resolver
+\[
+(z-2)^3=8i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $w=z-2$. Como
+\[
+8i=8e^{i\pi/2},
+\]
+\[
+w_k=2e^{i(\pi/6+2k\pi/3)},\quad k=0,1,2.
+\]
+Finalmente,
+\[
+\boxed{
+z_k=2+2e^{i(\pi/6+2k\pi/3)},\quad k=0,1,2.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z+i)^4=16.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $w=z+i$. Las raíces cuartas de $16$ son
+\[
+2,\;2i,\;-2,\;-2i.
+\]
+Como $z=w-i$:
+\[
+\boxed{
+2-i,\quad i,\quad -2-i,\quad -3i.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z-1+i)^5=-32.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea
+\[
+w=z-1+i.
+\]
+Entonces
+\[
+w^5=-32=32e^{i(\pi+2k\pi)}.
+\]
+Así,
+\[
+w_k=2e^{i(\pi+2k\pi)/5}.
+\]
+Como
+\[
+z=w+1-i,
+\]
+resulta
+\[
+\boxed{
+z_k=1-i+2e^{i(\pi+2k\pi)/5},
+\quad k=0,\ldots,4.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z+2)^6+64=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+(z+2)^6=-64.
+\]
+Sea $w=z+2$. Entonces
+\[
+w_k=2e^{i(\pi/6+k\pi/3)},\quad k=0,\ldots,5.
+\]
+Por tanto,
+\[
+\boxed{
+z_k=-2+2e^{i(\pi/6+k\pi/3)},\quad k=0,\ldots,5.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+\bigl((z-1)^2\bigr)^2+4=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+(z-1)^4=-4.
+\]
+Como
+\[
+-4=4e^{i(\pi+2k\pi)},
+\]
+\[
+z-1=\sqrt2\,e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3.
+\]
+Así,
+\[
+\boxed{
+z_k=1+\sqrt2\,e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z^2+1)^2+16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+(z^2+1)^2=-16.
+\]
+Por tanto,
+\[
+z^2+1=\pm4i,
+\]
+y entonces
+\[
+z^2=-1+4i
+\qquad\text{o}\qquad
+z^2=-1-4i.
+\]
+Para $z^2=a+bi$, una forma explícita de la raíz cuadrada es
+\[
+\sqrt{a+bi}
+=
+\sqrt{\frac{r+a}{2}}
++i\,\operatorname{sgn}(b)
+\sqrt{\frac{r-a}{2}},
+\quad r=\sqrt{a^2+b^2}.
+\]
+Aquí $r=\sqrt{17}$. Por tanto las cuatro raíces son
+\[
+\boxed{
+\pm\left(
+\sqrt{\frac{\sqrt{17}-1}{2}}
++i\sqrt{\frac{\sqrt{17}+1}{2}}
+\right)
+}
+\]
+y
+\[
+\boxed{
+\pm\left(
+\sqrt{\frac{\sqrt{17}-1}{2}}
+-i\sqrt{\frac{\sqrt{17}+1}{2}}
+\right).
+}
+\]
+
+\section{Teorema Fundamental del Álgebra}
+
+\begin{teorema}[Teorema Fundamental del Álgebra]
+Sea
+\[
+p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,
+\qquad a_n\neq0,
+\]
+un polinomio no constante con coeficientes complejos. Entonces existe
+$z_0\in\C$ tal que
+\[
+p(z_0)=0.
+\]
+\end{teorema}
+
+\begin{proposicion}
+Todo polinomio de grado $n\ge1$ con coeficientes complejos puede factorizarse
+como
+\[
+\boxed{p(z)=a_n(z-z_1)\cdots(z-z_n),}
+\]
+donde las raíces se cuentan de acuerdo con sus multiplicidades.
+\end{proposicion}
+
+\begin{proof}
+Por el TFA, $p$ posee al menos una raíz $z_1$. El teorema del factor implica
+\[
+p(z)=(z-z_1)q_{n-1}(z).
+\]
+Si $n-1\ge1$, se aplica nuevamente el TFA a $q_{n-1}$. Repitiendo el
+procedimiento hasta llegar a un polinomio constante se obtiene
+\[
+p(z)=a_n(z-z_1)\cdots(z-z_n).
+\]
+\end{proof}
+
+\begin{observacion}
+Un polinomio de grado $n$ tiene exactamente $n$ raíces en $\C$ cuando se
+cuentan multiplicidades. Puede tener menos de $n$ raíces \emph{distintas}.
+\end{observacion}
+
+\begin{proposicion}[Raíces conjugadas]
+Si $p$ tiene coeficientes reales y $z_0$ es raíz de $p$, entonces
+$\overline{z_0}$ también es raíz, con la misma multiplicidad.
+\end{proposicion}
+
+\begin{proof}
+Si los coeficientes son reales,
+\[
+p(\overline z)=\overline{p(z)}.
+\]
+Si $p(z_0)=0$,
+\[
+p(\overline{z_0})
+=\overline{p(z_0)}
+=0.
+\]
+La afirmación sobre multiplicidad se obtiene conjugando la factorización
+correspondiente.
+\end{proof}
+
+\section{Ejemplos del TFA desarrollados}
+
+\begin{ejemplo}[Cuatro raíces distintas]
+Sea
+\[
+p(z)=z^4-16.
+\]
+Su grado es $4$. Factorizamos:
+\[
+z^4-16=(z^2-4)(z^2+4)
+=(z-2)(z+2)(z-2i)(z+2i).
+\]
+Por tanto,
+\[
+\boxed{2,\;-2,\;2i,\;-2i}
+\]
+son cuatro raíces simples. La suma de multiplicidades es
+\[
+1+1+1+1=4.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Raíces múltiples]
+\[
+p(z)=z^4-2z^2+1=(z^2-1)^2=(z-1)^2(z+1)^2.
+\]
+Las raíces distintas son $1$ y $-1$, pero
+\[
+m(1)=2,\qquad m(-1)=2.
+\]
+Así,
+\[
+2+2=4=\deg p.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Raíces no reales]
+\[
+p(z)=z^4+5z^2+4.
+\]
+Sea $u=z^2$:
+\[
+u^2+5u+4=(u+1)(u+4)=0.
+\]
+Entonces
+\[
+z^2=-1\quad\text{o}\quad z^2=-4,
+\]
+por lo que
+\[
+\boxed{i,\;-i,\;2i,\;-2i.}
+\]
+Ninguna raíz es real, aunque el polinomio tiene coeficientes reales.
+\end{ejemplo}
+
+\begin{ejemplo}[Aplicación del teorema de raíces conjugadas]
+Sea
+\[
+p(z)=z^3-3z^2+4z-2.
+\]
+Probamos raíces reales sencillas:
+\[
+p(1)=1-3+4-2=0.
+\]
+Luego $(z-1)$ es factor. Dividiendo:
+\[
+p(z)=(z-1)(z^2-2z+2).
+\]
+Resolvemos
+\[
+z^2-2z+2=0:
+\]
+\[
+z=\frac{2\pm\sqrt{4-8}}2
+=1\pm i.
+\]
+Por tanto,
+\[
+\boxed{
+p(z)=(z-1)(z-(1+i))(z-(1-i)).
+}
+\]
+La pareja $1\pm i$ ilustra el teorema de las raíces conjugadas.
+\end{ejemplo}
+
+\section{Ejercicios resueltos sobre el TFA}
+
+En cada caso determinaremos grado, raíces, multiplicidades y factorización.
+
+\begin{ejercicio}
+\[
+p(z)=z^3-8.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El grado es $3$. Resolver $z^3=8$ da
+\[
+z_k=2e^{2k\pi i/3},\quad k=0,1,2.
+\]
+Así,
+\[
+2,\quad -1+i\sqrt3,\quad -1-i\sqrt3.
+\]
+Todas son simples y
+\[
+\boxed{
+p(z)=(z-2)(z+1-i\sqrt3)(z+1+i\sqrt3).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^4+4.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+z^4=-4=4e^{i(\pi+2k\pi)}.
+\]
+Por tanto,
+\[
+z_k=\sqrt2\,e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3.
+\]
+En forma binómica:
+\[
+1+i,\quad -1+i,\quad -1-i,\quad 1-i.
+\]
+Todas son simples:
+\[
+\boxed{
+p(z)=(z-1-i)(z+1-i)(z+1+i)(z-1+i).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^4+2z^2+1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+p(z)=(z^2+1)^2=(z-i)^2(z+i)^2.
+\]
+Las raíces son
+\[
+\boxed{i\text{ y }-i}
+\]
+con multiplicidad $2$ cada una. La suma de multiplicidades es $4$.
+
+\begin{ejercicio}
+\[
+p(z)=z^4+13z^2+36.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^2$:
+\[
+u^2+13u+36=(u+4)(u+9)=0.
+\]
+Entonces
+\[
+z^2=-4\quad\text{o}\quad z^2=-9.
+\]
+Las raíces son
+\[
+\boxed{2i,-2i,3i,-3i}.
+\]
+Todas son simples y
+\[
+\boxed{
+p(z)=(z-2i)(z+2i)(z-3i)(z+3i).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^6-1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Las raíces sextas de la unidad son
+\[
+z_k=e^{ik\pi/3},\quad k=0,\ldots,5.
+\]
+Es decir,
+\[
+1,\quad
+\frac12+\frac{\sqrt3}{2}i,\quad
+-\frac12+\frac{\sqrt3}{2}i,\quad
+-1,\quad
+-\frac12-\frac{\sqrt3}{2}i,\quad
+\frac12-\frac{\sqrt3}{2}i.
+\]
+Son seis raíces simples, de modo que
+\[
+\boxed{
+z^6-1=\prod_{k=0}^{5}(z-e^{ik\pi/3}).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^6+7z^3-8.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Este ejercicio coincide con uno de los ejemplos iniciales. Con $u=z^3$:
+\[
+(u-1)(u+8)=0.
+\]
+Las seis raíces son
+\[
+1,\;
+-\frac12\pm\frac{\sqrt3}{2}i,\;
+-2,\;
+1\pm\sqrt3 i.
+\]
+Todas son simples; por tanto la suma de multiplicidades es $6$.
+
+\begin{ejercicio}
+\[
+p(z)=z^8-17z^4+16.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Con $u=z^4$:
+\[
+(u-1)(u-16)=0.
+\]
+Así,
+\[
+z^4=1\quad\text{o}\quad z^4=16.
+\]
+Las raíces son
+\[
+\boxed{\pm1,\;\pm i,\;\pm2,\;\pm2i.}
+\]
+Son ocho raíces simples, como exige el grado $8$.
+
+\begin{ejercicio}
+\[
+p(z)=(z-2)^3(z^2+4)^2.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El grado es
+\[
+3+2(2)=7.
+\]
+La raíz $z=2$ tiene multiplicidad $3$. Además,
+\[
+z^2+4=(z-2i)(z+2i),
+\]
+y al estar al cuadrado:
+\[
+z=2i,\quad z=-2i
+\]
+tienen multiplicidad $2$ cada una. La suma es
+\[
+3+2+2=7.
+\]
+La factorización completa ya es
+\[
+\boxed{
+p(z)=(z-2)^3(z-2i)^2(z+2i)^2.
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^5-5z^4+10z^3-10z^2+5z-1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Reconocemos el desarrollo binomial:
+\[
+(z-1)^5
+=z^5-5z^4+10z^3-10z^2+5z-1.
+\]
+Por tanto,
+\[
+\boxed{z=1}
+\]
+es la única raíz distinta y tiene multiplicidad $5$:
+\[
+\boxed{p(z)=(z-1)^5.}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^6+3z^4+3z^2+1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Reconocemos
+\[
+z^6+3z^4+3z^2+1=(z^2+1)^3.
+\]
+Luego
+\[
+p(z)=(z-i)^3(z+i)^3.
+\]
+Por tanto,
+\[
+\boxed{i\text{ y }-i}
+\]
+tienen multiplicidad $3$ cada una, y
+\[
+3+3=6.
+\]
+
+\section{Ejercicios de razonamiento resueltos}
+
+\begin{ejercicio}
+¿Puede existir un polinomio de grado $5$ con coeficientes complejos que no
+tenga ninguna raíz compleja?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+No. El TFA afirma que todo polinomio no constante con coeficientes complejos
+tiene al menos una raíz en $\C$. De hecho, contando multiplicidades, un
+polinomio de grado $5$ tiene exactamente cinco raíces complejas.
+
+\begin{ejercicio}
+Un polinomio de grado $7$ tiene exactamente tres raíces distintas. ¿Contradice
+esto el TFA?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+No. Las tres raíces distintas pueden tener multiplicidades cuya suma sea $7$.
+Por ejemplo,
+\[
+p(z)=(z-a)^3(z-b)^2(z-c)^2
+\]
+tiene grado $7$, sólo tres raíces distintas y multiplicidades
+\[
+3+2+2=7.
+\]
+
+\begin{ejercicio}
+¿Puede un polinomio de grado impar con coeficientes reales tener únicamente
+raíces no reales?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+No. Las raíces no reales de un polinomio real aparecen en pares conjugados.
+Cada par aporta un número par de raíces, contando multiplicidades. Un grado
+impar no puede componerse exclusivamente de pares; por ello debe existir al
+menos una raíz real.
+
+\begin{ejercicio}
+Si $p$ tiene coeficientes reales y $2+3i$ es raíz de multiplicidad $2$, ¿qué
+puede afirmarse acerca de $2-3i$?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+Por el teorema de raíces conjugadas,
+\[
+\boxed{2-3i}
+\]
+también es raíz y tiene la misma multiplicidad $2$.
+
+\begin{ejercicio}
+Construir un polinomio mónico real de grado $4$ cuyas raíces sean
+\[
+1+i,\quad1-i,\quad-2+3i,\quad-2-3i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Agrupamos conjugados:
+\[
+(z-(1+i))(z-(1-i))
+=((z-1)-i)((z-1)+i)
+=(z-1)^2+1
+=z^2-2z+2.
+\]
+Asimismo,
+\[
+(z+2-3i)(z+2+3i)
+=(z+2)^2+9
+=z^2+4z+13.
+\]
+Entonces
+\[
+p(z)=(z^2-2z+2)(z^2+4z+13).
+\]
+Multiplicando:
+\[
+\boxed{
+p(z)=z^4+2z^3+7z^2-18z+26.
+}
+\]
+
+\begin{ejercicio}
+Construir un polinomio mónico real de grado $5$ que tenga $2+i$ como raíz
+doble y $-1$ como raíz simple.
+\end{ejercicio}
+
+\textbf{Solución.}
+Como los coeficientes deben ser reales, $2-i$ también debe ser raíz doble.
+Ya tenemos
+\[
+2+2+1=5
+\]
+raíces contando multiplicidades, exactamente el grado requerido. Por tanto,
+\[
+p(z)=(z-(2+i))^2(z-(2-i))^2(z+1).
+\]
+El producto del par conjugado es
+\[
+(z-(2+i))(z-(2-i))
+=(z-2)^2+1
+=z^2-4z+5.
+\]
+Luego
+\[
+p(z)=(z^2-4z+5)^2(z+1).
+\]
+Como
+\[
+(z^2-4z+5)^2=z^4-8z^3+26z^2-40z+25,
+\]
+obtenemos
+\[
+\boxed{
+p(z)=z^5-7z^4+18z^3-14z^2-15z+25.
+}
+\]
+
+\begin{ejercicio}
+¿Por qué $z^2+1$ muestra que $\mathbb{R}$ no es algebraicamente cerrado?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+El polinomio
+\[
+p(x)=x^2+1
+\]
+tiene coeficientes reales, pero la ecuación
+\[
+x^2+1=0
+\]
+implica
+\[
+x^2=-1,
+\]
+que no tiene solución en $\mathbb{R}$. Por ello existe un polinomio no
+constante con coeficientes reales que no tiene raíces reales. En consecuencia,
+$\mathbb{R}$ no es algebraicamente cerrado.
+
+\begin{ejercicio}
+¿En qué sentido el TFA afirma que $\C$ es algebraicamente cerrado?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+Un campo es algebraicamente cerrado si todo polinomio no constante con
+coeficientes en ese campo posee una raíz en el mismo campo. El TFA afirma
+precisamente que todo polinomio no constante con coeficientes complejos posee
+una raíz compleja. Aplicando repetidamente el teorema del factor, todo
+polinomio se descompone completamente en factores lineales sobre $\C$.
+
+\section{Problemas adicionales resueltos}
+
+\begin{ejercicio}
+Resolver
+\[
+z^4=81\left(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3}\right).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo de cada raíz es
+\[
+81^{1/4}=3.
+\]
+Los argumentos son
+\[
+\frac{2\pi/3+2k\pi}{4}
+=\frac{\pi}{6}+\frac{k\pi}{2}.
+\]
+Por tanto,
+\[
+\boxed{
+z_k=3e^{i(\pi/6+k\pi/2)},\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^5=32\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Como $32^{1/5}=2$,
+\[
+\arg z_k=
+\frac{5\pi/6+2k\pi}{5}
+=\frac{\pi}{6}+\frac{2k\pi}{5}.
+\]
+Así,
+\[
+\boxed{
+z_k=2e^{i(\pi/6+2k\pi/5)},\quad k=0,\ldots,4.
+}
+\]
+
+\begin{ejercicio}
+Determinar todas las raíces de
+\[
+z^8+15z^4-16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^4$:
+\[
+u^2+15u-16=(u-1)(u+16)=0.
+\]
+Entonces
+\[
+z^4=1
+\quad\text{o}\quad
+z^4=-16.
+\]
+Del primer caso:
+\[
+1,\;i,\;-1,\;-i.
+\]
+Del segundo:
+\[
+z_k=2e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3,
+\]
+es decir,
+\[
+\sqrt2(1+i),\quad
+\sqrt2(-1+i),\quad
+\sqrt2(-1-i),\quad
+\sqrt2(1-i).
+\]
+En total hay ocho raíces distintas.
+
+\begin{ejercicio}
+Determinar todas las raíces de
+\[
+z^9-7z^6+14z^3-8=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^3$. Entonces
+\[
+u^3-7u^2+14u-8=0.
+\]
+Probamos $u=1$:
+\[
+1-7+14-8=0.
+\]
+Por tanto $(u-1)$ es factor. Dividiendo:
+\[
+u^3-7u^2+14u-8=(u-1)(u^2-6u+8)
+=(u-1)(u-2)(u-4).
+\]
+Así,
+\[
+z^3=1,\qquad z^3=2,\qquad z^3=4.
+\]
+Por tanto las nueve raíces son
+\[
+\boxed{
+e^{2k\pi i/3},\quad
+2^{1/3}e^{2k\pi i/3},\quad
+4^{1/3}e^{2k\pi i/3},
+\qquad k=0,1,2.
+}
+\]
+
+\begin{ejercicio}
+Factorizar completamente sobre $\C$:
+\[
+z^6+3z^4+4z^2+12.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Agrupamos:
+\[
+z^6+3z^4+4z^2+12
+=z^4(z^2+3)+4(z^2+3)
+=(z^2+3)(z^4+4).
+\]
+Ahora,
+\[
+z^2+3=0
+\quad\Longrightarrow\quad
+z=\pm i\sqrt3.
+\]
+Además,
+\[
+z^4=-4,
+\]
+cuyas raíces son
+\[
+1+i,\quad -1+i,\quad -1-i,\quad 1-i.
+\]
+Por tanto,
+\[
+\boxed{
+\begin{aligned}
+z^6+3z^4+4z^2+12
+={}&(z-i\sqrt3)(z+i\sqrt3)\\
+&\cdot(z-1-i)(z+1-i)(z+1+i)(z-1+i).
+\end{aligned}}
+\]
+
+\begin{ejercicio}
+Construir un polinomio real de grado $6$ que tenga como raíces
+\[
+1+i,\qquad -2+3i,\qquad4i,
+\]
+junto con todas las raíces que necesariamente deben acompañarlas.
+\end{ejercicio}
+
+\textbf{Solución.}
+Por conjugación también deben ser raíces
+\[
+1-i,\qquad -2-3i,\qquad -4i.
+\]
+Así obtenemos exactamente seis raíces. El polinomio mónico es
+\[
+p(z)=
+(z-(1+i))(z-(1-i))
+(z+2-3i)(z+2+3i)
+(z-4i)(z+4i).
+\]
+Agrupando conjugados:
+\[
+p(z)=(z^2-2z+2)(z^2+4z+13)(z^2+16).
+\]
+Ésta es ya una factorización real completa en factores cuadráticos
+irreducibles. Si se desea expandir:
+\[
+(z^2-2z+2)(z^2+4z+13)
+=z^4+2z^3+7z^2-18z+26,
+\]
+y finalmente
+\[
+\boxed{
+p(z)=z^6+2z^5+23z^4+14z^3+138z^2-288z+416.
+}
+\]
+
+\begin{ejercicio}
+Un polinomio mónico real de grado $6$ tiene $1+2i$ como raíz doble y $-3$
+como raíz doble. Construir el polinomio.
+\end{ejercicio}
+
+\textbf{Solución.}
+Como $1+2i$ es raíz doble y los coeficientes son reales, $1-2i$ también es
+raíz doble. Junto con $-3$ de multiplicidad $2$, tenemos
+\[
+2+2+2=6,
+\]
+por lo que ya se han determinado todas las raíces.
+
+Así,
+\[
+p(z)=(z-(1+2i))^2(z-(1-2i))^2(z+3)^2.
+\]
+Agrupando conjugados:
+\[
+(z-(1+2i))(z-(1-2i))
+=(z-1)^2+4
+=z^2-2z+5.
+\]
+Por tanto,
+\[
+\boxed{
+p(z)=(z^2-2z+5)^2(z+3)^2.
+}
+\]
+Esta forma factorizada muestra inmediatamente las raíces y sus
+multiplicidades.
+
+
+\section{Logaritmo complejo}
+
+\subsection{Motivación: por qué el logaritmo complejo es multivaluado}
+
+En variable real, para $x>0$, el logaritmo natural $\ln x$ es la función
+inversa de la exponencial real. En el plano complejo aparece una diferencia
+fundamental: la exponencial compleja es periódica,
+\[
+e^{z+2\pi i k}=e^z,\qquad k\in\mathbb Z.
+\]
+Por esta razón, la ecuación
+\[
+e^w=z,\qquad z\neq0,
+\]
+no tiene una única solución $w$, sino infinitas.
+
+Sea
+\[
+z=re^{i\theta},\qquad r=|z|>0.
+\]
+Buscamos $w=u+iv$ tal que
+\[
+e^w=z.
+\]
+Usando
+\[
+e^{u+iv}=e^u(\cos v+i\sin v),
+\]
+y comparando con
+\[
+z=r(\cos\theta+i\sin\theta),
+\]
+se obtienen las condiciones
+\[
+e^u=r
+\qquad\text{y}\qquad
+v=\theta+2k\pi,\qquad k\in\mathbb Z.
+\]
+De la primera,
+\[
+u=\ln r.
+\]
+Por tanto, todos los valores del logaritmo complejo son
+\[
+\boxed{
+\log z=\ln|z|+i(\arg z+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+
+Si $\theta$ representa un argumento particular de $z$, también escribimos
+\[
+\boxed{
+\log z=\ln r+i(\theta+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{observacion}
+El símbolo $\log z$ se utiliza aquí para representar el logaritmo complejo
+multivaluado. No debe confundirse con una rama univaluada del logaritmo.
+\end{observacion}
+
+\subsection{Argumento principal y logaritmo principal}
+
+Como un número complejo no nulo tiene infinitos argumentos,
+\[
+\arg z=\theta+2k\pi,\qquad k\in\mathbb Z,
+\]
+es útil seleccionar uno de ellos.
+
+Definimos el \emph{argumento principal} mediante
+\[
+\operatorname{Arg}z\in(-\pi,\pi].
+\]
+Entonces el \emph{logaritmo principal} se define por
+\[
+\boxed{
+\operatorname{Log}z=\ln|z|+i\operatorname{Arg}z.
+}
+\]
+
+Por tanto,
+\[
+\log z
+=
+\operatorname{Log}z+2k\pi i,
+\qquad k\in\mathbb Z,
+\]
+siempre que se interprete adecuadamente el argumento principal.
+
+\begin{observacion}
+El número $z=0$ no posee logaritmo complejo. En efecto, no existe
+$w\in\mathbb C$ tal que $e^w=0$, pues
+\[
+|e^w|=e^{\Re(w)}>0.
+\]
+\end{observacion}
+
+\subsection{Ejemplos básicos completamente desarrollados}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log 1.
+\]
+
+\textbf{Paso 1. Forma polar.}
+
+El módulo es
+\[
+|1|=1,
+\]
+y todos sus argumentos son
+\[
+2k\pi,\qquad k\in\mathbb Z.
+\]
+
+\textbf{Paso 2. Aplicar la definición.}
+\[
+\log1=\ln1+i(2k\pi).
+\]
+Como $\ln1=0$,
+\[
+\boxed{
+\log1=2k\pi i,\qquad k\in\mathbb Z.
+}
+\]
+
+El valor principal corresponde a $k=0$:
+\[
+\boxed{\operatorname{Log}1=0.}
+\]
+
+\textbf{Comprobación.}
+\[
+e^{2k\pi i}
+=\cos(2k\pi)+i\sin(2k\pi)
+=1.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log(-1).
+\]
+
+\textbf{Paso 1. Módulo y argumento.}
+\[
+|-1|=1.
+\]
+Un argumento es $\pi$, por lo que todos los argumentos son
+\[
+\pi+2k\pi=(2k+1)\pi.
+\]
+
+\textbf{Paso 2. Sustituir.}
+\[
+\log(-1)
+=\ln1+i(2k+1)\pi.
+\]
+Así,
+\[
+\boxed{
+\log(-1)=(2k+1)\pi i,\qquad k\in\mathbb Z.
+}
+\]
+
+Como $\operatorname{Arg}(-1)=\pi$,
+\[
+\boxed{\operatorname{Log}(-1)=i\pi.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log i.
+\]
+
+Tenemos
+\[
+|i|=1,\qquad
+\arg i=\frac{\pi}{2}+2k\pi.
+\]
+Entonces
+\[
+\boxed{
+\log i=i\left(\frac{\pi}{2}+2k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{\operatorname{Log}i=\frac{\pi i}{2}.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log(1+i).
+\]
+
+\textbf{Paso 1. Módulo.}
+\[
+|1+i|=\sqrt{1^2+1^2}=\sqrt2.
+\]
+
+\textbf{Paso 2. Argumento.}
+
+El número está en el primer cuadrante y
+\[
+\tan\theta=1,
+\]
+por lo que
+\[
+\theta=\frac{\pi}{4}.
+\]
+
+\textbf{Paso 3. Logaritmo.}
+\[
+\log(1+i)
+=
+\ln\sqrt2
++i\left(\frac{\pi}{4}+2k\pi\right).
+\]
+Como
+\[
+\ln\sqrt2=\frac12\ln2,
+\]
+obtenemos
+\[
+\boxed{
+\log(1+i)
+=
+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{
+\operatorname{Log}(1+i)
+=
+\frac12\ln2+\frac{\pi}{4}i.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log(-1+i\sqrt3).
+\]
+
+\textbf{Paso 1. Módulo.}
+\[
+r=\sqrt{(-1)^2+(\sqrt3)^2}=2.
+\]
+
+\textbf{Paso 2. Argumento.}
+
+El punto está en el segundo cuadrante. Su ángulo de referencia es $\pi/3$,
+de modo que
+\[
+\theta=\frac{2\pi}{3}.
+\]
+
+\textbf{Paso 3. Logaritmo.}
+\[
+\boxed{
+\log(-1+i\sqrt3)
+=
+\ln2+i\left(\frac{2\pi}{3}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+Por tanto,
+\[
+\boxed{
+\operatorname{Log}(-1+i\sqrt3)
+=
+\ln2+\frac{2\pi}{3}i.
+}
+\]
+\end{ejemplo}
+
+\subsection{Ejemplos con determinación cuidadosa del argumento}
+
+\begin{ejemplo}
+Calcular $\log(-2-2i)$.
+
+El módulo es
+\[
+|-2-2i|=\sqrt8=2\sqrt2.
+\]
+El punto está en el tercer cuadrante. Un argumento puede escribirse como
+\[
+\theta=\frac{5\pi}{4},
+\]
+pero para el argumento principal debemos escoger el representante en
+$(-\pi,\pi]$:
+\[
+\operatorname{Arg}(-2-2i)=-\frac{3\pi}{4}.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-2-2i)
+=
+\ln(2\sqrt2)
++i\left(-\frac{3\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+Como
+\[
+\ln(2\sqrt2)=\frac32\ln2,
+\]
+el valor principal es
+\[
+\boxed{
+\operatorname{Log}(-2-2i)
+=
+\frac32\ln2-\frac{3\pi}{4}i.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular $\log(\sqrt3-i)$.
+
+Tenemos
+\[
+|\sqrt3-i|=\sqrt{3+1}=2.
+\]
+El punto está en el cuarto cuadrante y
+\[
+\tan\theta=-\frac{1}{\sqrt3}.
+\]
+Por tanto,
+\[
+\operatorname{Arg}(\sqrt3-i)=-\frac{\pi}{6}.
+\]
+Así,
+\[
+\boxed{
+\log(\sqrt3-i)
+=
+\ln2+i\left(-\frac{\pi}{6}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+y
+\[
+\boxed{
+\operatorname{Log}(\sqrt3-i)=\ln2-\frac{\pi}{6}i.
+}
+\]
+\end{ejemplo}
+
+\subsection{Propiedades y precauciones}
+
+Para $z_1,z_2\neq0$, los logaritmos multivaluados satisfacen, en el sentido
+apropiado de conjuntos de valores,
+\[
+\log(z_1z_2)=\log z_1+\log z_2.
+\]
+Sin embargo, para el \emph{logaritmo principal} no siempre es cierto que
+\[
+\operatorname{Log}(z_1z_2)
+=
+\operatorname{Log}z_1+\operatorname{Log}z_2.
+\]
+
+\begin{ejemplo}[Una identidad que falla para el logaritmo principal]
+Tomemos
+\[
+z_1=z_2=-1.
+\]
+Entonces
+\[
+z_1z_2=1
+\]
+y
+\[
+\operatorname{Log}(1)=0.
+\]
+Pero
+\[
+\operatorname{Log}(-1)=i\pi,
+\]
+por lo que
+\[
+\operatorname{Log}(-1)+\operatorname{Log}(-1)
+=2\pi i.
+\]
+Así,
+\[
+\boxed{
+\operatorname{Log}((-1)(-1))
+\neq
+\operatorname{Log}(-1)+\operatorname{Log}(-1).
+}
+\]
+La diferencia es precisamente un múltiplo entero de $2\pi i$.
+\end{ejemplo}
+
+\begin{observacion}
+Ésta es una de las razones por las que en variable compleja las identidades
+algebraicas que involucran logaritmos deben manejarse con cuidado. La elección
+de una rama afecta el valor obtenido.
+\end{observacion}
+
+\subsection{Ramas del logaritmo: el problema que debemos resolver}
+
+La noción de \emph{rama} del logaritmo complejo merece una discusión cuidadosa.
+No se trata simplemente de una convención de notación: aparece porque el
+logaritmo complejo, considerado inicialmente, no es una función univaluada.
+
+La idea central puede resumirse en
+\[
+\boxed{
+\text{el problema no está en }\ln|z|;
+\qquad
+\text{el problema está en elegir el argumento de }z.
+}
+\]
+
+En efecto, para $z\neq0$,
+\[
+\log z=\ln|z|+i(\theta+2k\pi),\qquad k\in\mathbb Z.
+\]
+El módulo $|z|$ es único y, por tanto, $\ln|z|$ también lo es. En cambio,
+el argumento no es único:
+\[
+\theta,\quad\theta+2\pi,\quad\theta+4\pi,\quad\ldots
+\]
+representan la misma dirección en el plano complejo.
+
+Así,
+\[
+\boxed{
+\text{multivaluación de }\log z
+\quad\Longleftrightarrow\quad
+\text{multivaluación del argumento}.
+}
+\]
+
+\subsubsection{¿Por qué necesitamos escoger una rama?}
+
+Consideremos primero el número
+\[
+z=i.
+\]
+Podemos escribir
+\[
+i=e^{i\pi/2},
+\]
+pero también
+\[
+i=e^{i(\pi/2+2\pi)}
+=e^{i(\pi/2-2\pi)}
+=e^{i(\pi/2+2k\pi)}.
+\]
+Por consiguiente,
+\[
+\log i
+=
+i\left(\frac{\pi}{2}+2k\pi\right),
+\qquad k\in\mathbb Z.
+\]
+
+Tenemos entonces infinitos valores asociados al mismo número $i$. Si queremos
+que el logaritmo sea una \emph{función} en el sentido usual, debemos seleccionar
+exactamente uno de ellos.
+
+Una \emph{rama del argumento} consiste precisamente en escoger, de manera
+coherente y continua sobre cierto dominio, un único argumento para cada número
+complejo del dominio. Una vez elegida una rama del argumento, se obtiene una
+rama del logaritmo mediante
+\[
+L(z)=\ln|z|+i\,\Theta(z),
+\]
+donde $\Theta(z)$ es la rama elegida del argumento.
+
+\subsubsection{La elección principal}
+
+Una elección particularmente importante consiste en tomar argumentos en un
+intervalo de longitud $2\pi$ centrado alrededor de cero.
+
+Como convención puntual, suele definirse el argumento principal mediante
+\[
+\operatorname{Arg}z\in(-\pi,\pi].
+\]
+Así, por ejemplo,
+\[
+\operatorname{Arg}(1)=0,\qquad
+\operatorname{Arg}(i)=\frac{\pi}{2},\qquad
+\operatorname{Arg}(-i)=-\frac{\pi}{2},\qquad
+\operatorname{Arg}(-1)=\pi.
+\]
+
+Con esta convención podemos escribir el \emph{valor principal} del logaritmo:
+\[
+\boxed{
+\operatorname{Log}z
+=
+\ln|z|+i\operatorname{Arg}z.
+}
+\]
+
+Sin embargo, aquí es necesario hacer una distinción importante.
+
+\begin{observacion}[Valor principal y rama principal analítica]
+La convención
+\[
+\operatorname{Arg}z\in(-\pi,\pi]
+\]
+permite asignar un argumento principal incluso a los números reales negativos.
+Pero si deseamos que el logaritmo sea una función continua y analítica en un
+dominio abierto, debemos eliminar una semirrecta del plano.
+
+Para la \emph{rama principal analítica} se trabaja usualmente en
+\[
+\boxed{
+D=\mathbb C\setminus(-\infty,0]
+}
+\]
+y se toma
+\[
+\boxed{
+-\pi<\Arg z<\pi.
+}
+\]
+Sobre este dominio se define
+\[
+\boxed{
+\Log z=\ln|z|+i\Arg z.
+}
+\]
+\end{observacion}
+
+Esta diferencia entre ``valor principal'' y ``rama principal analítica'' es
+importante: la primera es una selección de un valor; la segunda es una función
+univaluada, continua y analítica sobre un dominio abierto apropiado.
+
+\subsubsection{¿Es obligatoria la elección $(-\pi,\pi)$?}
+
+No. La elección principal es una convención especialmente útil, pero no es la
+única posible.
+
+Podríamos, por ejemplo, escoger
+\[
+0<\theta<2\pi,
+\]
+lo cual obliga a colocar el corte sobre el eje real positivo. Más generalmente,
+podemos seleccionar un intervalo
+\[
+\alpha<\theta<\alpha+2\pi.
+\]
+Esto conduce a una rama
+\[
+\Arg_\alpha z\in(\alpha,\alpha+2\pi)
+\]
+y a un logaritmo
+\[
+\Log_\alpha z
+=
+\ln|z|+i\Arg_\alpha z
+\]
+definido sobre el plano con la semirrecta de ángulo $\alpha$ eliminada.
+
+Por tanto,
+\[
+\boxed{
+\text{una rama es una elección coherente de una de las infinitas hojas
+del argumento.}
+}
+\]
+
+\subsubsection{¿Por qué es necesario hacer un corte?}
+
+Éste es el punto geométrico fundamental.
+
+Consideremos la circunferencia unitaria
+\[
+z=e^{i\theta}.
+\]
+Partimos de un punto cercano a $1$ y recorremos la circunferencia en sentido
+antihorario. El argumento aumenta continuamente:
+\[
+0,\quad
+\frac{\pi}{2},\quad
+\pi,\quad
+\frac{3\pi}{2},\quad
+2\pi.
+\]
+Pero al llegar a $\theta=2\pi$ tenemos
+\[
+e^{i2\pi}=e^{i0}=1.
+\]
+Geométricamente hemos regresado exactamente al mismo punto, aunque el argumento
+ha aumentado en $2\pi$.
+
+Si continuamos otra vuelta,
+\[
+\theta=4\pi,
+\]
+y otra más,
+\[
+\theta=6\pi.
+\]
+
+Por consiguiente, si permitimos rodear completamente al origen, no podemos
+mantener simultáneamente las tres propiedades siguientes:
+
+\begin{enumerate}
+\item asignar un único argumento a cada punto;
+\item hacer que ese argumento varíe continuamente;
+\item permitir recorridos cerrados que den una vuelta completa alrededor de
+$0$.
+\end{enumerate}
+
+Para obtener una rama continua debemos impedir que el dominio permita completar
+esa vuelta. Una forma de hacerlo es eliminar una semirrecta que parte del
+origen.
+
+Para la rama principal eliminamos
+\[
+(-\infty,0].
+\]
+Entonces el dominio es
+\[
+D=\mathbb C\setminus(-\infty,0].
+\]
+
+Ya no es posible recorrer una curva cerrada alrededor del origen sin atravesar
+el corte.
+
+\[
+\boxed{
+\text{El corte de rama impide completar una vuelta alrededor del origen
+sin abandonar el dominio.}
+}
+\]
+
+\subsubsection{Qué ocurre a ambos lados del corte}
+
+La necesidad del corte puede verse de manera particularmente clara cerca del
+eje real negativo.
+
+Consideremos
+\[
+z_+=-1+i\varepsilon,
+\qquad
+z_-=-1-i\varepsilon,
+\qquad \varepsilon>0.
+\]
+
+El punto $z_+$ se aproxima a $-1$ desde el semiplano superior. Por ello,
+\[
+\Arg(z_+)\longrightarrow\pi
+\qquad
+\text{cuando }\varepsilon\to0^+.
+\]
+
+En cambio, $z_-$ se aproxima a $-1$ desde el semiplano inferior:
+\[
+\Arg(z_-)\longrightarrow-\pi.
+\]
+
+Como
+\[
+|z_\pm|\longrightarrow1,
+\]
+tenemos
+\[
+\ln|z_\pm|\longrightarrow0.
+\]
+Así,
+\[
+\Log(z_+)\longrightarrow i\pi,
+\]
+mientras que
+\[
+\Log(z_-)\longrightarrow-i\pi.
+\]
+
+La diferencia entre los límites laterales es
+\[
+i\pi-(-i\pi)=2\pi i.
+\]
+
+Por tanto,
+\[
+\boxed{
+\lim_{\substack{z\to-1\\\Im z>0}}\Log z=i\pi,
+\qquad
+\lim_{\substack{z\to-1\\\Im z<0}}\Log z=-i\pi.
+}
+\]
+
+Ésta es una forma precisa de observar el salto de la rama principal a través
+del corte:
+\[
+\boxed{\text{el salto es }2\pi i.}
+\]
+
+\begin{ejemplo}[Dos puntos muy próximos, dos argumentos muy diferentes]
+Consideremos
+\[
+z_1=-1+0.01i,
+\qquad
+z_2=-1-0.01i.
+\]
+Ambos puntos están muy próximos en el plano complejo. Sin embargo,
+\[
+\Arg z_1\approx\pi,
+\qquad
+\Arg z_2\approx-\pi.
+\]
+En consecuencia,
+\[
+\Log z_1\approx i\pi,
+\qquad
+\Log z_2\approx-i\pi.
+\]
+Aunque $z_1$ y $z_2$ están arbitrariamente cerca cuando el término imaginario
+tiende a cero, sus logaritmos principales se separan aproximadamente en
+$2\pi i$. Esto muestra por qué no debemos intentar extender continuamente la
+rama principal a través del eje real negativo.
+\end{ejemplo}
+
+\subsubsection{Interpretación geométrica mediante una vuelta alrededor del origen}
+
+Podemos formalizar la intuición anterior tomando
+\[
+\gamma(t)=e^{it},
+\qquad0\leq t\leq2\pi.
+\]
+Supongamos, por un momento, que existiera una función argumento continua
+$\Theta$ definida a lo largo de toda la circunferencia y compatible con
+\[
+e^{i\Theta(\gamma(t))}=\gamma(t).
+\]
+Al recorrer la curva continuamente, necesariamente
+\[
+\Theta(\gamma(t))=\Theta(\gamma(0))+t
+\]
+salvo múltiplos constantes de $2\pi$. Al completar la vuelta:
+\[
+\Theta(\gamma(2\pi))
+=
+\Theta(\gamma(0))+2\pi.
+\]
+Pero
+\[
+\gamma(2\pi)=\gamma(0)=1.
+\]
+Una función univaluada tendría que satisfacer
+\[
+\Theta(\gamma(2\pi))
+=
+\Theta(\gamma(0)),
+\]
+lo cual contradice el incremento de $2\pi$.
+
+Esta contradicción explica, de forma elemental, por qué no existe una rama
+continua del argumento sobre todo
+\[
+\mathbb C\setminus\{0\}.
+\]
+
+\subsubsection{La rama principal como función analítica}
+
+Una vez realizado el corte,
+\[
+D=\mathbb C\setminus(-\infty,0],
+\]
+podemos definir
+\[
+\Log z=\ln|z|+i\Arg z,
+\qquad -\pi<\Arg z<\pi.
+\]
+
+Si
+\[
+z=x+iy,
+\]
+entonces
+\[
+\Log z
+=
+\frac12\ln(x^2+y^2)
++i\Arg(x+iy).
+\]
+
+En este dominio, $\Log z$ es una función analítica y satisface
+\[
+\boxed{
+\frac{d}{dz}\Log z=\frac1z.
+}
+\]
+
+Una manera de comprender esta identidad es recordar que, localmente,
+\[
+e^{\Log z}=z.
+\]
+Derivando formalmente:
+\[
+e^{\Log z}\frac{d}{dz}\Log z=1.
+\]
+Como
+\[
+e^{\Log z}=z,
+\]
+resulta
+\[
+z\frac{d}{dz}\Log z=1,
+\]
+y por tanto
+\[
+\boxed{
+(\Log z)'=\frac1z.
+}
+\]
+
+\subsubsection{Una consecuencia algebraica importante}
+
+La elección de una rama también explica por qué ciertas identidades familiares
+del logaritmo real pueden fallar para valores principales.
+
+Por ejemplo,
+\[
+(-1)(-1)=1.
+\]
+Entonces
+\[
+\operatorname{Log}(1)=0.
+\]
+Sin embargo,
+\[
+\operatorname{Log}(-1)=i\pi,
+\]
+de modo que
+\[
+\operatorname{Log}(-1)+\operatorname{Log}(-1)=2\pi i.
+\]
+Así,
+\[
+\boxed{
+\operatorname{Log}(z_1z_2)
+\neq
+\operatorname{Log}z_1+\operatorname{Log}z_2
+}
+\]
+en general para valores principales.
+
+No se trata de un fallo del álgebra, sino de que al tomar valores principales
+estamos efectuando una selección particular entre valores que difieren por
+múltiplos de $2\pi i$.
+
+\subsubsection{Ejercicios resueltos sobre rama principal}
+
+\begin{ejercicio}
+Determine el valor principal de
+\[
+\log(-1-i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo es
+\[
+|-1-i|=\sqrt2.
+\]
+El punto está en el tercer cuadrante. Un argumento positivo es $5\pi/4$, pero
+éste no pertenece a $(-\pi,\pi]$. Restamos $2\pi$:
+\[
+\frac{5\pi}{4}-2\pi=-\frac{3\pi}{4}.
+\]
+Por tanto,
+\[
+\Arg(-1-i)=-\frac{3\pi}{4}.
+\]
+Así,
+\[
+\boxed{
+\operatorname{Log}(-1-i)
+=
+\frac12\ln2-\frac{3\pi}{4}i.
+}
+\]
+
+\begin{ejercicio}
+Determine todos los valores de $\log(-1-i)$ y señale el principal.
+\end{ejercicio}
+
+\textbf{Solución.}
+A partir del argumento principal,
+\[
+\arg(-1-i)
+=
+-\frac{3\pi}{4}+2k\pi.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-1-i)
+=
+\frac12\ln2
++i\left(-\frac{3\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+El valor correspondiente a $k=0$ es
+\[
+\boxed{
+\operatorname{Log}(-1-i)
+=
+\frac12\ln2-\frac{3\pi}{4}i.
+}
+\]
+
+\begin{ejercicio}
+Compare los valores principales de
+\[
+z_1=e^{i3\pi/4}
+\qquad\text{y}\qquad
+z_2=e^{i5\pi/4}.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Para $z_1$,
+\[
+\Arg z_1=\frac{3\pi}{4}.
+\]
+Como $|z_1|=1$,
+\[
+\Log z_1=\frac{3\pi}{4}i.
+\]
+
+Para $z_2$, el ángulo $5\pi/4$ no pertenece al intervalo principal. Restamos
+$2\pi$:
+\[
+\frac{5\pi}{4}-2\pi=-\frac{3\pi}{4}.
+\]
+Por tanto,
+\[
+\Log z_2=-\frac{3\pi}{4}i.
+\]
+
+Así,
+\[
+\boxed{
+\Log(e^{i3\pi/4})=\frac{3\pi}{4}i,
+\qquad
+\Log(e^{i5\pi/4})=-\frac{3\pi}{4}i.
+}
+\]
+
+Este ejercicio permite observar que, para la rama principal,
+\[
+\Log(e^{i\theta})
+\]
+no es simplemente $i\theta$ para todo $\theta\in\mathbb R$: primero debemos
+reducir $\theta$ al intervalo principal.
+
+\begin{ejercicio}
+Calcule
+\[
+\Log(e^{i7\pi/3}).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Reducimos el argumento módulo $2\pi$:
+\[
+\frac{7\pi}{3}-2\pi
+=
+\frac{\pi}{3}.
+\]
+Como $\pi/3\in(-\pi,\pi]$,
+\[
+\Arg(e^{i7\pi/3})=\frac{\pi}{3}.
+\]
+Además, el módulo es $1$, de modo que
+\[
+\boxed{
+\Log(e^{i7\pi/3})=\frac{\pi}{3}i.
+}
+\]
+Obsérvese que
+\[
+\boxed{
+\Log(e^{i7\pi/3})\neq i\frac{7\pi}{3}.
+}
+\]
+
+\begin{ejercicio}
+Explique por qué no puede definirse una rama continua del logaritmo sobre
+$\mathbb C\setminus\{0\}$.
+\end{ejercicio}
+
+\textbf{Solución.}
+Una rama continua del logaritmo produciría, mediante su parte imaginaria, una
+elección continua del argumento. Al recorrer una vez la circunferencia
+\[
+\gamma(t)=e^{it},\qquad0\leq t\leq2\pi,
+\]
+el argumento tendría que aumentar en $2\pi$. Sin embargo,
+\[
+\gamma(0)=\gamma(2\pi)=1.
+\]
+Una función univaluada tendría que asignar el mismo valor al punto inicial y
+final, mientras que la continuidad del argumento a lo largo de la vuelta
+exigiría valores separados por $2\pi$. Por ello tal rama no puede existir en
+todo $\mathbb C\setminus\{0\}$.
+
+\subsubsection{Resumen para la exposición}
+
+La discusión puede sintetizarse en la siguiente cadena lógica:
+\[
+\boxed{
+e^{z+2\pi i}=e^z
+}
+\]
+implica
+\[
+\boxed{
+\arg z=\theta+2k\pi
+}
+\]
+y, por tanto,
+\[
+\boxed{
+\log z=\ln|z|+i(\theta+2k\pi)
+}
+\]
+es multivaluado.
+
+Para obtener una función debemos seleccionar una rama:
+\[
+\boxed{
+-\pi<\Arg z<\pi
+}
+\]
+sobre
+\[
+\boxed{
+\mathbb C\setminus(-\infty,0].
+}
+\]
+Entonces
+\[
+\boxed{
+\Log z=\ln|z|+i\Arg z
+}
+\]
+es la rama principal analítica.
+
+El corte no es un artificio puramente notacional: evita que podamos dar una
+vuelta completa alrededor del origen dentro del dominio. De esta manera el
+argumento puede escogerse de forma única y continua.
+
+Finalmente, al acercarnos al corte por arriba y por abajo,
+\[
+\Arg z\to\pi
+\qquad\text{y}\qquad
+\Arg z\to-\pi,
+\]
+respectivamente, y el logaritmo presenta un salto de
+\[
+\boxed{2\pi i.}
+\]
+
+
+\subsection{Resolución de ecuaciones mediante el logaritmo complejo}
+
+\begin{ejemplo}
+Resolver
+\[
+e^z=3.
+\]
+
+Sea $z=x+iy$. Equivalentemente, podemos tomar el logaritmo complejo de $3$:
+\[
+z=\log3.
+\]
+Como $3=3e^{i2k\pi}$,
+\[
+\boxed{
+z=\ln3+2k\pi i,\qquad k\in\mathbb Z.
+}
+\]
+
+Comprobación:
+\[
+e^{\ln3+2k\pi i}
+=3e^{2k\pi i}=3.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Resolver
+\[
+e^z=-4.
+\]
+
+Como
+\[
+-4=4e^{i(\pi+2k\pi)},
+\]
+tenemos
+\[
+\boxed{
+z=\ln4+i(\pi+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Resolver
+\[
+e^{2z}=1+i.
+\]
+
+\textbf{Paso 1. Tomar logaritmos complejos.}
+\[
+2z=\log(1+i).
+\]
+Ya sabemos que
+\[
+\log(1+i)
+=
+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right).
+\]
+
+\textbf{Paso 2. Despejar $z$.}
+\[
+\boxed{
+z=
+\frac14\ln2
++i\left(\frac{\pi}{8}+k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Resolver
+\[
+e^{3z}=-8i.
+\]
+
+Como
+\[
+-8i=8e^{i(-\pi/2+2k\pi)},
+\]
+\[
+3z=\ln8+i\left(-\frac{\pi}{2}+2k\pi\right).
+\]
+Dividiendo entre $3$:
+\[
+\boxed{
+z=\frac{\ln8}{3}
++i\left(-\frac{\pi}{6}+\frac{2k\pi}{3}\right),
+\qquad k\in\mathbb Z.
+}
+\]
+Como $\ln8=3\ln2$:
+\[
+\boxed{
+z=\ln2+i\left(-\frac{\pi}{6}+\frac{2k\pi}{3}\right).
+}
+\]
+\end{ejemplo}
+
+\subsection{Potencias complejas definidas mediante el logaritmo}
+
+Una potencia con exponente complejo puede definirse mediante
+\[
+\boxed{
+z^w=e^{w\log z}.
+}
+\]
+Como $\log z$ es multivaluado, en general $z^w$ también puede ser
+multivaluado.
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+i^i.
+\]
+
+Sabemos que
+\[
+\log i=i\left(\frac{\pi}{2}+2k\pi\right).
+\]
+Entonces
+\[
+i^i=e^{i\log i}.
+\]
+Sustituyendo:
+\[
+i\log i
+=
+i\left[
+i\left(\frac{\pi}{2}+2k\pi\right)
+\right]
+=
+-\left(\frac{\pi}{2}+2k\pi\right).
+\]
+Por tanto,
+\[
+\boxed{
+i^i=e^{-\pi/2-2k\pi},
+\qquad k\in\mathbb Z.
+}
+\]
+
+Un resultado notable es que \emph{todos estos valores son reales y positivos}.
+El valor correspondiente al logaritmo principal es
+\[
+\boxed{
+e^{-\pi/2}.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular los valores de
+\[
+(-1)^i.
+\]
+
+Como
+\[
+\log(-1)=i(2k+1)\pi,
+\]
+entonces
+\[
+(-1)^i
+=
+e^{i\log(-1)}
+=
+e^{-(2k+1)\pi}.
+\]
+Así,
+\[
+\boxed{
+(-1)^i=e^{-(2k+1)\pi},
+\qquad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{e^{-\pi}.}
+\]
+\end{ejemplo}
+
+\subsection{Ejercicios resueltos: logaritmo complejo}
+
+\begin{ejercicio}
+Calcular todos los valores de
+\[
+\log(-i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|-i|=1,\qquad
+\operatorname{Arg}(-i)=-\frac{\pi}{2}.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-i)
+=
+i\left(-\frac{\pi}{2}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{-\frac{\pi i}{2}.}
+\]
+
+\begin{ejercicio}
+Calcular $\log(3+3i)$ y su valor principal.
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|3+3i|=3\sqrt2,\qquad
+\Arg(3+3i)=\frac{\pi}{4}.
+\]
+Entonces
+\[
+\boxed{
+\log(3+3i)
+=
+\ln(3\sqrt2)
++i\left(\frac{\pi}{4}+2k\pi\right).
+}
+\]
+Como
+\[
+\ln(3\sqrt2)=\ln3+\frac12\ln2,
+\]
+\[
+\boxed{
+\Log(3+3i)
+=
+\ln3+\frac12\ln2+\frac{\pi}{4}i.
+}
+\]
+
+\begin{ejercicio}
+Calcular $\log(-\sqrt3+i)$.
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo es
+\[
+\sqrt{3+1}=2.
+\]
+El punto está en el segundo cuadrante y el ángulo de referencia es $\pi/6$:
+\[
+\Arg(-\sqrt3+i)=\frac{5\pi}{6}.
+\]
+Así,
+\[
+\boxed{
+\log(-\sqrt3+i)
+=
+\ln2+i\left(\frac{5\pi}{6}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Calcular $\log(-2+2\sqrt3\,i)$.
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|-2+2\sqrt3 i|
+=\sqrt{4+12}=4.
+\]
+El punto está en el segundo cuadrante y
+\[
+\tan\theta=-\sqrt3,
+\]
+de donde
+\[
+\Arg z=\frac{2\pi}{3}.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-2+2\sqrt3 i)
+=
+\ln4+i\left(\frac{2\pi}{3}+2k\pi\right).
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^z=2i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+2i=2e^{i(\pi/2+2k\pi)}.
+\]
+Por tanto,
+\[
+\boxed{
+z=\ln2+i\left(\frac{\pi}{2}+2k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^{2z}=-1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+2z=i(\pi+2k\pi).
+\]
+Por tanto,
+\[
+\boxed{
+z=i\left(\frac{\pi}{2}+k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^{z-1}=1-i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+1-i=\sqrt2\,e^{i(-\pi/4+2k\pi)}.
+\]
+Entonces
+\[
+z-1
+=
+\frac12\ln2
++i\left(-\frac{\pi}{4}+2k\pi\right),
+\]
+y
+\[
+\boxed{
+z=
+1+\frac12\ln2
++i\left(-\frac{\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^{(1+i)z}=1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Como
+\[
+\log1=2k\pi i,
+\]
+tenemos
+\[
+(1+i)z=2k\pi i.
+\]
+Por tanto,
+\[
+z=\frac{2k\pi i}{1+i}.
+\]
+Multiplicando por el conjugado:
+\[
+z=
+\frac{2k\pi i(1-i)}{2}
+=k\pi(i-i^2)
+=k\pi(1+i).
+\]
+Así,
+\[
+\boxed{
+z=k\pi(1+i),\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Calcular todos los valores de
+\[
+(1+i)^i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Primero,
+\[
+\log(1+i)
+=
+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right).
+\]
+Entonces
+\[
+(1+i)^i=e^{i\log(1+i)}.
+\]
+Multiplicando:
+\[
+i\log(1+i)
+=
+\frac{i}{2}\ln2
+-\left(\frac{\pi}{4}+2k\pi\right).
+\]
+Por tanto,
+\[
+\boxed{
+(1+i)^i
+=
+e^{-\pi/4-2k\pi}
+e^{\,i(\ln2)/2},
+\qquad k\in\mathbb Z.
+}
+\]
+En forma trigonométrica:
+\[
+\boxed{
+(1+i)^i
+=
+e^{-\pi/4-2k\pi}
+\left[
+\cos\left(\frac{\ln2}{2}\right)
++i\sin\left(\frac{\ln2}{2}\right)
+\right].
+}
+\]
+
+\subsection{Ejercicios adicionales para práctica}
+
+Resolver detalladamente:
+
+\begin{enumerate}
+\item $\log(2)$.
+\item $\log(-2)$.
+\item $\log(2i)$.
+\item $\log(1-i)$.
+\item $\log(-1-i)$.
+\item $\log(\sqrt3+i)$.
+\item $\log(-3+3\sqrt3\,i)$.
+\item $\log\left(\frac12+\frac{\sqrt3}{2}i\right)$.
+\item $e^z=5$.
+\item $e^z=-5i$.
+\item $e^{2z}=4i$.
+\item $e^{3z}=1$.
+\item $e^{z+2}=1+i$.
+\item $e^{(2-i)z}=1$.
+\item Calcular todos los valores de $(-i)^i$.
+\item Calcular todos los valores de $2^i$.
+\item Calcular todos los valores de $(1-i)^i$.
+\end{enumerate}
+
+\subsection{Respuestas de los ejercicios adicionales}
+
+\begin{enumerate}
+\item
+\[
+\boxed{\log2=\ln2+2k\pi i.}
+\]
+
+\item
+\[
+\boxed{\log(-2)=\ln2+i(\pi+2k\pi).}
+\]
+
+\item
+\[
+\boxed{\log(2i)=\ln2+i\left(\frac{\pi}{2}+2k\pi\right).}
+\]
+
+\item
+\[
+\boxed{
+\log(1-i)=\frac12\ln2
++i\left(-\frac{\pi}{4}+2k\pi\right).
+}
+\]
+
+\item
+\[
+\boxed{
+\log(-1-i)=\frac12\ln2
++i\left(-\frac{3\pi}{4}+2k\pi\right).
+}
+\]
+
+\item
+\[
+\boxed{
+\log(\sqrt3+i)
+=\ln2+i\left(\frac{\pi}{6}+2k\pi\right).
+}
+\]
+
+\item Como el módulo es $6$ y el argumento principal es $2\pi/3$,
+\[
+\boxed{
+\log(-3+3\sqrt3 i)
+=\ln6+i\left(\frac{2\pi}{3}+2k\pi\right).
+}
+\]
+
+\item El número tiene módulo $1$ y argumento $\pi/3$:
+\[
+\boxed{
+\log\left(\frac12+\frac{\sqrt3}{2}i\right)
+=i\left(\frac{\pi}{3}+2k\pi\right).
+}
+\]
+
+\item
+\[
+\boxed{z=\ln5+2k\pi i.}
+\]
+
+\item
+\[
+\boxed{
+z=\ln5+i\left(-\frac{\pi}{2}+2k\pi\right).
+}
+\]
+
+\item
+\[
+2z=\ln4+i\left(\frac{\pi}{2}+2k\pi\right),
+\]
+por tanto
+\[
+\boxed{
+z=\ln2+i\left(\frac{\pi}{4}+k\pi\right).
+}
+\]
+
+\item
+\[
+3z=2k\pi i,
+\]
+por lo que
+\[
+\boxed{z=\frac{2k\pi}{3}i.}
+\]
+
+\item
+\[
+z+2=\frac12\ln2+i\left(\frac{\pi}{4}+2k\pi\right),
+\]
+de modo que
+\[
+\boxed{
+z=-2+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right).
+}
+\]
+
+\item
+\[
+(2-i)z=2k\pi i,
+\]
+de donde
+\[
+z=\frac{2k\pi i}{2-i}
+=\frac{2k\pi i(2+i)}5
+=\boxed{\frac{2k\pi}{5}(-1+2i)}.
+\]
+
+\item
+\[
+\log(-i)=i\left(-\frac{\pi}{2}+2k\pi\right),
+\]
+por tanto
+\[
+\boxed{
+(-i)^i=e^{\pi/2-2k\pi}.
+}
+\]
+
+\item
+\[
+\log2=\ln2+2k\pi i.
+\]
+Entonces
+\[
+2^i=e^{i\ln2-2k\pi},
+\]
+es decir,
+\[
+\boxed{
+2^i=e^{-2k\pi}
+\left(\cos(\ln2)+i\sin(\ln2)\right).
+}
+\]
+
+\item
+\[
+\log(1-i)
+=
+\frac12\ln2+i\left(-\frac{\pi}{4}+2k\pi\right).
+\]
+Multiplicando por $i$:
+\[
+i\log(1-i)
+=
+\frac{i}{2}\ln2+\frac{\pi}{4}-2k\pi.
+\]
+Por tanto,
+\[
+\boxed{
+(1-i)^i
+=
+e^{\pi/4-2k\pi}
+e^{i(\ln2)/2}.
+}
+\]
+\end{enumerate}
+
+\subsection{Síntesis conceptual}
+
+Para $z\neq0$, las ideas esenciales pueden resumirse en:
+\[
+\boxed{
+\log z=\ln|z|+i(\arg z+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+
+El logaritmo principal selecciona un argumento:
+\[
+\boxed{
+\Log z=\ln|z|+i\Arg z.
+}
+\]
+
+La multivaluación no es una anomalía algebraica, sino una consecuencia directa
+de la periodicidad
+\[
+e^{z+2\pi i}=e^z.
+\]
+
+Finalmente, el logaritmo complejo permite resolver ecuaciones exponenciales y
+definir potencias complejas:
+\[
+e^w=z
+\quad\Longleftrightarrow\quad
+w\in\log z,
+\]
+y
+\[
+z^w=e^{w\log z}.
+\]
+
+Estos hechos constituyen el puente natural hacia el estudio posterior de
+ramas, funciones analíticas, derivación compleja y funciones elementales en
+variable compleja.
+
+
+\section{Cierre}
+
+Los ejercicios anteriores permiten separar tres cuestiones fundamentales:
+
+\begin{enumerate}
+\item \textbf{Existencia.} El TFA garantiza que todo polinomio no constante
+con coeficientes complejos posee una raíz en $\C$.
+
+\item \textbf{Factorización.} Combinado con el teorema del factor, permite
+escribir un polinomio de grado $n$ como producto de $n$ factores lineales,
+contando multiplicidades.
+
+\item \textbf{Cálculo explícito.} El TFA no proporciona por sí mismo un
+algoritmo para calcular las raíces. En los problemas anteriores las soluciones
+se obtienen gracias a estructuras particulares: forma polar, raíces
+$n$-ésimas, sustituciones como $u=z^m$, factorización y simetría por
+conjugación.
+\end{enumerate}
+
+Por ello es importante que el estudiante distinga entre afirmar
+\emph{que las raíces existen} y disponer de un procedimiento efectivo para
+\emph{calcularlas}.
+
+\end{document}

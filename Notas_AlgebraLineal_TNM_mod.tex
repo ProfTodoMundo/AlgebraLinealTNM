@@ -1,0 +1,12937 @@
+\documentclass[12pt]{article}
+
+% Codificación e idioma
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% Matemáticas
+\usepackage{amsmath,amssymb,amsfonts}
+
+% Formato y utilidades
+\usepackage[letterpaper,margin=2.5cm]{geometry}
+\usepackage{multicol}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\newtheorem{Ejer}{Ejercicio}
+\newtheorem{Ejem}{Ejemplo}
+\DeclareMathOperator{\Arg}{Arg}
+\DeclareMathOperator{\Log}{Log}
+\newtheorem{Prop}{Proposici\'on}
+\newtheorem{ejemplo}{Ejemplo}[section]
+\newtheorem{ejercicio}{Ejercicio}[section]
+\newtheorem{Obs}{Observaci\'on}[section]
+\newtheorem{Def}{Definici\'on}
+\newtheorem{Teo}{Teorema}
+\newtheorem{Coro}{Corolario}
+\newcommand{\C}{\mathbb{C}}
+% Formato de párrafos
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.6em}
+
+% Compatibilidad con listas provenientes de Pandoc
+\providecommand{\tightlist}{
+  \setlength{\itemsep}{0pt}
+  \setlength{\parskip}{0pt}
+}
+
+
+% Enlaces
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% Pie de página
+\pagestyle{fancy}
+\fancyhf{} % limpia encabezados y pies
+
+\fancyhead[L]{Tecnológico Nacional de México}
+\fancyhead[R]{\'Algebra Lineal}
+
+\fancyfoot[L]{Carlos Ernesto Martínez}
+\fancyfoot[C]{\thepage}
+\fancyfoot[R]{mrdgzcarlose@gmail.com}
+\renewcommand{\headrulewidth}{0.4pt}
+%\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Datos del documento
+\title{
+    Notas para el curso de \'Algebra Lineal\\[0.5em]
+    \large Unidad 1: N\'umeros Complejos
+}\author{Carlos Ernesto Martínez}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{QR_Notas_AlgebraLineal_TNM.png}
+
+    \small
+    Escanea el código QR para acceder a las notas de esta unidad.
+\end{center}
+
+
+% ========================================================
+% UNIDAD 1. NÚMEROS COMPLEJOS
+% PARTE I: FUNDAMENTOS ALGEBRAICOS
+% Versión ampliada, formal y con ejemplos para guía docente
+% ========================================================
+
+\section{Números complejos}
+
+
+Los sistemas numéricos que se utilizan en matemáticas pueden entenderse como extensiones sucesivas construidas para resolver ecuaciones u operaciones que no son posibles dentro de un sistema previo.
+
+Por ejemplo, la ecuación $x+3=1$ no posee solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$. De manera análoga, $2x=1$ no posee solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$. Finalmente, $x^2=2$ no posee solución en $\mathbb{Q}$, pero sí en $\mathbb{R}$.
+
+Esto conduce a la cadena de inclusiones
+\[
+\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}.
+\]
+
+Sin embargo, incluso el sistema de los números reales es insuficiente para resolver todas las ecuaciones polinómicas.
+
+Consideremos $x^2+1=0$. La ecuación equivale a $x^2=-1$. Pero para todo $x\in\mathbb{R}$, $x^2\geq 0$. Por tanto, $x^2=-1$ no posee solución en $\mathbb{R}$.
+
+La construcción de los números complejos responde precisamente a la necesidad de extender $\mathbb{R}$ de manera que esta ecuación, y más generalmente todo polinomio no constante, pueda estudiarse dentro de un sistema algebraicamente más completo.
+
+\begin{Ejem}
+La ecuación $x+5=2$ no tiene solución en $\mathbb{N}$, pero sí en $\mathbb{Z}$: $x=-3$.
+\end{Ejem}
+
+\begin{Ejem}
+La ecuación $3x=1$ no tiene solución en $\mathbb{Z}$, pero sí en $\mathbb{Q}$: $x=\frac13$.
+\end{Ejem}
+
+
+\begin{Ejem}
+La ecuación $x^2=3$ no tiene solución racional, pero sí real: $x=\pm\sqrt3$.
+\end{Ejem}
+
+\begin{Ejem}
+La ecuación $x^2+4=0$ equivale a $x^2=-4$. No posee solución real, pero en el sistema complejo tendrá soluciones $x=\pm 2i$.
+\end{Ejem}
+
+\begin{Ejem}
+La ecuación $x^2-2x+5=0$ tiene discriminante  $\Delta=b^2-4ac=(-2)^2-4(1)(5)=4-20=-16$. Por tanto, no tiene raíces reales. Más adelante veremos que sus soluciones complejas son $x=1\pm 2i$.
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{El n\'umero $i$}
+% ======================================================
+
+\begin{Def}
+Se introduce un nuevo elemento $i$, denominado \emph{unidad imaginaria}, que satisface la relación
+\[
+\boxed{i^2=-1.}
+\]
+\end{Def}
+La propiedad anterior es la relación algebraica fundamental de la unidad
+imaginaria. A partir de ella se obtienen todas sus potencias.
+
+Tenemos
+\[
+i^0=1,
+\qquad
+i^1=i,
+\qquad
+i^2=-1,
+\]
+y
+\[
+i^3=i^2i=-i,
+\qquad
+i^4=i^2i^2=(-1)(-1)=1.
+\]
+
+A partir de $i^4=1$ se sigue que las potencias de $i$ son periódicas de
+periodo $4$:
+\[
+\boxed{i^{n+4}=i^n.}
+\]
+
+Más precisamente, si
+\[
+n=4q+r,
+\qquad r\in\{0,1,2,3\},
+\]
+entonces
+\[
+i^n=i^r.
+\]
+
+\begin{Prop}
+Para todo $n\in\mathbb{N}$,
+\[
+i^n=
+\begin{cases}
+1, & n\equiv 0 \pmod 4,\\
+i, & n\equiv 1 \pmod 4,\\
+-1, & n\equiv 2 \pmod 4,\\
+-i, & n\equiv 3 \pmod 4.
+\end{cases}
+\]
+\end{Prop}
+\textbf{Demostración.}
+Sea $n=4q+r$ con $r\in\{0,1,2,3\}$. Entonces
+\[
+i^n=i^{4q+r}=(i^4)^qi^r=1^qi^r=i^r.
+\]
+Basta sustituir los cuatro valores posibles de $r$.
+\hfill$\square$
+
+
+\begin{Ejem}
+
+\[
+i^{18}=i^{4(4)+2}=i^2=-1.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+\[
+i^{35}=i^{4(8)+3}=i^3=-i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+\[
+i^{100}=i^{4(25)}=1.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+\[
+i^{2026}=i^{4(506)+2}=i^2=-1.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Simplifiquemos
+\[
+i^{17}+i^{28}-i^{39}.
+\]
+Tenemos
+\[
+i^{17}=i,\qquad
+i^{28}=1,\qquad
+i^{39}=i^3=-i.
+\]
+Por tanto,
+\[
+i^{17}+i^{28}-i^{39}
+=i+1-(-i)
+=
+\boxed{1+2i}.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Definición de número complejo, parte real e imaginaria}
+% ======================================================
+
+\begin{Def}
+Un número complejo es una expresión de la forma
+\[
+\boxed{z=a+bi,}
+\]
+donde
+\[
+a,b\in\mathbb{R}
+\]
+e
+\[
+i^2=-1.
+\]
+\end{Def}
+
+\begin{Def}
+El conjunto de todos los números complejos se denota por
+\[
+\boxed{\mathbb{C}}.
+\]
+Así,
+\[
+\boxed{
+\mathbb{C}
+=
+\{a+bi:\;a,b\in\mathbb{R}\}.
+}
+\]
+
+Si
+\[
+z=a+bi,
+\]
+se define
+\[
+\boxed{\operatorname{Re}(z)=a}
+\]
+y
+\[
+\boxed{\operatorname{Im}(z)=b.}
+\]
+\end{Def}
+Es esencial observar que la parte imaginaria de $z$ es $b$, no $bi$.
+
+La representación
+\[
+z=a+bi
+\]
+se denomina \emph{forma binómica}, \emph{forma rectangular} o
+\emph{forma cartesiana}.
+
+\begin{Def}
+Un número complejo $z=a+bi$ es:
+\begin{itemize}
+    \item real si $b=0$;
+    \item imaginario puro si $a=0$ y $b\neq 0$;
+    \item complejo no real si $b\neq 0$.
+\end{itemize}
+\end{Def}
+
+Todo número real puede identificarse con el complejo
+\[
+a=a+0i.
+\]
+Por tanto,
+\[
+\boxed{\mathbb{R}\subset\mathbb{C}.}
+\]
+
+\begin{Prop}
+Si
+\[
+a+bi=c+di,
+\]
+con $a,b,c,d\in\mathbb{R}$, entonces
+\[
+a=c
+\qquad\text{y}\qquad
+b=d.
+\]
+
+Equivalentemente,
+\[
+\boxed{
+a+bi=c+di
+\iff
+a=c\ \text{y}\ b=d.
+}
+\]
+\end{Prop}
+
+\begin{Ejem}
+Para
+\[
+z=4-7i
+\]
+se tiene
+\[
+\operatorname{Re}(z)=4,
+\qquad
+\operatorname{Im}(z)=-7.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+El número
+\[
+z=-5
+\]
+puede escribirse como
+\[
+z=-5+0i.
+\]
+Por tanto, es un número real considerado como elemento de $\mathbb{C}$.
+\end{Ejem}
+
+\begin{Ejem}
+El número
+\[
+z=\frac32 i
+\]
+tiene
+\[
+\operatorname{Re}(z)=0,
+\qquad
+\operatorname{Im}(z)=\frac32,
+\]
+por lo que es imaginario puro.
+\end{Ejem}
+
+\begin{Ejem}
+Si
+\[
+(2x-1)+(y+3)i=7-4i,
+\]
+la igualdad de números complejos implica
+\[
+2x-1=7,
+\qquad
+y+3=-4.
+\]
+Así,
+\[
+\boxed{x=4,\qquad y=-7.}
+\]
+\end{Ejem}
+
+\begin{Ejem} Determine $a$ y $b$ si
+\[
+(a+2)+(3b-1)i=5+8i.
+\]
+Igualando componentes:
+\[
+a+2=5,
+\qquad
+3b-1=8.
+\]
+Por tanto,
+\[
+\boxed{a=3,\qquad b=3.}
+\]
+\end{Ejem}
+
+% ======================================================
+\subsection*{Construcción formal de $\mathbb{C}$}
+% ======================================================
+
+La notación $a+bi$ es conveniente, pero los números complejos pueden
+construirse rigurosamente sin asumir previamente la existencia de $i$.
+
+Consideremos
+\[
+\mathbb{R}^2
+=
+\{(a,b):a,b\in\mathbb{R}\}.
+\]
+
+Definimos la suma
+\[
+(a,b)+(c,d)
+=
+(a+c,b+d)
+\]
+y la multiplicación
+\[
+\boxed{
+(a,b)(c,d)
+=
+(ac-bd,ad+bc).
+}
+\]
+
+Identificamos cada número real $a$ con el par
+\[
+(a,0).
+\]
+De esta manera,
+\[
+0=(0,0),
+\qquad
+1=(1,0).
+\]
+
+Definimos
+\[
+i=(0,1).
+\]
+Entonces
+\[
+i^2
+=
+(0,1)(0,1)
+=
+(-1,0),
+\]
+y como $(-1,0)$ representa al número real $-1$,
+\[
+\boxed{i^2=-1.}
+\]
+
+Además,
+\[
+(a,b)
+=
+(a,0)+(b,0)(0,1),
+\]
+lo que justifica la notación
+\[
+(a,b)\equiv a+bi.
+\]
+
+
+\begin{Ejem}En la construcción por pares,
+\[
+(2,3)+(4,-1)
+=
+(6,2).
+\]
+Esto corresponde a
+\[
+(2+3i)+(4-i)=6+2i.
+\]
+\end{Ejem}
+
+\begin{Ejem}\[
+(1,2)(3,4)
+=
+(3-8,4+6)
+=
+(-5,10).
+\]
+En forma binómica:
+\[
+(1+2i)(3+4i)=-5+10i.
+\]
+\end{Ejem}
+
+\begin{Ejem}Se identifica con
+\[
+(7,0).
+\]
+Entonces
+\[
+(7,0)+(0,2)=(7,2),
+\]
+es decir,
+\[
+7+2i.
+\]
+\end{Ejem}
+
+\begin{Ejem} La unidad imaginaria es
+\[
+i=(0,1).
+\]
+Por tanto,
+\[
+3i=(0,3).
+\]
+\end{Ejem}
+
+\begin{Ejem} El producto
+\[
+(0,2)(0,5)
+\]
+es
+\[
+(0\cdot0-2\cdot5,\;0\cdot5+2\cdot0)
+=
+(-10,0),
+\]
+por lo que
+\[
+(2i)(5i)=-10.
+\]
+\end{Ejem}
+
+% ======================================================
+\subsection*{Suma, resta y estructura aditiva}
+% ======================================================
+
+Sean
+\[
+z_1=a+bi,
+\qquad
+z_2=c+di.
+\]
+
+La suma se define componente a componente:
+\[
+\boxed{
+z_1+z_2
+=
+(a+c)+(b+d)i.
+}
+\]
+
+La resta se define mediante la suma con el inverso aditivo:
+\[
+z_1-z_2
+=
+z_1+(-z_2),
+\]
+de modo que
+\[
+\boxed{
+z_1-z_2
+=
+(a-c)+(b-d)i.
+}
+\]
+
+El inverso aditivo de
+\[
+z=a+bi
+\]
+es
+\[
+\boxed{-z=-a-bi.}
+\]
+
+El elemento neutro aditivo es
+\[
+0=0+0i.
+\]
+
+La suma de complejos satisface:
+\[
+z+w=w+z,
+\]
+\[
+(z+w)+u=z+(w+u),
+\]
+\[
+z+0=z,
+\]
+\[
+z+(-z)=0.
+\]
+
+\begin{Ejem}
+\[
+(3+2i)+(5-7i)=8-5i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+\[
+(-4+6i)+(2+9i)=-2+15i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+
+\[
+(7-3i)-(2+5i)
+=
+5-8i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+El inverso aditivo de
+\[
+z=4-9i
+\]
+es
+\[
+-z=-4+9i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Simplifiquemos
+\[
+(2+3i)-(5-i)+(4+2i).
+\]
+Agrupando partes reales e imaginarias:
+\[
+(2-5+4)+(3+1+2)i
+=
+\boxed{1+6i}.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Producto de números complejos}
+% ======================================================
+
+Sean
+\[
+z_1=a+bi,
+\qquad
+z_2=c+di.
+\]
+
+El producto se obtiene utilizando distributividad y la relación $i^2=-1$:
+\begin{align*}
+(a+bi)(c+di)
+&=
+ac+adi+bci+bdi^2\\
+&=
+ac+adi+bci-bd.
+\end{align*}
+
+Por tanto,
+\[
+\boxed{
+(a+bi)(c+di)
+=
+(ac-bd)+(ad+bc)i.
+}
+\]
+
+El producto es cerrado en $\mathbb{C}$, es decir,
+\[
+z,w\in\mathbb{C}
+\quad\Longrightarrow\quad
+zw\in\mathbb{C}.
+\]
+
+Además, satisface
+\[
+zw=wz,
+\]
+\[
+(zw)u=z(wu),
+\]
+\[
+z(w+u)=zw+zu.
+\]
+
+\begin{Ejem}
+\[
+(2+3i)(4-i)
+=
+8-2i+12i-3i^2
+=
+\boxed{11+10i}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem}
+\[
+(1+i)^2
+=
+1+2i+i^2
+=
+\boxed{2i}.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+\[
+(3-2i)(3+2i)
+=
+9-4i^2
+=
+\boxed{13}.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+\[
+(-2+5i)(1-3i)
+=
+-2+6i+5i-15i^2
+=
+\boxed{13+11i}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem}
+Simplifiquemos
+\[
+(1+i)(1-i)(2+i).
+\]
+Primero,
+\[
+(1+i)(1-i)=1-i^2=2.
+\]
+Por tanto,
+\[
+2(2+i)
+=
+\boxed{4+2i}.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Conjugado complejo}
+% ======================================================
+
+\begin{Def}
+Sea
+\[
+z=a+bi.
+\]
+El \emph{conjugado complejo} de $z$ es
+\[
+\boxed{\overline z=a-bi.}
+\]
+\end{Def}
+
+La conjugación cambia el signo de la parte imaginaria y conserva la parte real.
+
+\begin{Prop}
+Para $z,w\in\mathbb{C}$:
+\[
+\boxed{\overline{\overline z}=z,}
+\]
+\[
+\boxed{\overline{z+w}=\overline z+\overline w,}
+\]
+\[
+\boxed{\overline{zw}=\overline z\,\overline w.}
+\]
+
+Además,
+\[
+z+\overline z=2\operatorname{Re}(z),
+\]
+y
+\[
+z-\overline z=2i\operatorname{Im}(z).
+\]
+
+Por tanto,
+\[
+\boxed{
+\operatorname{Re}(z)
+=
+\frac{z+\overline z}{2}
+}
+\]
+y
+\[
+\boxed{
+\operatorname{Im}(z)
+=
+\frac{z-\overline z}{2i}.
+}
+\]
+\end{Prop}
+\textbf{Caracterización.}
+\[
+z\in\mathbb{R}
+\iff
+z=\overline z.
+\]
+
+\begin{Ejem}
+Si
+\[
+z=3+5i,
+\]
+entonces
+\[
+\overline z=3-5i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Si
+\[
+z=-4-7i,
+\]
+entonces
+\[
+\overline z=-4+7i.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Para
+\[
+z=2+3i,
+\]
+\[
+z+\overline z
+=
+(2+3i)+(2-3i)
+=
+4,
+\]
+y por tanto
+\[
+\operatorname{Re}(z)=2.
+\]
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=1-4i,
+\]
+\[
+z-\overline z
+=
+(1-4i)-(1+4i)
+=
+-8i.
+\]
+Entonces
+\[
+\operatorname{Im}(z)
+=
+\frac{-8i}{2i}
+=
+-4.
+\]
+\end{Ejem}
+
+\begin{Ejem} Verifiquemos
+\[
+\overline{zw}=\overline z\,\overline w
+\]
+para
+\[
+z=1+2i,
+\qquad
+w=3-i.
+\]
+Primero,
+\[
+zw=5+5i,
+\]
+por lo que
+\[
+\overline{zw}=5-5i.
+\]
+Además,
+\[
+\overline z=1-2i,
+\qquad
+\overline w=3+i,
+\]
+y
+\[
+(1-2i)(3+i)=5-5i.
+\]
+Por tanto, la identidad se verifica.
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Módulo de un número complejo}
+% ======================================================
+
+\begin{Def}
+Para
+\[
+z=a+bi,
+\]
+se define el módulo de $z$ mediante
+\[
+\boxed{
+|z|=\sqrt{a^2+b^2}.
+}
+\]
+\end{Def}
+Como
+\[
+z\overline z
+=
+(a+bi)(a-bi)
+=
+a^2+b^2,
+\]
+se obtiene
+\[
+\boxed{
+z\overline z=|z|^2.
+}
+\]
+
+De esta identidad se deduce que
+\[
+|z|\geq 0
+\]
+y
+\[
+\boxed{|z|=0\iff z=0.}
+\]
+
+También
+\[
+|\overline z|=|z|.
+\]
+
+El módulo será interpretado geométricamente como la distancia del punto
+$z$ al origen en el plano complejo.
+
+\begin{Ejem}
+Si
+\[
+z=3+4i,
+\]
+entonces
+\[
+|z|=\sqrt{3^2+4^2}=5.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+z=-5+12i,
+\]
+entonces
+\[
+|z|=\sqrt{25+144}=13.
+\]
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+z=7i,
+\]
+entonces
+\[
+|z|=7.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+z=-6,
+\]
+entonces
+\[
+|z|=6.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Sea
+\[
+z=2-3i.
+\]
+Entonces
+\[
+z\overline z
+=
+(2-3i)(2+3i)
+=
+4+9
+=
+13.
+\]
+Por otra parte,
+\[
+|z|^2
+=
+(\sqrt{13})^2
+=
+13.
+\]
+Así,
+\[
+z\overline z=|z|^2.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{División e inverso multiplicativo}
+% ======================================================
+
+Sea
+\[
+z=a+bi\neq0.
+\]
+
+Buscamos un número
+\[
+z^{-1}=x+yi
+\]
+tal que
+\[
+zz^{-1}=1.
+\]
+
+Utilizando el conjugado:
+\[
+z\overline z=|z|^2.
+\]
+Por tanto,
+\[
+z\frac{\overline z}{|z|^2}=1,
+\]
+y obtenemos
+\[
+\boxed{
+z^{-1}
+=
+\frac{\overline z}{|z|^2},
+\qquad z\neq0.
+}
+\]
+
+Si
+\[
+z_1=a+bi
+\]
+y
+\[
+z_2=c+di\neq0,
+\]
+entonces
+\[
+\frac{z_1}{z_2}
+=
+z_1z_2^{-1}
+=
+\frac{z_1\overline{z_2}}{|z_2|^2}.
+\]
+
+Expresado en coordenadas:
+\[
+\boxed{
+\frac{a+bi}{c+di}
+=
+\frac{ac+bd}{c^2+d^2}
++
+\frac{bc-ad}{c^2+d^2}i.
+}
+\]
+
+
+
+\begin{Ejem} Calculemos
+\[
+\frac{1}{2+i}.
+\]
+Multiplicando por el conjugado:
+\[
+\frac{1}{2+i}
+\frac{2-i}{2-i}
+=
+\frac{2-i}{5}.
+\]
+Por tanto,
+\[
+\boxed{
+\frac{1}{2+i}
+=
+\frac25-\frac15 i.
+}
+\]
+\end{Ejem}
+
+\begin{Ejem} 
+\[
+\frac{3+2i}{1-i}
+=
+\frac{(3+2i)(1+i)}{(1-i)(1+i)}
+=
+\frac{1+5i}{2}.
+\]
+Así,
+\[
+\boxed{
+\frac{3+2i}{1-i}
+=
+\frac12+\frac52 i.
+}
+\]
+\end{Ejem}
+
+\begin{Ejem} El inverso de
+\[
+z=3-4i
+\]
+es
+\[
+z^{-1}
+=
+\frac{3+4i}{25}
+=
+\boxed{
+\frac3{25}+\frac4{25}i
+}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} 
+\[
+\frac{2-i}{2+i}
+=
+\frac{(2-i)^2}{5}
+=
+\frac{3-4i}{5}.
+\]
+Por tanto,
+\[
+\boxed{
+\frac{2-i}{2+i}
+=
+\frac35-\frac45 i.
+}
+\]
+
+\end{Ejem}
+
+\begin{Ejem} 
+Simplifiquemos
+\[
+\frac{i}{1+i}.
+\]
+Entonces
+\[
+\frac{i}{1+i}
+\frac{1-i}{1-i}
+=
+\frac{i-i^2}{2}
+=
+\frac{1+i}{2}.
+\]
+Por tanto,
+\[
+\boxed{
+\frac{i}{1+i}
+=
+\frac12+\frac12 i.
+}
+\]
+\end{Ejem}
+
+% ======================================================
+\subsection*{$\mathbb{C}$ como campo}
+% ======================================================
+
+El conjunto $\mathbb{C}$, equipado con las operaciones usuales de suma y producto, constituye un campo.
+
+Esto significa que para cualesquiera $z,w,u\in\mathbb{C}$ se satisfacen
+los axiomas:
+
+\begin{enumerate}
+    \item cerradura de la suma;
+    \item asociatividad de la suma;
+    \item conmutatividad de la suma;
+    \item existencia del neutro aditivo $0$;
+    \item existencia del inverso aditivo $-z$;
+    \item cerradura del producto;
+    \item asociatividad del producto;
+    \item conmutatividad del producto;
+    \item existencia del neutro multiplicativo $1$;
+    \item existencia del inverso multiplicativo $z^{-1}$ para $z\neq0$;
+    \item distributividad del producto respecto de la suma.
+\end{enumerate}
+
+Por tanto,
+\[
+\boxed{\mathbb{C}\text{ es un campo}.}
+\]
+
+Además,
+\[
+\boxed{\mathbb{R}\subset\mathbb{C}}
+\]
+y las operaciones de $\mathbb{C}$ restringidas a $\mathbb{R}$ coinciden con
+las operaciones usuales de los números reales.
+
+\begin{Teo}
+No existe un orden total sobre $\mathbb{C}$ compatible con las operaciones
+de campo que extienda el orden usual de $\mathbb{R}$.
+\end{Teo}
+
+\textbf{Idea de demostración.}
+En un campo ordenado, el cuadrado de todo elemento no nulo debe ser positivo.
+Si $\mathbb{C}$ fuera ordenado, entonces
+\[
+i^2>0.
+\]
+Pero
+\[
+i^2=-1,
+\]
+lo cual implicaría
+\[
+-1>0,
+\]
+contradicción con el orden usual de $\mathbb{R}$.
+Por tanto, $\mathbb{C}$ no puede ser un campo ordenado.
+\hfill$\square$
+
+
+\begin{Ejem} La suma
+\[
+(2+i)+(3-5i)=5-4i
+\]
+permanece en $\mathbb{C}$, mostrando cerradura aditiva.
+\end{Ejem}
+
+\begin{Ejem} 
+El producto
+\[
+(1+i)(2-3i)=5-i
+\]
+permanece en $\mathbb{C}$, mostrando cerradura multiplicativa.
+
+\end{Ejem}
+
+\begin{Ejem} El inverso aditivo de
+\[
+z=-2+7i
+\]
+es
+\[
+2-7i.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=1+i\neq0,
+\]
+el inverso multiplicativo es
+\[
+z^{-1}
+=
+\frac{1-i}{2}.
+\]
+En efecto,
+\[
+(1+i)\frac{1-i}{2}
+=
+1.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} La expresión
+\[
+i>0
+\]
+no tiene un significado compatible con la estructura de campo de
+$\mathbb{C}$ como sí ocurre en $\mathbb{R}$. Esto explica por qué las
+desigualdades complejas requieren conceptos diferentes, típicamente
+basados en el módulo.
+\end{Ejem}
+
+
+% =====================================================
+\subsection*{Resumen}
+% ======================================================
+
+La construcción algebraica de los números complejos puede resumirse mediante
+
+\[
+\boxed{
+\begin{array}{c}
+\mathbb{R}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+i^2=-1
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z=a+bi
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\operatorname{Re}(z),\operatorname{Im}(z)
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{suma y producto}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\overline z,\ |z|
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z^{-1}=\dfrac{\overline z}{|z|^2}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\mathbb{C}\text{ es un campo}
+\end{array}
+}
+\]
+
+Esta primera parte proporciona la estructura algebraica necesaria para
+desarrollar posteriormente la geometría del plano complejo, la forma polar,
+la fórmula de Euler, el teorema de De Moivre, las raíces complejas y el
+logaritmo complejo.
+
+% =======================================================
+\section{Geometría de los números complejos}
+% =====================================================
+
+\subsection*{El plano complejo}
+
+Sea
+\[
+z=a+bi.
+\]
+
+Como $z$ queda determinado de manera única por el par ordenado $(a,b)$, podemos representar a $z$ como el punto
+\[
+(a,b)\in\mathbb{R}^2.
+\]
+
+Esta representación da lugar al \emph{plano complejo} 
+
+En él:
+\begin{itemize}
+    \item el eje horizontal se denomina \emph{eje real};
+    \item el eje vertical se denomina \emph{eje imaginario}.
+\end{itemize}
+
+El número
+\[
+z=a+bi
+\]
+se identifica entonces con el punto
+\[
+(a,b)
+\]
+y también con el vector que va del origen al punto $(a,b)$.
+
+Esta identificación permite interpretar geométricamente muchas operaciones
+complejas.
+
+La identificación
+\[
+\mathbb{C}\leftrightarrow\mathbb{R}^2
+\]
+es una identificación de conjuntos y, además, de espacios vectoriales reales, pero el producto complejo no coincide con el producto componente a componente de $\mathbb{R}^2$.
+
+
+\begin{Ejem} \[
+z=3+2i
+\]
+se representa por el punto
+\[
+(3,2).
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=-4+i
+\]
+se representa por
+\[
+(-4,1).
+\]
+
+\end{Ejem}
+
+\begin{Ejem} 
+\[
+z=-2-5i
+\]
+se representa por
+\[
+(-2,-5).
+\]
+
+\end{Ejem}
+
+\begin{Ejem} El número real
+\[
+z=6
+\]
+se representa por el punto
+\[
+(6,0),
+\]
+sobre el eje real.
+
+\end{Ejem}
+
+\begin{Ejem} El número imaginario puro
+\[
+z=-3i
+\]
+se representa por
+\[
+(0,-3),
+\]
+sobre el eje imaginario.
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Módulo como distancia al origen}
+% ======================================================
+
+Sea
+\[
+z=a+bi.
+\]
+
+El módulo de $z$ es
+\[
+\boxed{|z|=\sqrt{a^2+b^2}.}
+\]
+
+Geométricamente, $|z|$ es la distancia euclidiana desde el origen $(0,0)$ al
+punto $(a,b)$.
+
+Por el Teorema de Pitágoras,
+\[
+|z|^2=a^2+b^2.
+\]
+
+Además, como
+\[
+z\overline z=a^2+b^2,
+\]
+se obtiene
+\[
+\boxed{|z|^2=z\overline z.}
+\]
+
+\begin{Prop}
+Para todo $z\in\mathbb{C}$:
+\[
+|z|\geq 0,
+\]
+y
+\[
+\boxed{|z|=0\iff z=0.}
+\]
+\end{Prop}
+
+\begin{Ejem} \[
+z=3+4i
+\quad\Longrightarrow\quad
+|z|=5.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=-5+12i
+\quad\Longrightarrow\quad
+|z|=13.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=7i
+\quad\Longrightarrow\quad
+|z|=7.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=-8
+\quad\Longrightarrow\quad
+|z|=8.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=1-\sqrt3\,i
+\]
+satisface
+\[
+|z|
+=
+\sqrt{1+3}
+=
+2.
+\]
+\end{Ejem}
+
+
+% =======================================================
+\subsection*{Distancia entre números complejos}
+% ======================================================
+
+Sean
+\[
+z_1=a+bi,
+\qquad
+z_2=c+di.
+\]
+
+La distancia entre ellos se define mediante
+\[
+\boxed{
+d(z_1,z_2)=|z_1-z_2|.
+}
+\]
+
+En efecto,
+\[
+z_1-z_2
+=
+(a-c)+(b-d)i,
+\]
+y por tanto
+\[
+|z_1-z_2|
+=
+\sqrt{(a-c)^2+(b-d)^2},
+\]
+que es exactamente la distancia euclidiana entre los puntos $(a,b)$ y $(c,d)$.
+
+
+\begin{Ejem} Entre
+\[
+z_1=1+i,
+\qquad
+z_2=4+5i,
+\]
+la distancia es
+\[
+|z_1-z_2|
+=
+|-3-4i|
+=
+5.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Entre
+\[
+z_1=-2+3i,
+\qquad
+z_2=1-i,
+\]
+\[
+d(z_1,z_2)
+=
+|-3+4i|
+=
+5.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} La distancia del complejo $z$ al origen es
+\[
+|z-0|=|z|.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} La circunferencia de centro $z_0$ y radio $r>0$ se expresa como
+\[
+\boxed{|z-z_0|=r.}
+\]
+
+\end{Ejem}
+
+\begin{Ejem} La región
+\[
+|z-(2-i)|<3
+\]
+representa el disco abierto de centro
+\[
+2-i
+\]
+y radio $3$.
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Propiedades del módulo}
+% =======================================================
+
+
+\begin{Teo} 
+Para cualesquiera $z,w\in\mathbb{C}$:
+\[
+\boxed{|zw|=|z||w|.}
+\]
+\end{Teo}
+
+
+\textbf{Demostración.}
+Usando
+\[
+|z|^2=z\overline z
+\]
+y
+\[
+\overline{zw}=\overline z\,\overline w,
+\]
+tenemos
+\[
+|zw|^2
+=
+zw\,\overline{zw}
+=
+zw\,\overline z\,\overline w
+=
+(z\overline z)(w\overline w)
+=
+|z|^2|w|^2.
+\]
+Como ambos lados son no negativos,
+\[
+|zw|=|z||w|.
+\]
+\hfill$\square$
+
+Como consecuencia, si $w\neq0$,
+\[
+\boxed{
+\left|\frac zw\right|
+=
+\frac{|z|}{|w|}.
+}
+\]
+
+También:
+\[
+\boxed{|\overline z|=|z|.}
+\]
+
+\begin{Ejem} Si
+\[
+z=1+i,
+\qquad
+w=2-i,
+\]
+entonces
+\[
+|z|=\sqrt2,
+\qquad
+|w|=\sqrt5.
+\]
+Por tanto
+\[
+|zw|=\sqrt{10}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=3-4i,
+\]
+\[
+|\overline z|
+=
+|3+4i|
+=
+5
+=
+|z|.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+z=2+2i,
+\qquad
+w=1-i,
+\]
+entonces
+\[
+\left|\frac zw\right|
+=
+\frac{2\sqrt2}{\sqrt2}
+=
+2.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+|i^n|=1
+\]
+para todo entero $n$, porque $|i|=1$.
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+|z|=3
+\]
+y
+\[
+|w|=4,
+\]
+entonces
+\[
+|z^2w^3|
+=
+|z|^2|w|^3
+=
+9\cdot64
+=
+576.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Desigualdad del tri\'angulo}
+% ======================================================
+
+
+\begin{Teo} 
+Para todo $z,w\in\mathbb{C}$,
+\[
+\boxed{
+|z+w|
+\leq
+|z|+|w|.
+}
+\]
+\end{Teo}
+
+
+\textbf{Demostración.}
+Partimos de
+\[
+|z+w|^2
+=
+(z+w)(\overline z+\overline w).
+\]
+Entonces
+\[
+|z+w|^2
+=
+|z|^2+|w|^2+z\overline w+\overline z w.
+\]
+Pero
+\[
+z\overline w+\overline z w
+=
+2\operatorname{Re}(z\overline w)
+\leq
+2|z\overline w|
+=
+2|z||w|.
+\]
+Por tanto,
+\[
+|z+w|^2
+\leq
+|z|^2+2|z||w|+|w|^2
+=
+(|z|+|w|)^2.
+\]
+Como ambos lados son no negativos,
+\[
+|z+w|\leq |z|+|w|.
+\]
+\hfill$\square$
+
+Una consecuencia importante es la desigualdad triangular inversa:
+
+
+\begin{Teo} 
+\[
+\boxed{
+\bigl||z|-|w|\bigr|
+\leq
+|z-w|.
+}
+\]
+\end{Teo}
+
+ 
+\textbf{Demostración.}
+Por la desigualdad triangular,
+\[
+|z|
+=
+|(z-w)+w|
+\leq
+|z-w|+|w|.
+\]
+De aquí,
+\[
+|z|-|w|
+\leq
+|z-w|.
+\]
+Intercambiando $z$ y $w$,
+\[
+|w|-|z|
+\leq
+|z-w|.
+\]
+Por tanto,
+\[
+\bigl||z|-|w|\bigr|
+\leq
+|z-w|.
+\]
+\hfill$\square$
+
+
+\begin{Ejem} 
+Sea
+\[
+z=1+i,
+\qquad
+w=1-i.
+\]
+Entonces
+\[
+|z+w|
+=
+|2|
+=
+2,
+\]
+mientras que
+\[
+|z|+|w|
+=
+2\sqrt2.
+\]
+Así,
+\[
+2\leq2\sqrt2.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} 
+Si
+\[
+z=2,
+\qquad
+w=3,
+\]
+entonces hay igualdad:
+\[
+|z+w|=5=|z|+|w|.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+z=2,
+\qquad
+w=-3,
+\]
+entonces
+\[
+|z+w|=1<5.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=3+4i,
+\qquad
+w=1,
+\]
+la desigualdad triangular inversa da
+\[
+\bigl|5-1\bigr|
+\leq
+|2+4i|,
+\]
+es decir,
+\[
+4\leq\sqrt{20}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+|z|<2
+\]
+y
+\[
+|w|<3,
+\]
+entonces
+\[
+|z+w|
+<
+5.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Argumento de un número complejo}
+% ======================================================
+
+Sea
+\[
+z=a+bi\neq0.
+\]
+
+Un \emph{argumento} de $z$ es cualquier ángulo $\theta$ que satisface
+\[
+a=|z|\cos\theta
+\]
+y
+\[
+b=|z|\sin\theta.
+\]
+
+Si $\theta$ es un argumento, entonces
+\[
+\theta+2k\pi,
+\qquad
+k\in\mathbb{Z},
+\]
+también lo es.
+
+Por tanto,
+\[
+\boxed{
+\arg z
+=
+\theta+2k\pi,
+\qquad k\in\mathbb{Z}.
+}
+\]
+
+El argumento es, por naturaleza, multivaluado.
+
+\begin{Def} 
+El \emph{argumento principal} de $z$, denotado por
+\[
+\operatorname{Arg}(z),
+\]
+es el único argumento que pertenece al intervalo
+\[
+(-\pi,\pi].
+\]
+\end{Def}
+
+
+Así,
+\[
+\boxed{
+\arg z
+=
+\operatorname{Arg}(z)+2k\pi.
+}
+\]
+
+No debe utilizarse ciegamente
+\[
+\theta=\arctan\left(\frac ba\right),
+\]
+porque la función arctangente no distingue cuadrantes. Es necesario inspeccionar los signos de $a$ y $b$, o utilizar una función de dos argumentos tipo $\operatorname{atan2}(b,a)$.
+
+
+\begin{Ejem} 
+Para
+\[
+z=1+i,
+\]
+\[
+\operatorname{Arg}(z)=\frac{\pi}{4}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=-1+i,
+\]
+el punto está en el segundo cuadrante y
+\[
+\operatorname{Arg}(z)=\frac{3\pi}{4}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=-1-i,
+\]
+\[
+\operatorname{Arg}(z)=-\frac{3\pi}{4}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=-2,
+\]
+\[
+\operatorname{Arg}(z)=\pi.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Para
+\[
+z=-3i,
+\]
+\[
+\operatorname{Arg}(z)=-\frac{\pi}{2}.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Forma polar o trigonométrica}
+% ======================================================
+
+Sea
+\[
+z=a+bi\neq0.
+\]
+
+Definimos
+\[
+r=|z|.
+\]
+
+Si $\theta$ es un argumento de $z$, entonces
+\[
+a=r\cos\theta,
+\qquad
+b=r\sin\theta.
+\]
+
+Sustituyendo en
+\[
+z=a+bi,
+\]
+obtenemos
+\[
+\boxed{
+z
+=
+r(\cos\theta+i\sin\theta).
+}
+\]
+
+Esta expresión se denomina \emph{forma polar} o \emph{forma trigonométrica}.
+
+La conversión rectangular-polar se realiza mediante
+\[
+r=\sqrt{a^2+b^2},
+\]
+y una elección adecuada de $\theta$.
+
+La conversión polar-rectangular se realiza mediante
+\[
+a=r\cos\theta,
+\qquad
+b=r\sin\theta.
+\]
+
+\begin{Ejem} \[
+z=1+i.
+\]
+Entonces
+\[
+r=\sqrt2,
+\qquad
+\theta=\frac{\pi}{4}.
+\]
+Por tanto,
+\[
+z
+=
+\sqrt2
+\left(
+\cos\frac{\pi}{4}
++i\sin\frac{\pi}{4}
+\right).
+\]
+\end{Ejem}
+
+\begin{Ejem} \[
+z=-1+i.
+\]
+Entonces
+\[
+r=\sqrt2,
+\qquad
+\theta=\frac{3\pi}{4}.
+\]
+Así,
+\[
+z
+=
+\sqrt2
+\left(
+\cos\frac{3\pi}{4}
++i\sin\frac{3\pi}{4}
+\right).
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=-2-2i.
+\]
+Entonces
+\[
+r=2\sqrt2,
+\qquad
+\theta=-\frac{3\pi}{4}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Convirtamos
+\[
+z
+=
+4\left(
+\cos\frac{\pi}{3}
++i\sin\frac{\pi}{3}
+\right)
+\]
+a forma rectangular:
+\[
+z
+=
+4\left(
+\frac12+i\frac{\sqrt3}{2}
+\right)
+=
+\boxed{2+2\sqrt3\,i}.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+z=5\left(\cos\pi+i\sin\pi\right)
+=
+-5.
+\]
+\end{Ejem}
+
+% =====================================================
+\subsection*{Producto y cociente en forma polar}
+% ======================================================
+
+Sean
+\[
+z_1=r_1(\cos\theta_1+i\sin\theta_1),
+\]
+\[
+z_2=r_2(\cos\theta_2+i\sin\theta_2).
+\]
+
+Entonces
+\[
+\boxed{
+z_1z_2
+=
+r_1r_2
+\left[
+\cos(\theta_1+\theta_2)
++i\sin(\theta_1+\theta_2)
+\right].
+}
+\]
+
+Por tanto:
+\[
+\boxed{
+|z_1z_2|=|z_1||z_2|
+}
+\]
+y
+\[
+\arg(z_1z_2)
+=
+\arg z_1+\arg z_2
+\pmod{2\pi}.
+\]
+
+Si $z_2\neq0$,
+\[
+\boxed{
+\frac{z_1}{z_2}
+=
+\frac{r_1}{r_2}
+\left[
+\cos(\theta_1-\theta_2)
++i\sin(\theta_1-\theta_2)
+\right].
+}
+\]
+
+\begin{Ejem} Sea
+\[
+z_1=2\left(\cos\frac{\pi}{6}+i\sin\frac{\pi}{6}\right),
+\]
+\[
+z_2=3\left(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4}\right).
+\]
+Entonces
+\[
+z_1z_2
+=
+6
+\left(
+\cos\frac{5\pi}{12}
++i\sin\frac{5\pi}{12}
+\right).
+\]
+\end{Ejem}
+
+\begin{Ejem} Con los mismos números,
+\[
+\frac{z_1}{z_2}
+=
+\frac23
+\left(
+\cos\left(-\frac{\pi}{12}\right)
++i\sin\left(-\frac{\pi}{12}\right)
+\right).
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+z_1=4e^{i\pi/3},
+\qquad
+z_2=2e^{i\pi/6},
+\]
+entonces
+\[
+z_1z_2
+=
+8e^{i\pi/2}
+=
+8i.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} \[
+\frac{6e^{i5\pi/6}}{3e^{i\pi/3}}
+=
+2e^{i\pi/2}
+=
+2i.
+\]
+
+\end{Ejem}
+
+\begin{Ejem} Si
+\[
+|z_1|=5,\quad \arg z_1=\frac{\pi}{7},
+\]
+\[
+|z_2|=2,\quad \arg z_2=-\frac{\pi}{5},
+\]
+entonces
+\[
+|z_1z_2|=10
+\]
+y
+\[
+\arg(z_1z_2)
+=
+\frac{\pi}{7}-\frac{\pi}{5}
+=
+-\frac{2\pi}{35}
+\pmod{2\pi}.
+\]
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Fórmula de Euler}
+% ======================================================
+
+La fórmula de Euler conecta la exponencial compleja con las funciones
+trigonométricas.
+
+Recordemos las series de Maclaurin:
+\[
+e^x
+=
+\sum_{n=0}^{\infty}\frac{x^n}{n!},
+\]
+\[
+\cos x
+=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n}}{(2n)!},
+\]
+\[
+\sin x
+=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n+1}}{(2n+1)!}.
+\]
+
+Sustituyendo $x=i\theta$:
+\[
+e^{i\theta}
+=
+1+i\theta+\frac{(i\theta)^2}{2!}
++\frac{(i\theta)^3}{3!}+\cdots.
+\]
+
+Separando términos reales e imaginarios:
+\[
+e^{i\theta}
+=
+\left(
+1-\frac{\theta^2}{2!}
++\frac{\theta^4}{4!}
+-\cdots
+\right)
++
+i
+\left(
+\theta-\frac{\theta^3}{3!}
++\frac{\theta^5}{5!}
+-\cdots
+\right).
+\]
+
+Por identificación con las series de $\cos\theta$ y $\sin\theta$,
+\[
+\boxed{
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+}
+\]
+
+\begin{Coro}
+\[
+\boxed{
+\cos\theta
+=
+\frac{e^{i\theta}+e^{-i\theta}}{2}
+}
+\]
+y
+\[
+\boxed{
+\sin\theta
+=
+\frac{e^{i\theta}-e^{-i\theta}}{2i}.
+}
+\]
+
+\end{Coro}
+
+\begin{Ejem} 
+\[
+e^{i0}=1.
+\]
+
+\[
+e^{i\pi/2}=i.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+
+\[
+e^{i\pi}=-1.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{i3\pi/2}=-i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{i\pi/3}
+=
+\frac12+\frac{\sqrt3}{2}i.
+\]
+\end{Ejem}
+
+
+
+% ======================================================
+\subsection*{Forma exponencial}
+% ======================================================
+
+Usando Euler, la forma polar
+\[
+z=r(\cos\theta+i\sin\theta)
+\]
+puede escribirse como
+\[
+\boxed{
+z=re^{i\theta}.
+}
+\]
+
+Debido a la periodicidad
+\[
+e^{i(\theta+2k\pi)}
+=
+e^{i\theta},
+\]
+la representación exponencial completa es
+\[
+\boxed{
+z=re^{i(\theta+2k\pi)},
+\qquad
+k\in\mathbb{Z}.
+}
+\]
+
+
+
+\begin{Prop}
+Si
+\[
+z_1=r_1e^{i\theta_1},
+\qquad
+z_2=r_2e^{i\theta_2},
+\]
+entonces
+\[
+z_1z_2
+=
+r_1r_2e^{i(\theta_1+\theta_2)}.
+\]
+
+\end{Prop}
+
+
+\begin{Ejem}
+\[
+1+i
+=
+\sqrt2\,e^{i\pi/4}.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+-1+i
+=
+\sqrt2\,e^{i3\pi/4}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+-2
+=
+2e^{i\pi}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+-3i
+=
+3e^{-i\pi/2}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+2e^{i\pi/6}
+=
+\sqrt3+i.
+\]
+\end{Ejem}
+
+
+% ====================================================
+\subsection*{Identidad de Euler}
+% ======================================================
+
+Tomando
+\[
+\theta=\pi
+\]
+en la fórmula de Euler:
+\[
+e^{i\pi}
+=
+\cos\pi+i\sin\pi
+=
+-1.
+\]
+
+Por tanto,
+\[
+\boxed{
+e^{i\pi}+1=0.
+}
+\]
+
+Esta identidad reúne las constantes
+\[
+0,\quad1,\quad e,\quad i,\quad\pi.
+\]
+
+
+\begin{Ejem}
+\[
+e^{i\pi}=-1.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{2\pi i}=1.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{3\pi i}=-1.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{(2k+1)\pi i}=-1.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{2k\pi i}=1.
+\]
+\end{Ejem}
+
+
+
+% ======================================================
+\subsection*{Teorema de De Moivre}
+% ======================================================
+
+
+\begin{Teo}
+
+Para todo entero $n$,
+\[
+\boxed{
+(\cos\theta+i\sin\theta)^n
+=
+\cos(n\theta)+i\sin(n\theta).
+}
+\]
+
+
+
+Más generalmente, si
+\[
+z=r(\cos\theta+i\sin\theta),
+\]
+entonces
+\[
+\boxed{
+z^n
+=
+r^n
+\left(
+\cos(n\theta)+i\sin(n\theta)
+\right).
+}
+\]
+\end{Teo}
+
+
+
+\textbf{Demostración mediante Euler.}
+Como
+\[
+z=re^{i\theta},
+\]
+entonces
+\[
+z^n
+=
+r^ne^{in\theta}.
+\]
+Aplicando Euler:
+\[
+e^{in\theta}
+=
+\cos(n\theta)+i\sin(n\theta).
+\]
+Por tanto,
+\[
+z^n
+=
+r^n
+\left(
+\cos(n\theta)+i\sin(n\theta)
+\right).
+\]
+\hfill$\square$
+
+\begin{Ejem}
+
+Calcular
+\[
+(1+i)^4.
+\]
+Como
+\[
+1+i=\sqrt2\,e^{i\pi/4},
+\]
+\[
+(1+i)^4
+=
+(\sqrt2)^4e^{i\pi}
+=
+4(-1)
+=
+\boxed{-4}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+\left(
+\cos\frac{\pi}{6}
++i\sin\frac{\pi}{6}
+\right)^3
+=
+\cos\frac{\pi}{2}
++i\sin\frac{\pi}{2}
+=
+i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+(2e^{i\pi/3})^5
+=
+32e^{i5\pi/3}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+(-1+i)^6.
+\]
+Como
+\[
+-1+i
+=
+\sqrt2\,e^{i3\pi/4},
+\]
+\[
+(-1+i)^6
+=
+8e^{i9\pi/2}
+=
+8i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Usando De Moivre:
+\[
+(\cos\theta+i\sin\theta)^2
+=
+\cos2\theta+i\sin2\theta.
+\]
+Comparando partes reales e imaginarias se recuperan:
+\[
+\cos2\theta=\cos^2\theta-\sin^2\theta,
+\]
+\[
+\sin2\theta=2\sin\theta\cos\theta.
+\]
+\end{Ejem}
+
+
+
+% ======================================================
+\subsection*{Raíces $n$-ésimas de un número complejo}
+% ======================================================
+
+Queremos resolver
+\[
+w^n=z,
+\]
+donde
+\[
+z=re^{i\theta},
+\qquad
+r>0.
+\]
+
+Escribimos
+\[
+w=\rho e^{i\varphi}.
+\]
+
+Entonces
+\[
+w^n
+=
+\rho^ne^{in\varphi}.
+\]
+
+Para que $w^n=z$ debe cumplirse
+\[
+\rho^n=r
+\]
+y
+\[
+n\varphi
+=
+\theta+2k\pi.
+\]
+
+Por tanto,
+\[
+\rho=r^{1/n}
+\]
+y
+\[
+\varphi
+=
+\frac{\theta+2k\pi}{n}.
+\]
+
+Las $n$ raíces distintas son
+\[
+\boxed{
+w_k
+=
+r^{1/n}
+e^{i(\theta+2k\pi)/n},
+\qquad
+k=0,1,\ldots,n-1.
+}
+\]
+
+Geométricamente, se encuentran sobre una circunferencia de radio
+\[
+r^{1/n}
+\]
+y están separadas por un ángulo constante
+\[
+\frac{2\pi}{n}.
+\]
+
+\begin{Ejem}
+
+Resolver
+\[
+w^2=1.
+\]
+Las raíces son
+\[
+w_0=1,
+\qquad
+w_1=-1.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Resolver
+\[
+w^2=-1.
+\]
+Como
+\[
+-1=e^{i\pi},
+\]
+\[
+w_k
+=
+e^{i(\pi+2k\pi)/2}.
+\]
+Así,
+\[
+\boxed{w=\pm i}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Resolver
+\[
+w^3=1.
+\]
+Las raíces son
+\[
+1,
+\qquad
+e^{2\pi i/3},
+\qquad
+e^{4\pi i/3}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Resolver
+\[
+w^4=16.
+\]
+Como
+\[
+16=16e^{i0},
+\]
+las raíces tienen módulo
+\[
+16^{1/4}=2.
+\]
+Por tanto,
+\[
+w_k
+=
+2e^{ik\pi/2},
+\qquad k=0,1,2,3.
+\]
+Así,
+\[
+\boxed{2,\ 2i,\ -2,\ -2i}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Resolver
+\[
+w^3=8i.
+\]
+Tenemos
+\[
+8i=8e^{i\pi/2}.
+\]
+Entonces
+\[
+w_k
+=
+2e^{i(\pi/2+2k\pi)/3},
+\qquad k=0,1,2.
+\]
+\end{Ejem}
+
+
+
+% =====================================================
+\subsection*{Raíces $n$-ésimas de la unidad}
+% ====================================================
+
+Consideremos
+\[
+z^n=1.
+\]
+
+Como
+\[
+1=e^{2k\pi i},
+\]
+las soluciones son
+\[
+\boxed{
+\omega_k=e^{2\pi i k/n},
+\qquad
+k=0,\ldots,n-1.
+}
+\]
+
+Estas raíces se distribuyen uniformemente sobre la circunferencia unidad y
+forman los vértices de un polígono regular de $n$ lados.
+
+Una raíz
+\[
+\omega=e^{2\pi i/n}
+\]
+se denomina raíz primitiva $n$-ésima de la unidad, y todas las raíces pueden
+escribirse como
+\[
+1,\omega,\omega^2,\ldots,\omega^{n-1}.
+\]
+
+
+\begin{Prop}
+La suma de las raíces $n$-ésimas de la unidad, para $n>1$, es cero:
+\[
+\boxed{
+1+\omega+\omega^2+\cdots+\omega^{n-1}=0.
+}
+\]
+\end{Prop}
+
+
+
+\textbf{Demostración.}
+Como $\omega\neq1$ y $\omega^n=1$,
+\[
+1+\omega+\cdots+\omega^{n-1}
+=
+\frac{\omega^n-1}{\omega-1}
+=
+0.
+\]
+\hfill$\square$
+
+
+
+\begin{Ejem}
+Para $n=2$:
+\[
+1,-1.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Para $n=3$:
+\[
+1,\quad
+-\frac12+\frac{\sqrt3}{2}i,\quad
+-\frac12-\frac{\sqrt3}{2}i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Para $n=4$:
+\[
+1,\ i,\ -1,\ -i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Las raíces quintas de la unidad son
+\[
+e^{2\pi ik/5},
+\qquad
+k=0,\ldots,4.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Para las raíces cúbicas de la unidad,
+\[
+1+\omega+\omega^2=0.
+\]
+\end{Ejem}
+
+% ======================================================
+\subsection*{Polinomios con raíces complejas}
+% ======================================================
+
+Los números complejos permiten estudiar de manera completa las raíces de polinomios.
+
+Si
+\[
+p(z)=a_nz^n+\cdots+a_1z+a_0,
+\]
+una raíz de $p$ es un número $z_0$ tal que
+\[
+p(z_0)=0.
+\]
+
+
+\begin{Teo}
+
+\[
+p(z_0)=0
+\iff
+(z-z_0)\text{ divide a }p(z).
+\]
+\end{Teo}
+
+
+\begin{Ejem}
+
+
+\[
+z^2+1=0
+\]
+tiene raíces
+\[
+\pm i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+z^2-2z+5=0
+\]
+tiene raíces
+\[
+1\pm2i.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+z^3-1=0
+\]
+tiene las tres raíces cúbicas de la unidad.
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+z^4-16=0
+\]
+equivale a
+\[
+z^4=16,
+\]
+cuyas raíces son
+\[
+2,\ 2i,\ -2,\ -2i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Si
+\[
+p(z)=z^2-6z+13,
+\]
+entonces
+\[
+z=\frac{6\pm\sqrt{36-52}}{2}=3\pm2i.
+\]
+\end{Ejem}
+
+
+
+% ======================================================
+\subsection*{Teorema Fundamental del Álgebra}
+% ======================================================
+
+
+\begin{Teo}{Teorema Fundamental del Álgebra.}
+
+Todo polinomio no constante con coeficientes complejos posee al menos una raíz
+en $\mathbb{C}$.
+
+Equivalentemente, todo polinomio de grado $n\geq1$ puede factorizarse como
+\[
+\boxed{
+p(z)
+=
+a_n
+(z-z_1)\cdots(z-z_n),
+}
+\]
+donde las raíces se cuentan con multiplicidad.
+
+Por ello se dice que
+\[
+\boxed{
+\mathbb{C}\text{ es algebraicamente cerrado}.
+}
+\]
+\end{Teo}
+
+
+La demostración completa del Teorema Fundamental del Álgebra requiere
+herramientas que exceden el nivel habitual de un primer curso de Álgebra
+Lineal. Conviene enunciarlo, discutir su significado y usarlo, pero no
+demostrarlo en esta unidad.
+
+\begin{Ejem}
+Todo polinomio cuadrático complejo tiene dos raíces contando multiplicidad.
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+z^2+1
+=
+(z-i)(z+i).
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+z^3-1
+=
+(z-1)(z-\omega)(z-\omega^2).
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+z^2-2z+1
+=
+(z-1)^2.
+\]
+La raíz $z=1$ tiene multiplicidad $2$.
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Un polinomio de grado $5$ posee exactamente cinco raíces complejas contando multiplicidad.
+\end{Ejem}
+
+
+% =====================================================
+\subsection*{Raíces conjugadas de polinomios reales}
+% ======================================================
+
+\begin{Teo}
+Sea
+\[
+p(z)=a_nz^n+\cdots+a_0
+\]
+un polinomio con coeficientes reales. Si
+\[
+z_0
+\]
+es raíz de $p$, entonces
+\[
+\overline{z_0}
+\]
+también es raíz.
+\end{Teo}
+
+
+
+\textbf{Demostración.}
+Si
+\[
+p(z_0)=0,
+\]
+entonces
+\[
+\overline{p(z_0)}=0.
+\]
+Como los coeficientes son reales,
+\[
+\overline{a_k}=a_k.
+\]
+Por tanto,
+\[
+\overline{p(z_0)}=p(\overline{z_0}),
+\]
+de donde
+\[
+p(\overline{z_0})=0.
+\]
+\hfill$\square$
+
+
+
+\begin{Ejem}
+Si
+\[
+2+3i
+\]
+es raíz de un polinomio real, también lo es
+\[
+2-3i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+El polinomio
+\[
+z^2-4z+13
+\]
+tiene raíces
+\[
+2\pm3i.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+El factor real asociado al par
+\[
+a\pm bi
+\]
+es
+\[
+(z-(a+bi))(z-(a-bi))=z^2-2az+(a^2+b^2).
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+
+Las raíces
+\[
+1\pm2i
+\]
+generan el factor
+\[
+z^2-2z+5.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Un polinomio real de grado impar tiene al menos una raíz real, porque las
+raíces no reales aparecen en pares conjugados.
+\end{Ejem}
+
+
+% ======================================================
+\subsection*{Exponencial compleja}
+% ======================================================
+
+Para
+\[
+z=x+iy,
+\]
+definimos
+\[
+e^z
+=
+e^x e^{iy}.
+\]
+
+Usando Euler:
+\[
+\boxed{
+e^{x+iy}
+=
+e^x(\cos y+i\sin y).
+}
+\]
+
+De aquí se obtiene
+\[
+\boxed{|e^z|=e^{\operatorname{Re}(z)}.}
+\]
+
+Además,
+\[
+e^{z+2\pi i}=e^z,
+\]
+por lo que la exponencial compleja es periódica con periodo $2\pi i$.
+
+\begin{Ejem}
+
+\[
+e^{1+i\pi}
+=
+e(-1)
+=
+-e.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{2+i\pi/2}
+=
+e^2\left(\cos\frac{\pi}{2}+i\sin\frac{\pi}{2}\right)
+=
+ie^2.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+|e^{3-2i}|=e^3.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+\[
+e^{z+4\pi i}=e^z.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+Resolver
+\[
+e^z=1.
+\]
+Las soluciones son
+\[
+\boxed{z=2k\pi i,\qquad k\in\mathbb{Z}.}
+\]
+\end{Ejem}
+
+
+
+
+% ======================================================
+\subsection*{Logaritmo complejo}
+% ======================================================
+
+Queremos resolver
+\[
+e^w=z,
+\qquad
+z\neq0.
+\]
+
+Escribimos
+\[
+z=re^{i\theta}
+\]
+y
+\[
+w=u+iv.
+\]
+
+Entonces
+\[
+e^w
+=
+e^u e^{iv}.
+\]
+
+Para que
+\[
+e^w=z,
+\]
+debe cumplirse
+\[
+e^u=r
+\]
+y
+\[
+v=\theta+2k\pi.
+\]
+
+Por tanto,
+\[
+u=\ln r
+\]
+y
+\[
+v=\theta+2k\pi.
+\]
+
+Así,
+\[
+\boxed{
+\log z
+=
+\ln|z|
++
+i(\theta+2k\pi),
+\qquad
+k\in\mathbb{Z}.
+}
+\]
+
+El logaritmo complejo es multivaluado.
+
+
+\begin{Def}
+
+El \emph{logaritmo principal} se define mediante
+\[
+\boxed{
+\operatorname{Log}(z)
+=
+\ln|z|
++
+i\operatorname{Arg}(z).
+}
+\]
+\end{Def}
+
+Conviene enfatizar que las identidades logarítmicas complejas requieren
+cuidado por la multivaluación del argumento.
+
+
+\begin{Ejem}
+
+Para
+\[
+z=1,
+\]
+\[
+\log 1=2k\pi i.
+\]
+\end{Ejem}
+
+
+\begin{Ejem}
+Para
+\[
+z=-1,
+\]
+\[
+\log(-1)=i(\pi+2k\pi).
+\]
+En particular,
+\[
+\operatorname{Log}(-1)=i\pi.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Para
+\[
+z=i,
+\]
+\[
+\log i=i\left(\frac{\pi}{2}+2k\pi\right).
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Para
+\[
+z=1+i,
+\]
+\[
+|z|=\sqrt2,
+\qquad
+\operatorname{Arg}(z)=\frac{\pi}{4}.
+\]
+Entonces
+\[
+\operatorname{Log}(1+i)=\frac12\ln2+i\frac{\pi}{4}.
+\]
+
+\end{Ejem}
+
+
+\begin{Ejem}
+Para
+\[
+z=-2i,
+\]
+\[
+|z|=2, \qquad \operatorname{Arg}(z)=-\frac{\pi}{2}.
+\]
+Por tanto,
+\[
+\operatorname{Log}(-2i)= \ln2-\frac{\pi}{2}i.
+\]
+\end{Ejem}
+
+% ======================================================
+\subsection*{Resumen}
+% ======================================================
+
+La estructura geométrica y analítica de los números complejos puede resumirse
+mediante
+\[
+\boxed{
+\begin{array}{c}
+z=a+bi
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+(a,b)\in\mathbb{R}^2
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+|z|,\ \arg z
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z=r(\cos\theta+i\sin\theta)
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+z=re^{i\theta}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{De Moivre}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{potencias y raíces}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{raíces de la unidad}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+\text{Teorema Fundamental del Álgebra}
+\\[0.2cm]
+\downarrow
+\\[0.2cm]
+e^z,\ \log z
+\end{array}
+}
+\]
+
+% =====================================================
+\section{Ejercicios}
+% ======================================================
+
+Los siguientes ejercicios están organizados por tema y nivel de dificultad. Se recomienda resolverlos sin apoyo de software en una primera etapa y utilizar herramientas computacionales únicamente para verificación.
+
+\subsection*{Potencias de la unidad imaginaria}
+\begin{enumerate}
+\item Calcule $i^{17}$.
+\item Calcule $i^{38}$.
+\item Calcule $i^{73}$.
+\item Calcule $i^{2026}$.
+\item Simplifique $i^{11}+i^{22}+i^{33}+i^{44}$.
+\item Simplifique $i^{15}-2i^{26}+3i^{37}-i^{48}$.
+\end{enumerate}
+
+\subsection*{Forma binómica, parte real e imaginaria}
+\begin{enumerate}
+\item Determine $\operatorname{Re}(z)$ y $\operatorname{Im}(z)$ para $z=5-7i$.
+\item Determine $\operatorname{Re}(z)$ y $\operatorname{Im}(z)$ para $z=-3+\frac{5}{2}i$.
+\item Escriba $-8$ en forma binómica e identifique sus partes real e imaginaria.
+\item Escriba $6i$ en forma binómica e identifique sus partes real e imaginaria.
+\item Clasifique como real, imaginario puro o complejo no real: $4$, $-3i$, $2+7i$, $0$, $5-2i$.
+\item Determine $a,b\in\mathbb{R}$ si $z=(2a-1)+(3b+4)i=7-5i$.
+\end{enumerate}
+
+\subsection*{Igualdad de números complejos}
+\begin{enumerate}
+\item Determine $x$ y $y$ si $(x+2)+(y-1)i=5+4i$.
+\item Determine $x$ y $y$ si $(2x-3)+(3y+2)i=7-10i$.
+\item Determine $a$ y $b$ si $(a-b)+(a+b)i=4+2i$.
+\item Determine $x$ y $y$ si $(x^2-1)+(2y+3)i=8+7i$ y $x>0$.
+\item Determine $x$ y $y$ si $(3x+y)+(x-2y)i=7-i$.
+\item Pruebe que si $a+bi=0$, entonces $a=b=0$.
+\end{enumerate}
+
+\subsection*{Suma y resta de números complejos}
+\begin{enumerate}
+\item Calcule $(3+5i)+(7-2i)$.
+\item Calcule $(-4+9i)+(6-11i)$.
+\item Calcule $(8-3i)-(2+7i)$.
+\item Simplifique $(2+i)-(5-3i)+(7+4i)$.
+\item Sean $z_1=3-2i$, $z_2=-1+5i$, $z_3=4+i$. Calcule $2z_1-z_2+3z_3$.
+\item Verifique explícitamente la asociatividad de la suma para $z_1=1+i$, $z_2=2-3i$, $z_3=-4+2i$.
+\end{enumerate}
+
+\subsection*{Producto de números complejos}
+\begin{enumerate}
+\item Calcule $(2+3i)(4-i)$.
+\item Calcule $(1-5i)(-2+3i)$.
+\item Calcule $(3+2i)^2$.
+\item Simplifique $(1+i)^4$ usando primero multiplicación directa.
+\item Calcule $(2-i)(2+i)(1+3i)$.
+\item Determine todos los $z=a+bi$ tales que $(1+i)z=4+2i$.
+\end{enumerate}
+
+\subsection*{Conjugado complejo}
+\begin{enumerate}
+\item Determine $\overline z$ para $z=7-5i$.
+\item Calcule $z+\overline z$ y $z-\overline z$ para $z=-3+4i$.
+\item Exprese $\operatorname{Re}(z)$ en términos de $z$ y $\overline z$.
+\item Exprese $\operatorname{Im}(z)$ en términos de $z$ y $\overline z$.
+\item Verifique que $\overline{zw}=\overline z\,\overline w$ para $z=2+i$, $w=3-4i$.
+\item Demuestre que $z$ es real si y sólo si $z=\overline z$.
+\end{enumerate}
+
+\subsection*{Módulo de números complejos}
+\begin{enumerate}
+\item Calcule $|3+4i|$.
+\item Calcule $|-5+12i|$.
+\item Calcule $|1-\sqrt3\,i|$.
+\item Encuentre todos los $z=a+bi$ tales que $|z|=5$ y $a=3$.
+\item Demuestre que $|z|^2=z\overline z$.
+\item Demuestre que $|z|=0$ si y sólo si $z=0$.
+\end{enumerate}
+
+\subsection*{División e inverso multiplicativo}
+\begin{enumerate}
+\item Calcule $\dfrac{1}{2+i}$.
+\item Calcule $\dfrac{3+2i}{1-i}$.
+\item Calcule $\dfrac{4-5i}{2+3i}$.
+\item Determine $(3-4i)^{-1}$.
+\item Simplifique $\dfrac{1+i}{1-i}$.
+\item Demuestre que para $z\neq0$, $z^{-1}=\dfrac{\overline z}{|z|^2}$.
+\end{enumerate}
+
+\subsection*{El plano complejo y lugares geométricos}
+\begin{enumerate}
+\item Represente en el plano complejo $z=3+2i$, $z=-2+4i$, $z=-3i$ y $z=5$.
+\item Describa geométricamente el conjunto $\{z\in\mathbb{C}: |z|=4\}$.
+\item Describa geométricamente $\{z: |z-(2-i)|<3\}$.
+\item Describa geométricamente $\{z: |z+1+2i|\le 2\}$.
+\item Determine el lugar geométrico de los puntos que satisfacen $|z-1|=|z+1|$.
+\item Determine el lugar geométrico de los puntos que satisfacen $|z-i|=2|z+i|$.
+\end{enumerate}
+
+\subsection*{Distancia y desigualdades}
+\begin{enumerate}
+\item Calcule la distancia entre $z_1=1+i$ y $z_2=4+5i$.
+\item Calcule la distancia entre $z_1=-2+3i$ y $z_2=1-i$.
+\item Verifique la desigualdad triangular para $z=1+i$ y $w=1-i$.
+\item Verifique la desigualdad triangular inversa para $z=3+4i$ y $w=1$.
+\item Demuestre que $|z+w|\le |z|+|w|$.
+\item Demuestre la identidad del paralelogramo: $|z+w|^2+|z-w|^2=2(|z|^2+|w|^2)$.
+\end{enumerate}
+
+\subsection*{Argumento y argumento principal}
+\begin{enumerate}
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=1+i$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-1+i$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-1-i$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-4$.
+\item Determine $\arg z$ y $\operatorname{Arg}(z)$ para $z=-3i$.
+\item Explique por qué $\arg z$ es multivaluado y $\operatorname{Arg}(z)$ no.
+\end{enumerate}
+
+\subsection*{Conversión entre forma rectangular y polar}
+\begin{enumerate}
+\item Convierta $1+i$ a forma polar.
+\item Convierta $-1+\sqrt3\,i$ a forma polar.
+\item Convierta $-2-2i$ a forma polar.
+\item Convierta $4\left(\cos\frac{\pi}{3}+i\sin\frac{\pi}{3}\right)$ a forma rectangular.
+\item Convierta $5\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)$ a forma rectangular.
+\item Exprese $-3i$ en forma polar utilizando un argumento principal y un argumento general.
+\end{enumerate}
+
+\subsection*{Producto y cociente en forma polar}
+\begin{enumerate}
+\item Multiplique $2\operatorname{cis}\frac{\pi}{6}$ y $3\operatorname{cis}\frac{\pi}{4}$.
+\item Divida $6\operatorname{cis}\frac{5\pi}{6}$ entre $3\operatorname{cis}\frac{\pi}{3}$.
+\item Calcule el módulo y argumento de $(1+i)(\sqrt3+i)$ sin convertir primero a forma rectangular.
+\item Calcule $\dfrac{2e^{i\pi/3}}{4e^{-i\pi/6}}$.
+\item Si $|z_1|=3$, $|z_2|=5$, $\arg z_1=\frac{\pi}{7}$ y $\arg z_2=-\frac{\pi}{4}$, determine módulo y argumento de $z_1z_2$.
+\item Demuestre en forma polar que $|z_1z_2|=|z_1||z_2|$.
+\end{enumerate}
+
+\subsection*{Fórmula de Euler y forma exponencial}
+\begin{enumerate}
+\item Evalúe $e^{i\pi/6}$.
+\item Evalúe $e^{i3\pi/4}$.
+\item Exprese $1-i$ en forma exponencial.
+\item Exprese $-2+2i$ en forma exponencial.
+\item Demuestre que $\cos\theta=\dfrac{e^{i\theta}+e^{-i\theta}}{2}$.
+\item Demuestre que $\sin\theta=\dfrac{e^{i\theta}-e^{-i\theta}}{2i}$.
+\end{enumerate}
+
+\subsection*{Teorema de De Moivre y potencias}
+\begin{enumerate}
+\item Calcule $(1+i)^8$ usando De Moivre.
+\item Calcule $(-1+i)^6$ usando De Moivre.
+\item Calcule $(\sqrt3+i)^{10}$.
+\item Calcule $\left(2e^{i\pi/5}\right)^7$.
+\item Use De Moivre para deducir una fórmula para $\cos(3\theta)$.
+\item Use De Moivre para deducir una fórmula para $\sin(4\theta)$.
+\end{enumerate}
+
+\subsection*{Raíces $n$-ésimas}
+\begin{enumerate}
+\item Encuentre las raíces cuadradas de $i$.
+\item Encuentre las raíces cúbicas de $8$.
+\item Encuentre las raíces cúbicas de $8i$.
+\item Encuentre las raíces cuartas de $-16$.
+\item Encuentre las cinco raíces de $32$.
+\item Demuestre que las raíces $n$-ésimas de un número complejo no nulo están igualmente espaciadas angularmente.
+\end{enumerate}
+
+\subsection*{Raíces de la unidad}
+\begin{enumerate}
+\item Encuentre las raíces cúbicas de la unidad y represéntelas geométricamente.
+\item Encuentre las raíces cuartas de la unidad.
+\item Encuentre las raíces sextas de la unidad.
+\item Determine cuáles de las raíces octavas de la unidad son primitivas.
+\item Demuestre que la suma de las raíces $n$-ésimas de la unidad es cero para $n>1$.
+\item Factorice $z^5-1$ completamente sobre $\mathbb{C}$.
+\end{enumerate}
+
+\subsection*{Ecuaciones polinómicas}
+\begin{enumerate}
+\item Resuelva $z^2+1=0$.
+\item Resuelva $z^2-2z+5=0$.
+\item Resuelva $z^3-8=0$.
+\item Resuelva $z^4+16=0$.
+\item Factorice $z^4-1$ sobre $\mathbb{C}$.
+\item Construya un polinomio mónico real de grado $4$ cuyas raíces incluyan $1+2i$ y $-3+i$.
+\end{enumerate}
+
+\subsection*{Teorema Fundamental del Álgebra y conjugación}
+\begin{enumerate}
+\item Explique qué significa que $\mathbb{C}$ sea algebraicamente cerrado.
+\item ¿Cuántas raíces posee, contando multiplicidad, un polinomio complejo de grado $7$?
+\item Si $2+3i$ es raíz de un polinomio real, ¿qué otra raíz debe aparecer?
+\item Construya el factor cuadrático real asociado al par de raíces $4\pm5i$.
+\item Demuestre que las raíces no reales de un polinomio real aparecen en pares conjugados.
+\item Explique por qué todo polinomio real de grado impar tiene al menos una raíz real.
+\end{enumerate}
+
+\subsection*{Exponencial y logaritmo complejo}
+\begin{enumerate}
+\item Calcule $e^{1+i\pi}$.
+\item Calcule $e^{2+i\pi/2}$.
+\item Resuelva $e^z=1$.
+\item Determine todos los valores de $\log(-1)$.
+\item Calcule $\operatorname{Log}(1+i)$.
+\item Calcule $\operatorname{Log}(-2i)$.
+\end{enumerate}
+
+\subsection*{Problemas}
+\begin{enumerate}
+\item Sea $z=1+i$. Calcule sucesivamente $\overline z$, $|z|$, $\operatorname{Arg}(z)$, su forma polar, su forma exponencial, $z^8$ y sus raíces cúbicas.
+\item Sea $z=-1+\sqrt3\,i$. Exprese $z$ en forma polar y exponencial y calcule $z^{12}$.
+\item Resuelva completamente $z^4=16i$ y represente geométricamente las soluciones.
+\item Determine el lugar geométrico definido por $|z-1|+|z+1|=4$ e interprete el resultado.
+\item Sea $p(z)=z^4+5z^2+4$. Factorice completamente $p$ sobre $\mathbb{R}$ y sobre $\mathbb{C}$.
+\item Pruebe que la transformación $T(z)=e^{i\theta}z$ preserva distancias: $|T(z_1)-T(z_2)|=|z_1-z_2|$.
+\end{enumerate}
+
+\subsection*{Ejercicios tipo examen}
+\begin{enumerate}
+\item Sin usar calculadora, simplifique $\dfrac{(1+i)^{10}}{(1-i)^6}$.
+\item Determine todas las soluciones de $z^3=-8i$ y expréselas en forma rectangular.
+\item Sea $z$ tal que $|z|=2$ y $\operatorname{Arg}(z)=\frac{2\pi}{3}$. Calcule $z^5$.
+\item Encuentre todos los $z$ que satisfacen simultáneamente $|z|=2$ y $|z-2|=2$.
+\item Factorice completamente $z^6-1$ sobre $\mathbb{C}$.
+\item Determine todos los valores de $w$ tales que $e^w=1+i$.
+\end{enumerate}
+
+	
+% =====================================================
+\subsection*{Ejercicios adicionales de números complejos}
+% =====================================================
+\begin{enumerate}
+\item Operaciones básicas
+
+\begin{enumerate}
+
+\item Simplifique y escriba el resultado en la forma $a+bi$:
+\[
+(4-3i)+(7+5i).
+\]
+
+\item Simplifique:
+\[
+(6+2i)-(3-7i).
+\]
+
+\item Calcule:
+\[
+(2+3i)(4-5i).
+\]
+
+\item Calcule:
+\[
+(3-2i)^2.
+\]
+
+\item Simplifique:
+\[
+(1+i)(1-i)(2+3i).
+\]
+
+\item Simplifique:
+\[
+i^{35}+i^{42}-2i^{17}.
+\]
+
+\item Simplifique:
+\[
+i^{101}+i^{202}+i^{303}+i^{404}.
+\]
+
+\end{enumerate}
+
+
+\item División y conjugación
+
+\begin{enumerate}
+
+\item Exprese en la forma $a+bi$:
+\[
+\frac{3+4i}{2-i}.
+\]
+
+\item Simplifique:
+\[
+\frac{5-2i}{1+3i}.
+\]
+
+\item Calcule:
+\[
+\frac{1}{3-4i}.
+\]
+
+\item Si
+\[
+z=2-5i,
+\]
+calcule
+\[
+z+\overline z,\qquad
+z-\overline z,\qquad
+z\overline z.
+\]
+
+\item Simplifique:
+\[
+\frac{z}{\overline z}
+\]
+para
+\[
+z=1+i.
+\]
+
+\item Determine $z$ si
+\[
+(2-i)z=7+i.
+\]
+
+\end{enumerate}
+
+
+\item Ecuaciones con números complejos
+
+\begin{enumerate}
+
+\item Determine $x,y\in\mathbb{R}$ si
+\[
+(2x-y)+(x+3y)i=7+5i.
+\]
+
+\item Determine $a,b\in\mathbb{R}$ si
+\[
+(a+bi)(1+i)=5+i.
+\]
+
+\item Encuentre $z\in\mathbb{C}$ tal que
+\[
+z+\overline z=8,
+\qquad
+z-\overline z=-6i.
+\]
+
+\item Determine $z$ si
+\[
+2z+3\overline z=5+i.
+\]
+
+\item Determine todos los números complejos $z=a+bi$ que satisfacen
+\[
+z^2=3+4i.
+\]
+
+\item Resuelva en $\mathbb{C}$:
+\[
+z^2-4z+13=0.
+\]
+
+\item Resuelva:
+\[
+z^2+(2-2i)z-4i=0.
+\]
+
+\end{enumerate}
+
+
+\item Módulo y propiedades
+
+\begin{enumerate}
+
+\item Calcule:
+\[
+|3-4i|,
+\qquad
+|-5+12i|,
+\qquad
+|1+i|.
+\]
+
+\item Determine todos los valores de $x\in\mathbb{R}$ tales que
+\[
+|x+4i|=5.
+\]
+
+\item Determine $a,b\in\mathbb{R}$ si
+\[
+|a+bi|=5,
+\qquad a=4.
+\]
+
+\item Sea
+\[
+z=3+4i.
+\]
+Calcule
+\[
+\frac{z}{|z|}.
+\]
+¿Qué propiedad tiene el módulo del número obtenido?
+
+\item Demuestre directamente, escribiendo
+\[
+z=a+bi,
+\]
+que
+\[
+z\overline z=|z|^2.
+\]
+
+\item Demuestre que si $|z|=1$, entonces
+\[
+z^{-1}=\overline z.
+\]
+
+\end{enumerate}
+
+
+\item Interpretación geométrica
+
+\begin{enumerate}
+
+\item Represente en el plano complejo:
+\[
+z_1=2+3i,\qquad
+z_2=-3+2i,\qquad
+z_3=-2-4i,\qquad
+z_4=4-2i.
+\]
+
+\item Para
+\[
+z=3+4i,
+\]
+represente geométricamente $z$, $\overline z$, $-z$ y $-\overline z$.
+
+\item Describa geométricamente:
+\[
+|z|=3.
+\]
+
+\item Describa geométricamente:
+\[
+|z-(2+i)|=4.
+\]
+
+\item Describa geométricamente:
+\[
+|z+3-2i|\leq 2.
+\]
+
+\item Determine el lugar geométrico:
+\[
+|z-2|=|z+2|.
+\]
+
+\item Determine el lugar geométrico:
+\[
+|z-i|=|z-3i|.
+\]
+
+\end{enumerate}
+
+
+\item Problemas integradores
+
+\begin{enumerate}
+
+\item Sea
+\[
+z=\frac{(1+i)^4}{2-i}.
+\]
+Determine:
+
+\begin{enumerate}
+    \item la forma $a+bi$;
+    \item $\overline z$;
+    \item $|z|$;
+    \item $z\overline z$;
+    \item $z^{-1}$.
+\end{enumerate}
+
+\item Sean
+\[
+z_1=2+i,
+\qquad
+z_2=1-3i.
+\]
+Calcule
+\[
+w=\frac{z_1^2}{z_2}
+\]
+y determine $\operatorname{Re}(w)$, $\operatorname{Im}(w)$,
+$\overline w$ y $|w|$.
+
+\item Determine todos los $z=a+bi$ que satisfacen simultáneamente
+\[
+|z|=5
+\]
+y
+\[
+\operatorname{Re}(z)=3.
+\]
+Interprete geométricamente el problema.
+
+\item Sea $z\neq0$. Demuestre que
+\[
+\left|\frac{1}{z}\right|=\frac{1}{|z|}.
+\]
+
+\item Sean $z,w\in\mathbb{C}$. Demuestre algebraicamente que
+\[
+|zw|=|z||w|.
+\]
+
+\end{enumerate}
+\end{enumerate}
+\newpage
+
+% =====================================================
+
+% =====================================================
+\section{Complemento a exponencial y logaritmo}
+% =====================================================
+
+
+Estas notas complementarias fortalecen el cálculo de raíces de ecuaciones
+polinomiales en $\C$ y utilizan los ejemplos para ilustrar el Teorema
+Fundamental del Álgebra (TFA). La dificultad es deliberadamente mayor que en
+los casos elementales $z^n=1$, $z^n=-1$ y $z^n=r$, pero se conservan
+estructuras que permiten una solución completa en clase.
+
+\subsection*{Recordatorio: raíces $n$-ésimas}
+Si
+\[
+w=\rho e^{i\theta},\qquad \rho>0,
+\]
+entonces las soluciones de $z^n=w$ son
+\[
+\boxed{z_k=\rho^{1/n}e^{i(\theta+2k\pi)/n}},
+\qquad k=0,1,\ldots,n-1.
+\]
+En forma trigonométrica:
+\[
+z_k=\rho^{1/n}\left[
+\cos\left(\frac{\theta+2k\pi}{n}\right)
++i\sin\left(\frac{\theta+2k\pi}{n}\right)\right].
+\]
+Todas tienen módulo $\rho^{1/n}$ y los argumentos consecutivos difieren en
+$2\pi/n$.
+
+
+\subsection*{Ejemplos desarrollados paso a paso}
+
+\begin{ejemplo}
+Resolver
+\[
+z^3=-8+8\sqrt3\,i.
+\]
+
+\textbf{Paso 1. Escribir el número del lado derecho en forma polar.}
+
+Sea
+\[
+w=-8+8\sqrt3\,i.
+\]
+Su módulo es
+\[
+|w|=\sqrt{(-8)^2+(8\sqrt3)^2}
+=\sqrt{64+192}
+=\sqrt{256}=16.
+\]
+Como $\Re(w)<0$ e $\Im(w)>0$, $w$ se encuentra en el segundo cuadrante.
+Además,
+\[
+\tan\theta=\frac{8\sqrt3}{-8}=-\sqrt3.
+\]
+El ángulo de referencia es $\pi/3$; en el segundo cuadrante:
+\[
+\theta=\pi-\frac{\pi}{3}=\frac{2\pi}{3}.
+\]
+Por tanto,
+\[
+w=16e^{i2\pi/3}.
+\]
+
+\textbf{Paso 2. Aplicar la fórmula de las raíces cúbicas.}
+
+Si $z^3=w$, entonces
+\[
+z_k=16^{1/3}
+e^{i(2\pi/3+2k\pi)/3},
+\qquad k=0,1,2.
+\]
+Como
+\[
+16^{1/3}=2\sqrt[3]{2},
+\]
+obtenemos
+\[
+z_k=2\sqrt[3]{2}\,
+e^{i(2\pi/9+2k\pi/3)}.
+\]
+
+\textbf{Paso 3. Enumerar las tres raíces.}
+\[
+\boxed{
+\begin{aligned}
+z_0&=2\sqrt[3]{2}\,e^{i2\pi/9},\\
+z_1&=2\sqrt[3]{2}\,e^{i8\pi/9},\\
+z_2&=2\sqrt[3]{2}\,e^{i14\pi/9}.
+\end{aligned}}
+\]
+Las tres raíces tienen módulo $2\sqrt[3]{2}$ y están separadas angularmente por
+$2\pi/3$.
+\end{ejemplo}
+
+\begin{ejemplo}
+Resolver
+\[
+z^4=-16+16i.
+\]
+
+\textbf{Paso 1. Forma polar.}
+\[
+|-16+16i|=\sqrt{256+256}=16\sqrt2.
+\]
+El número está en el segundo cuadrante y su ángulo de referencia es $\pi/4$,
+por lo que
+\[
+\theta=\frac{3\pi}{4}.
+\]
+Así,
+\[
+-16+16i=16\sqrt2\,e^{i3\pi/4}.
+\]
+
+\textbf{Paso 2. Extraer las cuatro raíces.}
+\[
+z_k=(16\sqrt2)^{1/4}
+e^{i(3\pi/4+2k\pi)/4},
+\qquad k=0,1,2,3.
+\]
+Como
+\[
+(16\sqrt2)^{1/4}=2\,2^{1/8},
+\]
+resulta
+\[
+z_k=2\,2^{1/8}e^{i(3\pi/16+k\pi/2)}.
+\]
+
+\textbf{Paso 3. Enumerar.}
+\[
+\boxed{
+\begin{aligned}
+z_0&=2\,2^{1/8}e^{i3\pi/16},\\
+z_1&=2\,2^{1/8}e^{i11\pi/16},\\
+z_2&=2\,2^{1/8}e^{i19\pi/16},\\
+z_3&=2\,2^{1/8}e^{i27\pi/16}.
+\end{aligned}}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Reducción mediante sustitución]
+Resolver
+\[
+z^6+7z^3-8=0.
+\]
+
+\textbf{Paso 1. Reconocer la estructura.}
+El polinomio es cuadrático en $z^3$. Definimos
+\[
+u=z^3.
+\]
+Entonces
+\[
+u^2+7u-8=0.
+\]
+
+\textbf{Paso 2. Resolver la ecuación auxiliar.}
+\[
+u^2+7u-8=(u-1)(u+8)=0,
+\]
+por lo que
+\[
+u=1\qquad\text{o}\qquad u=-8.
+\]
+Regresando a $z$:
+\[
+z^3=1
+\qquad\text{o}\qquad
+z^3=-8.
+\]
+
+\textbf{Paso 3. Resolver $z^3=1$.}
+\[
+1=e^{i2k\pi},
+\]
+de modo que
+\[
+z_k=e^{i2k\pi/3},\qquad k=0,1,2.
+\]
+Así,
+\[
+1,\qquad
+-\frac12+\frac{\sqrt3}{2}i,\qquad
+-\frac12-\frac{\sqrt3}{2}i.
+\]
+
+\textbf{Paso 4. Resolver $z^3=-8$.}
+\[
+-8=8e^{i(\pi+2k\pi)}.
+\]
+Por tanto,
+\[
+z_k=2e^{i(\pi+2k\pi)/3},\qquad k=0,1,2,
+\]
+y obtenemos
+\[
+1+\sqrt3\,i,\qquad -2,\qquad 1-\sqrt3\,i.
+\]
+
+\textbf{Conclusión.}
+\[
+\boxed{
+1,\;
+-\frac12+\frac{\sqrt3}{2}i,\;
+-\frac12-\frac{\sqrt3}{2}i,\;
+1+\sqrt3 i,\;
+-2,\;
+1-\sqrt3 i.
+}
+\]
+Son seis raíces distintas, como corresponde al grado $6$.
+\end{ejemplo}
+
+\begin{ejemplo}[Polinomio bicuadrado]
+Resolver
+\[
+z^4-6z^2+25=0.
+\]
+
+\textbf{Paso 1. Sustitución.}
+Sea $u=z^2$. Entonces
+\[
+u^2-6u+25=0.
+\]
+
+\textbf{Paso 2. Fórmula general.}
+\[
+u=\frac{6\pm\sqrt{36-100}}{2}
+=\frac{6\pm\sqrt{-64}}{2}
+=3\pm4i.
+\]
+
+\textbf{Paso 3. Resolver $z^2=3+4i$.}
+Buscamos $z=a+bi$. Entonces
+\[
+(a+bi)^2=(a^2-b^2)+2ab\,i=3+4i.
+\]
+Por comparación,
+\[
+a^2-b^2=3,\qquad 2ab=4.
+\]
+Una solución evidente es $a=2$, $b=1$:
+\[
+(2+i)^2=3+4i.
+\]
+Las dos raíces son
+\[
+2+i,\qquad -2-i.
+\]
+
+\textbf{Paso 4. Resolver $z^2=3-4i$.}
+Análogamente,
+\[
+(2-i)^2=3-4i,
+\]
+por lo que las raíces son
+\[
+2-i,\qquad -2+i.
+\]
+
+\textbf{Conclusión.}
+\[
+\boxed{2+i,\;-2-i,\;2-i,\;-2+i.}
+\]
+Y la factorización completa es
+\[
+\boxed{
+z^4-6z^2+25=
+(z-(2+i))(z+(2+i))(z-(2-i))(z+(2-i)).
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Raíces desplazadas]
+Resolver
+\[
+(z-1)^4=-16.
+\]
+
+\textbf{Paso 1. Trasladar la variable.}
+Sea
+\[
+w=z-1.
+\]
+Entonces
+\[
+w^4=-16.
+\]
+
+\textbf{Paso 2. Forma polar.}
+\[
+-16=16e^{i(\pi+2k\pi)}.
+\]
+Por tanto,
+\[
+w_k=2e^{i(\pi+2k\pi)/4}
+=2e^{i(\pi/4+k\pi/2)}.
+\]
+
+\textbf{Paso 3. Obtener las cuatro raíces de $w$.}
+\[
+\begin{aligned}
+w_0&=2e^{i\pi/4}=\sqrt2+i\sqrt2,\\
+w_1&=2e^{i3\pi/4}=-\sqrt2+i\sqrt2,\\
+w_2&=2e^{i5\pi/4}=-\sqrt2-i\sqrt2,\\
+w_3&=2e^{i7\pi/4}=\sqrt2-i\sqrt2.
+\end{aligned}
+\]
+
+\textbf{Paso 4. Regresar a $z$.}
+Como $z=w+1$:
+\[
+\boxed{
+\begin{aligned}
+z_0&=1+\sqrt2+i\sqrt2,\\
+z_1&=1-\sqrt2+i\sqrt2,\\
+z_2&=1-\sqrt2-i\sqrt2,\\
+z_3&=1+\sqrt2-i\sqrt2.
+\end{aligned}}
+\]
+Geométricamente, las cuatro raíces están sobre la circunferencia
+\[
+|z-1|=2.
+\]
+\end{ejemplo}
+% =====================================================
+\section*{Ejercicios resueltos para clase}
+% =====================================================
+\subsection*{Forma polar y raíces $n$-ésimas}
+
+\begin{ejercicio}
+Resolver
+\[
+z^3=-8+8i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo es
+\[
+\rho=\sqrt{(-8)^2+8^2}=8\sqrt2,
+\]
+y un argumento es
+\[
+\theta=\frac{3\pi}{4}.
+\]
+Así,
+\[
+-8+8i=8\sqrt2\,e^{i3\pi/4}.
+\]
+Por tanto,
+\[
+z_k=(8\sqrt2)^{1/3}
+e^{i(3\pi/4+2k\pi)/3},\qquad k=0,1,2.
+\]
+Como $(8\sqrt2)^{1/3}=2\,2^{1/6}$,
+\[
+\boxed{
+z_k=2\,2^{1/6}e^{i(\pi/4+2k\pi/3)},\quad k=0,1,2.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^4=16i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+16i=16e^{i(\pi/2+2k\pi)}.
+\]
+Entonces
+\[
+z_k=2e^{i(\pi/8+k\pi/2)},\qquad k=0,1,2,3.
+\]
+Por tanto,
+\[
+\boxed{
+2e^{i\pi/8},\;
+2e^{i5\pi/8},\;
+2e^{i9\pi/8},\;
+2e^{i13\pi/8}.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^5=-32i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Podemos tomar
+\[
+-32i=32e^{-i\pi/2}.
+\]
+Así,
+\[
+z_k=2e^{i(-\pi/2+2k\pi)/5}
+=2e^{i(-\pi/10+2k\pi/5)},
+\quad k=0,\ldots,4.
+\]
+Por tanto,
+\[
+\boxed{
+z_k=2e^{i(-\pi/10+2k\pi/5)},\quad k=0,\ldots,4.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^4=8(1-i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Primero,
+\[
+|8(1-i)|=8\sqrt2,\qquad \arg(1-i)=-\frac{\pi}{4}.
+\]
+Entonces
+\[
+8(1-i)=8\sqrt2\,e^{-i\pi/4}.
+\]
+Las raíces son
+\[
+\boxed{
+z_k=(8\sqrt2)^{1/4}
+e^{i(-\pi/16+k\pi/2)},\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^6=-64.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+-64=64e^{i(\pi+2k\pi)}.
+\]
+Como $64^{1/6}=2$,
+\[
+z_k=2e^{i(\pi+2k\pi)/6}
+=2e^{i(\pi/6+k\pi/3)},
+\quad k=0,\ldots,5.
+\]
+Así,
+\[
+\boxed{
+\sqrt3+i,\;
+2i,\;
+-\sqrt3+i,\;
+-\sqrt3-i,\;
+-2i,\;
+\sqrt3-i.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^5=16(1+\sqrt3\,i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|16(1+\sqrt3 i)|=16\sqrt{1+3}=32,
+\]
+y
+\[
+\arg(1+\sqrt3 i)=\frac{\pi}{3}.
+\]
+Por tanto,
+\[
+16(1+\sqrt3 i)=32e^{i\pi/3}.
+\]
+Como $32^{1/5}=2$,
+\[
+\boxed{
+z_k=2e^{i(\pi/15+2k\pi/5)},\quad k=0,\ldots,4.
+}
+\]
+% =====================================================
+\subsection*{Sustitución y estructura algebraica}
+% =====================================================
+\begin{ejercicio}
+Resolver
+\[
+z^4+8z^2+16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+z^4+8z^2+16=(z^2+4)^2.
+\]
+Por tanto,
+\[
+z^2=-4,
+\]
+de donde
+\[
+z=\pm2i.
+\]
+Como el factor está al cuadrado,
+\[
+\boxed{2i\text{ y }-2i,\quad\text{cada una de multiplicidad }2.}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^6-7z^3-8=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^3$:
+\[
+u^2-7u-8=(u-8)(u+1)=0.
+\]
+Así,
+\[
+z^3=8\qquad\text{o}\qquad z^3=-1.
+\]
+Para $z^3=8$:
+\[
+z=2e^{2k\pi i/3},\quad k=0,1,2.
+\]
+Para $z^3=-1$:
+\[
+z=e^{i(\pi+2k\pi)/3},\quad k=0,1,2.
+\]
+Por tanto,
+\[
+\boxed{
+2,\;-1+i\sqrt3,\;-1-i\sqrt3,\;
+\frac12+\frac{\sqrt3}{2}i,\;-1,\;
+\frac12-\frac{\sqrt3}{2}i.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^8-17z^4+16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^4$:
+\[
+u^2-17u+16=(u-1)(u-16)=0.
+\]
+Luego
+\[
+z^4=1\qquad\text{o}\qquad z^4=16.
+\]
+Del primer caso:
+\[
+1,\ i,\ -1,\ -i.
+\]
+Del segundo:
+\[
+2,\ 2i,\ -2,\ -2i.
+\]
+Por tanto hay ocho raíces distintas:
+\[
+\boxed{\pm1,\;\pm i,\;\pm2,\;\pm2i.}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^6+2z^3+5=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^3$:
+\[
+u^2+2u+5=0.
+\]
+Entonces
+\[
+u=-1\pm2i.
+\]
+Para cada uno de estos dos números debemos calcular tres raíces cúbicas.
+
+Sea
+\[
+-1+2i=\sqrt5\,e^{i\theta},
+\qquad
+\theta=\pi-\arctan 2.
+\]
+Entonces
+\[
+z_k=5^{1/6}e^{i(\theta+2k\pi)/3},
+\quad k=0,1,2.
+\]
+Para el conjugado,
+\[
+-1-2i=\sqrt5\,e^{-i\theta},
+\]
+y
+\[
+z_k=5^{1/6}e^{i(-\theta+2k\pi)/3},
+\quad k=0,1,2.
+\]
+Así se obtienen las seis raíces:
+\[
+\boxed{
+5^{1/6}e^{i(\pm\theta+2k\pi)/3},
+\quad k=0,1,2,\qquad
+\theta=\pi-\arctan2.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^8+2z^4+4=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^4$:
+\[
+u^2+2u+4=0.
+\]
+Entonces
+\[
+u=-1\pm i\sqrt3.
+\]
+Estos números tienen módulo $2$ y argumentos $\pm2\pi/3$:
+\[
+u=2e^{\pm i2\pi/3}.
+\]
+Por tanto, para cada signo,
+\[
+z_k=2^{1/4}
+e^{i(\pm2\pi/3+2k\pi)/4},
+\qquad k=0,1,2,3.
+\]
+En total:
+\[
+\boxed{
+z_k=2^{1/4}e^{i(\pm\pi/6+k\pi/2)},
+\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^{10}-31z^5-32=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^5$:
+\[
+u^2-31u-32=(u-32)(u+1)=0.
+\]
+Así,
+\[
+z^5=32\qquad\text{o}\qquad z^5=-1.
+\]
+Del primer caso:
+\[
+z_k=2e^{2k\pi i/5},\quad k=0,\ldots,4.
+\]
+Del segundo:
+\[
+z_k=e^{i(\pi+2k\pi)/5},\quad k=0,\ldots,4.
+\]
+Por tanto:
+\[
+\boxed{
+\{2e^{2k\pi i/5}\}_{k=0}^4
+\cup
+\{e^{i(\pi+2k\pi)/5}\}_{k=0}^4.
+}
+\]
+% =====================================================
+\subsection*{Desplazamientos y composiciones algebraicas}
+% =====================================================
+\begin{ejercicio}
+Resolver
+\[
+(z-2)^3=8i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $w=z-2$. Como
+\[
+8i=8e^{i\pi/2},
+\]
+\[
+w_k=2e^{i(\pi/6+2k\pi/3)},\quad k=0,1,2.
+\]
+Finalmente,
+\[
+\boxed{
+z_k=2+2e^{i(\pi/6+2k\pi/3)},\quad k=0,1,2.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z+i)^4=16.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $w=z+i$. Las raíces cuartas de $16$ son
+\[
+2,\;2i,\;-2,\;-2i.
+\]
+Como $z=w-i$:
+\[
+\boxed{
+2-i,\quad i,\quad -2-i,\quad -3i.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z-1+i)^5=-32.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea
+\[
+w=z-1+i.
+\]
+Entonces
+\[
+w^5=-32=32e^{i(\pi+2k\pi)}.
+\]
+Así,
+\[
+w_k=2e^{i(\pi+2k\pi)/5}.
+\]
+Como
+\[
+z=w+1-i,
+\]
+resulta
+\[
+\boxed{
+z_k=1-i+2e^{i(\pi+2k\pi)/5},
+\quad k=0,\ldots,4.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z+2)^6+64=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+(z+2)^6=-64.
+\]
+Sea $w=z+2$. Entonces
+\[
+w_k=2e^{i(\pi/6+k\pi/3)},\quad k=0,\ldots,5.
+\]
+Por tanto,
+\[
+\boxed{
+z_k=-2+2e^{i(\pi/6+k\pi/3)},\quad k=0,\ldots,5.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+\bigl((z-1)^2\bigr)^2+4=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+(z-1)^4=-4.
+\]
+Como
+\[
+-4=4e^{i(\pi+2k\pi)},
+\]
+\[
+z-1=\sqrt2\,e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3.
+\]
+Así,
+\[
+\boxed{
+z_k=1+\sqrt2\,e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+(z^2+1)^2+16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+(z^2+1)^2=-16.
+\]
+Por tanto,
+\[
+z^2+1=\pm4i,
+\]
+y entonces
+\[
+z^2=-1+4i
+\qquad\text{o}\qquad
+z^2=-1-4i.
+\]
+Para $z^2=a+bi$, una forma explícita de la raíz cuadrada es
+\[
+\sqrt{a+bi}
+=
+\sqrt{\frac{r+a}{2}}
++i\,\operatorname{sgn}(b)
+\sqrt{\frac{r-a}{2}},
+\quad r=\sqrt{a^2+b^2}.
+\]
+Aquí $r=\sqrt{17}$. Por tanto las cuatro raíces son
+\[
+\boxed{
+\pm\left(
+\sqrt{\frac{\sqrt{17}-1}{2}}
++i\sqrt{\frac{\sqrt{17}+1}{2}}
+\right)
+}
+\]
+y
+\[
+\boxed{
+\pm\left(
+\sqrt{\frac{\sqrt{17}-1}{2}}
+-i\sqrt{\frac{\sqrt{17}+1}{2}}
+\right).
+}
+\]
+% =====================================================
+\subsection*{Teorema Fundamental del Álgebra}
+% =====================================================
+\begin{Teo}[Teorema Fundamental del Álgebra]
+Sea
+\[
+p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,
+\qquad a_n\neq0,
+\]
+un polinomio no constante con coeficientes complejos. Entonces existe
+$z_0\in\C$ tal que
+\[
+p(z_0)=0.
+\]
+\end{Teo}
+
+\begin{Prop}
+Todo polinomio de grado $n\ge1$ con coeficientes complejos puede factorizarse
+como
+\[
+\boxed{p(z)=a_n(z-z_1)\cdots(z-z_n),}
+\]
+donde las raíces se cuentan de acuerdo con sus multiplicidades.
+\end{Prop}
+
+\textbf{proof}
+Por el TFA, $p$ posee al menos una raíz $z_1$. El teorema del factor implica
+\[
+p(z)=(z-z_1)q_{n-1}(z).
+\]
+Si $n-1\ge1$, se aplica nuevamente el TFA a $q_{n-1}$. Repitiendo el
+procedimiento hasta llegar a un polinomio constante se obtiene
+\[
+p(z)=a_n(z-z_1)\cdots(z-z_n).
+\]
+ \hfill $\blacksquare$
+
+\begin{Obs}
+Un polinomio de grado $n$ tiene exactamente $n$ raíces en $\C$ cuando se
+cuentan multiplicidades. Puede tener menos de $n$ raíces \emph{distintas}.
+\end{Obs}
+
+\begin{Prop}[Raíces conjugadas]
+Si $p$ tiene coeficientes reales y $z_0$ es raíz de $p$, entonces
+$\overline{z_0}$ también es raíz, con la misma multiplicidad.
+\end{Prop}
+
+\textbf{proof}
+Si los coeficientes son reales,
+\[
+p(\overline z)=\overline{p(z)}.
+\]
+Si $p(z_0)=0$,
+\[
+p(\overline{z_0})
+=\overline{p(z_0)}
+=0.
+\]
+La afirmación sobre multiplicidad se obtiene conjugando la factorización
+correspondiente.
+\hfill $\blacksquare$
+% =====================================================
+\subsection*{Ejemplos (TFA)}
+% =====================================================
+\begin{Ejem}[Cuatro raíces distintas]
+Sea
+\[
+p(z)=z^4-16.
+\]
+Su grado es $4$. Factorizamos:
+\[
+z^4-16=(z^2-4)(z^2+4)
+=(z-2)(z+2)(z-2i)(z+2i).
+\]
+Por tanto,
+\[
+\boxed{2,\;-2,\;2i,\;-2i}
+\]
+son cuatro raíces simples. La suma de multiplicidades es
+\[
+1+1+1+1=4.
+\]
+\end{Ejem}
+
+\begin{Ejem}[Raíces múltiples]
+\[
+p(z)=z^4-2z^2+1=(z^2-1)^2=(z-1)^2(z+1)^2.
+\]
+Las raíces distintas son $1$ y $-1$, pero
+\[
+m(1)=2,\qquad m(-1)=2.
+\]
+Así,
+\[
+2+2=4=\deg p.
+\]
+\end{Ejem}
+
+\begin{Ejem}[Raíces no reales]
+\[
+p(z)=z^4+5z^2+4.
+\]
+Sea $u=z^2$:
+\[
+u^2+5u+4=(u+1)(u+4)=0.
+\]
+Entonces
+\[
+z^2=-1\quad\text{o}\quad z^2=-4,
+\]
+por lo que
+\[
+\boxed{i,\;-i,\;2i,\;-2i.}
+\]
+Ninguna raíz es real, aunque el polinomio tiene coeficientes reales.
+\end{Ejem}
+
+\begin{ejemplo}[Aplicación del teorema de raíces conjugadas]
+Sea
+\[
+p(z)=z^3-3z^2+4z-2.
+\]
+Probamos raíces reales sencillas:
+\[
+p(1)=1-3+4-2=0.
+\]
+Luego $(z-1)$ es factor. Dividiendo:
+\[
+p(z)=(z-1)(z^2-2z+2).
+\]
+Resolvemos
+\[
+z^2-2z+2=0:
+\]
+\[
+z=\frac{2\pm\sqrt{4-8}}2
+=1\pm i.
+\]
+Por tanto,
+\[
+\boxed{
+p(z)=(z-1)(z-(1+i))(z-(1-i)).
+}
+\]
+La pareja $1\pm i$ ilustra el teorema de las raíces conjugadas.
+\end{ejemplo}
+% =====================================================
+\subsection*{Ejercicios resueltos (TFA)}
+% =====================================================
+En cada caso determinaremos grado, raíces, multiplicidades y factorización.
+
+\begin{ejercicio}
+\[
+p(z)=z^3-8.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El grado es $3$. Resolver $z^3=8$ da
+\[
+z_k=2e^{2k\pi i/3},\quad k=0,1,2.
+\]
+Así,
+\[
+2,\quad -1+i\sqrt3,\quad -1-i\sqrt3.
+\]
+Todas son simples y
+\[
+\boxed{
+p(z)=(z-2)(z+1-i\sqrt3)(z+1+i\sqrt3).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^4+4.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+z^4=-4=4e^{i(\pi+2k\pi)}.
+\]
+Por tanto,
+\[
+z_k=\sqrt2\,e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3.
+\]
+En forma binómica:
+\[
+1+i,\quad -1+i,\quad -1-i,\quad 1-i.
+\]
+Todas son simples:
+\[
+\boxed{
+p(z)=(z-1-i)(z+1-i)(z+1+i)(z-1+i).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^4+2z^2+1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+p(z)=(z^2+1)^2=(z-i)^2(z+i)^2.
+\]
+Las raíces son
+\[
+\boxed{i\text{ y }-i}
+\]
+con multiplicidad $2$ cada una. La suma de multiplicidades es $4$.
+
+\begin{ejercicio}
+\[
+p(z)=z^4+13z^2+36.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^2$:
+\[
+u^2+13u+36=(u+4)(u+9)=0.
+\]
+Entonces
+\[
+z^2=-4\quad\text{o}\quad z^2=-9.
+\]
+Las raíces son
+\[
+\boxed{2i,-2i,3i,-3i}.
+\]
+Todas son simples y
+\[
+\boxed{
+p(z)=(z-2i)(z+2i)(z-3i)(z+3i).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^6-1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Las raíces sextas de la unidad son
+\[
+z_k=e^{ik\pi/3},\quad k=0,\ldots,5.
+\]
+Es decir,
+\[
+1,\quad
+\frac12+\frac{\sqrt3}{2}i,\quad
+-\frac12+\frac{\sqrt3}{2}i,\quad
+-1,\quad
+-\frac12-\frac{\sqrt3}{2}i,\quad
+\frac12-\frac{\sqrt3}{2}i.
+\]
+Son seis raíces simples, de modo que
+\[
+\boxed{
+z^6-1=\prod_{k=0}^{5}(z-e^{ik\pi/3}).
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^6+7z^3-8.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Este ejercicio coincide con uno de los ejemplos iniciales. Con $u=z^3$:
+\[
+(u-1)(u+8)=0.
+\]
+Las seis raíces son
+\[
+1,\;
+-\frac12\pm\frac{\sqrt3}{2}i,\;
+-2,\;
+1\pm\sqrt3 i.
+\]
+Todas son simples; por tanto la suma de multiplicidades es $6$.
+
+\begin{ejercicio}
+\[
+p(z)=z^8-17z^4+16.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Con $u=z^4$:
+\[
+(u-1)(u-16)=0.
+\]
+Así,
+\[
+z^4=1\quad\text{o}\quad z^4=16.
+\]
+Las raíces son
+\[
+\boxed{\pm1,\;\pm i,\;\pm2,\;\pm2i.}
+\]
+Son ocho raíces simples, como exige el grado $8$.
+
+\begin{ejercicio}
+\[
+p(z)=(z-2)^3(z^2+4)^2.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El grado es
+\[
+3+2(2)=7.
+\]
+La raíz $z=2$ tiene multiplicidad $3$. Además,
+\[
+z^2+4=(z-2i)(z+2i),
+\]
+y al estar al cuadrado:
+\[
+z=2i,\quad z=-2i
+\]
+tienen multiplicidad $2$ cada una. La suma es
+\[
+3+2+2=7.
+\]
+La factorización completa ya es
+\[
+\boxed{
+p(z)=(z-2)^3(z-2i)^2(z+2i)^2.
+}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^5-5z^4+10z^3-10z^2+5z-1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Reconocemos el desarrollo binomial:
+\[
+(z-1)^5
+=z^5-5z^4+10z^3-10z^2+5z-1.
+\]
+Por tanto,
+\[
+\boxed{z=1}
+\]
+es la única raíz distinta y tiene multiplicidad $5$:
+\[
+\boxed{p(z)=(z-1)^5.}
+\]
+
+\begin{ejercicio}
+\[
+p(z)=z^6+3z^4+3z^2+1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Reconocemos
+\[
+z^6+3z^4+3z^2+1=(z^2+1)^3.
+\]
+Luego
+\[
+p(z)=(z-i)^3(z+i)^3.
+\]
+Por tanto,
+\[
+\boxed{i\text{ y }-i}
+\]
+tienen multiplicidad $3$ cada una, y
+\[
+3+3=6.
+\]
+% =====================================================
+\subsection*{Ejercicios resueltos adicionales}
+% =====================================================
+\begin{ejercicio}
+¿Puede existir un polinomio de grado $5$ con coeficientes complejos que no
+tenga ninguna raíz compleja?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+No. El TFA afirma que todo polinomio no constante con coeficientes complejos
+tiene al menos una raíz en $\C$. De hecho, contando multiplicidades, un
+polinomio de grado $5$ tiene exactamente cinco raíces complejas.
+
+\begin{ejercicio}
+Un polinomio de grado $7$ tiene exactamente tres raíces distintas. ¿Contradice
+esto el TFA?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+No. Las tres raíces distintas pueden tener multiplicidades cuya suma sea $7$.
+Por ejemplo,
+\[
+p(z)=(z-a)^3(z-b)^2(z-c)^2
+\]
+tiene grado $7$, sólo tres raíces distintas y multiplicidades
+\[
+3+2+2=7.
+\]
+
+\begin{ejercicio}
+¿Puede un polinomio de grado impar con coeficientes reales tener únicamente
+raíces no reales?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+No. Las raíces no reales de un polinomio real aparecen en pares conjugados.
+Cada par aporta un número par de raíces, contando multiplicidades. Un grado
+impar no puede componerse exclusivamente de pares; por ello debe existir al
+menos una raíz real.
+
+\begin{ejercicio}
+Si $p$ tiene coeficientes reales y $2+3i$ es raíz de multiplicidad $2$, ¿qué
+puede afirmarse acerca de $2-3i$?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+Por el teorema de raíces conjugadas,
+\[
+\boxed{2-3i}
+\]
+también es raíz y tiene la misma multiplicidad $2$.
+
+\begin{ejercicio}
+Construir un polinomio mónico real de grado $4$ cuyas raíces sean
+\[
+1+i,\quad1-i,\quad-2+3i,\quad-2-3i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Agrupamos conjugados:
+\[
+(z-(1+i))(z-(1-i))
+=((z-1)-i)((z-1)+i)
+=(z-1)^2+1
+=z^2-2z+2.
+\]
+Asimismo,
+\[
+(z+2-3i)(z+2+3i)
+=(z+2)^2+9
+=z^2+4z+13.
+\]
+Entonces
+\[
+p(z)=(z^2-2z+2)(z^2+4z+13).
+\]
+Multiplicando:
+\[
+\boxed{
+p(z)=z^4+2z^3+7z^2-18z+26.
+}
+\]
+
+\begin{ejercicio}
+Construir un polinomio mónico real de grado $5$ que tenga $2+i$ como raíz
+doble y $-1$ como raíz simple.
+\end{ejercicio}
+
+\textbf{Solución.}
+Como los coeficientes deben ser reales, $2-i$ también debe ser raíz doble.
+Ya tenemos
+\[
+2+2+1=5
+\]
+raíces contando multiplicidades, exactamente el grado requerido. Por tanto,
+\[
+p(z)=(z-(2+i))^2(z-(2-i))^2(z+1).
+\]
+El producto del par conjugado es
+\[
+(z-(2+i))(z-(2-i))
+=(z-2)^2+1
+=z^2-4z+5.
+\]
+Luego
+\[
+p(z)=(z^2-4z+5)^2(z+1).
+\]
+Como
+\[
+(z^2-4z+5)^2=z^4-8z^3+26z^2-40z+25,
+\]
+obtenemos
+\[
+\boxed{
+p(z)=z^5-7z^4+18z^3-14z^2-15z+25.
+}
+\]
+
+\begin{ejercicio}
+¿Por qué $z^2+1$ muestra que $\mathbb{R}$ no es algebraicamente cerrado?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+El polinomio
+\[
+p(x)=x^2+1
+\]
+tiene coeficientes reales, pero la ecuación
+\[
+x^2+1=0
+\]
+implica
+\[
+x^2=-1,
+\]
+que no tiene solución en $\mathbb{R}$. Por ello existe un polinomio no
+constante con coeficientes reales que no tiene raíces reales. En consecuencia,
+$\mathbb{R}$ no es algebraicamente cerrado.
+
+\begin{ejercicio}
+¿En qué sentido el TFA afirma que $\C$ es algebraicamente cerrado?
+\end{ejercicio}
+
+\textbf{Respuesta.}
+Un campo es algebraicamente cerrado si todo polinomio no constante con
+coeficientes en ese campo posee una raíz en el mismo campo. El TFA afirma
+precisamente que todo polinomio no constante con coeficientes complejos posee
+una raíz compleja. Aplicando repetidamente el teorema del factor, todo
+polinomio se descompone completamente en factores lineales sobre $\C$.
+
+\begin{ejercicio}
+Resolver
+\[
+z^4=81\left(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3}\right).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo de cada raíz es
+\[
+81^{1/4}=3.
+\]
+Los argumentos son
+\[
+\frac{2\pi/3+2k\pi}{4}
+=\frac{\pi}{6}+\frac{k\pi}{2}.
+\]
+Por tanto,
+\[
+\boxed{
+z_k=3e^{i(\pi/6+k\pi/2)},\quad k=0,1,2,3.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+z^5=32\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Como $32^{1/5}=2$,
+\[
+\arg z_k=
+\frac{5\pi/6+2k\pi}{5}
+=\frac{\pi}{6}+\frac{2k\pi}{5}.
+\]
+Así,
+\[
+\boxed{
+z_k=2e^{i(\pi/6+2k\pi/5)},\quad k=0,\ldots,4.
+}
+\]
+
+\begin{ejercicio}
+Determinar todas las raíces de
+\[
+z^8+15z^4-16=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^4$:
+\[
+u^2+15u-16=(u-1)(u+16)=0.
+\]
+Entonces
+\[
+z^4=1
+\quad\text{o}\quad
+z^4=-16.
+\]
+Del primer caso:
+\[
+1,\;i,\;-1,\;-i.
+\]
+Del segundo:
+\[
+z_k=2e^{i(\pi/4+k\pi/2)},\quad k=0,1,2,3,
+\]
+es decir,
+\[
+\sqrt2(1+i),\quad
+\sqrt2(-1+i),\quad
+\sqrt2(-1-i),\quad
+\sqrt2(1-i).
+\]
+En total hay ocho raíces distintas.
+
+\begin{ejercicio}
+Determinar todas las raíces de
+\[
+z^9-7z^6+14z^3-8=0.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Sea $u=z^3$. Entonces
+\[
+u^3-7u^2+14u-8=0.
+\]
+Probamos $u=1$:
+\[
+1-7+14-8=0.
+\]
+Por tanto $(u-1)$ es factor. Dividiendo:
+\[
+u^3-7u^2+14u-8=(u-1)(u^2-6u+8)
+=(u-1)(u-2)(u-4).
+\]
+Así,
+\[
+z^3=1,\qquad z^3=2,\qquad z^3=4.
+\]
+Por tanto las nueve raíces son
+\[
+\boxed{
+e^{2k\pi i/3},\quad
+2^{1/3}e^{2k\pi i/3},\quad
+4^{1/3}e^{2k\pi i/3},
+\qquad k=0,1,2.
+}
+\]
+
+\begin{ejercicio}
+Factorizar completamente sobre $\C$:
+\[
+z^6+3z^4+4z^2+12.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Agrupamos:
+\[
+z^6+3z^4+4z^2+12
+=z^4(z^2+3)+4(z^2+3)
+=(z^2+3)(z^4+4).
+\]
+Ahora,
+\[
+z^2+3=0
+\quad\Longrightarrow\quad
+z=\pm i\sqrt3.
+\]
+Además,
+\[
+z^4=-4,
+\]
+cuyas raíces son
+\[
+1+i,\quad -1+i,\quad -1-i,\quad 1-i.
+\]
+Por tanto,
+\[
+\boxed{
+\begin{aligned}
+z^6+3z^4+4z^2+12
+={}&(z-i\sqrt3)(z+i\sqrt3)\\
+&\cdot(z-1-i)(z+1-i)(z+1+i)(z-1+i).
+\end{aligned}}
+\]
+
+\begin{ejercicio}
+Construir un polinomio real de grado $6$ que tenga como raíces
+\[
+1+i,\qquad -2+3i,\qquad4i,
+\]
+junto con todas las raíces que necesariamente deben acompañarlas.
+\end{ejercicio}
+
+\textbf{Solución.}
+Por conjugación también deben ser raíces
+\[
+1-i,\qquad -2-3i,\qquad -4i.
+\]
+Así obtenemos exactamente seis raíces. El polinomio mónico es
+\[
+p(z)=
+(z-(1+i))(z-(1-i))
+(z+2-3i)(z+2+3i)
+(z-4i)(z+4i).
+\]
+Agrupando conjugados:
+\[
+p(z)=(z^2-2z+2)(z^2+4z+13)(z^2+16).
+\]
+Ésta es ya una factorización real completa en factores cuadráticos
+irreducibles. Si se desea expandir:
+\[
+(z^2-2z+2)(z^2+4z+13)
+=z^4+2z^3+7z^2-18z+26,
+\]
+y finalmente
+\[
+\boxed{
+p(z)=z^6+2z^5+23z^4+14z^3+138z^2-288z+416.
+}
+\]
+
+\begin{ejercicio}
+Un polinomio mónico real de grado $6$ tiene $1+2i$ como raíz doble y $-3$
+como raíz doble. Construir el polinomio.
+\end{ejercicio}
+
+\textbf{Solución.}
+Como $1+2i$ es raíz doble y los coeficientes son reales, $1-2i$ también es
+raíz doble. Junto con $-3$ de multiplicidad $2$, tenemos
+\[
+2+2+2=6,
+\]
+por lo que ya se han determinado todas las raíces.
+
+Así,
+\[
+p(z)=(z-(1+2i))^2(z-(1-2i))^2(z+3)^2.
+\]
+Agrupando conjugados:
+\[
+(z-(1+2i))(z-(1-2i))
+=(z-1)^2+4
+=z^2-2z+5.
+\]
+Por tanto,
+\[
+\boxed{
+p(z)=(z^2-2z+5)^2(z+3)^2.
+}
+\]
+Esta forma factorizada muestra inmediatamente las raíces y sus
+multiplicidades.
+
+% =====================================================
+\subsection*{Logaritmo complejo}
+% =====================================================
+
+
+En variable real, para $x>0$, el logaritmo natural $\ln x$ es la función
+inversa de la exponencial real. En el plano complejo aparece una diferencia
+fundamental: la exponencial compleja es periódica,
+\[
+e^{z+2\pi i k}=e^z,\qquad k\in\mathbb Z.
+\]
+Por esta razón, la ecuación
+\[
+e^w=z,\qquad z\neq0,
+\]
+no tiene una única solución $w$, sino infinitas.
+
+Sea
+\[
+z=re^{i\theta},\qquad r=|z|>0.
+\]
+Buscamos $w=u+iv$ tal que
+\[
+e^w=z.
+\]
+Usando
+\[
+e^{u+iv}=e^u(\cos v+i\sin v),
+\]
+y comparando con
+\[
+z=r(\cos\theta+i\sin\theta),
+\]
+se obtienen las condiciones
+\[
+e^u=r
+\qquad\text{y}\qquad
+v=\theta+2k\pi,\qquad k\in\mathbb Z.
+\]
+De la primera,
+\[
+u=\ln r.
+\]
+Por tanto, todos los valores del logaritmo complejo son
+\[
+\boxed{
+\log z=\ln|z|+i(\arg z+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+
+Si $\theta$ representa un argumento particular de $z$, también escribimos
+\[
+\boxed{
+\log z=\ln r+i(\theta+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{Obs}
+El símbolo $\log z$ se utiliza aquí para representar el logaritmo complejo
+multivaluado. No debe confundirse con una rama univaluada del logaritmo.
+\end{Obs}
+
+\subsection*{Argumento principal y logaritmo principal}
+
+Como un número complejo no nulo tiene infinitos argumentos,
+\[
+\arg z=\theta+2k\pi,\qquad k\in\mathbb Z,
+\]
+es útil seleccionar uno de ellos.
+
+Definimos el \emph{argumento principal} mediante
+\[
+\operatorname{Arg}z\in(-\pi,\pi].
+\]
+Entonces el \emph{logaritmo principal} se define por
+\[
+\boxed{
+\operatorname{Log}z=\ln|z|+i\operatorname{Arg}z.
+}
+\]
+
+Por tanto,
+\[
+\log z
+=
+\operatorname{Log}z+2k\pi i,
+\qquad k\in\mathbb Z,
+\]
+siempre que se interprete adecuadamente el argumento principal.
+
+\begin{Obs}
+El número $z=0$ no posee logaritmo complejo. En efecto, no existe
+$w\in\mathbb C$ tal que $e^w=0$, pues
+\[
+|e^w|=e^{\Re(w)}>0.
+\]
+\end{Obs}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log 1.
+\]
+
+\textbf{Paso 1. Forma polar.}
+
+El módulo es
+\[
+|1|=1,
+\]
+y todos sus argumentos son
+\[
+2k\pi,\qquad k\in\mathbb Z.
+\]
+
+\textbf{Paso 2. Aplicar la definición.}
+\[
+\log1=\ln1+i(2k\pi).
+\]
+Como $\ln1=0$,
+\[
+\boxed{
+\log1=2k\pi i,\qquad k\in\mathbb Z.
+}
+\]
+
+El valor principal corresponde a $k=0$:
+\[
+\boxed{\operatorname{Log}1=0.}
+\]
+
+\textbf{Comprobación.}
+\[
+e^{2k\pi i}
+=\cos(2k\pi)+i\sin(2k\pi)
+=1.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log(-1).
+\]
+
+\textbf{Paso 1. Módulo y argumento.}
+\[
+|-1|=1.
+\]
+Un argumento es $\pi$, por lo que todos los argumentos son
+\[
+\pi+2k\pi=(2k+1)\pi.
+\]
+
+\textbf{Paso 2. Sustituir.}
+\[
+\log(-1)
+=\ln1+i(2k+1)\pi.
+\]
+Así,
+\[
+\boxed{
+\log(-1)=(2k+1)\pi i,\qquad k\in\mathbb Z.
+}
+\]
+
+Como $\operatorname{Arg}(-1)=\pi$,
+\[
+\boxed{\operatorname{Log}(-1)=i\pi.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log i.
+\]
+
+Tenemos
+\[
+|i|=1,\qquad
+\arg i=\frac{\pi}{2}+2k\pi.
+\]
+Entonces
+\[
+\boxed{
+\log i=i\left(\frac{\pi}{2}+2k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{\operatorname{Log}i=\frac{\pi i}{2}.}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log(1+i).
+\]
+
+\textbf{Paso 1. Módulo.}
+\[
+|1+i|=\sqrt{1^2+1^2}=\sqrt2.
+\]
+
+\textbf{Paso 2. Argumento.}
+
+El número está en el primer cuadrante y
+\[
+\tan\theta=1,
+\]
+por lo que
+\[
+\theta=\frac{\pi}{4}.
+\]
+
+\textbf{Paso 3. Logaritmo.}
+\[
+\log(1+i)
+=
+\ln\sqrt2
++i\left(\frac{\pi}{4}+2k\pi\right).
+\]
+Como
+\[
+\ln\sqrt2=\frac12\ln2,
+\]
+obtenemos
+\[
+\boxed{
+\log(1+i)
+=
+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{
+\operatorname{Log}(1+i)
+=
+\frac12\ln2+\frac{\pi}{4}i.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular todos los valores de
+\[
+\log(-1+i\sqrt3).
+\]
+
+\textbf{Paso 1. Módulo.}
+\[
+r=\sqrt{(-1)^2+(\sqrt3)^2}=2.
+\]
+
+\textbf{Paso 2. Argumento.}
+
+El punto está en el segundo cuadrante. Su ángulo de referencia es $\pi/3$,
+de modo que
+\[
+\theta=\frac{2\pi}{3}.
+\]
+
+\textbf{Paso 3. Logaritmo.}
+\[
+\boxed{
+\log(-1+i\sqrt3)
+=
+\ln2+i\left(\frac{2\pi}{3}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+Por tanto,
+\[
+\boxed{
+\operatorname{Log}(-1+i\sqrt3)
+=
+\ln2+\frac{2\pi}{3}i.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular $\log(-2-2i)$.
+
+El módulo es
+\[
+|-2-2i|=\sqrt8=2\sqrt2.
+\]
+El punto está en el tercer cuadrante. Un argumento puede escribirse como
+\[
+\theta=\frac{5\pi}{4},
+\]
+pero para el argumento principal debemos escoger el representante en
+$(-\pi,\pi]$:
+\[
+\operatorname{Arg}(-2-2i)=-\frac{3\pi}{4}.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-2-2i)
+=
+\ln(2\sqrt2)
++i\left(-\frac{3\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+Como
+\[
+\ln(2\sqrt2)=\frac32\ln2,
+\]
+el valor principal es
+\[
+\boxed{
+\operatorname{Log}(-2-2i)
+=
+\frac32\ln2-\frac{3\pi}{4}i.
+}
+\]
+\end{ejemplo}
+
+\begin{ejemplo}
+Calcular $\log(\sqrt3-i)$.
+
+Tenemos
+\[
+|\sqrt3-i|=\sqrt{3+1}=2.
+\]
+El punto está en el cuarto cuadrante y
+\[
+\tan\theta=-\frac{1}{\sqrt3}.
+\]
+Por tanto,
+\[
+\operatorname{Arg}(\sqrt3-i)=-\frac{\pi}{6}.
+\]
+Así,
+\[
+\boxed{
+\log(\sqrt3-i)
+=
+\ln2+i\left(-\frac{\pi}{6}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+y
+\[
+\boxed{
+\operatorname{Log}(\sqrt3-i)=\ln2-\frac{\pi}{6}i.
+}
+\]
+\end{ejemplo}
+
+Para $z_1,z_2\neq0$, los logaritmos multivaluados satisfacen, en el sentido
+apropiado de conjuntos de valores,
+\[
+\log(z_1z_2)=\log z_1+\log z_2.
+\]
+Sin embargo, para el \emph{logaritmo principal} no siempre es cierto que
+\[
+\operatorname{Log}(z_1z_2)
+=
+\operatorname{Log}z_1+\operatorname{Log}z_2.
+\]
+
+\begin{ejemplo}[Una identidad que falla para el logaritmo principal]
+Tomemos
+\[
+z_1=z_2=-1.
+\]
+Entonces
+\[
+z_1z_2=1
+\]
+y
+\[
+\operatorname{Log}(1)=0.
+\]
+Pero
+\[
+\operatorname{Log}(-1)=i\pi,
+\]
+por lo que
+\[
+\operatorname{Log}(-1)+\operatorname{Log}(-1)
+=2\pi i.
+\]
+Así,
+\[
+\boxed{
+\operatorname{Log}((-1)(-1))
+\neq
+\operatorname{Log}(-1)+\operatorname{Log}(-1).
+}
+\]
+La diferencia es precisamente un múltiplo entero de $2\pi i$.
+\end{ejemplo}
+
+\begin{Obs}
+Ésta es una de las razones por las que en variable compleja las identidades
+algebraicas que involucran logaritmos deben manejarse con cuidado. La elección
+de una rama afecta el valor obtenido.
+\end{Obs}
+
+% =====================================================
+\subsection*{Ramas del logaritmo: el problema que debemos resolver}
+% =====================================================
+La noción de \emph{rama} del logaritmo complejo merece una discusión cuidadosa.
+No se trata simplemente de una convención de notación: aparece porque el
+logaritmo complejo, considerado inicialmente, no es una función univaluada.
+
+La idea central puede resumirse en
+\[
+\boxed{
+\text{el problema no está en }\ln|z|;
+\qquad
+\text{el problema está en elegir el argumento de }z.
+}
+\]
+
+En efecto, para $z\neq0$,
+\[
+\log z=\ln|z|+i(\theta+2k\pi),\qquad k\in\mathbb Z.
+\]
+El módulo $|z|$ es único y, por tanto, $\ln|z|$ también lo es. En cambio,
+el argumento no es único:
+\[
+\theta,\quad\theta+2\pi,\quad\theta+4\pi,\quad\ldots
+\]
+representan la misma dirección en el plano complejo.
+
+Así,
+\[
+\boxed{
+\text{multivaluación de }\log z
+\quad\Longleftrightarrow\quad
+\text{multivaluación del argumento}.
+}
+\]
+% =====================================================
+\subsubsection*{¿Por qué necesitamos escoger una rama?}
+% =====================================================
+Consideremos primero el número
+\[
+z=i.
+\]
+Podemos escribir
+\[
+i=e^{i\pi/2},
+\]
+pero también
+\[
+i=e^{i(\pi/2+2\pi)}
+=e^{i(\pi/2-2\pi)}
+=e^{i(\pi/2+2k\pi)}.
+\]
+Por consiguiente,
+\[
+\log i
+=
+i\left(\frac{\pi}{2}+2k\pi\right),
+\qquad k\in\mathbb Z.
+\]
+
+Tenemos entonces infinitos valores asociados al mismo número $i$. Si queremos
+que el logaritmo sea una \emph{función} en el sentido usual, debemos seleccionar
+exactamente uno de ellos.
+
+Una \emph{rama del argumento} consiste precisamente en escoger, de manera
+coherente y continua sobre cierto dominio, un único argumento para cada número
+complejo del dominio. Una vez elegida una rama del argumento, se obtiene una
+rama del logaritmo mediante
+\[
+L(z)=\ln|z|+i\,\Theta(z),
+\]
+donde $\Theta(z)$ es la rama elegida del argumento.
+
+\subsubsection*{La elección principal}
+
+Una elección particularmente importante consiste en tomar argumentos en un
+intervalo de longitud $2\pi$ centrado alrededor de cero.
+
+Como convención puntual, suele definirse el argumento principal mediante
+\[
+\operatorname{Arg}z\in(-\pi,\pi].
+\]
+Así, por ejemplo,
+\[
+\operatorname{Arg}(1)=0,\qquad
+\operatorname{Arg}(i)=\frac{\pi}{2},\qquad
+\operatorname{Arg}(-i)=-\frac{\pi}{2},\qquad
+\operatorname{Arg}(-1)=\pi.
+\]
+
+Con esta convención podemos escribir el \emph{valor principal} del logaritmo:
+\[
+\boxed{
+\operatorname{Log}z
+=
+\ln|z|+i\operatorname{Arg}z.
+}
+\]
+
+Sin embargo, aquí es necesario hacer una distinción importante.
+
+\begin{Obs}[Valor principal y rama principal analítica]
+La convención
+\[
+\operatorname{Arg}z\in(-\pi,\pi]
+\]
+permite asignar un argumento principal incluso a los números reales negativos.
+Pero si deseamos que el logaritmo sea una función continua y analítica en un
+dominio abierto, debemos eliminar una semirrecta del plano.
+
+Para la \emph{rama principal analítica} se trabaja usualmente en
+\[
+\boxed{
+D=\mathbb C\setminus(-\infty,0]
+}
+\]
+y se toma
+\[
+\boxed{
+-\pi<\Arg z<\pi.
+}
+\]
+Sobre este dominio se define
+\[
+\boxed{
+\Log z=\ln|z|+i\Arg z.
+}
+\]
+\end{Obs}
+
+Esta diferencia entre ``valor principal'' y ``rama principal analítica'' es
+importante: la primera es una selección de un valor; la segunda es una función
+univaluada, continua y analítica sobre un dominio abierto apropiado.
+% =====================================================
+\subsubsection*{¿Es obligatoria la elección $(-\pi,\pi)$?}
+% =====================================================
+No. La elección principal es una convención especialmente útil, pero no es la
+única posible.
+
+Podríamos, por ejemplo, escoger
+\[
+0<\theta<2\pi,
+\]
+lo cual obliga a colocar el corte sobre el eje real positivo. Más generalmente,
+podemos seleccionar un intervalo
+\[
+\alpha<\theta<\alpha+2\pi.
+\]
+Esto conduce a una rama
+\[
+\Arg_\alpha z\in(\alpha,\alpha+2\pi)
+\]
+y a un logaritmo
+\[
+\Log_\alpha z
+=
+\ln|z|+i\Arg_\alpha z
+\]
+definido sobre el plano con la semirrecta de ángulo $\alpha$ eliminada.
+
+Por tanto,
+\[
+\boxed{
+\text{una rama es una elección coherente de una de las infinitas hojas
+del argumento.}
+}
+\]
+% =====================================================
+\subsubsection*{¿Por qué es necesario hacer un corte?}
+% =====================================================
+Éste es el punto geométrico fundamental.
+
+Consideremos la circunferencia unitaria
+\[
+z=e^{i\theta}.
+\]
+Partimos de un punto cercano a $1$ y recorremos la circunferencia en sentido
+antihorario. El argumento aumenta continuamente:
+\[
+0,\quad
+\frac{\pi}{2},\quad
+\pi,\quad
+\frac{3\pi}{2},\quad
+2\pi.
+\]
+Pero al llegar a $\theta=2\pi$ tenemos
+\[
+e^{i2\pi}=e^{i0}=1.
+\]
+Geométricamente hemos regresado exactamente al mismo punto, aunque el argumento
+ha aumentado en $2\pi$.
+
+Si continuamos otra vuelta,
+\[
+\theta=4\pi,
+\]
+y otra más,
+\[
+\theta=6\pi.
+\]
+
+Por consiguiente, si permitimos rodear completamente al origen, no podemos
+mantener simultáneamente las tres propiedades siguientes:
+
+\begin{enumerate}
+\item asignar un único argumento a cada punto;
+\item hacer que ese argumento varíe continuamente;
+\item permitir recorridos cerrados que den una vuelta completa alrededor de
+$0$.
+\end{enumerate}
+
+Para obtener una rama continua debemos impedir que el dominio permita completar
+esa vuelta. Una forma de hacerlo es eliminar una semirrecta que parte del
+origen.
+
+Para la rama principal eliminamos
+\[
+(-\infty,0].
+\]
+Entonces el dominio es
+\[
+D=\mathbb C\setminus(-\infty,0].
+\]
+
+Ya no es posible recorrer una curva cerrada alrededor del origen sin atravesar
+el corte.
+
+\[
+\boxed{
+\text{El corte de rama impide completar una vuelta alrededor del origen
+sin abandonar el dominio.}
+}
+\]
+% =====================================================
+\subsubsection*{Qué ocurre a ambos lados del corte}
+% =====================================================
+La necesidad del corte puede verse de manera particularmente clara cerca del
+eje real negativo.
+
+Consideremos
+\[
+z_+=-1+i\varepsilon,
+\qquad
+z_-=-1-i\varepsilon,
+\qquad \varepsilon>0.
+\]
+
+El punto $z_+$ se aproxima a $-1$ desde el semiplano superior. Por ello,
+\[
+\Arg(z_+)\longrightarrow\pi
+\qquad
+\text{cuando }\varepsilon\to0^+.
+\]
+
+En cambio, $z_-$ se aproxima a $-1$ desde el semiplano inferior:
+\[
+\Arg(z_-)\longrightarrow-\pi.
+\]
+
+Como
+\[
+|z_\pm|\longrightarrow1,
+\]
+tenemos
+\[
+\ln|z_\pm|\longrightarrow0.
+\]
+Así,
+\[
+\Log(z_+)\longrightarrow i\pi,
+\]
+mientras que
+\[
+\Log(z_-)\longrightarrow-i\pi.
+\]
+
+La diferencia entre los límites laterales es
+\[
+i\pi-(-i\pi)=2\pi i.
+\]
+
+Por tanto,
+\[
+\boxed{
+\lim_{\substack{z\to-1\\\Im z>0}}\Log z=i\pi,
+\qquad
+\lim_{\substack{z\to-1\\\Im z<0}}\Log z=-i\pi.
+}
+\]
+
+Ésta es una forma precisa de observar el salto de la rama principal a través
+del corte:
+\[
+\boxed{\text{el salto es }2\pi i.}
+\]
+
+\begin{Ejem}[Dos puntos muy próximos, dos argumentos muy diferentes]
+Consideremos
+\[
+z_1=-1+0.01i,
+\qquad
+z_2=-1-0.01i.
+\]
+Ambos puntos están muy próximos en el plano complejo. Sin embargo,
+\[
+\Arg z_1\approx\pi,
+\qquad
+\Arg z_2\approx-\pi.
+\]
+En consecuencia,
+\[
+\Log z_1\approx i\pi,
+\qquad
+\Log z_2\approx-i\pi.
+\]
+Aunque $z_1$ y $z_2$ están arbitrariamente cerca cuando el término imaginario
+tiende a cero, sus logaritmos principales se separan aproximadamente en
+$2\pi i$. Esto muestra por qué no debemos intentar extender continuamente la
+rama principal a través del eje real negativo.
+\end{Ejem}
+% =====================================================
+\subsubsection*{Interpretación geométrica mediante una vuelta alrededor del origen}
+% =====================================================
+Podemos formalizar la intuición anterior tomando
+\[
+\gamma(t)=e^{it},
+\qquad0\leq t\leq2\pi.
+\]
+Supongamos, por un momento, que existiera una función argumento continua
+$\Theta$ definida a lo largo de toda la circunferencia y compatible con
+\[
+e^{i\Theta(\gamma(t))}=\gamma(t).
+\]
+Al recorrer la curva continuamente, necesariamente
+\[
+\Theta(\gamma(t))=\Theta(\gamma(0))+t
+\]
+salvo múltiplos constantes de $2\pi$. Al completar la vuelta:
+\[
+\Theta(\gamma(2\pi))
+=
+\Theta(\gamma(0))+2\pi.
+\]
+Pero
+\[
+\gamma(2\pi)=\gamma(0)=1.
+\]
+Una función univaluada tendría que satisfacer
+\[
+\Theta(\gamma(2\pi))
+=
+\Theta(\gamma(0)),
+\]
+lo cual contradice el incremento de $2\pi$.
+
+Esta contradicción explica, de forma elemental, por qué no existe una rama
+continua del argumento sobre todo
+\[
+\mathbb C\setminus\{0\}.
+\]
+
+\subsubsection*{La rama principal como función analítica}
+
+Una vez realizado el corte,
+\[
+D=\mathbb C\setminus(-\infty,0],
+\]
+podemos definir
+\[
+\Log z=\ln|z|+i\Arg z,
+\qquad -\pi<\Arg z<\pi.
+\]
+
+Si
+\[
+z=x+iy,
+\]
+entonces
+\[
+\Log z
+=
+\frac12\ln(x^2+y^2)
++i\Arg(x+iy).
+\]
+
+En este dominio, $\Log z$ es una función analítica y satisface
+\[
+\boxed{
+\frac{d}{dz}\Log z=\frac1z.
+}
+\]
+
+Una manera de comprender esta identidad es recordar que, localmente,
+\[
+e^{\Log z}=z.
+\]
+Derivando formalmente:
+\[
+e^{\Log z}\frac{d}{dz}\Log z=1.
+\]
+Como
+\[
+e^{\Log z}=z,
+\]
+resulta
+\[
+z\frac{d}{dz}\Log z=1,
+\]
+y por tanto
+\[
+\boxed{
+(\Log z)'=\frac1z.
+}
+\]
+% =====================================================
+\subsubsection*{Una consecuencia algebraica importante}
+% =====================================================
+La elección de una rama también explica por qué ciertas identidades familiares
+del logaritmo real pueden fallar para valores principales.
+
+Por ejemplo,
+\[
+(-1)(-1)=1.
+\]
+Entonces
+\[
+\operatorname{Log}(1)=0.
+\]
+Sin embargo,
+\[
+\operatorname{Log}(-1)=i\pi,
+\]
+de modo que
+\[
+\operatorname{Log}(-1)+\operatorname{Log}(-1)=2\pi i.
+\]
+Así,
+\[
+\boxed{
+\operatorname{Log}(z_1z_2)
+\neq
+\operatorname{Log}z_1+\operatorname{Log}z_2
+}
+\]
+en general para valores principales.
+
+No se trata de un fallo del álgebra, sino de que al tomar valores principales
+estamos efectuando una selección particular entre valores que difieren por
+múltiplos de $2\pi i$.
+% =====================================================
+\subsubsection*{Ejercicios resueltos}
+% =====================================================
+\begin{ejercicio}
+Determine el valor principal de
+\[
+\log(-1-i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo es
+\[
+|-1-i|=\sqrt2.
+\]
+El punto está en el tercer cuadrante. Un argumento positivo es $5\pi/4$, pero
+éste no pertenece a $(-\pi,\pi]$. Restamos $2\pi$:
+\[
+\frac{5\pi}{4}-2\pi=-\frac{3\pi}{4}.
+\]
+Por tanto,
+\[
+\Arg(-1-i)=-\frac{3\pi}{4}.
+\]
+Así,
+\[
+\boxed{
+\operatorname{Log}(-1-i)
+=
+\frac12\ln2-\frac{3\pi}{4}i.
+}
+\]
+
+\begin{ejercicio}
+Determine todos los valores de $\log(-1-i)$ y señale el principal.
+\end{ejercicio}
+
+\textbf{Solución.}
+A partir del argumento principal,
+\[
+\arg(-1-i)
+=
+-\frac{3\pi}{4}+2k\pi.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-1-i)
+=
+\frac12\ln2
++i\left(-\frac{3\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+El valor correspondiente a $k=0$ es
+\[
+\boxed{
+\operatorname{Log}(-1-i)
+=
+\frac12\ln2-\frac{3\pi}{4}i.
+}
+\]
+
+\begin{ejercicio}
+Compare los valores principales de
+\[
+z_1=e^{i3\pi/4}
+\qquad\text{y}\qquad
+z_2=e^{i5\pi/4}.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Para $z_1$,
+\[
+\Arg z_1=\frac{3\pi}{4}.
+\]
+Como $|z_1|=1$,
+\[
+\Log z_1=\frac{3\pi}{4}i.
+\]
+
+Para $z_2$, el ángulo $5\pi/4$ no pertenece al intervalo principal. Restamos
+$2\pi$:
+\[
+\frac{5\pi}{4}-2\pi=-\frac{3\pi}{4}.
+\]
+Por tanto,
+\[
+\Log z_2=-\frac{3\pi}{4}i.
+\]
+
+Así,
+\[
+\boxed{
+\Log(e^{i3\pi/4})=\frac{3\pi}{4}i,
+\qquad
+\Log(e^{i5\pi/4})=-\frac{3\pi}{4}i.
+}
+\]
+
+Este ejercicio permite observar que, para la rama principal,
+\[
+\Log(e^{i\theta})
+\]
+no es simplemente $i\theta$ para todo $\theta\in\mathbb R$: primero debemos
+reducir $\theta$ al intervalo principal.
+
+\begin{ejercicio}
+Calcule
+\[
+\Log(e^{i7\pi/3}).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Reducimos el argumento módulo $2\pi$:
+\[
+\frac{7\pi}{3}-2\pi
+=
+\frac{\pi}{3}.
+\]
+Como $\pi/3\in(-\pi,\pi]$,
+\[
+\Arg(e^{i7\pi/3})=\frac{\pi}{3}.
+\]
+Además, el módulo es $1$, de modo que
+\[
+\boxed{
+\Log(e^{i7\pi/3})=\frac{\pi}{3}i.
+}
+\]
+Obsérvese que
+\[
+\boxed{
+\Log(e^{i7\pi/3})\neq i\frac{7\pi}{3}.
+}
+\]
+
+\begin{ejercicio}
+Explique por qué no puede definirse una rama continua del logaritmo sobre
+$\mathbb C\setminus\{0\}$.
+\end{ejercicio}
+
+\textbf{Solución.}
+Una rama continua del logaritmo produciría, mediante su parte imaginaria, una
+elección continua del argumento. Al recorrer una vez la circunferencia
+\[
+\gamma(t)=e^{it},\qquad0\leq t\leq2\pi,
+\]
+el argumento tendría que aumentar en $2\pi$. Sin embargo,
+\[
+\gamma(0)=\gamma(2\pi)=1.
+\]
+Una función univaluada tendría que asignar el mismo valor al punto inicial y
+final, mientras que la continuidad del argumento a lo largo de la vuelta
+exigiría valores separados por $2\pi$. Por ello tal rama no puede existir en
+todo $\mathbb C\setminus\{0\}$.
+% =====================================================
+\subsubsection*{Resumiendo}
+% =====================================================
+La discusión puede sintetizarse en la siguiente cadena lógica:
+\[
+\boxed{
+e^{z+2\pi i}=e^z
+}
+\]
+implica
+\[
+\boxed{
+\arg z=\theta+2k\pi
+}
+\]
+y, por tanto,
+\[
+\boxed{
+\log z=\ln|z|+i(\theta+2k\pi)
+}
+\]
+es multivaluado.
+
+Para obtener una función debemos seleccionar una rama:
+\[
+\boxed{
+-\pi<\Arg z<\pi
+}
+\]
+sobre
+\[
+\boxed{
+\mathbb C\setminus(-\infty,0].
+}
+\]
+Entonces
+\[
+\boxed{
+\Log z=\ln|z|+i\Arg z
+}
+\]
+es la rama principal analítica.
+
+El corte no es un artificio puramente notacional: evita que podamos dar una
+vuelta completa alrededor del origen dentro del dominio. De esta manera el
+argumento puede escogerse de forma única y continua.
+
+Finalmente, al acercarnos al corte por arriba y por abajo,
+\[
+\Arg z\to\pi
+\qquad\text{y}\qquad
+\Arg z\to-\pi,
+\]
+respectivamente, y el logaritmo presenta un salto de
+\[
+\boxed{2\pi i.}
+\]
+
+% =====================================================
+\subsection*{M\'as ejemplos}
+% =====================================================
+\begin{Ejem}
+Resolver
+\[
+e^z=3.
+\]
+
+Sea $z=x+iy$. Equivalentemente, podemos tomar el logaritmo complejo de $3$:
+\[
+z=\log3.
+\]
+Como $3=3e^{i2k\pi}$,
+\[
+\boxed{
+z=\ln3+2k\pi i,\qquad k\in\mathbb Z.
+}
+\]
+
+Comprobación:
+\[
+e^{\ln3+2k\pi i}
+=3e^{2k\pi i}=3.
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Resolver
+\[
+e^z=-4.
+\]
+
+Como
+\[
+-4=4e^{i(\pi+2k\pi)},
+\]
+tenemos
+\[
+\boxed{
+z=\ln4+i(\pi+2k\pi),\qquad k\in\mathbb Z.
+}
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Resolver
+\[
+e^{2z}=1+i.
+\]
+
+\textbf{Paso 1. Tomar logaritmos complejos.}
+\[
+2z=\log(1+i).
+\]
+Ya sabemos que
+\[
+\log(1+i)
+=
+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right).
+\]
+
+\textbf{Paso 2. Despejar $z$.}
+\[
+\boxed{
+z=
+\frac14\ln2
++i\left(\frac{\pi}{8}+k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Resolver
+\[
+e^{3z}=-8i.
+\]
+
+Como
+\[
+-8i=8e^{i(-\pi/2+2k\pi)},
+\]
+\[
+3z=\ln8+i\left(-\frac{\pi}{2}+2k\pi\right).
+\]
+Dividiendo entre $3$:
+\[
+\boxed{
+z=\frac{\ln8}{3}
++i\left(-\frac{\pi}{6}+\frac{2k\pi}{3}\right),
+\qquad k\in\mathbb Z.
+}
+\]
+Como $\ln8=3\ln2$:
+\[
+\boxed{
+z=\ln2+i\left(-\frac{\pi}{6}+\frac{2k\pi}{3}\right).
+}
+\]
+\end{Ejem}
+% =====================================================
+\subsection*{Potencias complejas definidas mediante el logaritmo}
+% =====================================================
+Una potencia con exponente complejo puede definirse mediante
+\[
+\boxed{
+z^w=e^{w\log z}.
+}
+\]
+Como $\log z$ es multivaluado, en general $z^w$ también puede ser
+multivaluado.
+
+\begin{Ejem}
+Calcular todos los valores de
+\[
+i^i.
+\]
+
+Sabemos que
+\[
+\log i=i\left(\frac{\pi}{2}+2k\pi\right).
+\]
+Entonces
+\[
+i^i=e^{i\log i}.
+\]
+Sustituyendo:
+\[
+i\log i
+=
+i\left[
+i\left(\frac{\pi}{2}+2k\pi\right)
+\right]
+=
+-\left(\frac{\pi}{2}+2k\pi\right).
+\]
+Por tanto,
+\[
+\boxed{
+i^i=e^{-\pi/2-2k\pi},
+\qquad k\in\mathbb Z.
+}
+\]
+
+Un resultado notable es que \emph{todos estos valores son reales y positivos}.
+El valor correspondiente al logaritmo principal es
+\[
+\boxed{
+e^{-\pi/2}.
+}
+\]
+\end{Ejem}
+
+\begin{Ejem}
+Calcular los valores de
+\[
+(-1)^i.
+\]
+
+Como
+\[
+\log(-1)=i(2k+1)\pi,
+\]
+entonces
+\[
+(-1)^i
+=
+e^{i\log(-1)}
+=
+e^{-(2k+1)\pi}.
+\]
+Así,
+\[
+\boxed{
+(-1)^i=e^{-(2k+1)\pi},
+\qquad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{e^{-\pi}.}
+\]
+\end{Ejem}
+% =====================================================
+\subsection*{Ejercicios resueltos: logaritmo complejo}
+% =====================================================
+\begin{ejercicio}
+Calcular todos los valores de
+\[
+\log(-i).
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|-i|=1,\qquad
+\operatorname{Arg}(-i)=-\frac{\pi}{2}.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-i)
+=
+i\left(-\frac{\pi}{2}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+El valor principal es
+\[
+\boxed{-\frac{\pi i}{2}.}
+\]
+
+\begin{ejercicio}
+Calcular $\log(3+3i)$ y su valor principal.
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|3+3i|=3\sqrt2,\qquad
+\Arg(3+3i)=\frac{\pi}{4}.
+\]
+Entonces
+\[
+\boxed{
+\log(3+3i)
+=
+\ln(3\sqrt2)
++i\left(\frac{\pi}{4}+2k\pi\right).
+}
+\]
+Como
+\[
+\ln(3\sqrt2)=\ln3+\frac12\ln2,
+\]
+\[
+\boxed{
+\Log(3+3i)
+=
+\ln3+\frac12\ln2+\frac{\pi}{4}i.
+}
+\]
+
+\begin{ejercicio}
+Calcular $\log(-\sqrt3+i)$.
+\end{ejercicio}
+
+\textbf{Solución.}
+El módulo es
+\[
+\sqrt{3+1}=2.
+\]
+El punto está en el segundo cuadrante y el ángulo de referencia es $\pi/6$:
+\[
+\Arg(-\sqrt3+i)=\frac{5\pi}{6}.
+\]
+Así,
+\[
+\boxed{
+\log(-\sqrt3+i)
+=
+\ln2+i\left(\frac{5\pi}{6}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Calcular $\log(-2+2\sqrt3\,i)$.
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+|-2+2\sqrt3 i|
+=\sqrt{4+12}=4.
+\]
+El punto está en el segundo cuadrante y
+\[
+\tan\theta=-\sqrt3,
+\]
+de donde
+\[
+\Arg z=\frac{2\pi}{3}.
+\]
+Por tanto,
+\[
+\boxed{
+\log(-2+2\sqrt3 i)
+=
+\ln4+i\left(\frac{2\pi}{3}+2k\pi\right).
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^z=2i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+2i=2e^{i(\pi/2+2k\pi)}.
+\]
+Por tanto,
+\[
+\boxed{
+z=\ln2+i\left(\frac{\pi}{2}+2k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^{2z}=-1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+2z=i(\pi+2k\pi).
+\]
+Por tanto,
+\[
+\boxed{
+z=i\left(\frac{\pi}{2}+k\pi\right),
+\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^{z-1}=1-i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+\[
+1-i=\sqrt2\,e^{i(-\pi/4+2k\pi)}.
+\]
+Entonces
+\[
+z-1
+=
+\frac12\ln2
++i\left(-\frac{\pi}{4}+2k\pi\right),
+\]
+y
+\[
+\boxed{
+z=
+1+\frac12\ln2
++i\left(-\frac{\pi}{4}+2k\pi\right),
+\quad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Resolver
+\[
+e^{(1+i)z}=1.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Como
+\[
+\log1=2k\pi i,
+\]
+tenemos
+\[
+(1+i)z=2k\pi i.
+\]
+Por tanto,
+\[
+z=\frac{2k\pi i}{1+i}.
+\]
+Multiplicando por el conjugado:
+\[
+z=
+\frac{2k\pi i(1-i)}{2}
+=k\pi(i-i^2)
+=k\pi(1+i).
+\]
+Así,
+\[
+\boxed{
+z=k\pi(1+i),\qquad k\in\mathbb Z.
+}
+\]
+
+\begin{ejercicio}
+Calcular todos los valores de
+\[
+(1+i)^i.
+\]
+\end{ejercicio}
+
+\textbf{Solución.}
+Primero,
+\[
+\log(1+i)
+=
+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right).
+\]
+Entonces
+\[
+(1+i)^i=e^{i\log(1+i)}.
+\]
+Multiplicando:
+\[
+i\log(1+i)
+=
+\frac{i}{2}\ln2
+-\left(\frac{\pi}{4}+2k\pi\right).
+\]
+Por tanto,
+\[
+\boxed{
+(1+i)^i
+=
+e^{-\pi/4-2k\pi}
+e^{\,i(\ln2)/2},
+\qquad k\in\mathbb Z.
+}
+\]
+En forma trigonométrica:
+\[
+\boxed{
+(1+i)^i
+=
+e^{-\pi/4-2k\pi}
+\left[
+\cos\left(\frac{\ln2}{2}\right)
++i\sin\left(\frac{\ln2}{2}\right)
+\right].
+}
+\]
+% =====================================================
+\subsection*{Ejercicios adicionales para práctica}
+% =====================================================
+Resolver detalladamente:
+
+\begin{enumerate}
+\item $\log(2)$.
+\item $\log(-2)$.
+\item $\log(2i)$.
+\item $\log(1-i)$.
+\item $\log(-1-i)$.
+\item $\log(\sqrt3+i)$.
+\item $\log(-3+3\sqrt3\,i)$.
+\item $\log\left(\frac12+\frac{\sqrt3}{2}i\right)$.
+\item $e^z=5$.
+\item $e^z=-5i$.
+\item $e^{2z}=4i$.
+\item $e^{3z}=1$.
+\item $e^{z+2}=1+i$.
+\item $e^{(2-i)z}=1$.
+\item Calcular todos los valores de $(-i)^i$.
+\item Calcular todos los valores de $2^i$.
+\item Calcular todos los valores de $(1-i)^i$.
+\end{enumerate}
+% =====================================================
+\subsection*{Respuestas de los ejercicios adicionales}
+% =====================================================
+\begin{enumerate}
+\item
+\[
+\boxed{\log2=\ln2+2k\pi i.}
+\]
+
+\item
+\[
+\boxed{\log(-2)=\ln2+i(\pi+2k\pi).}
+\]
+
+\item
+\[
+\boxed{\log(2i)=\ln2+i\left(\frac{\pi}{2}+2k\pi\right).}
+\]
+
+\item
+\[
+\boxed{
+\log(1-i)=\frac12\ln2
++i\left(-\frac{\pi}{4}+2k\pi\right).
+}
+\]
+
+\item
+\[
+\boxed{
+\log(-1-i)=\frac12\ln2
++i\left(-\frac{3\pi}{4}+2k\pi\right).
+}
+\]
+
+\item
+\[
+\boxed{
+\log(\sqrt3+i)
+=\ln2+i\left(\frac{\pi}{6}+2k\pi\right).
+}
+\]
+
+\item Como el módulo es $6$ y el argumento principal es $2\pi/3$,
+\[
+\boxed{
+\log(-3+3\sqrt3 i)
+=\ln6+i\left(\frac{2\pi}{3}+2k\pi\right).
+}
+\]
+
+\item El número tiene módulo $1$ y argumento $\pi/3$:
+\[
+\boxed{
+\log\left(\frac12+\frac{\sqrt3}{2}i\right)
+=i\left(\frac{\pi}{3}+2k\pi\right).
+}
+\]
+
+\item
+\[
+\boxed{z=\ln5+2k\pi i.}
+\]
+
+\item
+\[
+\boxed{
+z=\ln5+i\left(-\frac{\pi}{2}+2k\pi\right).
+}
+\]
+
+\item
+\[
+2z=\ln4+i\left(\frac{\pi}{2}+2k\pi\right),
+\]
+por tanto
+\[
+\boxed{
+z=\ln2+i\left(\frac{\pi}{4}+k\pi\right).
+}
+\]
+
+\item
+\[
+3z=2k\pi i,
+\]
+por lo que
+\[
+\boxed{z=\frac{2k\pi}{3}i.}
+\]
+
+\item
+\[
+z+2=\frac12\ln2+i\left(\frac{\pi}{4}+2k\pi\right),
+\]
+de modo que
+\[
+\boxed{
+z=-2+\frac12\ln2
++i\left(\frac{\pi}{4}+2k\pi\right).
+}
+\]
+
+\item
+\[
+(2-i)z=2k\pi i,
+\]
+de donde
+\[
+z=\frac{2k\pi i}{2-i}
+=\frac{2k\pi i(2+i)}5
+=\boxed{\frac{2k\pi}{5}(-1+2i)}.
+\]
+
+\item
+\[
+\log(-i)=i\left(-\frac{\pi}{2}+2k\pi\right),
+\]
+por tanto
+\[
+\boxed{
+(-i)^i=e^{\pi/2-2k\pi}.
+}
+\]
+
+\item
+\[
+\log2=\ln2+2k\pi i.
+\]
+Entonces
+\[
+2^i=e^{i\ln2-2k\pi},
+\]
+es decir,
+\[
+\boxed{
+2^i=e^{-2k\pi}
+\left(\cos(\ln2)+i\sin(\ln2)\right).
+}
+\]
+
+\item
+\[
+\log(1-i)
+=
+\frac12\ln2+i\left(-\frac{\pi}{4}+2k\pi\right).
+\]
+Multiplicando por $i$:
+\[
+i\log(1-i)
+=
+\frac{i}{2}\ln2+\frac{\pi}{4}-2k\pi.
+\]
+Por tanto,
+\[
+\boxed{
+(1-i)^i
+=
+e^{\pi/4-2k\pi}
+e^{i(\ln2)/2}.
+}
+\]
+\end{enumerate}
+% =====================================================
+\newpage
+
+% =====================================================
+\part{Ap\'endice:}
+% =====================================================
+% =====================================================
+\setcounter{section}{0}
+% =====================================================
+\section{Series de Maclaurin}
+% ============================================================
+
+
+Las series de potencias constituyen una herramienta fundamental para
+representar funciones mediante expresiones algebraicas infinitas. En
+particular, las series de Taylor permiten aproximar una función
+suficientemente regular alrededor de un punto dado.
+
+% ============================================================
+\subsection{Series de Taylor}
+% ============================================================
+
+Las series de Taylor constituyen una de las herramientas fundamentales del análisis matemático. Su objetivo es representar, al menos localmente, una función suficientemente regular mediante una serie de potencias.
+
+La idea central consiste en aproximar una función \(f(x)\) alrededor de un punto \(x=a\) mediante un polinomio cuyas derivadas coincidan con las derivadas de \(f\) en dicho punto.
+
+Supongamos que queremos aproximar \(f(x)\) cerca de \(x=a\). Buscamos un polinomio de la forma
+
+\[P_n(x) =c_0+c_1(x-a)+c_2(x-a)^2+\cdots+c_n(x-a)^n.\]
+
+Queremos que este polinomio tenga, en \(x=a\), el mismo valor y las mismas derivadas que la función \(f\), hasta orden \(n\). En primer lugar,
+
+\[P_n(a)=c_0.\]
+
+Por tanto, para exigir que
+
+\[P_n(a)=f(a),\]
+
+debemos tomar
+
+\[c_0=f(a).\]
+
+Derivando,
+
+\[P_n'(x)=c_1+2c_2(x-a)+3c_3(x-a)^2+\cdots,\]
+
+por lo que
+
+\[P_n'(a)=c_1.\]
+
+Para que
+
+\[P_n'(a)=f'(a),\]
+
+debemos tomar
+
+\[c_1=f'(a).\]
+
+Derivando nuevamente,
+
+\[P_n''(a)=2!c_2,\]
+
+por lo que
+
+\[c_2=\frac{f''(a)}{2!}.\]
+
+Continuando de esta manera,
+
+\[P_n^{(k)}(a)=k!c_k,\]
+
+y por tanto
+
+\[c_k=\frac{f^{(k)}(a)}{k!}.\]
+
+Así se obtiene el polinomio de Taylor de grado \(n\):
+
+\[\boxed{P_n(x)=f(a)+f'(a)(x-a)\frac{f''(a)}{2!}(x-a)^2+\cdots+\frac{f^{(n)}(a)}{n!}(x-a)^n}\]
+
+es decir
+
+\[\boxed{P_n(x)=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(x-a)^k.}\]
+% ============================================================
+\subsubsection*{Interpretación del polinomio de Taylor}
+% ============================================================
+El polinomio \(P_n(x)\) aproxima a la función \(f(x)\) en una vecindad del punto \(x=a\). Para \(n=0\),
+
+\[P_0(x)=f(a),\]
+
+es decir, se aproxima la función mediante una constante. Para \(n=1\),
+
+\[P_1(x)=f(a)+f'(a)(x-a),\]
+
+que es precisamente la ecuación de la recta tangente a \(f\) en \(x=a\). Para \(n=2\),
+
+\[P_2(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2,\]
+
+se incorpora además información sobre la concavidad de la función. En general, al aumentar \(n\), el polinomio incorpora información sobre derivadas de orden cada vez mayor.
+% ============================================================
+\subsubsection*{Serie de Taylor}
+% ============================================================
+Si una función posee derivadas de todos los órdenes alrededor de \(x=a\), podemos considerar el límite formal de los polinomios de Taylor cuando \(n\to\infty\). Esto conduce a la serie de Taylor:
+
+\[\boxed{f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n}\]
+
+es decir
+
+\[\boxed{f(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\frac{f^{(3)}(a)}{3!}(x-a)^3+\cdots.}\]
+
+Sin embargo, debe hacerse una precisión importante: no toda función
+infinitamente derivable coincide necesariamente con su serie de Taylor. En términos generales,
+
+\[f(x)=P_n(x)+R_n(x),\]
+
+donde
+
+\[R_n(x)\]
+
+es el error o residuo de la aproximación. Una forma frecuente de escribir el residuo es la forma de Lagrange:
+
+\[\boxed{R_n(x)=\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-a)^{n+1},}\]
+
+para algún punto \(\xi\) situado entre \(a\) y \(x\). Por tanto, para que la serie de Taylor represente exactamente a la
+función, necesitamos que
+
+\[\boxed{\lim_{n\to\infty}R_n(x)=0.}\]
+
+Cuando esto ocurre,
+
+\[f(x)=\lim_{n\to\infty}P_n(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(a)}{n!}(x-a)^n.\]
+% ============================================================
+\subsubsection*{Ejemplo sencillo de aproximación de Taylor}
+% ============================================================
+Consideremos una función \(f\) alrededor de \(x=a\).
+
+La aproximación de primer orden es
+
+\[f(x)\approx f(a)+f'(a)(x-a).\]
+
+La aproximación de segundo orden es
+
+\[f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2.\]
+
+La aproximación de tercer orden es
+
+\[f(x)\approx f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\frac{f^{(3)}(a)}{3!}(x-a)^3.\]
+
+Así, una serie de Taylor puede entenderse como una sucesión de aproximaciones polinomiales cada vez más refinadas.
+
+%===========================================================
+\subsection{Series de Maclaurin}
+% ============================================================
+
+La serie de Maclaurin es un caso particular de la serie de Taylor. Si elegimos como punto de expansión
+
+\[a=0,\]
+
+entonces
+
+\[x-a=x,\]
+
+y la serie de Taylor se convierte en
+
+\[\boxed{f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n.}\]
+
+Desarrollando los primeros términos,
+
+\[\boxed{f(x)=f(0)+f'(0)x+\frac{f''(0)}{2!}x^2+\frac{f^{(3)}(0)}{3!}x^3+\cdots.}\]
+
+A esta expansión alrededor de \(x=0\) se le denomina \emph{serie de Maclaurin}.
+%===========================================================
+\subsection*{Serie de Maclaurin de la función exponencial}
+% ============================================================
+Consideremos
+
+\[f(x)=e^x.\]
+
+Una propiedad fundamental de la función exponencial es que todas sus
+derivadas coinciden con la función original:
+
+\[f'(x)=e^x,\]
+
+\[f''(x)=e^x,\]
+
+\[f^{(3)}(x)=e^x,\]
+
+y, en general,
+
+\[f^{(n)}(x)=e^x.\]
+
+Evaluando en \(x=0\),
+
+\[f^{(n)}(0)=e^0=1\]
+
+para todo \(n\geq0\). Por tanto,
+
+\[e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}.\]
+
+Es decir,
+
+\[\boxed{e^x=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\frac{x^5}{5!}+\cdots}\]
+
+Esta serie converge para todo $x\in\mathbb{R}$.
+
+
+%===========================================================
+
+\subsection{Serie de Maclaurin de la función seno}
+
+Consideremos
+
+\[
+f(x)=\sin x.
+\]
+
+Sus derivadas sucesivas son
+
+\[
+f(x)=\sin x,
+\]
+
+\[
+f'(x)=\cos x,
+\]
+
+\[
+f''(x)=-\sin x,
+\]
+
+\[
+f^{(3)}(x)=-\cos x,
+\]
+
+\[
+f^{(4)}(x)=\sin x.
+\]
+
+El patrón se repite cada cuatro derivadas.
+
+Evaluando en \(x=0\),
+
+\[
+\sin0=0,
+\qquad
+\cos0=1,
+\]
+
+\[
+-\sin0=0,
+\qquad
+-\cos0=-1.
+\]
+
+Así, los valores de las derivadas en el origen siguen el patrón
+
+\[
+0,\;1,\;0,\;-1,\;0,\;1,\;0,\;-1,\ldots
+\]
+
+Sustituyendo en la fórmula de Maclaurin,
+
+\[
+\sin x
+=
+x
+-\frac{x^3}{3!}
++\frac{x^5}{5!}
+-\frac{x^7}{7!}
++\cdots.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\sin x
+=
+\sum_{n=0}^{\infty}
+(-1)^n
+\frac{x^{2n+1}}{(2n+1)!}.
+}
+\]
+
+Obsérvese que solamente aparecen potencias impares de \(x\), lo cual
+es consistente con que
+
+\[
+\sin(-x)=-\sin x.
+\]
+
+%===========================================================
+
+\subsection{Serie de Maclaurin de la función coseno}
+
+Consideremos ahora
+
+\[
+f(x)=\cos x.
+\]
+
+Sus derivadas son
+
+\[
+f(x)=\cos x,
+\]
+
+\[
+f'(x)=-\sin x,
+\]
+
+\[
+f''(x)=-\cos x,
+\]
+
+\[
+f^{(3)}(x)=\sin x,
+\]
+
+\[
+f^{(4)}(x)=\cos x.
+\]
+
+Evaluando en \(x=0\),
+
+\[
+1,\;0,\;-1,\;0,\;1,\;0,\;-1,\;0,\ldots
+\]
+
+Por tanto,
+
+\[
+\cos x
+=
+1
+-\frac{x^2}{2!}
++\frac{x^4}{4!}
+-\frac{x^6}{6!}
++\cdots.
+\]
+
+En notación compacta,
+
+\[
+\boxed{
+\cos x
+=
+\sum_{n=0}^{\infty}
+(-1)^n
+\frac{x^{2n}}{(2n)!}.
+}
+\]
+
+En este caso solamente aparecen potencias pares, en concordancia con
+
+\[
+\cos(-x)=\cos x.
+\]
+
+%===========================================================
+
+\subsection{Resumen de las series fundamentales}
+
+Hemos obtenido las tres expansiones
+
+\[
+\boxed{
+e^x
+=
+1+x+\frac{x^2}{2!}
++\frac{x^3}{3!}
++\frac{x^4}{4!}
++\cdots
+}
+\]
+
+\[
+\boxed{
+\cos x
+=
+1-\frac{x^2}{2!}
++\frac{x^4}{4!}
+-\frac{x^6}{6!}
++\cdots
+}
+\]
+
+y
+
+\[
+\boxed{
+\sin x
+=
+x-\frac{x^3}{3!}
++\frac{x^5}{5!}
+-\frac{x^7}{7!}
++\cdots.
+}
+\]
+
+Estas tres series permiten obtener una de las identidades más importantes
+del análisis complejo.
+
+%===========================================================
+
+\subsection{Deducción de la expresión \(e^{i\theta}\)}
+
+La serie de Maclaurin de la exponencial es
+
+\[
+e^x
+=
+1+x+\frac{x^2}{2!}
++\frac{x^3}{3!}
++\frac{x^4}{4!}
++\cdots.
+\]
+
+Sustituyamos
+
+\[
+x=i\theta,
+\]
+
+donde
+
+\[
+i^2=-1.
+\]
+
+Entonces,
+
+\[
+e^{i\theta}
+=
+1+i\theta
++\frac{(i\theta)^2}{2!}
++\frac{(i\theta)^3}{3!}
++\frac{(i\theta)^4}{4!}
++\cdots.
+\]
+
+Recordemos que las potencias de \(i\) siguen el patrón
+
+\[
+i^0=1,
+\qquad
+i^1=i,
+\qquad
+i^2=-1,
+\qquad
+i^3=-i,
+\qquad
+i^4=1,
+\]
+
+y éste se repite cada cuatro potencias.
+
+Por tanto,
+
+\[
+e^{i\theta}
+=
+1
++i\theta
+-\frac{\theta^2}{2!}
+-i\frac{\theta^3}{3!}
++\frac{\theta^4}{4!}
++i\frac{\theta^5}{5!}
+-\frac{\theta^6}{6!}
+-\cdots.
+\]
+
+Agrupando la parte real y la parte imaginaria,
+
+\[
+e^{i\theta}
+=
+\left(
+1
+-\frac{\theta^2}{2!}
++\frac{\theta^4}{4!}
+-\frac{\theta^6}{6!}
++\cdots
+\right)
++
+i
+\left(
+\theta
+-\frac{\theta^3}{3!}
++\frac{\theta^5}{5!}
+-\frac{\theta^7}{7!}
++\cdots
+\right).
+\]
+
+Reconocemos ahora que
+
+\[
+1
+-\frac{\theta^2}{2!}
++\frac{\theta^4}{4!}
+-\frac{\theta^6}{6!}
++\cdots
+=
+\cos\theta,
+\]
+
+mientras que
+
+\[
+\theta
+-\frac{\theta^3}{3!}
++\frac{\theta^5}{5!}
+-\frac{\theta^7}{7!}
++\cdots
+=
+\sin\theta.
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+}
+\]
+
+Esta identidad recibe el nombre de \emph{fórmula de Euler}.
+
+%===========================================================
+
+\subsection{Consecuencias de la fórmula de Euler}
+
+Sustituyendo \(-\theta\),
+
+\[
+e^{-i\theta}
+=
+\cos\theta-i\sin\theta.
+\]
+
+Sumando las expresiones para \(e^{i\theta}\) y \(e^{-i\theta}\),
+
+\[
+e^{i\theta}+e^{-i\theta}
+=
+2\cos\theta,
+\]
+
+por lo que
+
+\[
+\boxed{
+\cos\theta
+=
+\frac{e^{i\theta}+e^{-i\theta}}{2}.
+}
+\]
+
+Restando,
+
+\[
+e^{i\theta}-e^{-i\theta}
+=
+2i\sin\theta,
+\]
+
+de donde
+
+\[
+\boxed{
+\sin\theta
+=
+\frac{e^{i\theta}-e^{-i\theta}}{2i}.
+}
+\]
+
+Estas identidades son fundamentales en el estudio de señales, series de
+Fourier, transformadas de Fourier y sistemas lineales.
+
+%===========================================================
+
+\subsection{Identidad de Euler}
+
+Tomando
+
+\[
+\theta=\pi,
+\]
+
+en la fórmula
+
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta,
+\]
+
+obtenemos
+
+\[
+e^{i\pi}
+=
+\cos\pi+i\sin\pi.
+\]
+
+Como
+
+\[
+\cos\pi=-1
+\qquad\text{y}\qquad
+\sin\pi=0,
+\]
+
+se sigue que
+
+\[
+e^{i\pi}=-1.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+e^{i\pi}+1=0.
+}
+\]
+
+Esta expresión se conoce como la \emph{identidad de Euler}.
+
+%========================================================
+\section*{Solución de los ejercicios impares}
+%========================================================
+
+%========================================================
+\section*{Potencias de la unidad imaginaria}
+%========================================================
+
+\subsection*{Ejercicio 5}
+
+Simplifique
+
+\[
+i^{11}+i^{22}+i^{33}+i^{44}.
+\]
+
+Recordemos que las potencias de \(i\) son periódicas con periodo \(4\):
+
+\[
+i^1=i,\qquad
+i^2=-1,\qquad
+i^3=-i,\qquad
+i^4=1.
+\]
+
+Además,
+
+\[
+i^{n+4}=i^n.
+\]
+
+Calculamos cada potencia reduciendo el exponente módulo \(4\).
+
+Para \(i^{11}\),
+
+\[
+11=4(2)+3,
+\]
+
+por lo que
+
+\[
+i^{11}=i^3=-i.
+\]
+
+Para \(i^{22}\),
+
+\[
+22=4(5)+2,
+\]
+
+entonces
+
+\[
+i^{22}=i^2=-1.
+\]
+
+Para \(i^{33}\),
+
+\[
+33=4(8)+1,
+\]
+
+de modo que
+
+\[
+i^{33}=i.
+\]
+
+Finalmente,
+
+\[
+44=4(11),
+\]
+
+por lo que
+
+\[
+i^{44}=1.
+\]
+
+Así,
+
+\[
+i^{11}+i^{22}+i^{33}+i^{44}
+=
+-i-1+i+1.
+\]
+
+Los términos se cancelan y obtenemos
+
+\[
+\boxed{0}.
+\]
+
+%========================================================
+\section*{Forma binómica, parte real e imaginaria}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Determine \(\operatorname{Re}(z)\) e \(\operatorname{Im}(z)\) para
+
+\[
+z=5-7i.
+\]
+
+Todo número complejo puede escribirse como
+
+\[
+z=a+bi,
+\qquad a,b\in\mathbb{R}.
+\]
+
+Por definición,
+
+\[
+\operatorname{Re}(z)=a
+\]
+
+y
+
+\[
+\operatorname{Im}(z)=b.
+\]
+
+Comparando
+
+\[
+z=5-7i
+\]
+
+con
+
+\[
+z=a+bi,
+\]
+
+obtenemos
+
+\[
+a=5,
+\qquad
+b=-7.
+\]
+
+Por tanto,
+
+\[
+\boxed{\operatorname{Re}(z)=5},
+\qquad
+\boxed{\operatorname{Im}(z)=-7}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Escriba \(-8\) en forma binómica e identifique sus partes real e
+imaginaria.
+
+Un número real puede considerarse como un número complejo cuya parte
+imaginaria es cero.
+
+Así,
+
+\[
+-8=-8+0i.
+\]
+
+Por tanto,
+
+\[
+\boxed{\operatorname{Re}(-8)=-8},
+\]
+
+y
+
+\[
+\boxed{\operatorname{Im}(-8)=0}.
+\]
+
+Esto ilustra la inclusión
+
+\[
+\mathbb{R}\subset\mathbb{C}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Clasifique los números
+
+\[
+4,\qquad -3i,\qquad 2+7i,\qquad 0,\qquad 5-2i
+\]
+
+como reales, imaginarios puros o complejos no reales.
+
+Recordemos que un número
+
+\[
+z=a+bi
+\]
+
+es real cuando
+
+\[
+b=0.
+\]
+
+Es imaginario puro cuando
+
+\[
+a=0,\qquad b\neq0,
+\]
+
+y es complejo no real cuando su parte imaginaria es distinta de cero y
+también tiene parte real no nula.
+
+Tenemos:
+
+\[
+4=4+0i,
+\]
+
+por lo que \(4\) es real.
+
+\[
+-3i=0-3i,
+\]
+
+por lo que es imaginario puro.
+
+\[
+2+7i
+\]
+
+tiene parte real e imaginaria distintas de cero, por lo que es complejo
+no real.
+
+Asimismo,
+
+\[
+0=0+0i
+\]
+
+es real.
+
+Finalmente,
+
+\[
+5-2i
+\]
+
+es complejo no real.
+
+Por tanto,
+
+\[
+\boxed{
+\begin{array}{c|c}
+z & \text{Clasificación}\\
+\hline
+4 & \text{Real}\\
+-3i & \text{Imaginario puro}\\
+2+7i & \text{Complejo no real}\\
+0 & \text{Real}\\
+5-2i & \text{Complejo no real}
+\end{array}}
+\]
+
+%========================================================
+\section*{Igualdad de números complejos}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Determine \(x\) y \(y\) si
+
+\[
+(x+2)+(y-1)i=5+4i.
+\]
+
+Dos números complejos son iguales si y sólo si sus partes reales son
+iguales y sus partes imaginarias son iguales.
+
+Por tanto,
+
+\[
+x+2=5
+\]
+
+y
+
+\[
+y-1=4.
+\]
+
+De la primera ecuación,
+
+\[
+x=3.
+\]
+
+De la segunda,
+
+\[
+y=5.
+\]
+
+Así,
+
+\[
+\boxed{x=3,\qquad y=5}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Determine \(a\) y \(b\) si
+
+\[
+(a-b)+(a+b)i=4+2i.
+\]
+
+Igualamos las partes reales:
+
+\[
+a-b=4.
+\]
+
+Igualamos las partes imaginarias:
+
+\[
+a+b=2.
+\]
+
+Tenemos entonces el sistema
+
+\[
+\begin{cases}
+a-b=4,\\
+a+b=2.
+\end{cases}
+\]
+
+Sumando ambas ecuaciones,
+
+\[
+2a=6,
+\]
+
+por lo que
+
+\[
+a=3.
+\]
+
+Sustituyendo en
+
+\[
+a+b=2,
+\]
+
+obtenemos
+
+\[
+3+b=2,
+\]
+
+y por tanto
+
+\[
+b=-1.
+\]
+
+Así,
+
+\[
+\boxed{a=3,\qquad b=-1}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Determine \(x\) y \(y\) si
+
+\[
+(3x+y)+(x-2y)i=7-i.
+\]
+
+Igualando partes reales,
+
+\[
+3x+y=7.
+\]
+
+Igualando partes imaginarias,
+
+\[
+x-2y=-1.
+\]
+
+Tenemos
+
+\[
+\begin{cases}
+3x+y=7,\\
+x-2y=-1.
+\end{cases}
+\]
+
+De la segunda ecuación,
+
+\[
+x=-1+2y.
+\]
+
+Sustituyendo en la primera,
+
+\[
+3(-1+2y)+y=7.
+\]
+
+Entonces,
+
+\[
+-3+6y+y=7,
+\]
+
+\[
+7y=10.
+\]
+
+Por tanto,
+
+\[
+y=\frac{10}{7}.
+\]
+
+Luego,
+
+\[
+x=-1+2\left(\frac{10}{7}\right)
+=
+-\frac77+\frac{20}{7}
+=
+\frac{13}{7}.
+\]
+
+Así,
+
+\[
+\boxed{
+x=\frac{13}{7},
+\qquad
+y=\frac{10}{7}
+}.
+\]
+
+%========================================================
+\section*{Suma y resta de números complejos}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule
+
+\[
+(3+5i)+(7-2i).
+\]
+
+Agrupamos partes reales y partes imaginarias:
+
+\[
+(3+7)+(5i-2i).
+\]
+
+Entonces,
+
+\[
+=10+3i.
+\]
+
+Por tanto,
+
+\[
+\boxed{10+3i}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Calcule
+
+\[
+(8-3i)-(2+7i).
+\]
+
+Distribuimos el signo negativo:
+
+\[
+8-3i-2-7i.
+\]
+
+Agrupamos:
+
+\[
+(8-2)+(-3i-7i).
+\]
+
+Por tanto,
+
+\[
+\boxed{6-10i}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Sean
+
+\[
+z_1=3-2i,
+\qquad
+z_2=-1+5i,
+\qquad
+z_3=4+i.
+\]
+
+Calcule
+
+\[
+2z_1-z_2+3z_3.
+\]
+
+Tenemos
+
+\[
+2z_1=2(3-2i)=6-4i.
+\]
+
+Además,
+
+\[
+-z_2=-(-1+5i)=1-5i.
+\]
+
+Y
+
+\[
+3z_3=3(4+i)=12+3i.
+\]
+
+Por tanto,
+
+\[
+2z_1-z_2+3z_3
+=
+(6-4i)+(1-5i)+(12+3i).
+\]
+
+Agrupando,
+
+\[
+=(6+1+12)+(-4-5+3)i.
+\]
+
+Así,
+
+\[
+\boxed{19-6i}.
+\]
+
+%========================================================
+\section*{Producto de números complejos}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule
+
+\[
+(2+3i)(4-i).
+\]
+
+Distribuyendo,
+
+\[
+(2)(4)+(2)(-i)+(3i)(4)+(3i)(-i).
+\]
+
+Entonces,
+
+\[
+8-2i+12i-3i^2.
+\]
+
+Como
+
+\[
+i^2=-1,
+\]
+
+se tiene
+
+\[
+-3i^2=3.
+\]
+
+Por tanto,
+
+\[
+8+3+10i.
+\]
+
+Finalmente,
+
+\[
+\boxed{11+10i}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Calcule
+
+\[
+(3+2i)^2.
+\]
+
+Utilizamos
+
+\[
+(a+b)^2=a^2+2ab+b^2.
+\]
+
+Entonces,
+
+\[
+(3+2i)^2
+=
+9+12i+4i^2.
+\]
+
+Como
+
+\[
+i^2=-1,
+\]
+
+obtenemos
+
+\[
+9+12i-4.
+\]
+
+Así,
+
+\[
+\boxed{5+12i}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Calcule
+
+\[
+(2-i)(2+i)(1+3i).
+\]
+
+Primero,
+
+\[
+(2-i)(2+i).
+\]
+
+Se trata de un producto de conjugados:
+
+\[
+(2-i)(2+i)
+=
+2^2-i^2.
+\]
+
+Por tanto,
+
+\[
+=4-(-1)=5.
+\]
+
+Ahora,
+
+\[
+5(1+3i)=5+15i.
+\]
+
+Así,
+
+\[
+\boxed{5+15i}.
+\]
+
+%========================================================
+\section*{Conjugado complejo}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Determine \(\bar z\) para
+
+\[
+z=7-5i.
+\]
+
+El conjugado de
+
+\[
+z=a+bi
+\]
+
+se define como
+
+\[
+\bar z=a-bi.
+\]
+
+Por tanto,
+
+\[
+\boxed{\bar z=7+5i}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Exprese \(\operatorname{Re}(z)\) en términos de \(z\) y \(\bar z\).
+
+Sea
+
+\[
+z=a+bi.
+\]
+
+Entonces,
+
+\[
+\bar z=a-bi.
+\]
+
+Sumando,
+
+\[
+z+\bar z
+=
+(a+bi)+(a-bi).
+\]
+
+Así,
+
+\[
+z+\bar z=2a.
+\]
+
+Como
+
+\[
+a=\operatorname{Re}(z),
+\]
+
+obtenemos
+
+\[
+\boxed{
+\operatorname{Re}(z)=\frac{z+\bar z}{2}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Verifique que
+
+\[
+\overline{zw}=\bar z\,\bar w
+\]
+
+para
+
+\[
+z=2+i,
+\qquad
+w=3-4i.
+\]
+
+Primero calculamos
+
+\[
+zw=(2+i)(3-4i).
+\]
+
+Entonces,
+
+\[
+zw
+=
+6-8i+3i-4i^2.
+\]
+
+Como \(i^2=-1\),
+
+\[
+zw=6-5i+4=10-5i.
+\]
+
+Por tanto,
+
+\[
+\overline{zw}=10+5i.
+\]
+
+Ahora,
+
+\[
+\bar z=2-i,
+\]
+
+y
+
+\[
+\bar w=3+4i.
+\]
+
+Calculamos:
+
+\[
+\bar z\,\bar w
+=
+(2-i)(3+4i).
+\]
+
+Entonces,
+
+\[
+=6+8i-3i-4i^2.
+\]
+
+Por tanto,
+
+\[
+=6+5i+4
+=
+10+5i.
+\]
+
+Así,
+
+\[
+\boxed{
+\overline{zw}
+=
+\bar z\,\bar w
+=
+10+5i
+}.
+\]
+
+%========================================================
+\section*{Módulo de números complejos}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule
+
+\[
+|3+4i|.
+\]
+
+Recordemos que
+
+\[
+|a+bi|
+=
+\sqrt{a^2+b^2}.
+\]
+
+Por tanto,
+
+\[
+|3+4i|
+=
+\sqrt{3^2+4^2}.
+\]
+
+Entonces,
+
+\[
+=\sqrt{9+16}
+=
+\sqrt{25}.
+\]
+
+Así,
+
+\[
+\boxed{|3+4i|=5}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Calcule
+
+\[
+|1-\sqrt3\,i|.
+\]
+
+Aplicando la definición,
+
+\[
+|1-\sqrt3\,i|
+=
+\sqrt{1^2+(-\sqrt3)^2}.
+\]
+
+Entonces,
+
+\[
+=\sqrt{1+3}
+=
+2.
+\]
+
+Por tanto,
+
+\[
+\boxed{|1-\sqrt3\,i|=2}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Demuestre que
+
+\[
+|z|^2=z\bar z.
+\]
+
+Sea
+
+\[
+z=a+bi.
+\]
+
+Entonces,
+
+\[
+\bar z=a-bi.
+\]
+
+Multiplicando,
+
+\[
+z\bar z
+=
+(a+bi)(a-bi).
+\]
+
+Como son conjugados,
+
+\[
+z\bar z
+=
+a^2-(bi)^2.
+\]
+
+Pero
+
+\[
+(bi)^2=b^2i^2=-b^2.
+\]
+
+Así,
+
+\[
+z\bar z
+=
+a^2+b^2.
+\]
+
+Por otra parte,
+
+\[
+|z|
+=
+\sqrt{a^2+b^2}.
+\]
+
+Al elevar al cuadrado,
+
+\[
+|z|^2=a^2+b^2.
+\]
+
+Por tanto,
+
+\[
+\boxed{|z|^2=z\bar z}.
+\]
+
+%========================================================
+\section*{División e inverso multiplicativo}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule
+
+\[
+\frac{1}{2+i}.
+\]
+
+Multiplicamos numerador y denominador por el conjugado \(2-i\):
+
+\[
+\frac{1}{2+i}
+\frac{2-i}{2-i}.
+\]
+
+Entonces,
+
+\[
+=
+\frac{2-i}{(2+i)(2-i)}.
+\]
+
+El denominador es
+
+\[
+2^2+1^2=5.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\frac{1}{2+i}
+=
+\frac25-\frac15i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Calcule
+
+\[
+\frac{4-5i}{2+3i}.
+\]
+
+Multiplicamos por el conjugado \(2-3i\):
+
+\[
+\frac{4-5i}{2+3i}
+\frac{2-3i}{2-3i}.
+\]
+
+El denominador es
+
+\[
+(2+3i)(2-3i)=4+9=13.
+\]
+
+El numerador es
+
+\[
+(4-5i)(2-3i).
+\]
+
+Desarrollando,
+
+\[
+8-12i-10i+15i^2.
+\]
+
+Como \(i^2=-1\),
+
+\[
+=8-22i-15.
+\]
+
+Por tanto,
+
+\[
+=-7-22i.
+\]
+
+Así,
+
+\[
+\boxed{
+\frac{4-5i}{2+3i}
+=
+-\frac7{13}-\frac{22}{13}i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Simplifique
+
+\[
+\frac{1+i}{1-i}.
+\]
+
+Multiplicamos por el conjugado del denominador:
+
+\[
+\frac{1+i}{1-i}
+\frac{1+i}{1+i}.
+\]
+
+Entonces,
+
+\[
+=
+\frac{(1+i)^2}{(1-i)(1+i)}.
+\]
+
+El numerador es
+
+\[
+(1+i)^2
+=
+1+2i+i^2
+=
+2i.
+\]
+
+El denominador es
+
+\[
+1-i^2=2.
+\]
+
+Por tanto,
+
+\[
+\boxed{i}.
+\]
+
+%========================================================
+\section*{El plano complejo y lugares geométricos}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Represente en el plano complejo
+
+\[
+3+2i,\qquad -2+4i,\qquad -3i,\qquad 5.
+\]
+
+A cada número complejo
+
+\[
+z=a+bi
+\]
+
+le corresponde el punto
+
+\[
+(a,b)
+\]
+
+del plano cartesiano.
+
+Por tanto,
+
+\[
+3+2i\longleftrightarrow(3,2),
+\]
+
+\[
+-2+4i\longleftrightarrow(-2,4),
+\]
+
+\[
+-3i=0-3i\longleftrightarrow(0,-3),
+\]
+
+y
+
+\[
+5=5+0i\longleftrightarrow(5,0).
+\]
+
+Así,
+
+\[
+\boxed{
+(3,2),\quad(-2,4),\quad(0,-3),\quad(5,0)
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Describa geométricamente
+
+\[
+\{z:|z-(2-i)|<3\}.
+\]
+
+Sea
+
+\[
+z=x+yi.
+\]
+
+Entonces,
+
+\[
+z-(2-i)
+=
+(x-2)+(y+1)i.
+\]
+
+Por tanto,
+
+\[
+|z-(2-i)|
+=
+\sqrt{(x-2)^2+(y+1)^2}.
+\]
+
+La condición
+
+\[
+|z-(2-i)|<3
+\]
+
+equivale a
+
+\[
+(x-2)^2+(y+1)^2<9.
+\]
+
+Esta es la región interior de una circunferencia de centro
+
+\[
+(2,-1)
+\]
+
+y radio
+
+\[
+3.
+\]
+
+Como la desigualdad es estricta, la frontera no está incluida.
+
+Por tanto,
+
+\[
+\boxed{
+\text{disco abierto de centro }2-i\text{ y radio }3
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Determine el lugar geométrico de los puntos que satisfacen
+
+\[
+|z-1|=|z+1|.
+\]
+
+Sea
+
+\[
+z=x+yi.
+\]
+
+Entonces,
+
+\[
+|z-1|
+=
+\sqrt{(x-1)^2+y^2},
+\]
+
+mientras que
+
+\[
+|z+1|
+=
+\sqrt{(x+1)^2+y^2}.
+\]
+
+Igualando,
+
+\[
+(x-1)^2+y^2=(x+1)^2+y^2.
+\]
+
+Cancelando \(y^2\),
+
+\[
+(x-1)^2=(x+1)^2.
+\]
+
+Expandiendo,
+
+\[
+x^2-2x+1=x^2+2x+1.
+\]
+
+Por tanto,
+
+\[
+-2x=2x,
+\]
+
+de donde
+
+\[
+x=0.
+\]
+
+Así,
+
+\[
+\boxed{x=0}.
+\]
+
+Geométricamente es el eje imaginario, es decir, la mediatriz del
+segmento que une \(1\) y \(-1\).
+
+%========================================================
+\section*{Distancia y desigualdades}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule la distancia entre
+
+\[
+z_1=1+i
+\]
+
+y
+
+\[
+z_2=4+5i.
+\]
+
+La distancia es
+
+\[
+d(z_1,z_2)=|z_2-z_1|.
+\]
+
+Entonces,
+
+\[
+z_2-z_1
+=
+(4+5i)-(1+i)
+=
+3+4i.
+\]
+
+Por tanto,
+
+\[
+d
+=
+|3+4i|
+=
+\sqrt{3^2+4^2}
+=
+5.
+\]
+
+Así,
+
+\[
+\boxed{d(z_1,z_2)=5}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Verifique la desigualdad triangular para
+
+\[
+z=1+i,
+\qquad
+w=1-i.
+\]
+
+La desigualdad triangular establece
+
+\[
+|z+w|
+\leq
+|z|+|w|.
+\]
+
+Tenemos
+
+\[
+z+w
+=
+(1+i)+(1-i)
+=
+2.
+\]
+
+Por tanto,
+
+\[
+|z+w|=2.
+\]
+
+Además,
+
+\[
+|z|
+=
+|1+i|
+=
+\sqrt2,
+\]
+
+y
+
+\[
+|w|
+=
+|1-i|
+=
+\sqrt2.
+\]
+
+Entonces,
+
+\[
+|z|+|w|=2\sqrt2.
+\]
+
+Como
+
+\[
+2\leq2\sqrt2,
+\]
+
+se verifica que
+
+\[
+\boxed{
+|z+w|\leq|z|+|w|
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Demuestre que
+
+\[
+|z+w|\leq|z|+|w|.
+\]
+
+Partimos de
+
+\[
+|z+w|^2
+=
+(z+w)(\bar z+\bar w).
+\]
+
+Desarrollando,
+
+\[
+|z+w|^2
+=
+z\bar z+z\bar w+w\bar z+w\bar w.
+\]
+
+Como
+
+\[
+z\bar z=|z|^2
+\]
+
+y
+
+\[
+w\bar w=|w|^2,
+\]
+
+obtenemos
+
+\[
+|z+w|^2
+=
+|z|^2+|w|^2+
+z\bar w+\overline{z\bar w}.
+\]
+
+Pero
+
+\[
+z\bar w+\overline{z\bar w}
+=
+2\operatorname{Re}(z\bar w).
+\]
+
+Además,
+
+\[
+\operatorname{Re}(z\bar w)
+\leq
+|z\bar w|
+=
+|z||w|.
+\]
+
+Por tanto,
+
+\[
+|z+w|^2
+\leq
+|z|^2+2|z||w|+|w|^2.
+\]
+
+Así,
+
+\[
+|z+w|^2
+\leq
+(|z|+|w|)^2.
+\]
+
+Como ambos lados son no negativos,
+
+\[
+\boxed{
+|z+w|\leq|z|+|w|
+}.
+\]
+
+%========================================================
+\section*{Argumento y argumento principal}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Determine \(\arg z\) y \(\operatorname{Arg}(z)\) para
+
+\[
+z=1+i.
+\]
+
+El punto correspondiente es
+
+\[
+(1,1),
+\]
+
+que se encuentra en el primer cuadrante.
+
+Tenemos
+
+\[
+\tan\theta
+=
+\frac{1}{1}=1.
+\]
+
+Por tanto,
+
+\[
+\theta=\frac{\pi}{4}.
+\]
+
+El argumento general es
+
+\[
+\boxed{
+\arg z
+=
+\frac{\pi}{4}+2k\pi,
+\qquad k\in\mathbb{Z}
+}.
+\]
+
+El argumento principal es
+
+\[
+\boxed{
+\operatorname{Arg}(z)=\frac{\pi}{4}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Determine \(\arg z\) y \(\operatorname{Arg}(z)\) para
+
+\[
+z=-1-i.
+\]
+
+El punto
+
+\[
+(-1,-1)
+\]
+
+se encuentra en el tercer cuadrante.
+
+El ángulo de referencia es
+
+\[
+\frac{\pi}{4}.
+\]
+
+Tomando el argumento principal en
+
+\[
+(-\pi,\pi],
+\]
+
+tenemos
+
+\[
+\operatorname{Arg}(z)
+=
+-\frac{3\pi}{4}.
+\]
+
+El argumento general es
+
+\[
+\boxed{
+\arg z
+=
+-\frac{3\pi}{4}+2k\pi,
+\qquad
+k\in\mathbb{Z}
+}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\operatorname{Arg}(z)
+=
+-\frac{3\pi}{4}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Determine \(\arg z\) y \(\operatorname{Arg}(z)\) para
+
+\[
+z=-3i.
+\]
+
+El punto correspondiente es
+
+\[
+(0,-3),
+\]
+
+situado sobre el eje imaginario negativo.
+
+Por tanto,
+
+\[
+\operatorname{Arg}(z)
+=
+-\frac{\pi}{2}.
+\]
+
+El argumento general es
+
+\[
+\boxed{
+\arg z
+=
+-\frac{\pi}{2}+2k\pi,
+\qquad k\in\mathbb{Z}
+}.
+\]
+
+%========================================================
+\section*{Conversión entre forma rectangular y polar}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Convierta
+
+\[
+1+i
+\]
+
+a forma polar.
+
+El módulo es
+
+\[
+r
+=
+\sqrt{1^2+1^2}
+=
+\sqrt2.
+\]
+
+El argumento principal es
+
+\[
+\theta=\frac{\pi}{4}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+1+i
+=
+\sqrt2
+\left(
+\cos\frac{\pi}{4}
++i\sin\frac{\pi}{4}
+\right)
+}.
+\]
+
+Utilizando la notación \(\operatorname{cis}\theta\),
+
+\[
+\boxed{
+1+i=\sqrt2\,\operatorname{cis}\frac{\pi}{4}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Convierta
+
+\[
+-2-2i
+\]
+
+a forma polar.
+
+El módulo es
+
+\[
+r
+=
+\sqrt{(-2)^2+(-2)^2}
+=
+\sqrt8
+=
+2\sqrt2.
+\]
+
+El número se encuentra en el tercer cuadrante.
+
+Podemos utilizar como argumento principal
+
+\[
+\theta=-\frac{3\pi}{4}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+-2-2i
+=
+2\sqrt2
+\left(
+\cos\left(-\frac{3\pi}{4}\right)
++i\sin\left(-\frac{3\pi}{4}\right)
+\right)
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Convierta
+
+\[
+5\left(
+\cos\frac{5\pi}{6}
++i\sin\frac{5\pi}{6}
+\right)
+\]
+
+a forma rectangular.
+
+Sabemos que
+
+\[
+\cos\frac{5\pi}{6}
+=
+-\frac{\sqrt3}{2},
+\]
+
+y
+
+\[
+\sin\frac{5\pi}{6}
+=
+\frac12.
+\]
+
+Por tanto,
+
+\[
+z
+=
+5
+\left(
+-\frac{\sqrt3}{2}
++\frac12i
+\right).
+\]
+
+Distribuyendo,
+
+\[
+\boxed{
+z
+=
+-\frac{5\sqrt3}{2}
++
+\frac52i
+}.
+\]
+
+%========================================================
+\section*{Producto y cociente en forma polar}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Multiplique
+
+\[
+2\operatorname{cis}\frac{\pi}{6}
+\]
+
+y
+
+\[
+3\operatorname{cis}\frac{\pi}{4}.
+\]
+
+Para multiplicar números complejos en forma polar, multiplicamos los
+módulos y sumamos los argumentos:
+
+\[
+(r_1\operatorname{cis}\theta_1)
+(r_2\operatorname{cis}\theta_2)
+=
+r_1r_2\operatorname{cis}(\theta_1+\theta_2).
+\]
+
+Entonces,
+
+\[
+z
+=
+(2)(3)
+\operatorname{cis}
+\left(
+\frac{\pi}{6}+\frac{\pi}{4}
+\right).
+\]
+
+El módulo es
+
+\[
+6.
+\]
+
+El argumento es
+
+\[
+\frac{\pi}{6}+\frac{\pi}{4}
+=
+\frac{2\pi}{12}+\frac{3\pi}{12}
+=
+\frac{5\pi}{12}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z=
+6\operatorname{cis}\frac{5\pi}{12}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Calcule el módulo y el argumento de
+
+\[
+(1+i)(\sqrt3+i)
+\]
+
+sin convertir primero a forma rectangular.
+
+Para
+
+\[
+z_1=1+i,
+\]
+
+tenemos
+
+\[
+|z_1|=\sqrt2,
+\qquad
+\arg z_1=\frac{\pi}{4}.
+\]
+
+Para
+
+\[
+z_2=\sqrt3+i,
+\]
+
+el módulo es
+
+\[
+|z_2|
+=
+\sqrt{3+1}
+=
+2.
+\]
+
+Además,
+
+\[
+\tan\theta
+=
+\frac1{\sqrt3},
+\]
+
+por lo que
+
+\[
+\theta=\frac{\pi}{6}.
+\]
+
+El producto tiene módulo
+
+\[
+|z_1z_2|
+=
+|z_1||z_2|
+=
+2\sqrt2.
+\]
+
+Su argumento es
+
+\[
+\frac{\pi}{4}+\frac{\pi}{6}
+=
+\frac{5\pi}{12}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+|z_1z_2|=2\sqrt2,
+\qquad
+\arg(z_1z_2)
+=
+\frac{5\pi}{12}+2k\pi
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Si
+
+\[
+|z_1|=3,
+\qquad
+|z_2|=5,
+\]
+
+\[
+\arg z_1=\frac{\pi}{7},
+\qquad
+\arg z_2=-\frac{\pi}{4},
+\]
+
+determine el módulo y argumento de \(z_1z_2\).
+
+Para el módulo,
+
+\[
+|z_1z_2|
+=
+|z_1||z_2|
+=
+3(5)
+=
+15.
+\]
+
+Para el argumento,
+
+\[
+\arg(z_1z_2)
+=
+\arg z_1+\arg z_2.
+\]
+
+Así,
+
+\[
+=
+\frac{\pi}{7}-\frac{\pi}{4}.
+\]
+
+Utilizando denominador común \(28\),
+
+\[
+=
+\frac{4\pi}{28}-\frac{7\pi}{28}
+=
+-\frac{3\pi}{28}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+|z_1z_2|=15,
+\qquad
+\arg(z_1z_2)
+=
+-\frac{3\pi}{28}+2k\pi
+}.
+\]
+
+%========================================================
+\section*{Fórmula de Euler y forma exponencial}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Evalúe
+
+\[
+e^{i\pi/6}.
+\]
+
+Por la fórmula de Euler,
+
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+\]
+
+Entonces,
+
+\[
+e^{i\pi/6}
+=
+\cos\frac{\pi}{6}
++
+i\sin\frac{\pi}{6}.
+\]
+
+Como
+
+\[
+\cos\frac{\pi}{6}
+=
+\frac{\sqrt3}{2},
+\qquad
+\sin\frac{\pi}{6}
+=
+\frac12,
+\]
+
+obtenemos
+
+\[
+\boxed{
+e^{i\pi/6}
+=
+\frac{\sqrt3}{2}
++
+\frac12i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Exprese
+
+\[
+1-i
+\]
+
+en forma exponencial.
+
+El módulo es
+
+\[
+r
+=
+\sqrt{1^2+(-1)^2}
+=
+\sqrt2.
+\]
+
+El argumento principal es
+
+\[
+\theta=-\frac{\pi}{4}.
+\]
+
+La forma exponencial es
+
+\[
+z=re^{i\theta}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+1-i
+=
+\sqrt2\,e^{-i\pi/4}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Demuestre que
+
+\[
+\cos\theta
+=
+\frac{e^{i\theta}+e^{-i\theta}}{2}.
+\]
+
+Por Euler,
+
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+\]
+
+Sustituyendo \(-\theta\),
+
+\[
+e^{-i\theta}
+=
+\cos(-\theta)+i\sin(-\theta).
+\]
+
+Como el coseno es par y el seno impar,
+
+\[
+e^{-i\theta}
+=
+\cos\theta-i\sin\theta.
+\]
+
+Sumamos ambas expresiones:
+
+\[
+e^{i\theta}+e^{-i\theta}
+=
+2\cos\theta.
+\]
+
+Dividiendo entre \(2\),
+
+\[
+\boxed{
+\cos\theta
+=
+\frac{e^{i\theta}+e^{-i\theta}}{2}
+}.
+\]
+
+%========================================================
+\section*{Teorema de De Moivre y potencias}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule
+
+\[
+(1+i)^8
+\]
+
+usando el Teorema de De Moivre.
+
+Tenemos
+
+\[
+1+i
+=
+\sqrt2\operatorname{cis}\frac{\pi}{4}.
+\]
+
+Entonces,
+
+\[
+(1+i)^8
+=
+(\sqrt2)^8
+\operatorname{cis}
+\left(
+8\frac{\pi}{4}
+\right).
+\]
+
+Como
+
+\[
+(\sqrt2)^8=16,
+\]
+
+y
+
+\[
+8\frac{\pi}{4}=2\pi,
+\]
+
+obtenemos
+
+\[
+(1+i)^8
+=
+16\operatorname{cis}(2\pi).
+\]
+
+Pero
+
+\[
+\operatorname{cis}(2\pi)=1.
+\]
+
+Por tanto,
+
+\[
+\boxed{(1+i)^8=16}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Calcule
+
+\[
+(\sqrt3+i)^{10}.
+\]
+
+Primero escribimos el número en forma polar.
+
+El módulo es
+
+\[
+r
+=
+\sqrt{3+1}
+=
+2.
+\]
+
+El argumento es
+
+\[
+\theta=\frac{\pi}{6}.
+\]
+
+Entonces,
+
+\[
+\sqrt3+i
+=
+2\operatorname{cis}\frac{\pi}{6}.
+\]
+
+Por De Moivre,
+
+\[
+(\sqrt3+i)^{10}
+=
+2^{10}
+\operatorname{cis}
+\left(
+\frac{10\pi}{6}
+\right).
+\]
+
+Así,
+
+\[
+=
+1024
+\operatorname{cis}
+\frac{5\pi}{3}.
+\]
+
+Como
+
+\[
+\cos\frac{5\pi}{3}
+=
+\frac12,
+\]
+
+y
+
+\[
+\sin\frac{5\pi}{3}
+=
+-\frac{\sqrt3}{2},
+\]
+
+obtenemos
+
+\[
+=
+1024
+\left(
+\frac12-\frac{\sqrt3}{2}i
+\right).
+\]
+
+Finalmente,
+
+\[
+\boxed{
+(\sqrt3+i)^{10}
+=
+512-512\sqrt3\,i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Use De Moivre para deducir una fórmula para
+
+\[
+\cos(3\theta).
+\]
+
+Por De Moivre,
+
+\[
+(\cos\theta+i\sin\theta)^3
+=
+\cos(3\theta)+i\sin(3\theta).
+\]
+
+Expandimos el lado izquierdo:
+
+\[
+\cos^3\theta
++
+3i\cos^2\theta\sin\theta
+-
+3\cos\theta\sin^2\theta
+-
+i\sin^3\theta.
+\]
+
+La parte real es
+
+\[
+\cos^3\theta
+-
+3\cos\theta\sin^2\theta.
+\]
+
+Por tanto,
+
+\[
+\cos(3\theta)
+=
+\cos^3\theta
+-
+3\cos\theta\sin^2\theta.
+\]
+
+Utilizando
+
+\[
+\sin^2\theta
+=
+1-\cos^2\theta,
+\]
+
+tenemos
+
+\[
+\cos(3\theta)
+=
+\cos^3\theta
+-
+3\cos\theta(1-\cos^2\theta).
+\]
+
+Entonces,
+
+\[
+\cos(3\theta)
+=
+\cos^3\theta
+-3\cos\theta
++3\cos^3\theta.
+\]
+
+Así,
+
+\[
+\boxed{
+\cos(3\theta)
+=
+4\cos^3\theta-3\cos\theta
+}.
+\]
+
+%========================================================
+\section*{Raíces \(n\)-ésimas}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Encuentre las raíces cuadradas de
+
+\[
+i.
+\]
+
+Escribimos
+
+\[
+i
+=
+\operatorname{cis}\frac{\pi}{2}.
+\]
+
+Las raíces cuadradas tienen módulo
+
+\[
+\sqrt{1}=1
+\]
+
+y argumentos
+
+\[
+\theta_k
+=
+\frac{\frac{\pi}{2}+2k\pi}{2},
+\qquad
+k=0,1.
+\]
+
+Para \(k=0\),
+
+\[
+\theta_0=\frac{\pi}{4}.
+\]
+
+Para \(k=1\),
+
+\[
+\theta_1
+=
+\frac{5\pi}{4}.
+\]
+
+Por tanto,
+
+\[
+z_0
+=
+\operatorname{cis}\frac{\pi}{4}
+=
+\frac{\sqrt2}{2}
++
+\frac{\sqrt2}{2}i,
+\]
+
+y
+
+\[
+z_1
+=
+\operatorname{cis}\frac{5\pi}{4}
+=
+-\frac{\sqrt2}{2}
+-
+\frac{\sqrt2}{2}i.
+\]
+
+Así,
+
+\[
+\boxed{
+z=
+\pm\frac{1+i}{\sqrt2}
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Encuentre las raíces cúbicas de
+
+\[
+8i.
+\]
+
+Escribimos
+
+\[
+8i
+=
+8\operatorname{cis}\frac{\pi}{2}.
+\]
+
+El módulo de cada raíz es
+
+\[
+\sqrt[3]{8}=2.
+\]
+
+Los argumentos son
+
+\[
+\theta_k
+=
+\frac{\pi/2+2k\pi}{3},
+\qquad
+k=0,1,2.
+\]
+
+Para \(k=0\),
+
+\[
+\theta_0=\frac{\pi}{6}.
+\]
+
+Entonces,
+
+\[
+z_0
+=
+2\operatorname{cis}\frac{\pi}{6}
+=
+\sqrt3+i.
+\]
+
+Para \(k=1\),
+
+\[
+\theta_1
+=
+\frac{5\pi}{6}.
+\]
+
+Así,
+
+\[
+z_1
+=
+-\sqrt3+i.
+\]
+
+Para \(k=2\),
+
+\[
+\theta_2
+=
+\frac{3\pi}{2}.
+\]
+
+Entonces,
+
+\[
+z_2=-2i.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z_0=\sqrt3+i,\qquad
+z_1=-\sqrt3+i,\qquad
+z_2=-2i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Encuentre las cinco raíces de
+
+\[
+32.
+\]
+
+Escribimos
+
+\[
+32
+=
+32\operatorname{cis}(0).
+\]
+
+El módulo de las raíces quintas es
+
+\[
+\sqrt[5]{32}=2.
+\]
+
+Los argumentos son
+
+\[
+\theta_k
+=
+\frac{2k\pi}{5},
+\qquad
+k=0,1,2,3,4.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z_k
+=
+2\operatorname{cis}
+\left(
+\frac{2k\pi}{5}
+\right),
+\qquad
+k=0,1,2,3,4
+}.
+\]
+
+Explícitamente,
+
+\[
+z_0=2,
+\]
+
+\[
+z_1=2\operatorname{cis}\frac{2\pi}{5},
+\]
+
+\[
+z_2=2\operatorname{cis}\frac{4\pi}{5},
+\]
+
+\[
+z_3=2\operatorname{cis}\frac{6\pi}{5},
+\]
+
+\[
+z_4=2\operatorname{cis}\frac{8\pi}{5}.
+\]
+
+Geométricamente, son los vértices de un pentágono regular inscrito en
+la circunferencia
+
+\[
+|z|=2.
+\]
+
+%========================================================
+\section*{Raíces de la unidad}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Encuentre las raíces cúbicas de la unidad y represéntelas
+geométricamente.
+
+Debemos resolver
+
+\[
+z^3=1.
+\]
+
+Escribimos
+
+\[
+1=\operatorname{cis}(2k\pi).
+\]
+
+Las raíces son
+
+\[
+z_k
+=
+\operatorname{cis}
+\left(
+\frac{2k\pi}{3}
+\right),
+\qquad
+k=0,1,2.
+\]
+
+Por tanto,
+
+\[
+z_0=1,
+\]
+
+\[
+z_1
+=
+\cos\frac{2\pi}{3}
++
+i\sin\frac{2\pi}{3}
+=
+-\frac12+\frac{\sqrt3}{2}i,
+\]
+
+\[
+z_2
+=
+\cos\frac{4\pi}{3}
++
+i\sin\frac{4\pi}{3}
+=
+-\frac12-\frac{\sqrt3}{2}i.
+\]
+
+Así,
+
+\[
+\boxed{
+1,\qquad
+-\frac12+\frac{\sqrt3}{2}i,\qquad
+-\frac12-\frac{\sqrt3}{2}i
+}.
+\]
+
+Geométricamente son los vértices de un triángulo equilátero sobre la
+circunferencia unitaria.
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Encuentre las raíces sextas de la unidad.
+
+Debemos resolver
+
+\[
+z^6=1.
+\]
+
+Las raíces son
+
+\[
+z_k
+=
+e^{2k\pi i/6}
+=
+e^{k\pi i/3},
+\qquad
+k=0,\ldots,5.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+\begin{aligned}
+z_0&=1,\\
+z_1&=\frac12+\frac{\sqrt3}{2}i,\\
+z_2&=-\frac12+\frac{\sqrt3}{2}i,\\
+z_3&=-1,\\
+z_4&=-\frac12-\frac{\sqrt3}{2}i,\\
+z_5&=\frac12-\frac{\sqrt3}{2}i.
+\end{aligned}
+}
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Demuestre que la suma de las raíces \(n\)-ésimas de la unidad es cero
+para \(n>1\).
+
+Sea
+
+\[
+\omega=e^{2\pi i/n}.
+\]
+
+Las raíces \(n\)-ésimas de la unidad son
+
+\[
+1,\omega,\omega^2,\ldots,\omega^{n-1}.
+\]
+
+Su suma es
+
+\[
+S=
+1+\omega+\omega^2+\cdots+\omega^{n-1}.
+\]
+
+Esta es una suma geométrica de razón \(\omega\). Como \(n>1\),
+
+\[
+\omega\neq1.
+\]
+
+Entonces,
+
+\[
+S
+=
+\frac{1-\omega^n}{1-\omega}.
+\]
+
+Pero
+
+\[
+\omega^n
+=
+e^{2\pi i}
+=
+1.
+\]
+
+Por tanto,
+
+\[
+S
+=
+\frac{1-1}{1-\omega}
+=
+0.
+\]
+
+Así,
+
+\[
+\boxed{
+1+\omega+\omega^2+\cdots+\omega^{n-1}=0
+}.
+\]
+
+%========================================================
+\section*{Ecuaciones polinómicas}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Resuelva
+
+\[
+z^2+1=0.
+\]
+
+Despejamos:
+
+\[
+z^2=-1.
+\]
+
+Como
+
+\[
+i^2=-1,
+\]
+
+tenemos las dos soluciones
+
+\[
+z=i
+\]
+
+y
+
+\[
+z=-i.
+\]
+
+Por tanto,
+
+\[
+\boxed{z=\pm i}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Resuelva
+
+\[
+z^3-8=0.
+\]
+
+Tenemos
+
+\[
+z^3=8.
+\]
+
+Escribimos
+
+\[
+8=8\operatorname{cis}(0).
+\]
+
+Las raíces cúbicas tienen módulo
+
+\[
+2
+\]
+
+y argumentos
+
+\[
+\frac{2k\pi}{3},
+\qquad
+k=0,1,2.
+\]
+
+Por tanto,
+
+\[
+z_0=2,
+\]
+
+\[
+z_1
+=
+2\operatorname{cis}\frac{2\pi}{3}
+=
+-1+\sqrt3\,i,
+\]
+
+\[
+z_2
+=
+2\operatorname{cis}\frac{4\pi}{3}
+=
+-1-\sqrt3\,i.
+\]
+
+Así,
+
+\[
+\boxed{
+z=2,\qquad
+z=-1+\sqrt3\,i,\qquad
+z=-1-\sqrt3\,i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Factorice
+
+\[
+z^4-1
+\]
+
+completamente sobre \(\mathbb{C}\).
+
+Primero utilizamos diferencia de cuadrados:
+
+\[
+z^4-1
+=
+(z^2-1)(z^2+1).
+\]
+
+Además,
+
+\[
+z^2-1
+=
+(z-1)(z+1),
+\]
+
+y sobre \(\mathbb C\),
+
+\[
+z^2+1
+=
+(z-i)(z+i).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z^4-1
+=
+(z-1)(z+1)(z-i)(z+i)
+}.
+\]
+
+%========================================================
+\section*{Teorema Fundamental del Álgebra y conjugación}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Explique qué significa que \(\mathbb{C}\) sea algebraicamente cerrado.
+
+Decir que \(\mathbb{C}\) es algebraicamente cerrado significa que todo
+polinomio no constante con coeficientes complejos posee al menos una
+raíz en \(\mathbb{C}\).
+
+Es decir, si
+
+\[
+p(z)
+=
+a_nz^n+a_{n-1}z^{n-1}+\cdots+a_0,
+\]
+
+donde
+
+\[
+a_n\neq0
+\]
+
+y
+
+\[
+n\geq1,
+\]
+
+entonces existe
+
+\[
+z_0\in\mathbb C
+\]
+
+tal que
+
+\[
+p(z_0)=0.
+\]
+
+Por el Teorema Fundamental del Álgebra, el polinomio puede factorizarse
+completamente como
+
+\[
+p(z)
+=
+a_n
+(z-z_1)(z-z_2)\cdots(z-z_n),
+\]
+
+contando las raíces con multiplicidad.
+
+Por tanto,
+
+\[
+\boxed{
+\mathbb C\text{ es algebraicamente cerrado}
+}
+\]
+
+significa que no es necesario extender nuevamente el campo para obtener
+las raíces de polinomios con coeficientes complejos.
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Si
+
+\[
+2+3i
+\]
+
+es raíz de un polinomio con coeficientes reales, determine qué otra
+raíz debe aparecer.
+
+Para un polinomio con coeficientes reales, las raíces no reales aparecen
+en pares conjugados.
+
+El conjugado de
+
+\[
+2+3i
+\]
+
+es
+
+\[
+2-3i.
+\]
+
+Por tanto,
+
+\[
+\boxed{2-3i}
+\]
+
+también debe ser una raíz.
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Demuestre que las raíces no reales de un polinomio real aparecen en
+pares conjugados.
+
+Sea
+
+\[
+p(z)
+=
+a_nz^n+\cdots+a_1z+a_0,
+\]
+
+con
+
+\[
+a_j\in\mathbb R.
+\]
+
+Supongamos que \(z_0\) es raíz. Entonces,
+
+\[
+p(z_0)=0.
+\]
+
+Tomamos conjugados:
+
+\[
+\overline{p(z_0)}=0.
+\]
+
+Por las propiedades del conjugado,
+
+\[
+\overline{p(z_0)}
+=
+\overline{
+a_nz_0^n+\cdots+a_0
+}.
+\]
+
+Entonces,
+
+\[
+=
+\bar a_n\bar z_0^n+\cdots+\bar a_0.
+\]
+
+Como los coeficientes son reales,
+
+\[
+\bar a_j=a_j.
+\]
+
+Por tanto,
+
+\[
+\overline{p(z_0)}
+=
+a_n\bar z_0^n+\cdots+a_0
+=
+p(\bar z_0).
+\]
+
+Como
+
+\[
+\overline{p(z_0)}=0,
+\]
+
+tenemos
+
+\[
+p(\bar z_0)=0.
+\]
+
+Por consiguiente,
+
+\[
+\boxed{
+z_0\text{ raíz}
+\quad\Longrightarrow\quad
+\bar z_0\text{ raíz}
+}.
+\]
+
+%========================================================
+\section*{Exponencial y logaritmo complejo}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Calcule
+
+\[
+e^{1+i\pi}.
+\]
+
+Utilizamos
+
+\[
+e^{a+ib}
+=
+e^a e^{ib}.
+\]
+
+Por tanto,
+
+\[
+e^{1+i\pi}
+=
+e\,e^{i\pi}.
+\]
+
+Por la fórmula de Euler,
+
+\[
+e^{i\pi}
+=
+\cos\pi+i\sin\pi.
+\]
+
+Entonces,
+
+\[
+e^{i\pi}
+=
+-1.
+\]
+
+Así,
+
+\[
+\boxed{
+e^{1+i\pi}=-e
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Resuelva
+
+\[
+e^z=1.
+\]
+
+Sea
+
+\[
+z=x+iy.
+\]
+
+Entonces,
+
+\[
+e^z
+=
+e^xe^{iy}.
+\]
+
+Para que
+
+\[
+e^z=1,
+\]
+
+debe cumplirse
+
+\[
+e^x=1,
+\]
+
+por lo que
+
+\[
+x=0.
+\]
+
+Además,
+
+\[
+e^{iy}=1.
+\]
+
+Esto ocurre cuando
+
+\[
+y=2k\pi,
+\qquad
+k\in\mathbb Z.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z=2k\pi i,
+\qquad k\in\mathbb Z
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Calcule
+
+\[
+\operatorname{Log}(1+i).
+\]
+
+El logaritmo principal se define como
+
+\[
+\operatorname{Log}z
+=
+\ln|z|+i\operatorname{Arg}(z).
+\]
+
+Para
+
+\[
+z=1+i,
+\]
+
+tenemos
+
+\[
+|z|=\sqrt2
+\]
+
+y
+
+\[
+\operatorname{Arg}(z)=\frac{\pi}{4}.
+\]
+
+Por tanto,
+
+\[
+\operatorname{Log}(1+i)
+=
+\ln\sqrt2
++
+i\frac{\pi}{4}.
+\]
+
+Como
+
+\[
+\ln\sqrt2
+=
+\frac12\ln2,
+\]
+
+obtenemos
+
+\[
+\boxed{
+\operatorname{Log}(1+i)
+=
+\frac12\ln2+\frac{\pi}{4}i
+}.
+\]
+
+%========================================================
+\section*{Problemas}
+%========================================================
+
+\subsection*{Problema 1}
+
+Sea
+
+\[
+z=1+i.
+\]
+
+Calcule sucesivamente \(\bar z\), \(|z|\), \(\operatorname{Arg}(z)\),
+su forma polar, su forma exponencial, \(z^8\) y sus raíces cúbicas.
+
+El conjugado es
+
+\[
+\boxed{\bar z=1-i}.
+\]
+
+El módulo es
+
+\[
+|z|
+=
+\sqrt{1^2+1^2}
+=
+\boxed{\sqrt2}.
+\]
+
+El argumento principal es
+
+\[
+\boxed{
+\operatorname{Arg}(z)=\frac{\pi}{4}
+}.
+\]
+
+La forma polar es
+
+\[
+\boxed{
+z
+=
+\sqrt2
+\operatorname{cis}\frac{\pi}{4}
+}.
+\]
+
+La forma exponencial es
+
+\[
+\boxed{
+z
+=
+\sqrt2 e^{i\pi/4}
+}.
+\]
+
+Para calcular \(z^8\), utilizamos De Moivre:
+
+\[
+z^8
+=
+(\sqrt2)^8
+e^{i8\pi/4}.
+\]
+
+Entonces,
+
+\[
+z^8
+=
+16e^{i2\pi}
+=
+\boxed{16}.
+\]
+
+Ahora buscamos las raíces cúbicas de \(z\).
+
+Como
+
+\[
+z
+=
+\sqrt2
+e^{i(\pi/4+2k\pi)},
+\]
+
+sus raíces cúbicas tienen módulo
+
+\[
+(\sqrt2)^{1/3}
+=
+2^{1/6}
+\]
+
+y argumentos
+
+\[
+\frac{\pi/4+2k\pi}{3}
+=
+\frac{\pi}{12}
++
+\frac{2k\pi}{3},
+\]
+
+con
+
+\[
+k=0,1,2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+w_k
+=
+2^{1/6}
+e^{\,i\left(
+\frac{\pi}{12}+\frac{2k\pi}{3}
+\right)},
+\qquad k=0,1,2
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Problema 3}
+
+Resuelva completamente
+
+\[
+z^4=16i
+\]
+
+y represente geométricamente las soluciones.
+
+Escribimos
+
+\[
+16i
+=
+16e^{i(\pi/2+2k\pi)}.
+\]
+
+Las raíces cuartas tienen módulo
+
+\[
+\sqrt[4]{16}=2.
+\]
+
+Los argumentos son
+
+\[
+\theta_k
+=
+\frac{\pi/2+2k\pi}{4}.
+\]
+
+Entonces,
+
+\[
+\theta_k
+=
+\frac{\pi}{8}
++
+\frac{k\pi}{2},
+\qquad
+k=0,1,2,3.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z_k
+=
+2e^{\,i\left(
+\frac{\pi}{8}+\frac{k\pi}{2}
+\right)},
+\qquad k=0,1,2,3
+}.
+\]
+
+Las soluciones están localizadas en la circunferencia
+
+\[
+|z|=2
+\]
+
+en los ángulos
+
+\[
+\frac{\pi}{8},
+\qquad
+\frac{5\pi}{8},
+\qquad
+\frac{9\pi}{8},
+\qquad
+\frac{13\pi}{8}.
+\]
+
+Geométricamente forman los vértices de un cuadrado inscrito en la
+circunferencia de radio \(2\).
+
+%--------------------------------------------------------
+
+\subsection*{Problema 5}
+
+Sea
+
+\[
+p(z)=z^4+5z^2+4.
+\]
+
+Factorice completamente \(p\) sobre \(\mathbb R\) y sobre \(\mathbb C\).
+
+Consideramos \(z^2\) como una variable auxiliar:
+
+\[
+u=z^2.
+\]
+
+Entonces,
+
+\[
+u^2+5u+4.
+\]
+
+Factorizando,
+
+\[
+u^2+5u+4
+=
+(u+1)(u+4).
+\]
+
+Regresando a \(z\),
+
+\[
+p(z)
+=
+(z^2+1)(z^2+4).
+\]
+
+Esta es la factorización en factores cuadráticos irreducibles sobre
+\(\mathbb R\):
+
+\[
+\boxed{
+p(z)
+=
+(z^2+1)(z^2+4)
+\qquad\text{sobre }\mathbb R
+}.
+\]
+
+Sobre \(\mathbb C\),
+
+\[
+z^2+1=(z-i)(z+i),
+\]
+
+y
+
+\[
+z^2+4=(z-2i)(z+2i).
+\]
+
+Por tanto,
+
+\[
+\boxed{
+p(z)
+=
+(z-i)(z+i)(z-2i)(z+2i)
+\qquad\text{sobre }\mathbb C
+}.
+\]
+
+%========================================================
+\section*{Ejercicios tipo examen}
+%========================================================
+
+\subsection*{Ejercicio 1}
+
+Simplifique sin utilizar calculadora
+
+\[
+\frac{(1+i)^{10}}{(1-i)^6}.
+\]
+
+Tenemos
+
+\[
+1+i
+=
+\sqrt2e^{i\pi/4}
+\]
+
+y
+
+\[
+1-i
+=
+\sqrt2e^{-i\pi/4}.
+\]
+
+Entonces,
+
+\[
+(1+i)^{10}
+=
+(\sqrt2)^{10}
+e^{i10\pi/4}.
+\]
+
+Como
+
+\[
+(\sqrt2)^{10}=32,
+\]
+
+y
+
+\[
+\frac{10\pi}{4}
+=
+\frac{5\pi}{2},
+\]
+
+tenemos
+
+\[
+(1+i)^{10}
+=
+32i.
+\]
+
+Asimismo,
+
+\[
+(1-i)^6
+=
+(\sqrt2)^6e^{-i6\pi/4}.
+\]
+
+Así,
+
+\[
+=
+8e^{-i3\pi/2}
+=
+8i.
+\]
+
+Por tanto,
+
+\[
+\frac{(1+i)^{10}}{(1-i)^6}
+=
+\frac{32i}{8i}.
+\]
+
+Entonces,
+
+\[
+\boxed{4}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 3}
+
+Sea \(z\) tal que
+
+\[
+|z|=2
+\]
+
+y
+
+\[
+\operatorname{Arg}(z)=\frac{2\pi}{3}.
+\]
+
+Calcule \(z^5\).
+
+Tenemos
+
+\[
+z
+=
+2\operatorname{cis}\frac{2\pi}{3}.
+\]
+
+Por De Moivre,
+
+\[
+z^5
+=
+2^5
+\operatorname{cis}
+\left(
+5\frac{2\pi}{3}
+\right).
+\]
+
+Entonces,
+
+\[
+z^5
+=
+32
+\operatorname{cis}\frac{10\pi}{3}.
+\]
+
+Reduciendo el argumento,
+
+\[
+\frac{10\pi}{3}-2\pi
+=
+\frac{4\pi}{3}.
+\]
+
+Por tanto,
+
+\[
+z^5
+=
+32
+\left(
+\cos\frac{4\pi}{3}
++i\sin\frac{4\pi}{3}
+\right).
+\]
+
+Como
+
+\[
+\cos\frac{4\pi}{3}
+=
+-\frac12,
+\]
+
+y
+
+\[
+\sin\frac{4\pi}{3}
+=
+-\frac{\sqrt3}{2},
+\]
+
+obtenemos
+
+\[
+\boxed{
+z^5=-16-16\sqrt3\,i
+}.
+\]
+
+%--------------------------------------------------------
+
+\subsection*{Ejercicio 5}
+
+Factorice completamente
+
+\[
+z^6-1
+\]
+
+sobre \(\mathbb C\).
+
+Las raíces son las raíces sextas de la unidad:
+
+\[
+z_k=e^{ik\pi/3},
+\qquad k=0,\ldots,5.
+\]
+
+Por tanto,
+
+\[
+z^6-1
+=
+\prod_{k=0}^{5}
+\left(
+z-e^{ik\pi/3}
+\right).
+\]
+
+Explícitamente,
+
+\[
+\boxed{
+\begin{aligned}
+z^6-1
+={}&(z-1)(z+1)\\
+&\left(
+z-\frac12-\frac{\sqrt3}{2}i
+\right)
+\left(
+z-\frac12+\frac{\sqrt3}{2}i
+\right)\\
+&\left(
+z+\frac12-\frac{\sqrt3}{2}i
+\right)
+\left(
+z+\frac12+\frac{\sqrt3}{2}i
+\right).
+\end{aligned}}
+\]
+
+%========================================================
+\section*{Ejercicios adicionales de números complejos}
+%========================================================
+
+\subsection*{1. Operaciones básicas}
+
+\subsubsection*{a)}
+
+Simplifique
+
+\[
+(4-3i)+(7+5i).
+\]
+
+Agrupando términos,
+
+\[
+=4+7+(-3+5)i.
+\]
+
+Por tanto,
+
+\[
+\boxed{11+2i}.
+\]
+
+\subsubsection*{b)}
+
+Simplifique
+
+\[
+(6+2i)-(3-7i).
+\]
+
+Distribuyendo,
+
+\[
+6+2i-3+7i.
+\]
+
+Entonces,
+
+\[
+\boxed{3+9i}.
+\]
+
+\subsubsection*{c)}
+
+Calcule
+
+\[
+(2+3i)(4-5i).
+\]
+
+Desarrollando,
+
+\[
+8-10i+12i-15i^2.
+\]
+
+Como \(i^2=-1\),
+
+\[
+=8+2i+15.
+\]
+
+Por tanto,
+
+\[
+\boxed{23+2i}.
+\]
+
+\subsubsection*{d)}
+
+Calcule
+
+\[
+(3-2i)^2.
+\]
+
+Tenemos
+
+\[
+9-12i+4i^2.
+\]
+
+Entonces,
+
+\[
+\boxed{5-12i}.
+\]
+
+\subsubsection*{e)}
+
+Simplifique
+
+\[
+(1+i)(1-i)(2+3i).
+\]
+
+Primero,
+
+\[
+(1+i)(1-i)=2.
+\]
+
+Por tanto,
+
+\[
+2(2+3i)
+=
+\boxed{4+6i}.
+\]
+
+\subsubsection*{f)}
+
+Simplifique
+
+\[
+i^{35}+i^{42}-2i^{17}.
+\]
+
+Tenemos
+
+\[
+i^{35}=i^3=-i,
+\]
+
+\[
+i^{42}=i^2=-1,
+\]
+
+y
+
+\[
+i^{17}=i.
+\]
+
+Entonces,
+
+\[
+-i-1-2i
+=
+\boxed{-1-3i}.
+\]
+
+\subsubsection*{g)}
+
+Simplifique
+
+\[
+i^{101}+i^{202}+i^{303}+i^{404}.
+\]
+
+Reduciendo módulo \(4\),
+
+\[
+i^{101}=i,
+\]
+
+\[
+i^{202}=-1,
+\]
+
+\[
+i^{303}=-i,
+\]
+
+\[
+i^{404}=1.
+\]
+
+Por tanto,
+
+\[
+i-1-i+1=0.
+\]
+
+Así,
+
+\[
+\boxed{0}.
+\]
+
+%========================================================
+\subsection*{3. Ecuaciones con números complejos}
+%========================================================
+
+\subsubsection*{a)}
+
+Determine \(x,y\in\mathbb R\) si
+
+\[
+(2x-y)+(x+3y)i=7+5i.
+\]
+
+Igualando partes,
+
+\[
+\begin{cases}
+2x-y=7,\\
+x+3y=5.
+\end{cases}
+\]
+
+De la primera,
+
+\[
+y=2x-7.
+\]
+
+Sustituyendo,
+
+\[
+x+3(2x-7)=5.
+\]
+
+Entonces,
+
+\[
+7x=26.
+\]
+
+Así,
+
+\[
+x=\frac{26}{7}.
+\]
+
+Luego,
+
+\[
+y
+=
+2\frac{26}{7}-7
+=
+\frac{3}{7}.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+x=\frac{26}{7},
+\qquad
+y=\frac37
+}.
+\]
+
+\subsubsection*{b)}
+
+Determine \(a,b\in\mathbb R\) si
+
+\[
+(a+bi)(1+i)=5+i.
+\]
+
+Desarrollando,
+
+\[
+(a-b)+(a+b)i=5+i.
+\]
+
+Entonces,
+
+\[
+\begin{cases}
+a-b=5,\\
+a+b=1.
+\end{cases}
+\]
+
+Sumando,
+
+\[
+2a=6,
+\]
+
+por lo que
+
+\[
+a=3.
+\]
+
+Luego,
+
+\[
+b=-2.
+\]
+
+Así,
+
+\[
+\boxed{a=3,\qquad b=-2}.
+\]
+
+\subsubsection*{c)}
+
+Encuentre \(z\in\mathbb C\) tal que
+
+\[
+z+\bar z=8,
+\]
+
+\[
+z-\bar z=-6i.
+\]
+
+Sea
+
+\[
+z=a+bi.
+\]
+
+Entonces,
+
+\[
+z+\bar z=2a.
+\]
+
+Así,
+
+\[
+2a=8,
+\]
+
+por lo que
+
+\[
+a=4.
+\]
+
+Además,
+
+\[
+z-\bar z=2bi.
+\]
+
+Por tanto,
+
+\[
+2bi=-6i,
+\]
+
+de donde
+
+\[
+b=-3.
+\]
+
+Así,
+
+\[
+\boxed{z=4-3i}.
+\]
+
+\subsubsection*{d)}
+
+Determine \(z\) si
+
+\[
+2z+3\bar z=5+i.
+\]
+
+Sea
+
+\[
+z=a+bi.
+\]
+
+Entonces,
+
+\[
+2(a+bi)+3(a-bi)=5+i.
+\]
+
+Agrupando,
+
+\[
+5a-bi=5+i.
+\]
+
+Igualando partes,
+
+\[
+5a=5,
+\]
+
+y
+
+\[
+-b=1.
+\]
+
+Entonces,
+
+\[
+a=1,
+\qquad
+b=-1.
+\]
+
+Por tanto,
+
+\[
+\boxed{z=1-i}.
+\]
+
+\subsubsection*{e)}
+
+Determine todos los números complejos \(z=a+bi\) que satisfacen
+
+\[
+z^2=3+4i.
+\]
+
+Tenemos
+
+\[
+(a+bi)^2
+=
+a^2-b^2+2abi.
+\]
+
+Por tanto,
+
+\[
+a^2-b^2=3,
+\]
+
+y
+
+\[
+2ab=4.
+\]
+
+Así,
+
+\[
+ab=2.
+\]
+
+Además,
+
+\[
+|z|^2
+=
+|3+4i|
+=
+5.
+\]
+
+Por tanto,
+
+\[
+a^2+b^2=5.
+\]
+
+Sumando
+
+\[
+a^2-b^2=3
+\]
+
+y
+
+\[
+a^2+b^2=5,
+\]
+
+obtenemos
+
+\[
+2a^2=8.
+\]
+
+Por tanto,
+
+\[
+a=\pm2.
+\]
+
+Como
+
+\[
+ab=2,
+\]
+
+si \(a=2\), entonces \(b=1\).
+
+Si \(a=-2\), entonces \(b=-1\).
+
+Así,
+
+\[
+\boxed{
+z=2+i
+\quad\text{o}\quad
+z=-2-i
+}.
+\]
+
+\subsubsection*{f)}
+
+Resuelva
+
+\[
+z^2-4z+13=0.
+\]
+
+Aplicamos la fórmula general:
+
+\[
+z
+=
+\frac{4\pm\sqrt{16-52}}{2}.
+\]
+
+Entonces,
+
+\[
+z
+=
+\frac{4\pm\sqrt{-36}}{2}.
+\]
+
+Como
+
+\[
+\sqrt{-36}=6i,
+\]
+
+obtenemos
+
+\[
+\boxed{
+z=2\pm3i
+}.
+\]
+
+\subsubsection*{g)}
+
+Resuelva
+
+\[
+z^2+(2-2i)z-4i=0.
+\]
+
+Aplicando la fórmula general,
+
+\[
+z
+=
+\frac{-(2-2i)
+\pm
+\sqrt{(2-2i)^2+16i}}{2}.
+\]
+
+Calculamos el discriminante:
+
+\[
+(2-2i)^2
+=
+4-8i+4i^2
+=
+-8i.
+\]
+
+Por tanto,
+
+\[
+\Delta=-8i+16i=8i.
+\]
+
+Observamos que
+
+\[
+(2+2i)^2=8i.
+\]
+
+Así,
+
+\[
+\sqrt{8i}=\pm(2+2i).
+\]
+
+Entonces,
+
+\[
+z
+=
+\frac{-2+2i\pm(2+2i)}{2}.
+\]
+
+Con el signo positivo,
+
+\[
+z
+=
+\frac{4i}{2}
+=
+2i.
+\]
+
+Con el signo negativo,
+
+\[
+z
+=
+\frac{-4}{2}
+=
+-2.
+\]
+
+Por tanto,
+
+\[
+\boxed{
+z=2i
+\quad\text{o}\quad
+z=-2
+}.
+\]
+
+%========================================================
+\subsection*{5. Interpretación geométrica}
+%========================================================
+
+\subsubsection*{a)}
+
+Los números
+
+\[
+z_1=2+3i,\qquad
+z_2=-3+2i,\qquad
+z_3=-2-4i,\qquad
+z_4=4-2i
+\]
+
+corresponden a los puntos
+
+\[
+\boxed{
+(2,3),\quad
+(-3,2),\quad
+(-2,-4),\quad
+(4,-2)
+}.
+\]
+
+\subsubsection*{b)}
+
+Para
+
+\[
+z=3+4i,
+\]
+
+tenemos
+
+\[
+\bar z=3-4i,
+\]
+
+\[
+-z=-3-4i,
+\]
+
+y
+
+\[
+-\bar z=-3+4i.
+\]
+
+Geométricamente:
+
+\[
+z\longleftrightarrow(3,4),
+\]
+
+\[
+\bar z\longleftrightarrow(3,-4),
+\]
+
+\[
+-z\longleftrightarrow(-3,-4),
+\]
+
+\[
+-\bar z\longleftrightarrow(-3,4).
+\]
+
+El conjugado representa reflexión respecto al eje real y la
+multiplicación por \(-1\) representa una rotación de \(\pi\) radianes
+respecto al origen.
+
+\subsubsection*{c)}
+
+La ecuación
+
+\[
+|z|=3
+\]
+
+describe todos los puntos cuya distancia al origen es \(3\).
+
+Por tanto,
+
+\[
+\boxed{
+\text{circunferencia de centro }(0,0)
+\text{ y radio }3
+}.
+\]
+
+\subsubsection*{d)}
+
+La ecuación
+
+\[
+|z-(2+i)|=4
+\]
+
+describe una circunferencia de centro
+
+\[
+2+i
+\]
+
+y radio
+
+\[
+4.
+\]
+
+Así,
+
+\[
+\boxed{
+\text{centro }(2,1),
+\qquad
+r=4
+}.
+\]
+
+\subsubsection*{e)}
+
+La desigualdad
+
+\[
+|z+3-2i|\leq2
+\]
+
+puede escribirse como
+
+\[
+|z-(-3+2i)|\leq2.
+\]
+
+Por tanto, representa el disco cerrado de centro
+
+\[
+-3+2i
+\]
+
+y radio \(2\):
+
+\[
+\boxed{
+(x+3)^2+(y-2)^2\leq4
+}.
+\]
+
+\subsubsection*{f)}
+
+Determine el lugar geométrico
+
+\[
+|z-2|=|z+2|.
+\]
+
+Sea
+
+\[
+z=x+yi.
+\]
+
+Entonces,
+
+\[
+(x-2)^2+y^2
+=
+(x+2)^2+y^2.
+\]
+
+Cancelando,
+
+\[
+(x-2)^2=(x+2)^2.
+\]
+
+Expandiendo,
+
+\[
+x^2-4x+4
+=
+x^2+4x+4.
+\]
+
+Así,
+
+\[
+x=0.
+\]
+
+Por tanto,
+
+\[
+\boxed{x=0},
+\]
+
+que corresponde al eje imaginario.
+
+\subsubsection*{g)}
+
+Determine el lugar geométrico
+
+\[
+|z-i|=|z-3i|.
+\]
+
+Los puntos deben estar a igual distancia de
+
+\[
+i=(0,1)
+\]
+
+y
+
+\[
+3i=(0,3).
+\]
+
+Geométricamente, el lugar es la mediatriz del segmento que une esos
+puntos.
+
+El punto medio es
+
+\[
+(0,2).
+\]
+
+La mediatriz es horizontal:
+
+\[
+\boxed{y=2}.
+\]
+
+
+
+
+\end{document}
