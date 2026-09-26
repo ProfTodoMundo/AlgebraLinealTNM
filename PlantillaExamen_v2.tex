@@ -1,0 +1,230 @@
+\documentclass[12pt]{article}
+
+% ======================================================
+% Codificación e idioma
+% ======================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage[spanish,es-nodecimaldot]{babel}
+
+% =====================================================
+% Matemáticas
+% =====================================================
+
+\usepackage{amsmath,amssymb,amsfonts}
+
+% =====================================================
+% Formato y utilidades
+% =====================================================
+
+\usepackage[letterpaper,margin=2.2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{hyperref}
+
+% =====================================================
+% Hipervínculos
+% =====================================================
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  urlcolor=blue,
+  citecolor=blue
+}
+
+% =====================================================
+% Formato de párrafos
+% =====================================================
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.05em}
+
+% =====================================================
+% Datos editables del examen
+% =====================================================
+
+\newcommand{\institucion}{Tecnológico Nacional de México}
+\newcommand{\materia}{Álgebra Lineal}
+\newcommand{\nombreexamen}{Primer Examen Parcial}
+\newcommand{\unidad}{Unidad 1: Números Complejos}
+\newcommand{\docente}{Carlos Ernesto Martínez}
+\newcommand{\fechaexamen}{}
+\newcommand{\duracion}{60 minutos}
+\newcommand{\puntajetotal}{100 puntos}
+
+% =====================================================
+% Encabezado y pie de página
+% =====================================================
+
+\setlength{\headheight}{10pt}
+
+\pagestyle{fancy}
+\fancyhf{}
+
+\fancyhead[L]{\institucion}
+\fancyhead[R]{\materia}
+
+\fancyfoot[L]{\docente}
+\fancyfoot[C]{Página \thepage\ de \pageref{LastPage}}
+\fancyfoot[R]{\nombreexamen}
+
+\renewcommand{\headrulewidth}{0.1pt}
+\renewcommand{\footrulewidth}{0.1pt}
+
+% =====================================================
+% Contador y ambiente para problemas
+% =====================================================
+
+\newcounter{problema}
+
+\newenvironment{problema}[1]
+{
+  \refstepcounter{problema}
+  \par\medskip
+  \noindent
+  \textbf{Problema \theproblema.}
+  \textbf{[#1 puntos]}
+  \par\smallskip
+}
+{
+  \par\medskip
+}
+
+% =====================================================
+% Comando para espacio de respuesta
+% =====================================================
+
+\newcommand{\espaciorespuesta}[1]{
+  \vspace{#1}
+}
+
+% =====================================================
+% Documento
+% =====================================================
+
+\begin{document}
+
+% =====================================================
+% Encabezado principal
+% =====================================================
+
+\begin{center}
+    {\Large\textbf{\institucion}}\\[0.1em]
+    {\large\textbf{\materia}}\\[0.1em]
+    {\large\textbf{\nombreexamen}}\\[0.1em]
+    {\normalsize\unidad}
+\end{center}
+
+\vspace{0.15em}
+
+% =====================================================
+% Datos del estudiante
+% =====================================================
+
+\begin{tabularx}{\textwidth}{>{\bfseries}l X >{\bfseries}l X}
+Nombre: & \hrulefill &
+No. de control: & \hrulefill \\[1.2em]
+
+Grupo: & \hrulefill &
+Fecha: & \hrulefill \\[1.2em]
+
+Calificación: & \hrulefill &
+
+\end{tabularx}
+
+
+
+% =====================================================
+% Información general
+% =====================================================
+
+% =====================================================
+% Instrucciones
+% =====================================================
+
+\subsection*{Instrucciones}
+Muestre de manera clara y ordenada todo el procedimiento. Justifique sus resultados cuando se solicite. Las respuestas sin procedimiento no serán consideradas par la calificaci\'on. Sí se permite uso de calculadora, mostrar al inicio del examen.
+
+% =====================================================
+% REACTIVOS
+% =====================================================
+
+\begin{multicols}{2}
+\begin{problema}{10}
+Simplifique $i^{11}+i^{22}+i^{33}+i^{44}$.
+\end{problema}
+
+\begin{problema}{10}
+Determine $a,b\in\mathbb{R}$ si $z=(2a-1)+(3b+4)i=7-5i$.
+\end{problema}
+
+\begin{problema}{10}
+Sean $z_1=3-2i$, $z_2=-1+5i$, $z_3=4+i$. Calcule $-5z_1+3z_2-4z_3$.
+\end{problema}
+
+\begin{problema}{10}
+Calcule $(2-i)(2+i)(1+3i)$.
+\end{problema}
+
+\begin{problema}{15}
+Verifique que $\overline{zw}=\overline z\,\overline w$ para $z=-3-i$, $w=3-i$.
+\end{problema}
+
+\begin{problema}{10}
+Calcule $|1-\sqrt3\,i|$.
+\end{problema}
+
+\begin{problema}{10}
+Calcule $\dfrac{3+2i}{1-i}$.
+\end{problema}
+
+\begin{problema}{15}
+Convierta $5\left(\cos\frac{5\pi}{6}+i\sin\frac{5\pi}{6}\right)$ a forma rectangular.
+\end{problema}
+
+\begin{problema}{15}
+ Divida $6\operatorname{cis}\frac{5\pi}{6}$ entre $3\operatorname{cis}\frac{\pi}{3}$.
+\end{problema}
+
+\begin{problema}{10}
+*Evalúe $e^{i\pi/6}$.
+\end{problema}
+
+\begin{problema}{15}
+*Calcule $\left(2e^{i\pi/5}\right)^7$ usando De Moivre.
+\end{problema}
+
+\begin{problema}{15}
+Encuentre las raíces sextas de la unidad.
+\end{problema}
+
+\begin{problema}{15}
+*Resuelva  $z^2-2z+5=0$.
+\end{problema}
+
+\begin{problema}{15}
+*Calcule $e^{1+i\pi}$.
+\end{problema}
+
+
+\begin{problema}{15}
+*Sea $z=-1+\sqrt3\,i$. Exprese $z$ en forma polar y exponencial y calcule $z^{12}$.
+\end{problema}
+
+
+\end{multicols}
+\espaciorespuesta{6cm}
+%============================================================
+%============================================================
+
+
+
+
+\end{document}
