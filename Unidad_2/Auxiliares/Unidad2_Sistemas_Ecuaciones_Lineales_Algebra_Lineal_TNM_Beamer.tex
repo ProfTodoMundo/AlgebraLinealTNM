@@ -1,35 +1,15 @@
-
-\documentclass[12pt]{article}
-
+\documentclass[aspectratio=169,9pt]{beamer}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[spanish,mexico]{babel}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{geometry}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{array}
-\usepackage{xcolor}
-\usepackage{hyperref}
-\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,array,longtable}
 \usepackage{microtype}
-\usepackage{longtable}
-
-\geometry{letterpaper,margin=2.35cm}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.55em}
-\setlist[itemize]{leftmargin=1.6em}
-\setlist[enumerate]{leftmargin=1.9em}
-
-\definecolor{azul}{RGB}{22,72,120}
-\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul}
-
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{Tecnológico Nacional de México}
-\rhead{Álgebra Lineal}
-\cfoot{\thepage}
-
+\usetheme{Madrid}
+\usecolortheme{default}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{theorems}[numbered]
+\setbeamersize{text margin left=7mm,text margin right=7mm}
 \newtheorem{definicion}{Definición}[section]
 \newtheorem{teorema}[definicion]{Teorema}
 \newtheorem{proposicion}[definicion]{Proposición}
@@ -37,23 +17,19 @@
 \theoremstyle{remark}
 \newtheorem{observacion}[definicion]{Observación}
 \newtheorem{ejemplo}[definicion]{Ejemplo}
-
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\rank}{\operatorname{rang}}
 \newcommand{\RREF}{\operatorname{RREF}}
-
-\title{\textbf{Notas para el curso de Álgebra Lineal}\\[0.35cm]
-\Large Unidad 2: Sistemas de ecuaciones lineales}
-\author{Carlos Ernesto Martínez\\Tecnológico Nacional de México}
+\title{Álgebra Lineal}
+\subtitle{Unidad 2: Sistemas de ecuaciones lineales}
+\author{Carlos Ernesto Martínez}
+\institute{Tecnológico Nacional de México}
 \date{Agosto--Diciembre 2026}
-
 \begin{document}
-\maketitle
-\tableofcontents
-\newpage
-
+\begin{frame}\titlepage\end{frame}
+\begin{frame}[allowframebreaks]{Contenido}\tableofcontents[hideallsubsections]\end{frame}
 \section{Propósito de la unidad}
-
+\begin{frame}[allowframebreaks,t]{Propósito de la unidad}
 En esta unidad estudiaremos los \emph{sistemas de ecuaciones lineales}. El objetivo no es únicamente
 aprender algoritmos para obtener valores numéricos. Nos interesa comprender qué significa resolver
 simultáneamente varias ecuaciones, cuándo un sistema tiene solución, cuántas soluciones puede tener,
@@ -71,9 +47,10 @@ a una representación matricial compacta
 \[
 A\mathbf{x}=\mathbf{b}.
 \]
-La matriz no sustituye al sistema: conserva de manera organizada la información de sus coeficientes y permite realizar de forma eficiente las mismas operaciones algebraicas que ya conocemos.
+La matriz no sustituye al sistema: conserva de manera organizada la información de sus coeficientes y
+permite realizar de forma eficiente las mismas operaciones algebraicas que ya conocemos.
 
-\subsection*{Ruta conceptual}
+\par\medskip{\large\bfseries Ruta conceptual}\par\smallskip
 Seguiremos la cadena
 \[
 \boxed{\text{ecuación lineal}}
@@ -96,9 +73,10 @@ y después estudiaremos
 \longrightarrow
 \boxed{\text{métodos alternativos y aplicaciones}}.
 \]
+\end{frame}
 
 \section{Ecuaciones lineales}
-
+\begin{frame}[allowframebreaks,t]{Ecuaciones lineales}
 \begin{definicion}
 Una \textbf{ecuación lineal} en las incógnitas $x_1,\ldots,x_n$ es una ecuación de la forma
 \[
@@ -137,9 +115,10 @@ Por ejemplo, $(x,y)=(2,1)$ es solución de $2x-y=3$, pues
 \]
 Sin embargo, una sola ecuación con varias incógnitas suele tener muchas soluciones. El problema se vuelve
 más interesante cuando exigimos que los mismos valores satisfagan simultáneamente varias ecuaciones.
+\end{frame}
 
 \section{Sistemas de ecuaciones lineales}
-
+\begin{frame}[allowframebreaks,t]{Sistemas de ecuaciones lineales}
 \begin{definicion}
 Un \textbf{sistema de $m$ ecuaciones lineales con $n$ incógnitas} es un conjunto de ecuaciones
 \[
@@ -180,19 +159,20 @@ La verificación es inmediata:
 \]
 \end{ejemplo}
 
-\subsection{¿Qué significa resolver un sistema?}
+\par\medskip{\large\bfseries ¿Qué significa resolver un sistema?}\par\smallskip
 
 Resolver un sistema significa describir \emph{todo su conjunto solución}. No basta encontrar una pareja
 que funcione si existen otras. Tampoco debemos concluir que ``no se puede resolver'' sólo porque un
 procedimiento produce una variable libre: precisamente esa variable libre puede indicar la existencia
 de infinitas soluciones.
+\end{frame}
 
 \section{Interpretación geométrica}
-
+\begin{frame}[allowframebreaks,t]{Interpretación geométrica}
 La geometría permite comprender, antes de desarrollar los algoritmos, por qué aparecen distintos tipos
 de solución.
 
-\subsection{Dos ecuaciones con dos incógnitas}
+\par\medskip{\large\bfseries Dos ecuaciones con dos incógnitas}\par\smallskip
 
 Una ecuación
 \[
@@ -203,7 +183,7 @@ equivale a buscar los puntos comunes de dos rectas.
 
 Existen tres posibilidades fundamentales.
 
-\subsubsection*{Rectas que se cortan}
+\par\smallskip{\bfseries Rectas que se cortan}\par
 \[
 \begin{cases}
 x+y=3,\\
@@ -212,7 +192,7 @@ x-y=1.
 \]
 Las rectas se intersectan en un único punto. El sistema tiene una solución.
 
-\subsubsection*{Rectas paralelas distintas}
+\par\smallskip{\bfseries Rectas paralelas distintas}\par
 \[
 \begin{cases}
 x+y=2,\\
@@ -222,7 +202,7 @@ x+y=2,\\
 La segunda ecuación tendría el mismo lado izquierdo que el doble de la primera, pero un término
 independiente diferente. Las rectas son paralelas y el sistema no tiene solución.
 
-\subsubsection*{La misma recta}
+\par\smallskip{\bfseries La misma recta}\par
 \[
 \begin{cases}
 x+y=2,\\
@@ -232,7 +212,7 @@ x+y=2,\\
 La segunda ecuación es exactamente el doble de la primera. Ambas describen la misma recta, por lo que
 cada punto de ella es solución: existen infinitas soluciones.
 
-\subsection{Tres incógnitas}
+\par\medskip{\large\bfseries Tres incógnitas}\par\smallskip
 
 En $\R^3$, una ecuación lineal
 \[
@@ -255,9 +235,10 @@ No puede tener exactamente dos, tres o cualquier otro número finito mayor que u
 
 Más adelante podremos justificar formalmente esta afirmación mediante la estructura de los sistemas
 homogéneos y las variables libres.
+\end{frame}
 
 \section{Representación matricial}
-
+\begin{frame}[allowframebreaks,t]{Representación matricial}
 Consideremos
 \[
 \begin{cases}
@@ -307,9 +288,10 @@ La \textbf{matriz aumentada} del sistema es
 
 La barra vertical es sólo una ayuda visual: separa los coeficientes de las incógnitas del término
 independiente.
+\end{frame}
 
 \section{Sistemas homogéneos y no homogéneos}
-
+\begin{frame}[allowframebreaks,t]{Sistemas homogéneos y no homogéneos}
 \begin{definicion}
 Un sistema es \textbf{homogéneo} si todos sus términos independientes son cero:
 \[
@@ -356,9 +338,10 @@ Además de la solución trivial $s=t=0$, existen infinitas soluciones no trivial
 
 Esta forma de escribir las soluciones será especialmente importante en unidades posteriores: ya
 aparece, de manera natural, la idea de combinación lineal.
+\end{frame}
 
 \section{Sistemas compatibles e incompatibles}
-
+\begin{frame}[allowframebreaks,t]{Sistemas compatibles e incompatibles}
 \begin{definicion}
 Un sistema es \textbf{compatible} si tiene al menos una solución. Es \textbf{incompatible} si no tiene
 solución.
@@ -380,9 +363,10 @@ Por tanto,
 \text{una o infinitas soluciones}\qquad\text{ninguna solución}
 \end{array}}
 \]
+\end{frame}
 
 \section{De la eliminación algebraica a las operaciones por renglones}
-
+\begin{frame}[allowframebreaks,t]{De la eliminación algebraica a las operaciones por renglones}
 Antes de introducir un algoritmo matricial, recordemos la eliminación usual:
 \[
 \begin{cases}
@@ -424,7 +408,7 @@ y produce
 \right].
 \]
 
-\subsection{Operaciones elementales}
+\par\medskip{\large\bfseries Operaciones elementales}\par\smallskip
 
 \begin{definicion}
 Las \textbf{operaciones elementales por renglones} son:
@@ -459,9 +443,10 @@ R_i\leftarrow R_i-cR_j.
 \]
 Por tanto, cada operación transforma el sistema en otro equivalente.
 \end{proof}
+\end{frame}
 
 \section{Forma escalonada}
-
+\begin{frame}[allowframebreaks,t]{Forma escalonada}
 \begin{definicion}
 Una matriz está en \textbf{forma escalonada por renglones} si:
 \begin{enumerate}
@@ -487,13 +472,14 @@ está en forma escalonada.
 La primera entrada no nula de un renglón no nulo se denomina \textbf{pivote}. La columna que contiene
 un pivote se denomina \textbf{columna pivote}.
 \end{definicion}
+\end{frame}
 
 \section{Eliminación de Gauss}
-
+\begin{frame}[allowframebreaks,t]{Eliminación de Gauss}
 El método de Gauss consiste en aplicar operaciones elementales hasta llevar la matriz aumentada a forma
 escalonada. Después se utiliza sustitución hacia atrás.
 
-\subsection{Ejemplo con solución única}
+\par\medskip{\large\bfseries Ejemplo con solución única}\par\smallskip
 
 Resolvamos
 \[
@@ -569,7 +555,7 @@ Así,
 \boxed{(x,y,z)=(1,2,3)}.
 \]
 
-\subsection{Ejemplo incompatible}
+\par\medskip{\large\bfseries Ejemplo incompatible}\par\smallskip
 
 \[
 \begin{cases}
@@ -603,7 +589,7 @@ es decir,
 \]
 una contradicción. Por tanto, el sistema es incompatible.
 
-\subsection{Ejemplo con infinitas soluciones}
+\par\medskip{\large\bfseries Ejemplo con infinitas soluciones}\par\smallskip
 
 \[
 \begin{cases}
@@ -632,9 +618,10 @@ Por tanto,
 \[
 \boxed{(x,y,z)=(2-s-t,s,t),\qquad s,t\in\R.}
 \]
+\end{frame}
 
 \section{Variables básicas y variables libres}
-
+\begin{frame}[allowframebreaks,t]{Variables básicas y variables libres}
 En una matriz escalonada, las variables correspondientes a columnas pivote se denominan
 \textbf{variables básicas}. Las restantes son \textbf{variables libres}.
 
@@ -672,9 +659,10 @@ La solución completa es
 +s\begin{pmatrix}-2\\1\\0\\0\end{pmatrix}
 +t\begin{pmatrix}1\\0\\-4\\1\end{pmatrix}.
 \]
+\end{frame}
 
 \section{Forma escalonada reducida}
-
+\begin{frame}[allowframebreaks,t]{Forma escalonada reducida}
 \begin{definicion}
 Una matriz está en \textbf{forma escalonada reducida por renglones} si está en forma escalonada y,
 además:
@@ -700,9 +688,10 @@ Toda matriz es equivalente por renglones a una única matriz escalonada reducida
 
 Esta unicidad es importante: podemos realizar operaciones distintas durante el proceso, pero si
 continuamos hasta la forma reducida, el resultado final será el mismo.
+\end{frame}
 
 \section{Método de Gauss--Jordan}
-
+\begin{frame}[allowframebreaks,t]{Método de Gauss--Jordan}
 Gauss--Jordan continúa el proceso de Gauss hasta anular también las entradas \emph{encima} de cada
 pivote y normalizar los pivotes a uno.
 
@@ -739,18 +728,19 @@ La solución se lee directamente:
 x=1,\qquad y=2,\qquad z=3.
 \]
 
-\subsection{Gauss frente a Gauss--Jordan}
+\par\medskip{\large\bfseries Gauss frente a Gauss--Jordan}\par\smallskip
 
 Gauss busca una matriz escalonada y termina con sustitución hacia atrás. Gauss--Jordan continúa hasta
 la forma escalonada reducida. Para resolver manualmente un sistema grande, Gauss suele requerir menos
 operaciones. Gauss--Jordan, en cambio, proporciona una descripción muy transparente de variables
 básicas y libres.
+\end{frame}
 
 \section{Sistemas con parámetros}
-
+\begin{frame}[allowframebreaks,t]{Sistemas con parámetros}
 Los parámetros permiten estudiar familias completas de sistemas.
 
-\subsection{Parámetros como variables libres}
+\par\medskip{\large\bfseries Parámetros como variables libres}\par\smallskip
 
 Consideremos
 \[
@@ -773,7 +763,7 @@ x=4-s-t.
 \]
 Aquí $s$ y $t$ son parámetros que describen todas las soluciones.
 
-\subsection{Parámetros en los coeficientes}
+\par\medskip{\large\bfseries Parámetros en los coeficientes}\par\smallskip
 
 Consideremos
 \[
@@ -820,7 +810,7 @@ y queda una ecuación con dos incógnitas. Existen infinitas soluciones.
 Este ejemplo muestra por qué, al trabajar con parámetros, no debemos dividir por una expresión como
 $a-2$ sin estudiar antes el caso en que puede ser cero.
 
-\subsection{Un parámetro que produce incompatibilidad}
+\par\medskip{\large\bfseries Un parámetro que produce incompatibilidad}\par\smallskip
 
 \[
 \begin{cases}
@@ -844,9 +834,10 @@ k=4 &\Longrightarrow \text{infinitas soluciones},\\
 k\neq4 &\Longrightarrow \text{ninguna solución}.
 \end{cases}
 \]
+\end{frame}
 
 \section{Rango de una matriz}
-
+\begin{frame}[allowframebreaks,t]{Rango de una matriz}
 \begin{definicion}
 El \textbf{rango} de una matriz $A$, denotado por $\rank(A)$, es el número de pivotes de una forma
 escalonada de $A$.
@@ -869,9 +860,10 @@ entonces
 \rank(A)=2.
 \]
 \end{ejemplo}
+\end{frame}
 
 \section{Rango y consistencia}
-
+\begin{frame}[allowframebreaks,t]{Rango y consistencia}
 Para el sistema
 \[
 A\mathbf{x}=\mathbf b,
@@ -904,9 +896,10 @@ Si el sistema es compatible y tiene $n$ incógnitas:
 \rank(A)<n &\Longrightarrow \text{infinitas soluciones}.
 \end{cases}
 \]
+\end{frame}
 
 \section{Solución mediante matriz inversa}
-
+\begin{frame}[allowframebreaks,t]{Solución mediante matriz inversa}
 Supongamos que $A$ es una matriz cuadrada e invertible. Si
 \[
 A\mathbf{x}=\mathbf b,
@@ -963,9 +956,10 @@ La fórmula $A^{-1}\mathbf b$ sólo tiene sentido cuando $A$ es cuadrada e inver
 explícitamente la inversa no suele ser el procedimiento más eficiente para resolver un único sistema.
 El método es conceptualmente importante porque relaciona invertibilidad con existencia y unicidad.
 \end{observacion}
+\end{frame}
 
 \section{Regla de Cramer}
-
+\begin{frame}[allowframebreaks,t]{Regla de Cramer}
 La regla de Cramer proporciona una fórmula para sistemas cuadrados cuya matriz de coeficientes tiene
 determinante distinto de cero.
 
@@ -978,6 +972,8 @@ Para cada $i$, sea $A_i$ la matriz obtenida al sustituir la columna $i$ de $A$ p
 \boxed{x_i=\frac{\det(A_i)}{\det(A)}}.
 \]
 
+\end{frame}
+\begin{frame}[t,shrink=18]{Regla de Cramer: ejemplo}
 \begin{ejemplo}
 Resolvamos
 \[
@@ -1021,9 +1017,10 @@ y=\frac{-3}{-3}=1.
 Cramer requiere $\det(A)\neq0$. Es útil teóricamente y para sistemas pequeños, pero para sistemas
 grandes la eliminación gaussiana suele ser más eficiente.
 \end{observacion}
+\end{frame}
 
 \section{Cómo elegir un método}
-
+\begin{frame}[allowframebreaks,t]{Cómo elegir un método}
 No existe una única técnica que deba aplicarse mecánicamente a todos los sistemas.
 
 \begin{center}
@@ -1040,10 +1037,11 @@ Interés en consistencia & Comparación de rangos\\
 \bottomrule
 \end{tabular}
 \end{center}
+\end{frame}
 
 \section{Aplicaciones}
-
-\subsection{Mezclas}
+\begin{frame}[allowframebreaks,t]{Aplicaciones}
+\par\medskip{\large\bfseries Mezclas}\par\smallskip
 
 Una solución de $10$ litros debe contener $30\%$ de cierta sustancia. Se dispone de una solución al
 $20\%$ y otra al $50\%$. Si $x$ y $y$ son los litros utilizados de cada una,
@@ -1074,7 +1072,7 @@ por lo que $3y=10$ y
 y=\frac{10}{3},\qquad x=\frac{20}{3}.
 \]
 
-\subsection{Circuitos}
+\par\medskip{\large\bfseries Circuitos}\par\smallskip
 
 En muchos circuitos, las leyes de Kirchhoff producen sistemas lineales en las corrientes desconocidas.
 Por ejemplo,
@@ -1088,16 +1086,17 @@ I_1-I_2-I_3=0,\\
 La primera ecuación puede representar conservación de corriente en un nodo; las restantes, balances de
 voltaje en mallas. Una vez formulado el modelo, el problema se convierte en resolver un sistema lineal.
 
-\subsection{Equilibrio de fuerzas}
+\par\medskip{\large\bfseries Equilibrio de fuerzas}\par\smallskip
 
 Si varias fuerzas actúan sobre una estructura en equilibrio, la suma de componentes debe ser cero:
 \[
 \sum F_x=0,\qquad \sum F_y=0.
 \]
 Cuando las magnitudes desconocidas aparecen linealmente, estas ecuaciones forman un sistema lineal.
+\end{frame}
 
 \section{Errores frecuentes}
-
+\begin{frame}[allowframebreaks,t]{Errores frecuentes}
 \begin{enumerate}
 \item Realizar una operación en el lado izquierdo de una ecuación sin hacerla también en el término
 independiente. La matriz aumentada evita parcialmente este error si se opera el renglón completo.
@@ -1118,10 +1117,11 @@ pero no describe el conjunto completo de soluciones.
 \item Detener Gauss demasiado pronto: para estar en forma escalonada deben existir ceros debajo de
 todos los pivotes.
 \end{enumerate}
+\end{frame}
 
 \section{Ejemplos integradores}
-
-\subsection*{Ejemplo A: clasificar y resolver}
+\begin{frame}[allowframebreaks,t]{Ejemplos integradores}
+\par\medskip{\large\bfseries Ejemplo A: clasificar y resolver}\par\smallskip
 
 \[
 \begin{cases}
@@ -1184,7 +1184,7 @@ Así,
 \]
 El sistema es compatible indeterminado.
 
-\subsection*{Ejemplo B: parámetro y clasificación}
+\par\medskip{\large\bfseries Ejemplo B: parámetro y clasificación}\par\smallskip
 
 \[
 \begin{cases}
@@ -1205,10 +1205,11 @@ mientras que
 \[
 k\neq1\Longrightarrow\text{sistema incompatible}.
 \]
+\end{frame}
 
 \section{Ejercicios propuestos}
-
-\subsection*{A. Conceptos}
+\begin{frame}[allowframebreaks,t]{Ejercicios propuestos}
+\par\medskip{\large\bfseries A. Conceptos}\par\smallskip
 \begin{enumerate}
 \item Determine cuáles de las siguientes ecuaciones son lineales:
 \[
@@ -1221,7 +1222,7 @@ indeterminado e incompatible.
 \item Explique la diferencia entre forma escalonada y forma escalonada reducida.
 \end{enumerate}
 
-\subsection*{B. Eliminación de Gauss}
+\par\medskip{\large\bfseries B. Eliminación de Gauss}\par\smallskip
 Resuelva y clasifique:
 \begin{enumerate}
 \item
@@ -1255,7 +1256,7 @@ x-y=1,\\
 \]
 \end{enumerate}
 
-\subsection*{C. Gauss--Jordan y variables libres}
+\par\medskip{\large\bfseries C. Gauss--Jordan y variables libres}\par\smallskip
 \begin{enumerate}
 \item Reduzca a forma escalonada reducida:
 \[
@@ -1280,7 +1281,7 @@ x-y=1,\\
 identifique variables básicas y libres y describa todas las soluciones.
 \end{enumerate}
 
-\subsection*{D. Parámetros}
+\par\medskip{\large\bfseries D. Parámetros}\par\smallskip
 Clasifique los sistemas según el valor del parámetro:
 \begin{enumerate}
 \item
@@ -1299,7 +1300,7 @@ x-y=3,\\
 \]
 \end{enumerate}
 
-\subsection*{E. Aplicaciones}
+\par\medskip{\large\bfseries E. Aplicaciones}\par\smallskip
 \begin{enumerate}
 \item Una mezcla de $20$ kg debe contener $35\%$ de un componente. ¿Cuántos kilogramos de mezclas
 al $20\%$ y al $50\%$ deben combinarse?
@@ -1311,9 +1312,10 @@ I_1-I_2-I_3=0,\qquad 5I_1+2I_2=15,\qquad 2I_2-4I_3=0.
 \]
 Determine $I_1,I_2,I_3$.
 \end{enumerate}
+\end{frame}
 
 \section{Resumen de la unidad}
-
+\begin{frame}[allowframebreaks,t]{Resumen de la unidad}
 Las ideas fundamentales pueden organizarse así:
 \[
 A\mathbf x=\mathbf b
@@ -1341,5 +1343,706 @@ es la condición de consistencia. Para un sistema compatible con $n$ incógnitas
 
 Los métodos de matriz inversa y Cramer son herramientas adicionales bajo hipótesis específicas, mientras
 que la eliminación gaussiana constituye el método general que articula gran parte de la unidad.
+\end{frame}
+
+\begin{frame}\titlepage\end{frame}
+\section{Indicaciones}
+\begin{frame}{Indicaciones}
+\small
+Resuelva cada sistema mediante eliminación de Gauss o Gauss--Jordan. En cada caso:
+\begin{enumerate}
+\item escriba la matriz aumentada;
+\item reduzca la matriz por operaciones elementales;
+\item determine si el sistema es compatible determinado, compatible indeterminado o incompatible;
+\item si existen variables libres, escriba la solución en forma paramétrica.
+\end{enumerate}
+\medskip
+Los bloques incluyen sistemas rectangulares: el número de ecuaciones no necesariamente coincide con el número de incógnitas.
+\end{frame}
+\section{Sistemas $2\times 3$}
+\begin{frame}{Sistemas $2\times 3$: ejercicios 1--2}
+\small
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2x+y-3z&=-9\\
+3x+y&=-4\\
+\end{aligned}\right.\]
+\vspace{0.2em}\hrule\vspace{0.3em}
+\textbf{2.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-y&=11\\
+2x+4y-3z&=21\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $2\times 3$: ejercicios 3--4}
+\small
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x-2y+z&=12\\
+-3x-4y-2z&=18\\
+\end{aligned}\right.\]
+\textbf{6.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x+3y-z&=12\\
+3x+2y+2z&=20\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $2\times 3$: ejercicios 5--6}
+\small
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-y+3z&=1\\
+x-4y&=-13\\
+\end{aligned}\right.\]
+\textbf{10.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x+4y-z&=14\\
+-4x-y&=1\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $2\times 3$: ejercicios 7--8}
+\small
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-2y+2z&=10\\
+3x-3y-2z&=-3\\
+\end{aligned}\right.\]
+\textbf{14.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+4y-4z&=4\\
+-2x-y-4z&=10\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $2\times 3$: ejercicios 9--10}
+\small
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2x-3y+z&=-17\\
+2x+3y&=8\\
+\end{aligned}\right.\]
+\textbf{18.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x+4y-2z&=10\\
+2x+2y&=0\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $2\times 3$: ejercicios 11--12}
+\small
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x+2y+4z&=23\\
+x+2y-4z&=-7\\
+\end{aligned}\right.\]
+\textbf{22.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-z&=0\\
+2x-y-3z&=-18\\
+\end{aligned}\right.\]
+\end{frame}
+\section{Sistemas $3\times 2$}
+\begin{frame}{Sistemas $3\times 2$: ejercicios 1--2}
+\small
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x+2y&=9\\
+-4x+2y&=10\\
+-2x+4y&=14\\
+\end{aligned}\right.\]
+\vspace{0.2em}\hrule\vspace{0.3em}
+\textbf{2.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-3y&=-21\\
+y&=4\\
+2x&=-6\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 2$: ejercicios 3--4}
+\small
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x-y&=-4\\
+2y&=6\\
+x+2y&=5\\
+\end{aligned}\right.\]
+\textbf{6.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-3y&=-24\\
+-2x+y&=-2\\
+4x+3y&=24\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 2$: ejercicios 5--6}
+\small
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2y&=4\\
+3x-2y&=2\\
+x-2y&=-2\\
+\end{aligned}\right.\]
+\textbf{10.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2x+2y&=6\\
+-2x+4y&=-6\\
+4x+4y&=13\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 2$: ejercicios 7--8}
+\small
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-3y&=5\\
+2x-2y&=8\\
+-x+y&=-4\\
+\end{aligned}\right.\]
+\textbf{14.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-x+4y&=4\\
+4x+2y&=20\\
+x-4y&=-4\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 2$: ejercicios 9--10}
+\small
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4y&=16\\
+-4x+3y&=8\\
+3y&=12\\
+\end{aligned}\right.\]
+\textbf{18.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+y&=-3\\
+-4x+y&=-3\\
+2x+2y&=4\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 2$: ejercicios 11--12}
+\small
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x+y&=15\\
+x-2y&=-2\\
+-4x-4y&=-28\\
+\end{aligned}\right.\]
+\textbf{22.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x+y&=-2\\
+-x+2y&=6\\
+-6x+2y&=-3\\
+\end{aligned}\right.\]
+\end{frame}
+\section{Sistemas $3\times 4$}
+\begin{frame}{Sistemas $3\times 4$: ejercicios 1--2}
+\small
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4x-3y+4z+2w&=-12\\
+3x-4y&=-2\\
+3x+y-3z+w&=11\\
+\end{aligned}\right.\]
+\vspace{0.2em}\hrule\vspace{0.3em}
+\textbf{2.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x+y+3z-2w&=19\\
+-2x-2y+3z-4w&=22\\
+4x-4z-w&=-17\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 4$: ejercicios 3--4}
+\small
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+2y+z&=16\\
+3x+y+z-4w&=-24\\
+-x+3y+4z+w&=8\\
+\end{aligned}\right.\]
+\textbf{6.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-y-3z-4w&=9\\
+4x+3y+3z+2w&=6\\
+-3x+y+3z+4w&=-9\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 4$: ejercicios 5--6}
+\small
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+4y+2z+3w&=13\\
+x-y+3z+3w&=11\\
+-4x+4y+4z-3w&=13\\
+\end{aligned}\right.\]
+\textbf{10.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x+2y-4z+2w&=-6\\
+-x-4y+3z-w&=7\\
+-6x+4y-8z+4w&=-11\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 4$: ejercicios 7--8}
+\small
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4x+y-3w&=-2\\
+3x+4y-4z&=-9\\
+-3x+2y+2w&=1\\
+\end{aligned}\right.\]
+\textbf{14.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-x-3y+3z-2w&=-5\\
+x-2y-w&=7\\
+x+3y-3z+2w&=5\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 4$: ejercicios 9--10}
+\small
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4x+3y+4z&=24\\
+3x-2y-4w&=7\\
+3x-2y-2w&=1\\
+\end{aligned}\right.\]
+\textbf{18.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x+2y-4z+2w&=18\\
+4x+y+4z-w&=-2\\
+-x-4y+4z-2w&=-14\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 4$: ejercicios 11--12}
+\small
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x-3y+3z+3w&=5\\
+-x+y+2w&=1\\
+4x+4y-3z-2w&=0\\
+\end{aligned}\right.\]
+\textbf{22.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x+3y-2w&=5\\
+2x-3z+3w&=6\\
+2x+6y-4w&=11\\
+\end{aligned}\right.\]
+\end{frame}
+\section{Sistemas $3\times 5$}
+\begin{frame}{Sistemas $3\times 5$: ejercicios 1--2}
+\scriptsize
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x-3y+2z+2w+u&=-4\\
+2y+4z-2w-u&=17\\
+4x+4y+3z-3w+4u&=33\\
+\end{aligned}\right.\]
+\vspace{0.2em}\hrule\vspace{0.3em}
+\textbf{2.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-y+z+w-4u&=6\\
+-3w+u&=1\\
+4x-2y+2w+u&=-6\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 5$: ejercicios 3--4}
+\scriptsize
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-y+2z+3w+4u&=5\\
+2x+y-4z-2w-4u&=-12\\
+-4x-y+3z-2w+4u&=13\\
+\end{aligned}\right.\]
+\textbf{6.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x+z+3w-3u&=6\\
+-2x+y-3z-2w&=19\\
+3x-z-3w+3u&=-6\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 5$: ejercicios 5--6}
+\scriptsize
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x+2z+3w+3u&=7\\
+-4x-4y+3z+4w+4u&=13\\
+4x-y+2u&=-8\\
+\end{aligned}\right.\]
+\textbf{10.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3y-z+w+2u&=5\\
+x-4y-4z+4w-u&=-2\\
+6y-2z+2w+4u&=11\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 5$: ejercicios 7--8}
+\scriptsize
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-3y+4z+3w+4u&=20\\
+-3x-y-3z+3w-u&=-14\\
+-3x+y+z+w+4u&=0\\
+\end{aligned}\right.\]
+\textbf{14.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+2y+z-u&=14\\
+4y+3u&=-6\\
+4x-2y-z+u&=-14\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 5$: ejercicios 9--10}
+\scriptsize
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x-4y-4z-w-2u&=23\\
+3x-y-2z-u&=8\\
+-4x-3y-u&=8\\
+\end{aligned}\right.\]
+\textbf{18.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+2y+2z-3w-2u&=1\\
+-4x+y-2z-4w-2u&=-13\\
+-3x-3z-w+2u&=-15\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 5$: ejercicios 11--12}
+\scriptsize
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-2y+4z+w&=13\\
+x-4y-3z+2w+u&=6\\
+4x-3y-3z+3w+2u&=1\\
+\end{aligned}\right.\]
+\textbf{22.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-3z+w+2u&=6\\
+3x-4y+4z-3w&=9\\
+-8x-6z+2w+4u&=13\\
+\end{aligned}\right.\]
+\end{frame}
+\section{Sistemas $4\times 5$}
+\begin{frame}{Sistemas $4\times 5$: ejercicios 1--2}
+\scriptsize
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x+4y-2z+3w+4u&=34\\
+2x+4y-4z+2w+4u&=28\\
+4x+2y-4z+3w&=10\\
+-2x-4y-3w+u&=-14\\
+\end{aligned}\right.\]
+\vspace{0.2em}\hrule\vspace{0.3em}
+\textbf{2.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x-y-z-4w-u&=-17\\
+-2x+4y+4z-w&=24\\
+2x-3y-3z-w+4u&=-25\\
+x-2z-3w+3u&=-14\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $4\times 5$: ejercicios 3--4}
+\scriptsize
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2x-4y+3z-w+3u&=-3\\
+4x-2y-2z+4w-4u&=0\\
+x+4y-3z-3w+3u&=24\\
+-3x-3y+3z-3w+3u&=-15\\
+\end{aligned}\right.\]
+\textbf{6.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3y-2z+3w-3u&=20\\
+4x+3y+2z+4w-u&=16\\
+4x+2y+z-3w+2u&=-21\\
+3y+2z-3w+3u&=-20\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $4\times 5$: ejercicios 5--6}
+\scriptsize
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x+y-3z-2w&=12\\
+x+3y+2z+4w-u&=-11\\
+-x+2y+2z-2u&=7\\
+3x-3w-2u&=0\\
+\end{aligned}\right.\]
+\textbf{10.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x+2y+2z-2w&=16\\
+-2x-2y-2z+3u&=-7\\
+-y+3z-3u&=10\\
+-4x+4y+4z-4w&=33\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $4\times 5$: ejercicios 7--8}
+\scriptsize
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4x-3y-2w+u&=23\\
+x+y+z+4w+4u&=10\\
+2x+y-4w+4u&=37\\
+-2x+4y+z-2w-4u&=-13\\
+\end{aligned}\right.\]
+\textbf{14.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-2y+4z-4w+3u&=-1\\
+4x+3y+z+3w&=2\\
+-3x-y-2z+2w+3u&=16\\
+4x+2y-4z+4w-3u&=1\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $4\times 5$: ejercicios 9--10}
+\scriptsize
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x-y-4z-4w-3u&=-7\\
+x+2y+3w-u&=8\\
+-2x-4y+2w-3u&=15\\
+3x+4y-2w-2u&=-3\\
+\end{aligned}\right.\]
+\textbf{18.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x+y+2z+w-u&=-4\\
+-4x-2y-z-4w&=-18\\
+-x+3y+z+2w+u&=-1\\
+-2x+2y+z+3w-2u&=5\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $4\times 5$: ejercicios 11--12}
+\scriptsize
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-2y+3z+2w+2u&=24\\
+-2x+4y+4z-4w&=10\\
+-2x-w&=-4\\
+3x+2y-3z-2w-u&=-2\\
+\end{aligned}\right.\]
+\textbf{22.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x-2y-4z-w-4u&=-14\\
+-2x-y-4z+4w&=-13\\
+-x-y-2z-4w+4u&=28\\
+-6x-4y-8z-2w-8u&=-27\\
+\end{aligned}\right.\]
+\end{frame}
+\section{Sistemas $5\times 6$}
+\begin{frame}{Sistema $5\times 6$: ejercicio 1}
+\scriptsize
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x-4y-4z-2u+3v&=-16\\
+-x+y-4z+4w+3u-4v&=-10\\
+2y-z-4w+4u-v&=12\\
+-x+2y+3z+2w-2u-3v&=7\\
+2x+4y+3w+4u+v&=-18\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 2}
+\scriptsize
+\textbf{3.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x-2y-z-2w-3u-3v&=1\\
+-4x+y+w+3u-2v&=-18\\
+-2x-y+z+3w-3u+2v&=7\\
+-4x+y-3z+3w-3v&=-9\\
+x-3y+2z+3w-3u&=18\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 3}
+\scriptsize
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2y-3z+w+3u-4v&=-7\\
+x+2y+4w-4u+2v&=-15\\
+x+3y-4z+w+3u-2v&=-9\\
+4x-4y+4z+3w-2u+4v&=-17\\
+2x-4y+3z+3w-v&=-16\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 4}
+\scriptsize
+\textbf{7.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x+2y+4z-w-u+2v&=-13\\
+-x+4y-3z-2w+2u-2v&=1\\
+-3x+y-3z+3w-4u+3v&=-7\\
+4x+y+3z+4w-3u-2v&=2\\
+-3x-2y-4z+w+u-2v&=13\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 5}
+\scriptsize
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-4y-4z-w-u+4v&=-29\\
+3z+2w+2u+4v&=0\\
+-4x+y+z+w+3v&=-23\\
+3x-2y-2z+3w-u-v&=3\\
+-2x-3y-z+3w-2u+v&=-21\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 6}
+\scriptsize
+\textbf{11.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4x-3y-z+3w-u+3v&=23\\
+-3x-2z+2w&=9\\
+-2x+y+3z+4w-3v&=11\\
+-2x+3y+3z-w+3u-2v&=-7\\
+-8x-6y-2z+6w-2u+6v&=47\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 7}
+\scriptsize
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3y-3z-2w-2u-4v&=5\\
+3x-3y-4z+3w-4u-v&=-18\\
+3x-y+2z+2w+u+2v&=6\\
+4x+z+3w-2u-3v&=2\\
+x-3z+3u-v&=-4\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 8}
+\scriptsize
+\textbf{15.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2x-2y-2z+w+4v&=-12\\
+-3x+3y-4w+v&=13\\
+3x-3y-z+w+4u&=-9\\
+4x+3y-2z+2u+3v&=8\\
+-2x+2y+2z-w-4v&=12\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 9}
+\scriptsize
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x+3y-2w+3u+2v&=-28\\
+-x-4y-3z+w+3u-2v&=9\\
+-2x+y-3w+4u+2v&=-25\\
+4x+2z-4w+4u-4v&=-16\\
+-2x-3y-4z-3w-u-4v&=1\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 10}
+\scriptsize
+\textbf{19.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-4y-3z-w-v&=8\\
+3x-4z-4w-3u-3v&=-20\\
+-x+4y+w+2u+3v&=3\\
+-x-2z-w-u+4v&=12\\
+4x-3y+w-4u-3v&=-4\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 11}
+\scriptsize
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x-y-4z-3u-4v&=-32\\
+-x+y-3z-2w-u-2v&=-25\\
+3x-y-3z+3w-4u+2v&=19\\
+-4x+4y+z+4w+3u-4v&=-5\\
+2x+2y-4z-2w+4u&=-12\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistema $5\times 6$: ejercicio 12}
+\scriptsize
+\textbf{23.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x-y-3z-2w-2u-2v&=-5\\
+-3x-y-3z+2w-u+4v&=-10\\
+-3x+4y+w-3u&=-23\\
+2x-2y+z-4w-4u-3v&=4\\
+-4x-2y-6z-4w-4u-4v&=-9\\
+\end{aligned}\right.\]
+\end{frame}
+\section{Sistemas $3\times 6$}
+\begin{frame}{Sistemas $3\times 6$: ejercicios 1--2}
+\scriptsize
+\textbf{1.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-3y+4z-2w+u+4v&=-13\\
+-x+2y+3z-3w-3v&=16\\
+2y+2z+3w+u-2v&=19\\
+\end{aligned}\right.\]
+\vspace{0.2em}\hrule\vspace{0.3em}
+\textbf{2.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-3x+2y-3z-w-u-2v&=25\\
+-y-3z-2w+4u+3v&=3\\
+-2x+4y+2w+2u+2v&=16\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 6$: ejercicios 3--4}
+\scriptsize
+\textbf{5.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4x-y+2z+4w+4u-4v&=-4\\
+x-y+2z+2w-4u-3v&=13\\
+4x-y+4z-w-2u-v&=2\\
+\end{aligned}\right.\]
+\textbf{6.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+2y+z+w-2v&=5\\
+4x+3y-3w-2u-3v&=23\\
+-2y-z-w+2v&=-5\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 6$: ejercicios 5--6}
+\scriptsize
+\textbf{9.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x+3y-3z+2w-u+2v&=-20\\
+x+2z+3w+2u&=5\\
+-x-y-3z-u-4v&=-4\\
+\end{aligned}\right.\]
+\textbf{10.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-y+z-3w-2u+3v&=19\\
+4x+3y-3z-3w+4u+v&=-17\\
+-2y+2z-6w-4u+6v&=39\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 6$: ejercicios 7--8}
+\scriptsize
+\textbf{13.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x+y+3z+2w+2u-3v&=-26\\
+-3z+w-4u&=9\\
+-x-4y+z+w-2v&=-26\\
+\end{aligned}\right.\]
+\textbf{14.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+3x-4y+4z+2w-4u&=-19\\
+-4x-3y-3z+w-2u+3v&=6\\
+-3x+4y-4z-2w+4u&=19\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 6$: ejercicios 9--10}
+\scriptsize
+\textbf{17.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-2x-2y+4z-4w+3u-2v&=4\\
+-3x+3y+3z-2w-4u-2v&=3\\
+x+4y+3z+w-4u+4v&=0\\
+\end{aligned}\right.\]
+\textbf{18.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+4x-3y-z+w-2u-2v&=29\\
+x-2y+3z+w+3u+2v&=-3\\
+x+3y+4z-2w+2u+4v&=-15\\
+\end{aligned}\right.\]
+\end{frame}
+\begin{frame}{Sistemas $3\times 6$: ejercicios 11--12}
+\scriptsize
+\textbf{21.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+-x+2z-2w-4u&=-8\\
+3x+y-3z-2w-u-v&=6\\
+-4x-y+w-u+v&=-1\\
+\end{aligned}\right.\]
+\textbf{22.} Resuelva y clasifique:
+\[\left\{\begin{aligned}
+x-y+3z+4w+u-3v&=-18\\
+2x+y-3z-2w+3u+3v&=11\\
+2x-2y+6z+8w+2u-6v&=-35\\
+\end{aligned}\right.\]
+\end{frame}
 
 \end{document}

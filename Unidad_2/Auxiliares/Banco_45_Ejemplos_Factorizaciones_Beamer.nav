@@ -1,0 +1,227 @@
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\slideentry {0}{0}{2}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\beamer@sectionpages {1}{2}}
+\headcommand {\beamer@subsectionpages {1}{2}}
+\headcommand {\sectionentry {1}{Factorización $LU$}{3}{Factorización $LU$}{0}}
+\headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{4}{Matrices $2\times 2$}}
+\headcommand {\slideentry {1}{1}{1}{4/4}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\slideentry {1}{1}{2}{5/5}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\slideentry {1}{1}{3}{6/6}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\slideentry {1}{1}{4}{7/7}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\slideentry {1}{1}{5}{8/8}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\slideentry {1}{1}{6}{9/9}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\slideentry {1}{1}{7}{10/10}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {10}{10}}
+\headcommand {\slideentry {1}{1}{8}{11/11}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {11}{11}}
+\headcommand {\slideentry {1}{1}{9}{12/12}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {12}{12}}
+\headcommand {\slideentry {1}{1}{10}{13/13}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\beamer@subsectionpages {4}{13}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{14}{Matrices $3\times 3$}}
+\headcommand {\slideentry {1}{2}{1}{14/14}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\slideentry {1}{2}{2}{15/15}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {1}{2}{3}{16/16}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\slideentry {1}{2}{4}{17/17}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\slideentry {1}{2}{5}{18/18}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\slideentry {1}{2}{6}{19/19}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\slideentry {1}{2}{7}{20/20}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\slideentry {1}{2}{8}{21/21}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\slideentry {1}{2}{9}{22/22}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {1}{2}{10}{23/23}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\beamer@subsectionpages {14}{23}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{24}{Matrices $4\times 4$}}
+\headcommand {\slideentry {1}{3}{1}{24/24}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\slideentry {1}{3}{2}{25/25}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {25}{25}}
+\headcommand {\slideentry {1}{3}{3}{26/26}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {26}{26}}
+\headcommand {\slideentry {1}{3}{4}{27/27}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {27}{27}}
+\headcommand {\slideentry {1}{3}{5}{28/28}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {28}{28}}
+\headcommand {\slideentry {1}{3}{6}{29/29}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {29}{29}}
+\headcommand {\slideentry {1}{3}{7}{30/30}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {30}{30}}
+\headcommand {\slideentry {1}{3}{8}{31/31}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {31}{31}}
+\headcommand {\slideentry {1}{3}{9}{32/32}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {32}{32}}
+\headcommand {\slideentry {1}{3}{10}{33/33}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {33}{33}}
+\headcommand {\beamer@sectionpages {3}{33}}
+\headcommand {\beamer@subsectionpages {24}{33}}
+\headcommand {\sectionentry {2}{Factorización de Cholesky}{34}{Factorización de Cholesky}{0}}
+\headcommand {\slideentry {2}{0}{1}{34/34}{}{0}}
+\headcommand {\beamer@framepages {34}{34}}
+\headcommand {\beamer@subsectionpages {34}{34}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{35}{Matrices $2\times 2$}}
+\headcommand {\slideentry {2}{1}{1}{35/35}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {35}{35}}
+\headcommand {\slideentry {2}{1}{2}{36/36}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {36}{36}}
+\headcommand {\slideentry {2}{1}{3}{37/37}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {37}{37}}
+\headcommand {\slideentry {2}{1}{4}{38/38}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {38}{38}}
+\headcommand {\slideentry {2}{1}{5}{39/39}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {39}{39}}
+\headcommand {\slideentry {2}{1}{6}{40/40}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {40}{40}}
+\headcommand {\slideentry {2}{1}{7}{41/41}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {41}{41}}
+\headcommand {\slideentry {2}{1}{8}{42/42}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {2}{1}{9}{43/43}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {43}{43}}
+\headcommand {\slideentry {2}{1}{10}{44/44}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {44}{44}}
+\headcommand {\beamer@subsectionpages {35}{44}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{45}{Matrices $3\times 3$}}
+\headcommand {\slideentry {2}{2}{1}{45/45}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {45}{45}}
+\headcommand {\slideentry {2}{2}{2}{46/46}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {46}{46}}
+\headcommand {\slideentry {2}{2}{3}{47/47}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {47}{47}}
+\headcommand {\slideentry {2}{2}{4}{48/48}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {48}{48}}
+\headcommand {\slideentry {2}{2}{5}{49/49}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {49}{49}}
+\headcommand {\slideentry {2}{2}{6}{50/50}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {50}{50}}
+\headcommand {\slideentry {2}{2}{7}{51/51}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {51}{51}}
+\headcommand {\slideentry {2}{2}{8}{52/52}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {52}{52}}
+\headcommand {\slideentry {2}{2}{9}{53/53}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {53}{53}}
+\headcommand {\slideentry {2}{2}{10}{54/54}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {54}{54}}
+\headcommand {\beamer@subsectionpages {45}{54}}
+\headcommand {\beamer@subsectionentry {0}{2}{3}{55}{Matrices $4\times 4$}}
+\headcommand {\slideentry {2}{3}{1}{55/55}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {55}{55}}
+\headcommand {\slideentry {2}{3}{2}{56/56}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {56}{56}}
+\headcommand {\slideentry {2}{3}{3}{57/57}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {57}{57}}
+\headcommand {\slideentry {2}{3}{4}{58/58}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {58}{58}}
+\headcommand {\slideentry {2}{3}{5}{59/59}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {59}{59}}
+\headcommand {\slideentry {2}{3}{6}{60/60}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {60}{60}}
+\headcommand {\slideentry {2}{3}{7}{61/61}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {61}{61}}
+\headcommand {\slideentry {2}{3}{8}{62/62}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {62}{62}}
+\headcommand {\slideentry {2}{3}{9}{63/63}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {63}{63}}
+\headcommand {\slideentry {2}{3}{10}{64/64}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {64}{64}}
+\headcommand {\beamer@sectionpages {34}{64}}
+\headcommand {\beamer@subsectionpages {55}{64}}
+\headcommand {\sectionentry {3}{Diagonalización}{65}{Diagonalización}{0}}
+\headcommand {\slideentry {3}{0}{1}{65/65}{}{0}}
+\headcommand {\beamer@framepages {65}{65}}
+\headcommand {\beamer@subsectionpages {65}{65}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{66}{Matrices $2\times 2$}}
+\headcommand {\slideentry {3}{1}{1}{66/66}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {66}{66}}
+\headcommand {\slideentry {3}{1}{2}{67/67}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {67}{67}}
+\headcommand {\slideentry {3}{1}{3}{68/68}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {68}{68}}
+\headcommand {\slideentry {3}{1}{4}{69/69}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {69}{69}}
+\headcommand {\slideentry {3}{1}{5}{70/70}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {70}{70}}
+\headcommand {\slideentry {3}{1}{6}{71/71}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {71}{71}}
+\headcommand {\slideentry {3}{1}{7}{72/72}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {72}{72}}
+\headcommand {\slideentry {3}{1}{8}{73/73}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {73}{73}}
+\headcommand {\slideentry {3}{1}{9}{74/74}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {74}{74}}
+\headcommand {\slideentry {3}{1}{10}{75/75}{Matrices $2\times 2$}{0}}
+\headcommand {\beamer@framepages {75}{75}}
+\headcommand {\beamer@subsectionpages {66}{75}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{76}{Matrices $3\times 3$}}
+\headcommand {\slideentry {3}{2}{1}{76/76}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {76}{76}}
+\headcommand {\slideentry {3}{2}{2}{77/77}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {77}{77}}
+\headcommand {\slideentry {3}{2}{3}{78/78}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {78}{78}}
+\headcommand {\slideentry {3}{2}{4}{79/79}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {79}{79}}
+\headcommand {\slideentry {3}{2}{5}{80/80}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {80}{80}}
+\headcommand {\slideentry {3}{2}{6}{81/81}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {81}{81}}
+\headcommand {\slideentry {3}{2}{7}{82/82}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {82}{82}}
+\headcommand {\slideentry {3}{2}{8}{83/83}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {83}{83}}
+\headcommand {\slideentry {3}{2}{9}{84/84}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {84}{84}}
+\headcommand {\slideentry {3}{2}{10}{85/85}{Matrices $3\times 3$}{0}}
+\headcommand {\beamer@framepages {85}{85}}
+\headcommand {\beamer@subsectionpages {76}{85}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{86}{Matrices $4\times 4$}}
+\headcommand {\slideentry {3}{3}{1}{86/86}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {86}{86}}
+\headcommand {\slideentry {3}{3}{2}{87/87}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {87}{87}}
+\headcommand {\slideentry {3}{3}{3}{88/88}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {88}{88}}
+\headcommand {\slideentry {3}{3}{4}{89/89}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {89}{89}}
+\headcommand {\slideentry {3}{3}{5}{90/90}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {90}{90}}
+\headcommand {\slideentry {3}{3}{6}{91/91}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {91}{91}}
+\headcommand {\slideentry {3}{3}{7}{92/92}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {92}{92}}
+\headcommand {\slideentry {3}{3}{8}{93/93}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {93}{93}}
+\headcommand {\slideentry {3}{3}{9}{94/94}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {94}{94}}
+\headcommand {\slideentry {3}{3}{10}{95/95}{Matrices $4\times 4$}{0}}
+\headcommand {\beamer@framepages {95}{95}}
+\headcommand {\beamer@sectionpages {65}{95}}
+\headcommand {\beamer@subsectionpages {86}{95}}
+\headcommand {\sectionentry {4}{Cierre}{96}{Cierre}{0}}
+\headcommand {\slideentry {4}{0}{1}{96/96}{}{0}}
+\headcommand {\beamer@framepages {96}{96}}
+\headcommand {\beamer@partpages {1}{96}}
+\headcommand {\beamer@subsectionpages {96}{96}}
+\headcommand {\beamer@sectionpages {96}{96}}
+\headcommand {\beamer@documentpages {96}}
+\headcommand {\gdef \inserttotalframenumber {96}}

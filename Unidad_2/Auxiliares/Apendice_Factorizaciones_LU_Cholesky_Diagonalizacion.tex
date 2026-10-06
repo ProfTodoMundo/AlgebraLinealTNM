@@ -1,0 +1,1321 @@
+%=========================================================
+% APÉNDICE: FACTORIZACIONES MATRICIALES
+% Banco de 45 ejemplos: LU, Cholesky y diagonalización
+%=========================================================
+%
+% Este archivo está pensado para incorporarse al documento maestro.
+% Si el documento aún no ha iniciado los apéndices, coloque antes:
+%
+%   \appendix
+%
+% Si ya se encuentra dentro de los apéndices, basta con usar \input{...}.
+%
+% Requiere en el preámbulo:
+%   \usepackage{amsmath,amssymb,mathtools}
+%
+\chapter*{Apéndice: Factorizaciones matriciales}
+\addcontentsline{toc}{chapter}{Apéndice: Factorizaciones matriciales}
+
+\noindent
+Este apéndice reúne un banco de ejemplos de tres factorizaciones matriciales:
+la factorización \(LU\), la factorización de Cholesky \(A=LL^{T}\) y la
+diagonalización \(A=PDP^{-1}\). Para cada método se incluyen cinco ejemplos
+con matrices \(2\times2\), cinco con matrices \(3\times3\) y cinco con
+matrices \(4\times4\), ordenados para disponer de varias alternativas de
+trabajo en clase, estudio y tarea.
+
+En la factorización \(LU\) se trabaja sin pivoteo y sin normalizar pivotes.
+En Cholesky se emplean matrices simétricas definidas positivas. En la parte
+de diagonalización se inicia con la idea geométrica de direcciones que se
+conservan bajo la transformación y posteriormente se formaliza la
+descomposición \(A=PDP^{-1}\).
+
+\medskip
+\noindent\textbf{Nota didáctica.}
+Los ejemplos están deliberadamente separados en enunciado y solución para
+que puedan utilizarse primero como ejercicios y posteriormente como material
+de consulta.
+
+\section{Factorización $LU$}
+
+\subsubsection*{Recordatorio: de Gauss a $LU$}
+
+Si no se requieren intercambios de renglones, hacemos eliminación de Gauss sin normalizar pivotes. Para anular $a_{ij}$ usamos
+\[
+m_{ij}=\frac{a_{ij}}{a_{jj}},\qquad R_i\leftarrow R_i-m_{ij}R_j.
+\]
+Los multiplicadores se guardan debajo de la diagonal de $L$ y la matriz final es $U$:
+\[
+\boxed{A=LU}.
+\]
+
+\subsection{Matrices $2\times 2$}
+
+\subsubsection*{LU $2\times 2$ -- ejemplo 1}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}2 & -1\\-4 & 3\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $2\times 2$ -- solución 1}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=-2.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0\\-2 & 1\end{pmatrix},\qquad U=\begin{pmatrix}2 & -1\\0 & 1\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $2\times 2$ -- ejemplo 2}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}1 & 2\\3 & 9\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $2\times 2$ -- solución 2}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=3.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0\\3 & 1\end{pmatrix},\qquad U=\begin{pmatrix}1 & 2\\0 & 3\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $2\times 2$ -- ejemplo 3}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}3 & 0\\3 & -2\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $2\times 2$ -- solución 3}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=1.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0\\1 & 1\end{pmatrix},\qquad U=\begin{pmatrix}3 & 0\\0 & -2\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $2\times 2$ -- ejemplo 4}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}-2 & 3\\2 & 1\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $2\times 2$ -- solución 4}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=-1.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0\\-1 & 1\end{pmatrix},\qquad U=\begin{pmatrix}-2 & 3\\0 & 4\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $2\times 2$ -- ejemplo 5}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}4 & -2\\8 & -2\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $2\times 2$ -- solución 5}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=2.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0\\2 & 1\end{pmatrix},\qquad U=\begin{pmatrix}4 & -2\\0 & 2\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+\subsection{Matrices $3\times 3$}
+
+\subsubsection*{LU $3\times 3$ -- ejemplo 1}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}2 & -1 & 2\\-4 & 3 & -4\\-2 & 3 & 1\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $3\times 3$ -- solución 1}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=-2,\quad m_{31}=-1,\quad m_{32}=2.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\-2 & 1 & 0\\-1 & 2 & 1\end{pmatrix},\qquad U=\begin{pmatrix}2 & -1 & 2\\0 & 1 & 0\\0 & 0 & 3\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $3\times 3$ -- ejemplo 2}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}1 & 2 & 0\\3 & 9 & 3\\2 & -2 & -8\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $3\times 3$ -- solución 2}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=3,\quad m_{31}=2,\quad m_{32}=-2.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\3 & 1 & 0\\2 & -2 & 1\end{pmatrix},\qquad U=\begin{pmatrix}1 & 2 & 0\\0 & 3 & 3\\0 & 0 & -2\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $3\times 3$ -- ejemplo 3}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}3 & 0 & 3\\3 & -2 & 1\\-6 & -6 & -8\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $3\times 3$ -- solución 3}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=1,\quad m_{31}=-2,\quad m_{32}=3.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\1 & 1 & 0\\-2 & 3 & 1\end{pmatrix},\qquad U=\begin{pmatrix}3 & 0 & 3\\0 & -2 & -2\\0 & 0 & 4\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $3\times 3$ -- ejemplo 4}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}-2 & 3 & -2\\2 & 1 & 3\\-6 & 13 & -3\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $3\times 3$ -- solución 4}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=-1,\quad m_{31}=3,\quad m_{32}=1.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\-1 & 1 & 0\\3 & 1 & 1\end{pmatrix},\qquad U=\begin{pmatrix}-2 & 3 & -2\\0 & 4 & 1\\0 & 0 & 2\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $3\times 3$ -- ejemplo 5}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}4 & -2 & 1\\8 & -2 & 1\\4 & -4 & 3\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $3\times 3$ -- solución 5}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=2,\quad m_{31}=1,\quad m_{32}=-1.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\2 & 1 & 0\\1 & -1 & 1\end{pmatrix},\qquad U=\begin{pmatrix}4 & -2 & 1\\0 & 2 & -1\\0 & 0 & 1\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+\subsection{Matrices $4\times 4$}
+
+\subsubsection*{LU $4\times 4$ -- ejemplo 1}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}2 & -1 & 2 & 0\\-4 & 3 & -4 & 3\\-2 & 3 & 1 & 4\\6 & -2 & 3 & 3\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $4\times 4$ -- solución 1}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=-2,\quad m_{31}=-1,\quad m_{32}=2,\quad m_{41}=3,\quad m_{42}=1,\quad m_{43}=-1.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\-2 & 1 & 0 & 0\\-1 & 2 & 1 & 0\\3 & 1 & -1 & 1\end{pmatrix},\qquad U=\begin{pmatrix}2 & -1 & 2 & 0\\0 & 1 & 0 & 3\\0 & 0 & 3 & -2\\0 & 0 & 0 & -2\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $4\times 4$ -- ejemplo 2}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}1 & 2 & 0 & 3\\3 & 9 & 3 & 7\\2 & -2 & -8 & 11\\1 & -1 & -7 & 11\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $4\times 4$ -- solución 2}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=3,\quad m_{31}=2,\quad m_{32}=-2,\quad m_{41}=1,\quad m_{42}=-1,\quad m_{43}=2.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\3 & 1 & 0 & 0\\2 & -2 & 1 & 0\\1 & -1 & 2 & 1\end{pmatrix},\qquad U=\begin{pmatrix}1 & 2 & 0 & 3\\0 & 3 & 3 & -2\\0 & 0 & -2 & 1\\0 & 0 & 0 & 4\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $4\times 4$ -- ejemplo 3}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}3 & 0 & 3 & -2\\3 & -2 & 1 & -1\\-6 & -6 & -8 & 6\\-3 & -4 & -15 & 8\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $4\times 4$ -- solución 3}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=1,\quad m_{31}=-2,\quad m_{32}=3,\quad m_{41}=-1,\quad m_{42}=2,\quad m_{43}=-2.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\1 & 1 & 0 & 0\\-2 & 3 & 1 & 0\\-1 & 2 & -2 & 1\end{pmatrix},\qquad U=\begin{pmatrix}3 & 0 & 3 & -2\\0 & -2 & -2 & 1\\0 & 0 & 4 & -1\\0 & 0 & 0 & 2\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $4\times 4$ -- ejemplo 4}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}-2 & 3 & -2 & 1\\2 & 1 & 3 & -2\\-6 & 13 & -3 & 4\\-4 & -2 & 0 & 11\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $4\times 4$ -- solución 4}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=-1,\quad m_{31}=3,\quad m_{32}=1,\quad m_{41}=2,\quad m_{42}=-2,\quad m_{43}=3.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\-1 & 1 & 0 & 0\\3 & 1 & 1 & 0\\2 & -2 & 3 & 1\end{pmatrix},\qquad U=\begin{pmatrix}-2 & 3 & -2 & 1\\0 & 4 & 1 & -1\\0 & 0 & 2 & 2\\0 & 0 & 0 & 1\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+
+\subsubsection*{LU $4\times 4$ -- ejemplo 5}
+
+Factorice, sin pivoteo,
+\[
+A=\begin{pmatrix}4 & -2 & 1 & -1\\8 & -2 & 1 & 0\\4 & -4 & 3 & -3\\-8 & 10 & -4 & 11\end{pmatrix}.
+\]
+
+\paragraph{Objetivo}
+Realizar Gauss sin normalizar los pivotes, guardar los multiplicadores y construir $L$ y $U$.
+
+
+
+\subsubsection*{LU $4\times 4$ -- solución 5}
+
+Los multiplicadores de la eliminación son
+\[
+m_{21}=2,\quad m_{31}=1,\quad m_{32}=-1,\quad m_{41}=-2,\quad m_{42}=3,\quad m_{43}=1.
+\]
+Por tanto,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\2 & 1 & 0 & 0\\1 & -1 & 1 & 0\\-2 & 3 & 1 & 1\end{pmatrix},\qquad U=\begin{pmatrix}4 & -2 & 1 & -1\\0 & 2 & -1 & 2\\0 & 0 & 1 & 0\\0 & 0 & 0 & 3\end{pmatrix}.
+\]
+Y se verifica directamente que
+\[
+\boxed{A=LU}.
+\]
+
+\section{Factorización de Cholesky}
+
+\subsubsection*{Recordatorio: $A=LL^T$}
+
+Para una matriz real simétrica definida positiva existe una matriz triangular inferior $L$, con diagonal positiva, tal que
+\[
+\boxed{A=LL^T}.
+\]
+Los elementos pueden obtenerse sucesivamente mediante
+\[
+l_{ii}=\sqrt{a_{ii}-\sum_{k<i}l_{ik}^2},\qquad
+l_{ji}=\frac{a_{ji}-\sum_{k<i}l_{jk}l_{ik}}{l_{ii}}.
+\]
+
+\subsection{Matrices $2\times 2$}
+
+\subsubsection*{Cholesky $2\times 2$ -- ejemplo 1}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}1 & -1\\-1 & 5\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $2\times 2$ -- solución 1}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=1,\quad l_{21}=-1,\quad l_{22}=2.
+\]
+Así,
+\[
+L=\begin{pmatrix}1 & 0\\-1 & 2\end{pmatrix},\qquad L^T=\begin{pmatrix}1 & -1\\0 & 2\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $2\times 2$ -- ejemplo 2}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 4\\4 & 13\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $2\times 2$ -- solución 2}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=2,\quad l_{22}=3.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0\\2 & 3\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 2\\0 & 3\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $2\times 2$ -- ejemplo 3}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}9 & -6\\-6 & 8\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $2\times 2$ -- solución 3}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=3,\quad l_{21}=-2,\quad l_{22}=2.
+\]
+Así,
+\[
+L=\begin{pmatrix}3 & 0\\-2 & 2\end{pmatrix},\qquad L^T=\begin{pmatrix}3 & -2\\0 & 2\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $2\times 2$ -- ejemplo 4}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 2\\2 & 2\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $2\times 2$ -- solución 4}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=1,\quad l_{22}=1.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0\\1 & 1\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 1\\0 & 1\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $2\times 2$ -- ejemplo 5}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 6\\6 & 10\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $2\times 2$ -- solución 5}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=3,\quad l_{22}=1.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0\\3 & 1\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 3\\0 & 1\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+\subsection{Matrices $3\times 3$}
+
+\subsubsection*{Cholesky $3\times 3$ -- ejemplo 1}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}1 & -1 & -2\\-1 & 5 & 4\\-2 & 4 & 14\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $3\times 3$ -- solución 1}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=1,\quad l_{21}=-1,\quad l_{22}=2,\quad l_{31}=-2,\quad l_{32}=1,\quad l_{33}=3.
+\]
+Así,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\-1 & 2 & 0\\-2 & 1 & 3\end{pmatrix},\qquad L^T=\begin{pmatrix}1 & -1 & -2\\0 & 2 & 1\\0 & 0 & 3\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $3\times 3$ -- ejemplo 2}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 4 & 2\\4 & 13 & 2\\2 & 2 & 5\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $3\times 3$ -- solución 2}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=2,\quad l_{22}=3,\quad l_{31}=1,\quad l_{32}=0,\quad l_{33}=2.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0 & 0\\2 & 3 & 0\\1 & 0 & 2\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 2 & 1\\0 & 3 & 0\\0 & 0 & 2\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $3\times 3$ -- ejemplo 3}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}9 & -6 & 0\\-6 & 8 & -2\\0 & -2 & 2\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $3\times 3$ -- solución 3}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=3,\quad l_{21}=-2,\quad l_{22}=2,\quad l_{31}=0,\quad l_{32}=-1,\quad l_{33}=1.
+\]
+Así,
+\[
+L=\begin{pmatrix}3 & 0 & 0\\-2 & 2 & 0\\0 & -1 & 1\end{pmatrix},\qquad L^T=\begin{pmatrix}3 & -2 & 0\\0 & 2 & -1\\0 & 0 & 1\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $3\times 3$ -- ejemplo 4}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 2 & -2\\2 & 2 & 1\\-2 & 1 & 6\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $3\times 3$ -- solución 4}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=1,\quad l_{22}=1,\quad l_{31}=-1,\quad l_{32}=2,\quad l_{33}=1.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0 & 0\\1 & 1 & 0\\-1 & 2 & 1\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 1 & -1\\0 & 1 & 2\\0 & 0 & 1\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $3\times 3$ -- ejemplo 5}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}1 & 0 & 2\\0 & 1 & -2\\2 & -2 & 12\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $3\times 3$ -- solución 5}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=1,\quad l_{21}=0,\quad l_{22}=1,\quad l_{31}=2,\quad l_{32}=-2,\quad l_{33}=2.
+\]
+Así,
+\[
+L=\begin{pmatrix}1 & 0 & 0\\0 & 1 & 0\\2 & -2 & 2\end{pmatrix},\qquad L^T=\begin{pmatrix}1 & 0 & 2\\0 & 1 & -2\\0 & 0 & 2\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+\subsection{Matrices $4\times 4$}
+
+\subsubsection*{Cholesky $4\times 4$ -- ejemplo 1}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}1 & -1 & -2 & 0\\-1 & 5 & 4 & -2\\-2 & 4 & 14 & 5\\0 & -2 & 5 & 9\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $4\times 4$ -- solución 1}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=1,\quad l_{21}=-1,\quad l_{22}=2,\quad l_{31}=-2,\quad l_{32}=1,\quad l_{33}=3,\quad l_{41}=0,\quad l_{42}=-1,\quad l_{43}=2,\quad l_{44}=2.
+\]
+Así,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\-1 & 2 & 0 & 0\\-2 & 1 & 3 & 0\\0 & -1 & 2 & 2\end{pmatrix},\qquad L^T=\begin{pmatrix}1 & -1 & -2 & 0\\0 & 2 & 1 & -1\\0 & 0 & 3 & 2\\0 & 0 & 0 & 2\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $4\times 4$ -- ejemplo 2}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 4 & 2 & -2\\4 & 13 & 2 & 4\\2 & 2 & 5 & -5\\-2 & 4 & -5 & 10\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $4\times 4$ -- solución 2}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=2,\quad l_{22}=3,\quad l_{31}=1,\quad l_{32}=0,\quad l_{33}=2,\quad l_{41}=-1,\quad l_{42}=2,\quad l_{43}=-2,\quad l_{44}=1.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0 & 0 & 0\\2 & 3 & 0 & 0\\1 & 0 & 2 & 0\\-1 & 2 & -2 & 1\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 2 & 1 & -1\\0 & 3 & 0 & 2\\0 & 0 & 2 & -2\\0 & 0 & 0 & 1\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $4\times 4$ -- ejemplo 3}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}9 & -6 & 0 & 6\\-6 & 8 & -2 & -8\\0 & -2 & 2 & 3\\6 & -8 & 3 & 10\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $4\times 4$ -- solución 3}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=3,\quad l_{21}=-2,\quad l_{22}=2,\quad l_{31}=0,\quad l_{32}=-1,\quad l_{33}=1,\quad l_{41}=2,\quad l_{42}=-2,\quad l_{43}=1,\quad l_{44}=1.
+\]
+Así,
+\[
+L=\begin{pmatrix}3 & 0 & 0 & 0\\-2 & 2 & 0 & 0\\0 & -1 & 1 & 0\\2 & -2 & 1 & 1\end{pmatrix},\qquad L^T=\begin{pmatrix}3 & -2 & 0 & 2\\0 & 2 & -1 & -2\\0 & 0 & 1 & 1\\0 & 0 & 0 & 1\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $4\times 4$ -- ejemplo 4}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}4 & 2 & -2 & -4\\2 & 2 & 1 & -1\\-2 & 1 & 6 & 4\\-4 & -1 & 4 & 9\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $4\times 4$ -- solución 4}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=2,\quad l_{21}=1,\quad l_{22}=1,\quad l_{31}=-1,\quad l_{32}=2,\quad l_{33}=1,\quad l_{41}=-2,\quad l_{42}=1,\quad l_{43}=0,\quad l_{44}=2.
+\]
+Así,
+\[
+L=\begin{pmatrix}2 & 0 & 0 & 0\\1 & 1 & 0 & 0\\-1 & 2 & 1 & 0\\-2 & 1 & 0 & 2\end{pmatrix},\qquad L^T=\begin{pmatrix}2 & 1 & -1 & -2\\0 & 1 & 2 & 1\\0 & 0 & 1 & 0\\0 & 0 & 0 & 2\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+
+\subsubsection*{Cholesky $4\times 4$ -- ejemplo 5}
+
+Encuentre $L$ con diagonal positiva tal que
+\[
+A=\begin{pmatrix}1 & 0 & 2 & 1\\0 & 1 & -2 & 0\\2 & -2 & 12 & 0\\1 & 0 & 0 & 11\end{pmatrix}=LL^T.
+\]
+Antes de calcular, observe que $A=A^T$.
+
+
+\subsubsection*{Cholesky $4\times 4$ -- solución 5}
+
+Calculando los elementos de $L$ de izquierda a derecha y de arriba hacia abajo se obtiene
+\[
+l_{11}=1,\quad l_{21}=0,\quad l_{22}=1,\quad l_{31}=2,\quad l_{32}=-2,\quad l_{33}=2,\quad l_{41}=1,\quad l_{42}=0,\quad l_{43}=-1,\quad l_{44}=3.
+\]
+Así,
+\[
+L=\begin{pmatrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\2 & -2 & 2 & 0\\1 & 0 & -1 & 3\end{pmatrix},\qquad L^T=\begin{pmatrix}1 & 0 & 2 & 1\\0 & 1 & -2 & 0\\0 & 0 & 2 & -1\\0 & 0 & 0 & 3\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{LL^T=A}.
+\]
+
+\section{Diagonalización}
+
+\subsubsection*{Antes de la fórmula: direcciones especiales}
+
+Buscamos vectores no nulos cuya dirección no cambie al aplicar $A$:
+\[
+A\mathbf v=\lambda\mathbf v.
+\]
+En esas direcciones la transformación sólo multiplica por un número. Si encontramos suficientes direcciones independientes, podemos usarlas como una nueva base.
+\medskip
+En esa base, la acción de $A$ queda descrita por una matriz diagonal. Ésta es la idea que conduce a
+\[
+\boxed{A=PDP^{-1}}.
+\]
+Las columnas de $P$ son vectores propios y la diagonal de $D$ contiene sus valores propios en el mismo orden.
+
+\subsection{Matrices $2\times 2$}
+
+\subsubsection*{Diagonalización $2\times 2$ -- ejemplo 1}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}1 & 0\\2 & 3\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $2$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- solución 1}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=1,\;v_1=\begin{pmatrix}1\\-1\end{pmatrix};\quad \lambda_2=3,\;v_2=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0\\-1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}1 & 0\\0 & 3\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0\\1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- ejemplo 2}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}2 & 0\\6 & -1\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $2$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- solución 2}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=2,\;v_1=\begin{pmatrix}1\\2\end{pmatrix};\quad \lambda_2=-1,\;v_2=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0\\2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}2 & 0\\0 & -1\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0\\-2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- ejemplo 3}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}4 & 0\\-6 & 1\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $2$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- solución 3}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=4,\;v_1=\begin{pmatrix}1\\-2\end{pmatrix};\quad \lambda_2=1,\;v_2=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0\\-2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}4 & 0\\0 & 1\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0\\2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- ejemplo 4}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}-2 & 0\\-5 & 3\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $2$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- solución 4}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=-2,\;v_1=\begin{pmatrix}1\\1\end{pmatrix};\quad \lambda_2=3,\;v_2=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0\\1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}-2 & 0\\0 & 3\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0\\-1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- ejemplo 5}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}5 & 0\\-3 & 2\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $2$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $2\times 2$ -- solución 5}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=5,\;v_1=\begin{pmatrix}1\\-1\end{pmatrix};\quad \lambda_2=2,\;v_2=\begin{pmatrix}0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0\\-1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}5 & 0\\0 & 2\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0\\1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+\subsection{Matrices $3\times 3$}
+
+\subsubsection*{Diagonalización $3\times 3$ -- ejemplo 1}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}1 & 0 & 0\\1 & 2 & 0\\-8 & -2 & 4\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $3$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- solución 1}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=1,\;v_1=\begin{pmatrix}1\\-1\\2\end{pmatrix};\quad \lambda_2=2,\;v_2=\begin{pmatrix}0\\1\\1\end{pmatrix};\quad \lambda_3=4,\;v_3=\begin{pmatrix}0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0\\-1 & 1 & 0\\2 & 1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}1 & 0 & 0\\0 & 2 & 0\\0 & 0 & 4\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0\\1 & 1 & 0\\-3 & -1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- ejemplo 2}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}3 & 0 & 0\\8 & -1 & 0\\-6 & 3 & 2\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $3$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- solución 2}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=3,\;v_1=\begin{pmatrix}1\\2\\0\end{pmatrix};\quad \lambda_2=-1,\;v_2=\begin{pmatrix}0\\1\\-1\end{pmatrix};\quad \lambda_3=2,\;v_3=\begin{pmatrix}0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0\\2 & 1 & 0\\0 & -1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}3 & 0 & 0\\0 & -1 & 0\\0 & 0 & 2\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0\\-2 & 1 & 0\\-2 & 1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- ejemplo 3}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}2 & 0 & 0\\6 & 5 & 0\\32 & 14 & -2\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $3$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- solución 3}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=2,\;v_1=\begin{pmatrix}1\\-2\\1\end{pmatrix};\quad \lambda_2=5,\;v_2=\begin{pmatrix}0\\1\\2\end{pmatrix};\quad \lambda_3=-2,\;v_3=\begin{pmatrix}0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0\\-2 & 1 & 0\\1 & 2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}2 & 0 & 0\\0 & 5 & 0\\0 & 0 & -2\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0\\2 & 1 & 0\\-5 & -2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- ejemplo 4}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}-1 & 0 & 0\\-4 & 3 & 0\\-2 & 2 & 4\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $3$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- solución 4}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=-1,\;v_1=\begin{pmatrix}1\\1\\0\end{pmatrix};\quad \lambda_2=3,\;v_2=\begin{pmatrix}0\\1\\-2\end{pmatrix};\quad \lambda_3=4,\;v_3=\begin{pmatrix}0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0\\1 & 1 & 0\\0 & -2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}-1 & 0 & 0\\0 & 3 & 0\\0 & 0 & 4\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0\\-1 & 1 & 0\\-2 & 2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- ejemplo 5}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}4 & 0 & 0\\-3 & 1 & 0\\-9 & -5 & 6\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $3$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $3\times 3$ -- solución 5}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=4,\;v_1=\begin{pmatrix}1\\-1\\2\end{pmatrix};\quad \lambda_2=1,\;v_2=\begin{pmatrix}0\\1\\1\end{pmatrix};\quad \lambda_3=6,\;v_3=\begin{pmatrix}0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0\\-1 & 1 & 0\\2 & 1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}4 & 0 & 0\\0 & 1 & 0\\0 & 0 & 6\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0\\1 & 1 & 0\\-3 & -1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+\subsection{Matrices $4\times 4$}
+
+\subsubsection*{Diagonalización $4\times 4$ -- ejemplo 1}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}1 & 0 & 0 & 0\\1 & 2 & 0 & 0\\-5 & -1 & 3 & 0\\-9 & -1 & 4 & 5\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $4$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- solución 1}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=1,\;v_1=\begin{pmatrix}1\\-1\\2\\0\end{pmatrix};\quad \lambda_2=2,\;v_2=\begin{pmatrix}0\\1\\1\\-1\end{pmatrix};\quad \lambda_3=3,\;v_3=\begin{pmatrix}0\\0\\1\\-2\end{pmatrix};\quad \lambda_4=5,\;v_4=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0 & 0\\-1 & 1 & 0 & 0\\2 & 1 & 1 & 0\\0 & -1 & -2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}1 & 0 & 0 & 0\\0 & 2 & 0 & 0\\0 & 0 & 3 & 0\\0 & 0 & 0 & 5\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0 & 0\\1 & 1 & 0 & 0\\-3 & -1 & 1 & 0\\-5 & -1 & 2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- ejemplo 2}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}2 & 0 & 0 & 0\\6 & -1 & 0 & 0\\-10 & 5 & 4 & 0\\-3 & 1 & 1 & 3\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $4$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- solución 2}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=2,\;v_1=\begin{pmatrix}1\\2\\0\\1\end{pmatrix};\quad \lambda_2=-1,\;v_2=\begin{pmatrix}0\\1\\-1\\0\end{pmatrix};\quad \lambda_3=4,\;v_3=\begin{pmatrix}0\\0\\1\\1\end{pmatrix};\quad \lambda_4=3,\;v_4=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0 & 0\\2 & 1 & 0 & 0\\0 & -1 & 1 & 0\\1 & 0 & 1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}2 & 0 & 0 & 0\\0 & -1 & 0 & 0\\0 & 0 & 4 & 0\\0 & 0 & 0 & 3\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0 & 0\\-2 & 1 & 0 & 0\\-2 & 1 & 1 & 0\\1 & -1 & -1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- ejemplo 3}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}3 & 0 & 0 & 0\\-4 & 1 & 0 & 0\\17 & 6 & -2 & 0\\-19 & -6 & 7 & 5\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $4$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- solución 3}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=3,\;v_1=\begin{pmatrix}1\\-2\\1\\0\end{pmatrix};\quad \lambda_2=1,\;v_2=\begin{pmatrix}0\\1\\2\\-2\end{pmatrix};\quad \lambda_3=-2,\;v_3=\begin{pmatrix}0\\0\\1\\-1\end{pmatrix};\quad \lambda_4=5,\;v_4=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0 & 0\\-2 & 1 & 0 & 0\\1 & 2 & 1 & 0\\0 & -2 & -1 & 1\end{pmatrix},\qquad D=\begin{pmatrix}3 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & -2 & 0\\0 & 0 & 0 & 5\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0 & 0\\2 & 1 & 0 & 0\\-5 & -2 & 1 & 0\\-1 & 0 & 1 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- ejemplo 4}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}-2 & 0 & 0 & 0\\-3 & 1 & 0 & 0\\-6 & 6 & 4 & 0\\-8 & -8 & -4 & 6\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $4$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- solución 4}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=-2,\;v_1=\begin{pmatrix}1\\1\\0\\2\end{pmatrix};\quad \lambda_2=1,\;v_2=\begin{pmatrix}0\\1\\-2\\0\end{pmatrix};\quad \lambda_3=4,\;v_3=\begin{pmatrix}0\\0\\1\\2\end{pmatrix};\quad \lambda_4=6,\;v_4=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0 & 0\\1 & 1 & 0 & 0\\0 & -2 & 1 & 0\\2 & 0 & 2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}-2 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 4 & 0\\0 & 0 & 0 & 6\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0 & 0\\-1 & 1 & 0 & 0\\-2 & 2 & 1 & 0\\2 & -4 & -2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- ejemplo 5}
+
+Diagonalice, si es posible,
+\[
+A=\begin{pmatrix}5 & 0 & 0 & 0\\-3 & 2 & 0 & 0\\15 & 3 & -1 & 0\\-23 & -7 & 8 & 3\end{pmatrix}.
+\]
+
+\paragraph{Guía}
+Busque direcciones $v$ para las cuales $Av=\lambda v$ y compruebe que se obtienen $4$ vectores propios linealmente independientes.
+
+
+
+\subsubsection*{Diagonalización $4\times 4$ -- solución 5}
+\scriptsize
+Una elección de pares propios es
+\[
+\lambda_1=5,\;v_1=\begin{pmatrix}1\\-1\\2\\0\end{pmatrix};\quad \lambda_2=2,\;v_2=\begin{pmatrix}0\\1\\1\\-1\end{pmatrix};\quad \lambda_3=-1,\;v_3=\begin{pmatrix}0\\0\\1\\-2\end{pmatrix};\quad \lambda_4=3,\;v_4=\begin{pmatrix}0\\0\\0\\1\end{pmatrix}.
+\]
+Con estos vectores,
+\[
+P=\begin{pmatrix}1 & 0 & 0 & 0\\-1 & 1 & 0 & 0\\2 & 1 & 1 & 0\\0 & -1 & -2 & 1\end{pmatrix},\qquad D=\begin{pmatrix}5 & 0 & 0 & 0\\0 & 2 & 0 & 0\\0 & 0 & -1 & 0\\0 & 0 & 0 & 3\end{pmatrix},\qquad P^{-1}=\begin{pmatrix}1 & 0 & 0 & 0\\1 & 1 & 0 & 0\\-3 & -1 & 1 & 0\\-5 & -1 & 2 & 1\end{pmatrix}.
+\]
+Por construcción $AP=PD$; equivalentemente,
+\[
+\boxed{A=PDP^{-1}}.
+\]
+
+\section{Cierre}
+
+\subsubsection*{Tres ideas para conservar}
+
+\[
+\boxed{\text{Gauss sin normalizar}\longrightarrow A=LU}
+\]
+\[
+\boxed{\text{simétrica definida positiva}\longrightarrow A=LL^T}
+\]
+\[
+\boxed{\text{base de vectores propios}\longrightarrow A=PDP^{-1}}
+\]
+\medskip
+Los cinco ejemplos de cada tamaño permiten seleccionar en clase sólo los necesarios y conservar el resto como práctica o tarea.
+
