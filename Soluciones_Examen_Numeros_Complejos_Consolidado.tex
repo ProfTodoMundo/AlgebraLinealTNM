@@ -1,0 +1,2047 @@
+%=========================================================
+\section{Soluciones}
+%=========================================================
+
+%=========================================================
+\section{Ejercicios con números complejos}
+%=========================================================
+
+\subsection{Potencias de la unidad imaginaria}
+
+Recordemos que
+\[
+i^2=-1.
+\]
+
+Por lo tanto, las primeras potencias de $i$ son
+\[
+i^1=i,\qquad
+i^2=-1,\qquad
+i^3=-i,\qquad
+i^4=1.
+\]
+
+A partir de aquí, las potencias se repiten con periodo $4$:
+\[
+i,\,-1,\,-i,\,1,\,
+i,\,-1,\,-i,\,1,\ldots
+\]
+
+
+\medskip
+
+Para tener estas potencias como referencia, mostramos los valores desde
+$n=0$ hasta $n=20$:
+
+\[
+\begin{array}{c|ccccccccccc}
+n     &0&1&2&3&4&5&6&7&8&9&10\\ \hline
+i^n   &1&i&-1&-i&1&i&-1&-i&1&i&-1
+\end{array}
+\]
+
+\[
+\begin{array}{c|cccccccccc}
+n     &11&12&13&14&15&16&17&18&19&20\\ \hline
+i^n   &-i&1&i&-1&-i&1&i&-1&-i&1
+\end{array}
+\]
+
+La tabla permite observar nuevamente que el patrón se repite cada cuatro
+potencias. En general, si
+\[
+n=4q+r,\qquad r\in\{0,1,2,3\},
+\]
+entonces
+\[
+\boxed{
+i^n=
+\begin{cases}
+1, & r=0,\\
+i, & r=1,\\
+-1, & r=2,\\
+-i, & r=3.
+\end{cases}
+}
+\]
+
+%---------------------------------------------------------
+\subsubsection*{Ejemplo 1}
+
+Calcular
+\[
+i^3.
+\]
+
+Utilizamos $i^2=-1$:
+\[
+i^3=i^2i=(-1)i.
+\]
+
+Por tanto,
+\[
+\boxed{i^3=-i}.
+\]
+
+%---------------------------------------------------------
+\subsubsection*{Ejemplo 2}
+
+Calcular
+\[
+i^{11}+i^{22}+i^{33}+i^{14}.
+\]
+
+Como las potencias de $i$ se repiten cada cuatro exponentes,
+reducimos cada exponente módulo $4$.
+
+Para $i^{11}$:
+\[
+11=4(2)+3,
+\]
+por lo que
+\[
+i^{11}=i^3=-i.
+\]
+
+Para $i^{22}$:
+\[
+22=4(5)+2,
+\]
+por lo que
+\[
+i^{22}=i^2=-1.
+\]
+
+Para $i^{33}$:
+\[
+33=4(8)+1,
+\]
+por lo que
+\[
+i^{33}=i.
+\]
+
+Finalmente, para $i^{14}$:
+\[
+14=4(3)+2,
+\]
+por lo que
+\[
+i^{14}=i^2=-1.
+\]
+
+Sustituyendo,
+\[
+i^{11}+i^{22}+i^{33}+i^{14}
+=
+-i-1+i-1.
+\]
+
+Agrupando las partes imaginarias y reales,
+\[
+(-i+i)+(-1-1)=0-2.
+\]
+
+Por tanto,
+\[
+\boxed{i^{11}+i^{22}+i^{33}+i^{14}=-2}.
+\]
+
+%=========================================================
+\subsection{Evaluación de funciones trigonométricas}
+%=========================================================
+
+\subsubsection*{Ejemplo 3}
+
+Calcular
+\[
+\cos\left(\frac{5\pi}{6}\right).
+\]
+
+Observamos que
+\[
+\frac{5\pi}{6}
+=
+\pi-\frac{\pi}{6}.
+\]
+
+Utilizamos la identidad
+\[
+\cos(\pi-\theta)=-\cos\theta.
+\]
+
+Entonces
+\[
+\cos\left(\frac{5\pi}{6}\right)
+=
+-\cos\left(\frac{\pi}{6}\right).
+\]
+
+Como
+\[
+\cos\left(\frac{\pi}{6}\right)=\frac{\sqrt{3}}{2},
+\]
+obtenemos
+\[
+\boxed{
+\cos\left(\frac{5\pi}{6}\right)
+=
+-\frac{\sqrt{3}}{2}
+}.
+\]
+
+%=========================================================
+\subsection{Fórmula de Euler}
+%=========================================================
+
+Recordemos la fórmula de Euler:
+\[
+\boxed{e^{i\theta}=\cos\theta+i\sin\theta}.
+\]
+
+%---------------------------------------------------------
+\subsubsection*{Ejemplo 4}
+
+Evaluar
+\[
+e^{i\pi/6}.
+\]
+
+Aplicamos directamente la fórmula de Euler:
+\[
+e^{i\pi/6}
+=
+\cos\left(\frac{\pi}{6}\right)
++
+i\sin\left(\frac{\pi}{6}\right).
+\]
+
+Sabemos que
+\[
+\cos\left(\frac{\pi}{6}\right)
+=
+\frac{\sqrt{3}}{2}
+\]
+y
+\[
+\sin\left(\frac{\pi}{6}\right)
+=
+\frac{1}{2}.
+\]
+
+Por lo tanto,
+\[
+e^{i\pi/6}
+=
+\frac{\sqrt{3}}{2}
++
+i\frac{1}{2}.
+\]
+
+Así,
+\[
+\boxed{
+e^{i\pi/6}
+=
+\frac{\sqrt{3}}{2}+\frac{i}{2}
+}.
+\]
+
+%=========================================================
+\subsection{Fórmula de De Moivre}
+%=========================================================
+
+En forma exponencial, la fórmula de De Moivre establece que
+\[
+\boxed{
+\left(re^{i\theta}\right)^n
+=
+r^n e^{in\theta}
+}.
+\]
+
+Equivalentemente,
+\[
+\left[r(\cos\theta+i\sin\theta)\right]^n
+=
+r^n\left(
+\cos(n\theta)+i\sin(n\theta)
+\right).
+\]
+
+%---------------------------------------------------------
+\subsubsection*{Ejemplo 5}
+
+Calcular
+\[
+\left(2e^{i\pi/5}\right)^7.
+\]
+
+Aplicamos De Moivre:
+\[
+\left(2e^{i\pi/5}\right)^7
+=
+2^7e^{i7\pi/5}.
+\]
+
+Como
+\[
+2^7=128,
+\]
+tenemos
+\[
+\left(2e^{i\pi/5}\right)^7
+=
+128e^{i7\pi/5}.
+\]
+
+Usando la fórmula de Euler,
+\[
+e^{i7\pi/5}
+=
+\cos\left(\frac{7\pi}{5}\right)
++
+i\sin\left(\frac{7\pi}{5}\right).
+\]
+
+Por tanto,
+\[
+\boxed{
+\left(2e^{i\pi/5}\right)^7
+=
+128\left[
+\cos\left(\frac{7\pi}{5}\right)
++
+i\sin\left(\frac{7\pi}{5}\right)
+\right]
+}.
+\]
+
+%=========================================================
+\subsection{Cálculo exacto de $\cos(7\pi/5)$}
+%=========================================================
+
+Queremos determinar
+\[
+\cos\left(\frac{7\pi}{5}\right).
+\]
+
+Primero observamos que
+\[
+\frac{7\pi}{5}
+=
+\pi+\frac{2\pi}{5}.
+\]
+
+Utilizando
+\[
+\cos(\pi+\theta)=-\cos\theta,
+\]
+obtenemos
+\[
+\cos\left(\frac{7\pi}{5}\right)
+=
+-\cos\left(\frac{2\pi}{5}\right).
+\]
+
+Por lo tanto, necesitamos calcular exactamente
+\[
+\cos\left(\frac{2\pi}{5}\right).
+\]
+
+Sea
+\[
+\theta=\frac{2\pi}{5}
+\]
+y definamos
+\[
+z=e^{i\theta}=e^{i2\pi/5}.
+\]
+
+Entonces
+\[
+z^5=e^{i2\pi}=1.
+\]
+
+Así,
+\[
+z^5-1=0.
+\]
+
+Factorizando,
+\[
+(z-1)
+\left(
+z^4+z^3+z^2+z+1
+\right)=0.
+\]
+
+Como $z\neq 1$, necesariamente
+\[
+z^4+z^3+z^2+z+1=0.
+\]
+
+Dividimos toda la ecuación entre $z^2$:
+\[
+z^2+z+1+\frac{1}{z}+\frac{1}{z^2}=0.
+\]
+
+Reagrupando,
+\[
+\left(z+\frac{1}{z}\right)
++
+\left(z^2+\frac{1}{z^2}\right)
++1=0.
+\]
+
+Como
+\[
+z=e^{i\theta},
+\qquad
+\frac{1}{z}=e^{-i\theta},
+\]
+tenemos, por la fórmula de Euler,
+\[
+z+\frac{1}{z}
+=
+e^{i\theta}+e^{-i\theta}
+=
+2\cos\theta.
+\]
+
+Definamos
+\[
+x=2\cos\theta.
+\]
+
+Además,
+\[
+\left(z+\frac{1}{z}\right)^2
+=
+z^2+2+\frac{1}{z^2}.
+\]
+
+Por tanto,
+\[
+z^2+\frac{1}{z^2}
+=
+\left(z+\frac{1}{z}\right)^2-2
+=
+x^2-2.
+\]
+
+Sustituyendo en la ecuación anterior:
+\[
+x+(x^2-2)+1=0.
+\]
+
+Simplificando,
+\[
+x^2+x-1=0.
+\]
+
+Aplicamos la fórmula general:
+\[
+x
+=
+\frac{-1\pm\sqrt{1+4}}{2}
+=
+\frac{-1\pm\sqrt{5}}{2}.
+\]
+
+Como
+\[
+\theta=\frac{2\pi}{5}=72^\circ
+\]
+se encuentra en el primer cuadrante, sabemos que
+\[
+\cos\theta>0.
+\]
+
+Por tanto, elegimos
+\[
+x=\frac{-1+\sqrt{5}}{2}.
+\]
+
+Recordando que
+\[
+x=2\cos\theta,
+\]
+tenemos
+\[
+2\cos\theta
+=
+\frac{-1+\sqrt{5}}{2}.
+\]
+
+Dividiendo entre $2$:
+\[
+\cos\theta
+=
+\frac{\sqrt{5}-1}{4}.
+\]
+
+Así,
+\[
+\boxed{
+\cos\left(\frac{2\pi}{5}\right)
+=
+\frac{\sqrt{5}-1}{4}
+}.
+\]
+
+Finalmente,
+\[
+\cos\left(\frac{7\pi}{5}\right)
+=
+-\cos\left(\frac{2\pi}{5}\right),
+\]
+por lo que
+\[
+\boxed{
+\cos\left(\frac{7\pi}{5}\right)
+=
+-\frac{\sqrt{5}-1}{4}
+=
+\frac{1-\sqrt{5}}{4}
+}.
+\]
+
+%=========================================================
+\subsection{Evaluación de $e^{i\pi/6}$}
+%=========================================================
+
+Evaluemos nuevamente
+\[
+e^{i\pi/6}.
+\]
+
+Por la fórmula de Euler,
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+\]
+
+Tomando
+\[
+\theta=\frac{\pi}{6},
+\]
+resulta
+\[
+e^{i\pi/6}
+=
+\cos\left(\frac{\pi}{6}\right)
++
+i\sin\left(\frac{\pi}{6}\right).
+\]
+
+Como
+\[
+\cos\left(\frac{\pi}{6}\right)
+=
+\frac{\sqrt{3}}{2},
+\qquad
+\sin\left(\frac{\pi}{6}\right)
+=
+\frac{1}{2},
+\]
+obtenemos
+\[
+e^{i\pi/6}
+=
+\frac{\sqrt{3}}{2}
++
+\frac{1}{2}i.
+\]
+
+Por lo tanto,
+\[
+\boxed{
+e^{i\pi/6}
+=
+\frac{\sqrt{3}}{2}
++
+\frac{i}{2}
+}.
+\]
+
+%=========================================================
+\section{Ejercicios adicionales con números complejos}
+%=========================================================
+
+%---------------------------------------------------------
+\subsection{Evaluación de una exponencial compleja}
+%---------------------------------------------------------
+
+\subsubsection*{Ejemplo 1}
+
+Evaluar
+\[
+e^{1+i\pi}.
+\]
+
+Utilizamos la propiedad de la función exponencial
+\[
+e^{a+b}=e^a e^b.
+\]
+
+Por tanto,
+\[
+e^{1+i\pi}
+=
+e^1e^{i\pi}.
+\]
+
+Ahora aplicamos la fórmula de Euler:
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+\]
+
+Para $\theta=\pi$,
+\[
+e^{i\pi}
+=
+\cos\pi+i\sin\pi.
+\]
+
+Como
+\[
+\cos\pi=-1,
+\qquad
+\sin\pi=0,
+\]
+tenemos
+\[
+e^{i\pi}
+=
+-1+i(0)
+=
+-1.
+\]
+
+Por consiguiente,
+\[
+e^{1+i\pi}
+=
+e(-1).
+\]
+
+Finalmente,
+\[
+\boxed{
+e^{1+i\pi}=-e
+}.
+\]
+
+En general, para $a,b\in\mathbb{R}$,
+\[
+\boxed{
+e^{a+ib}
+=
+e^a(\cos b+i\sin b)
+}.
+\]
+
+En efecto,
+\[
+e^{a+ib}
+=
+e^a e^{ib}
+=
+e^a(\cos b+i\sin b).
+\]
+
+%=========================================================
+\subsection{Resolución de una ecuación cuadrática compleja}
+%=========================================================
+
+\subsubsection*{Ejemplo 2}
+
+Resolver
+\[
+z^2-2z+5=0.
+\]
+
+Identificamos los coeficientes:
+\[
+a=1,
+\qquad
+b=-2,
+\qquad
+c=5.
+\]
+
+Aplicamos la fórmula general
+\[
+z
+=
+\frac{-b\pm\sqrt{b^2-4ac}}{2a}.
+\]
+
+Sustituyendo,
+\[
+z
+=
+\frac{-(-2)\pm
+\sqrt{(-2)^2-4(1)(5)}}{2(1)}.
+\]
+
+Simplificando el discriminante,
+\[
+(-2)^2-4(1)(5)
+=
+4-20
+=
+-16.
+\]
+
+Por tanto,
+\[
+z
+=
+\frac{2\pm\sqrt{-16}}{2}.
+\]
+
+Recordemos que
+\[
+\sqrt{-16}
+=
+\sqrt{16}\sqrt{-1}
+=
+4i.
+\]
+
+Así,
+\[
+z
+=
+\frac{2\pm4i}{2}.
+\]
+
+Separando las dos posibilidades,
+\[
+z_1
+=
+\frac{2+4i}{2}
+=
+1+2i,
+\]
+y
+\[
+z_2
+=
+\frac{2-4i}{2}
+=
+1-2i.
+\]
+
+Por lo tanto, las soluciones son
+\[
+\boxed{
+z_1=1+2i,
+\qquad
+z_2=1-2i
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación.}
+Las raíces son complejos conjugados:
+\[
+z_2=\overline{z_1}.
+\]
+
+Esto es consecuencia de que el polinomio
+\[
+z^2-2z+5
+\]
+tiene coeficientes reales. En general, las raíces complejas no
+reales de un polinomio con coeficientes reales aparecen en pares
+conjugados.
+
+%=========================================================
+\subsection{Forma polar y exponencial de un número complejo}
+%=========================================================
+
+\subsubsection*{Ejemplo 3}
+
+Expresar
+\[
+z=-1+\sqrt{3}\,i
+\]
+en forma polar y exponencial. Posteriormente calcular $z^{12}$.
+
+\subsubsection*{Paso 1. Cálculo del módulo}
+
+Si
+\[
+z=x+iy,
+\]
+su módulo está dado por
+\[
+|z|
+=
+\sqrt{x^2+y^2}.
+\]
+
+En nuestro caso,
+\[
+x=-1,
+\qquad
+y=\sqrt{3}.
+\]
+
+Por tanto,
+\[
+|z|
+=
+\sqrt{(-1)^2+(\sqrt{3})^2}.
+\]
+
+Entonces,
+\[
+|z|
+=
+\sqrt{1+3}
+=
+\sqrt{4}
+=
+2.
+\]
+
+Así,
+\[
+\boxed{|z|=2}.
+\]
+
+%---------------------------------------------------------
+\subsubsection*{Paso 2. Determinación del argumento}
+
+Tenemos
+\[
+x=-1<0
+\]
+y
+\[
+y=\sqrt{3}>0.
+\]
+
+Por consiguiente, el punto
+\[
+(-1,\sqrt{3})
+\]
+se encuentra en el \textbf{segundo cuadrante}.
+
+Calculamos primero el ángulo de referencia $\alpha$.
+
+Tenemos
+\[
+\tan\alpha
+=
+\left|
+\frac{y}{x}
+\right|.
+\]
+
+Por tanto,
+\[
+\tan\alpha
+=
+\left|
+\frac{\sqrt{3}}{-1}
+\right|
+=
+\sqrt{3}.
+\]
+
+Como
+\[
+\tan\left(\frac{\pi}{3}\right)
+=
+\sqrt{3},
+\]
+el ángulo de referencia es
+\[
+\alpha
+=
+\frac{\pi}{3}.
+\]
+
+Sin embargo, como $z$ se encuentra en el segundo cuadrante,
+su argumento es
+\[
+\theta
+=
+\pi-\alpha.
+\]
+
+Por tanto,
+\[
+\theta
+=
+\pi-\frac{\pi}{3}
+=
+\frac{2\pi}{3}.
+\]
+
+Así, el argumento principal es
+\[
+\boxed{
+\operatorname{Arg}(z)
+=
+\frac{2\pi}{3}
+}.
+\]
+
+En general, todos los argumentos de $z$ están dados por
+\[
+\boxed{
+\arg(z)
+=
+\frac{2\pi}{3}+2k\pi,
+\qquad
+k\in\mathbb{Z}
+}.
+\]
+
+%---------------------------------------------------------
+\subsubsection*{Paso 3. Forma polar}
+
+La forma polar o trigonométrica de un número complejo es
+\[
+z
+=
+r(\cos\theta+i\sin\theta).
+\]
+
+Como
+\[
+r=2
+\]
+y
+\[
+\theta=\frac{2\pi}{3},
+\]
+obtenemos
+\[
+\boxed{
+z
+=
+2\left(
+\cos\frac{2\pi}{3}
++
+i\sin\frac{2\pi}{3}
+\right)
+}.
+\]
+
+Podemos verificar el resultado utilizando
+\[
+\cos\left(\frac{2\pi}{3}\right)
+=
+-\frac{1}{2},
+\qquad
+\sin\left(\frac{2\pi}{3}\right)
+=
+\frac{\sqrt{3}}{2}.
+\]
+
+Entonces,
+\[
+2\left(
+-\frac{1}{2}
++
+i\frac{\sqrt{3}}{2}
+\right)
+=
+-1+\sqrt{3}\,i,
+\]
+que es precisamente el número complejo original.
+
+%---------------------------------------------------------
+\subsubsection*{Paso 4. Forma exponencial}
+
+Por la fórmula de Euler,
+\[
+e^{i\theta}
+=
+\cos\theta+i\sin\theta.
+\]
+
+Por tanto,
+\[
+r(\cos\theta+i\sin\theta)
+=
+re^{i\theta}.
+\]
+
+En nuestro caso,
+\[
+\boxed{
+z
+=
+2e^{i2\pi/3}
+}.
+\]
+
+%=========================================================
+\subsection{Cálculo de una potencia mediante De Moivre}
+%=========================================================
+
+Ahora queremos calcular
+\[
+z^{12}.
+\]
+
+Como
+\[
+z
+=
+2e^{i2\pi/3},
+\]
+tenemos
+\[
+z^{12}
+=
+\left(
+2e^{i2\pi/3}
+\right)^{12}.
+\]
+
+Utilizamos la fórmula de De Moivre en forma exponencial:
+\[
+\boxed{
+\left(re^{i\theta}\right)^n
+=
+r^n e^{in\theta}
+}.
+\]
+
+Por tanto,
+\[
+z^{12}
+=
+2^{12}
+e^{i12(2\pi/3)}.
+\]
+
+Calculamos por separado el módulo:
+\[
+2^{12}=4096.
+\]
+
+Para el argumento,
+\[
+12\left(\frac{2\pi}{3}\right)
+=
+\frac{24\pi}{3}
+=
+8\pi.
+\]
+
+Así,
+\[
+z^{12}
+=
+4096e^{i8\pi}.
+\]
+
+Aplicamos nuevamente la fórmula de Euler:
+\[
+e^{i8\pi}
+=
+\cos(8\pi)+i\sin(8\pi).
+\]
+
+Como $8\pi$ corresponde a cuatro vueltas completas,
+\[
+\cos(8\pi)=1
+\]
+y
+\[
+\sin(8\pi)=0.
+\]
+
+Por tanto,
+\[
+e^{i8\pi}
+=
+1.
+\]
+
+Finalmente,
+\[
+\boxed{
+z^{12}=4096
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación.}
+Este ejemplo muestra una de las principales ventajas de utilizar
+la forma polar o exponencial de los números complejos. Calcular
+directamente
+\[
+(-1+\sqrt{3}\,i)^{12}
+\]
+mediante productos algebraicos sucesivos sería considerablemente
+más laborioso.
+
+En cambio, al escribir
+\[
+-1+\sqrt{3}\,i
+=
+2e^{i2\pi/3},
+\]
+la potencia se obtiene simplemente elevando el módulo y
+multiplicando el argumento por el exponente:
+\[
+r^n
+\qquad\text{y}\qquad
+n\theta.
+\]
+
+%=========================================================
+\section{Soluciones adicionales del Primer Examen Parcial}
+%=========================================================
+
+En esta sección se incorporan únicamente los reactivos del examen que no
+aparecen ya resueltos en las secciones anteriores. Los ejercicios que ya
+cuentan con una solución desarrollada se conservan sin modificación.
+
+%---------------------------------------------------------
+\subsection{Potencias de $i$}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 1}
+
+Simplificar
+\[
+i^{11}+i^{22}+i^{33}+i^{44}.
+\]
+
+Como las potencias de $i$ se repiten con periodo $4$, reducimos cada
+exponente módulo $4$.
+
+Para $i^{11}$:
+\[
+11=4(2)+3,
+\]
+por lo que
+\[
+i^{11}=i^3=-i.
+\]
+
+Para $i^{22}$:
+\[
+22=4(5)+2,
+\]
+por lo que
+\[
+i^{22}=i^2=-1.
+\]
+
+Para $i^{33}$:
+\[
+33=4(8)+1,
+\]
+por lo que
+\[
+i^{33}=i^1=i.
+\]
+
+Finalmente, para $i^{44}$:
+\[
+44=4(11)+0,
+\]
+por lo que
+\[
+i^{44}=i^0=1.
+\]
+
+Sustituyendo estos valores en la expresión original,
+\[
+i^{11}+i^{22}+i^{33}+i^{44}
+=
+-i-1+i+1.
+\]
+
+Agrupamos las partes reales y las partes imaginarias:
+\[
+(-i+i)+(-1+1)=0+0.
+\]
+
+Por tanto,
+\[
+\boxed{
+i^{11}+i^{22}+i^{33}+i^{44}=0
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación.}
+La reducción módulo $4$ evita calcular sucesivamente todas las potencias de
+$i$. Basta conocer el residuo del exponente al dividirlo entre $4$.
+
+%---------------------------------------------------------
+\subsection{Igualdad de números complejos}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 2}
+
+Determinar $a,b\in\mathbb{R}$ si
+\[
+(2a-1)+(3b+4)i=7-5i.
+\]
+
+Recordemos que dos números complejos
+\[
+z_1=x_1+y_1i
+\qquad\text{y}\qquad
+z_2=x_2+y_2i
+\]
+son iguales si y sólo si sus partes reales y sus partes imaginarias son
+iguales, es decir,
+\[
+z_1=z_2
+\quad\Longleftrightarrow\quad
+x_1=x_2
+\quad\text{y}\quad
+y_1=y_2.
+\]
+
+En nuestro caso, la parte real del miembro izquierdo es
+\[
+2a-1,
+\]
+mientras que la parte real del miembro derecho es
+\[
+7.
+\]
+
+Por tanto,
+\[
+2a-1=7.
+\]
+
+Sumamos $1$ en ambos lados:
+\[
+2a=8,
+\]
+y dividimos entre $2$:
+\[
+\boxed{a=4}.
+\]
+
+Ahora igualamos las partes imaginarias:
+\[
+3b+4=-5.
+\]
+
+Restando $4$ en ambos lados,
+\[
+3b=-9.
+\]
+
+Dividiendo entre $3$,
+\[
+\boxed{b=-3}.
+\]
+
+Por consiguiente,
+\[
+\boxed{a=4,\qquad b=-3}.
+\]
+
+Podemos verificar el resultado sustituyendo estos valores:
+\[
+(2(4)-1)+(3(-3)+4)i
+=
+(8-1)+(-9+4)i
+=
+7-5i.
+\]
+
+Por tanto, los valores obtenidos satisfacen la igualdad original.
+
+%---------------------------------------------------------
+\subsection{Combinaciones lineales de números complejos}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 3}
+
+Sean
+\[
+z_1=3-2i,
+\qquad
+z_2=-1+5i,
+\qquad
+z_3=4+i.
+\]
+Calcular
+\[
+-5z_1+3z_2-4z_3.
+\]
+
+Sustituimos cada número complejo:
+\[
+-5(3-2i)+3(-1+5i)-4(4+i).
+\]
+
+Calculamos cada producto por separado.
+
+Para el primer término,
+\[
+-5(3-2i)
+=
+-15+10i.
+\]
+
+Para el segundo término,
+\[
+3(-1+5i)
+=
+-3+15i.
+\]
+
+Para el tercer término,
+\[
+-4(4+i)
+=
+-16-4i.
+\]
+
+Por tanto,
+\[
+-5z_1+3z_2-4z_3
+=
+(-15+10i)+(-3+15i)+(-16-4i).
+\]
+
+Agrupamos las partes reales:
+\[
+-15-3-16=-34,
+\]
+y las partes imaginarias:
+\[
+10i+15i-4i=21i.
+\]
+
+Así,
+\[
+\boxed{
+-5z_1+3z_2-4z_3=-34+21i
+}.
+\]
+
+%---------------------------------------------------------
+\subsection{Producto de números complejos}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 4}
+
+Calcular
+\[
+(2-i)(2+i)(1+3i).
+\]
+
+Observemos que los dos primeros factores son complejos conjugados:
+\[
+2-i
+\qquad\text{y}\qquad
+2+i.
+\]
+
+Podemos multiplicarlos directamente:
+\[
+(2-i)(2+i)
+=
+4+2i-2i-i^2.
+\]
+
+Los términos imaginarios se cancelan:
+\[
+2i-2i=0,
+\]
+y como
+\[
+i^2=-1,
+\]
+obtenemos
+\[
+-i^2=-(-1)=1.
+\]
+
+Por tanto,
+\[
+(2-i)(2+i)=4+1=5.
+\]
+
+La expresión original queda
+\[
+5(1+3i).
+\]
+
+Distribuyendo,
+\[
+5(1+3i)=5+15i.
+\]
+
+Finalmente,
+\[
+\boxed{
+(2-i)(2+i)(1+3i)=5+15i
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación.}
+En general, si $z=a+bi$, entonces
+\[
+z\overline z=(a+bi)(a-bi)=a^2+b^2=|z|^2.
+\]
+En este ejercicio,
+\[
+(2-i)(2+i)=|2+i|^2=5.
+\]
+
+%---------------------------------------------------------
+\subsection{Conjugado de un producto}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 5}
+
+Verificar que
+\[
+\overline{zw}=\overline z\,\overline w
+\]
+para
+\[
+z=-3-i,
+\qquad
+w=3-i.
+\]
+
+Para verificar la identidad calcularemos ambos miembros por separado.
+
+\subsubsection*{Cálculo de $\overline{zw}$}
+
+Primero calculamos el producto $zw$:
+\[
+zw=(-3-i)(3-i).
+\]
+
+Desarrollando,
+\[
+(-3-i)(3-i)
+=
+(-3)(3)+(-3)(-i)+(-i)(3)+(-i)(-i).
+\]
+
+Calculamos cada término:
+\[
+(-3)(3)=-9,
+\]
+\[
+(-3)(-i)=3i,
+\]
+\[
+(-i)(3)=-3i,
+\]
+y
+\[
+(-i)(-i)=i^2=-1.
+\]
+
+Por tanto,
+\[
+zw=-9+3i-3i-1.
+\]
+
+Los términos imaginarios se cancelan:
+\[
+3i-3i=0,
+\]
+de modo que
+\[
+zw=-10.
+\]
+
+Como $-10$ es un número real, su conjugado es él mismo:
+\[
+\boxed{\overline{zw}=-10}.
+\]
+
+\subsubsection*{Cálculo de $\overline z\,\overline w$}
+
+Los conjugados de $z$ y $w$ son
+\[
+\overline z=-3+i
+\]
+y
+\[
+\overline w=3+i.
+\]
+
+Por tanto,
+\[
+\overline z\,\overline w
+=
+(-3+i)(3+i).
+\]
+
+Desarrollando,
+\[
+(-3+i)(3+i)
+=
+-9-3i+3i+i^2.
+\]
+
+Como
+\[
+i^2=-1,
+\]
+obtenemos
+\[
+\overline z\,\overline w
+=
+-9-1
+=
+-10.
+\]
+
+Así,
+\[
+\boxed{\overline z\,\overline w=-10}.
+\]
+
+Como ambos miembros son iguales,
+\[
+\boxed{
+\overline{zw}=\overline z\,\overline w
+}.
+\]
+
+Por lo tanto, la propiedad queda verificada para los números complejos dados.
+
+%---------------------------------------------------------
+\subsection{Módulo de un número complejo}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 6}
+
+Calcular
+\[
+\left|1-\sqrt3\,i\right|.
+\]
+
+Recordemos que si
+\[
+z=a+bi,
+\]
+entonces su módulo se define como
+\[
+|z|=\sqrt{a^2+b^2}.
+\]
+
+En este caso,
+\[
+a=1
+\qquad\text{y}\qquad
+b=-\sqrt3.
+\]
+
+Por tanto,
+\[
+\left|1-\sqrt3\,i\right|
+=
+\sqrt{1^2+(-\sqrt3)^2}.
+\]
+
+Calculamos los cuadrados:
+\[
+1^2=1
+\]
+y
+\[
+(-\sqrt3)^2=3.
+\]
+
+Entonces,
+\[
+\left|1-\sqrt3\,i\right|
+=
+\sqrt{1+3}
+=
+\sqrt4.
+\]
+
+Finalmente,
+\[
+\boxed{
+\left|1-\sqrt3\,i\right|=2
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Interpretación geométrica.}
+El número complejo
+\[
+1-\sqrt3\,i
+\]
+corresponde al punto $(1,-\sqrt3)$ del plano complejo. Su módulo es la
+distancia de este punto al origen:
+\[
+\sqrt{1^2+(-\sqrt3)^2}=2.
+\]
+
+%---------------------------------------------------------
+\subsection{División de números complejos}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 7}
+
+Calcular
+\[
+\frac{3+2i}{1-i}.
+\]
+
+Para expresar el resultado en forma rectangular debemos eliminar el número
+complejo del denominador. Para ello multiplicamos numerador y denominador
+por el conjugado del denominador.
+
+El conjugado de
+\[
+1-i
+\]
+es
+\[
+1+i.
+\]
+
+Por tanto,
+\[
+\frac{3+2i}{1-i}
+\left(\frac{1+i}{1+i}\right)
+=
+\frac{(3+2i)(1+i)}{(1-i)(1+i)}.
+\]
+
+Calculamos primero el numerador:
+\[
+(3+2i)(1+i)
+=
+3+3i+2i+2i^2.
+\]
+
+Como
+\[
+i^2=-1,
+\]
+tenemos
+\[
+3+3i+2i-2
+=
+1+5i.
+\]
+
+Ahora calculamos el denominador:
+\[
+(1-i)(1+i)
+=
+1+i-i-i^2.
+\]
+
+Los términos imaginarios se cancelan y, usando $i^2=-1$,
+\[
+(1-i)(1+i)
+=
+1-(-1)
+=
+2.
+\]
+
+Por tanto,
+\[
+\frac{3+2i}{1-i}
+=
+\frac{1+5i}{2}.
+\]
+
+Separando las partes real e imaginaria,
+\[
+\boxed{
+\frac{3+2i}{1-i}
+=
+\frac12+\frac52i
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Observación.}
+La multiplicación por el conjugado funciona porque
+\[
+(a+bi)(a-bi)=a^2+b^2,
+\]
+que es siempre un número real.
+
+%---------------------------------------------------------
+\subsection{Conversión de forma polar a forma rectangular}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 8}
+
+Convertir
+\[
+5\left(
+\cos\frac{5\pi}{6}
++i\sin\frac{5\pi}{6}
+\right)
+\]
+a forma rectangular.
+
+Recordemos que la forma polar o trigonométrica es
+\[
+z=r(\cos\theta+i\sin\theta),
+\]
+mientras que la forma rectangular es
+\[
+z=a+bi.
+\]
+
+En este ejercicio,
+\[
+r=5
+\qquad\text{y}\qquad
+\theta=\frac{5\pi}{6}.
+\]
+
+Observamos que
+\[
+\frac{5\pi}{6}
+=
+\pi-\frac{\pi}{6},
+\]
+por lo que el ángulo se encuentra en el segundo cuadrante.
+
+En el segundo cuadrante el coseno es negativo y el seno es positivo.
+Por tanto,
+\[
+\cos\left(\frac{5\pi}{6}\right)
+=
+-\cos\left(\frac{\pi}{6}\right)
+=
+-\frac{\sqrt3}{2},
+\]
+y
+\[
+\sin\left(\frac{5\pi}{6}\right)
+=
+\sin\left(\frac{\pi}{6}\right)
+=
+\frac12.
+\]
+
+Sustituimos estos valores:
+\[
+z
+=
+5\left(
+-\frac{\sqrt3}{2}
++i\frac12
+\right).
+\]
+
+Distribuyendo el factor $5$,
+\[
+z
+=
+-\frac{5\sqrt3}{2}
++
+\frac52i.
+\]
+
+Por tanto, la forma rectangular es
+\[
+\boxed{
+z=-\frac{5\sqrt3}{2}+\frac52i
+}.
+\]
+
+%---------------------------------------------------------
+\subsection{División en forma polar}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 9}
+
+Dividir
+\[
+6\operatorname{cis}\frac{5\pi}{6}
+\]
+entre
+\[
+3\operatorname{cis}\frac{\pi}{3}.
+\]
+
+Recordemos la notación
+\[
+\operatorname{cis}\theta
+=
+\cos\theta+i\sin\theta.
+\]
+
+Para dividir dos números complejos en forma polar utilizamos
+\[
+\frac{r_1\operatorname{cis}\theta_1}
+     {r_2\operatorname{cis}\theta_2}
+=
+\frac{r_1}{r_2}
+\operatorname{cis}(\theta_1-\theta_2).
+\]
+
+En nuestro caso,
+\[
+r_1=6,
+\qquad
+r_2=3,
+\]
+\[
+\theta_1=\frac{5\pi}{6},
+\qquad
+\theta_2=\frac{\pi}{3}.
+\]
+
+Por tanto,
+\[
+\frac{6\operatorname{cis}(5\pi/6)}
+     {3\operatorname{cis}(\pi/3)}
+=
+\frac63
+\operatorname{cis}\left(
+\frac{5\pi}{6}-\frac{\pi}{3}
+\right).
+\]
+
+Calculamos el cociente de los módulos:
+\[
+\frac63=2.
+\]
+
+Ahora calculamos la diferencia de los argumentos. Escribimos
+\[
+\frac{\pi}{3}=\frac{2\pi}{6},
+\]
+de modo que
+\[
+\frac{5\pi}{6}-\frac{\pi}{3}
+=
+\frac{5\pi}{6}-\frac{2\pi}{6}
+=
+\frac{3\pi}{6}
+=
+\frac{\pi}{2}.
+\]
+
+Por tanto,
+\[
+\boxed{
+\frac{6\operatorname{cis}(5\pi/6)}
+     {3\operatorname{cis}(\pi/3)}
+=
+2\operatorname{cis}\frac{\pi}{2}
+}.
+\]
+
+Si deseamos expresarlo en forma rectangular, utilizamos
+\[
+\operatorname{cis}\frac{\pi}{2}
+=
+\cos\frac{\pi}{2}
++i\sin\frac{\pi}{2}.
+\]
+
+Como
+\[
+\cos\frac{\pi}{2}=0
+\qquad\text{y}\qquad
+\sin\frac{\pi}{2}=1,
+\]
+tenemos
+\[
+2\operatorname{cis}\frac{\pi}{2}
+=
+2(0+i)
+=
+2i.
+\]
+
+Así, equivalentemente,
+\[
+\boxed{2i}.
+\]
+
+%---------------------------------------------------------
+\subsection{Raíces sextas de la unidad}
+%---------------------------------------------------------
+
+\subsubsection*{Problema 12}
+
+Encontrar las raíces sextas de la unidad.
+
+Buscamos todos los números complejos $z$ que satisfacen
+\[
+z^6=1.
+\]
+
+La unidad puede escribirse en forma exponencial como
+\[
+1=e^{i2k\pi},
+\qquad
+k\in\mathbb Z,
+\]
+ya que
+\[
+\cos(2k\pi)=1
+\qquad\text{y}\qquad
+\sin(2k\pi)=0.
+\]
+
+Por tanto, la ecuación puede escribirse como
+\[
+z^6=e^{i2k\pi}.
+\]
+
+Si escribimos
+\[
+z=re^{i\theta},
+\]
+entonces
+\[
+z^6=r^6e^{i6\theta}.
+\]
+
+Comparando módulos,
+\[
+r^6=1.
+\]
+Como el módulo debe ser no negativo,
+\[
+r=1.
+\]
+
+Comparando argumentos,
+\[
+6\theta=2k\pi,
+\]
+de donde
+\[
+\theta=\frac{2k\pi}{6}
+=
+\frac{k\pi}{3}.
+\]
+
+Por tanto, las raíces están dadas por
+\[
+\boxed{
+z_k=e^{ik\pi/3}
+},
+\qquad
+k=0,1,2,3,4,5.
+\]
+
+Tomamos estos seis valores de $k$ porque a partir de $k=6$ las raíces
+comienzan a repetirse.
+
+Para $k=0$:
+\[
+z_0=e^{i0}=1.
+\]
+
+Para $k=1$:
+\[
+z_1=e^{i\pi/3}
+=
+\cos\frac{\pi}{3}
++i\sin\frac{\pi}{3}
+=
+\frac12+\frac{\sqrt3}{2}i.
+\]
+
+Para $k=2$:
+\[
+z_2=e^{i2\pi/3}
+=
+\cos\frac{2\pi}{3}
++i\sin\frac{2\pi}{3}
+=
+-\frac12+\frac{\sqrt3}{2}i.
+\]
+
+Para $k=3$:
+\[
+z_3=e^{i\pi}
+=
+-1.
+\]
+
+Para $k=4$:
+\[
+z_4=e^{i4\pi/3}
+=
+\cos\frac{4\pi}{3}
++i\sin\frac{4\pi}{3}
+=
+-\frac12-\frac{\sqrt3}{2}i.
+\]
+
+Para $k=5$:
+\[
+z_5=e^{i5\pi/3}
+=
+\cos\frac{5\pi}{3}
++i\sin\frac{5\pi}{3}
+=
+\frac12-\frac{\sqrt3}{2}i.
+\]
+
+Por consiguiente, las seis raíces sextas de la unidad son
+\[
+\boxed{
+\left\{
+1,
+\frac12+\frac{\sqrt3}{2}i,
+-\frac12+\frac{\sqrt3}{2}i,
+-1,
+-\frac12-\frac{\sqrt3}{2}i,
+\frac12-\frac{\sqrt3}{2}i
+\right\}
+}.
+\]
+
+\medskip
+
+\noindent
+\textbf{Interpretación geométrica.}
+Todas las raíces tienen módulo $1$, por lo que se encuentran sobre la
+circunferencia unitaria. Además, sus argumentos consecutivos difieren en
+\[
+\frac{2\pi}{6}=\frac{\pi}{3}.
+\]
+Por ello, las seis raíces son los vértices de un hexágono regular inscrito
+en la circunferencia unitaria.
+

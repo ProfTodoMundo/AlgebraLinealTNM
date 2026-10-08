@@ -10,12 +10,83 @@
 \usepackage{hyperref}
 \usepackage{microtype}
 \usepackage{multicol}
-\definecolor{azul}{RGB}{22,72,120}
-\setbeamercolor{structure}{fg=azul}
-\setbeamercolor{frametitle}{fg=azul}
+\usepackage{sfmath}
+
+% =========================================================
+% Apariencia basada en la plantilla Banco de ejemplos
+% =========================================================
+\definecolor{PlantillaAzul}{RGB}{55,55,188}
+\definecolor{PlantillaAzulOscuro}{RGB}{25,25,105}
+\definecolor{PlantillaCaja}{RGB}{239,239,248}
+\definecolor{PlantillaGris}{RGB}{90,90,90}
+
+\usefonttheme{professionalfonts}
+\renewcommand{\familydefault}{\sfdefault}
+\setbeamerfont{normal text}{family=\sffamily,size=\normalsize}
+\setbeamerfont{frametitle}{family=\sffamily,size=\Large,series=\mdseries}
+\setbeamerfont{title}{family=\sffamily,size=\Large,series=\mdseries}
+\setbeamerfont{subtitle}{family=\sffamily,size=\normalsize,series=\mdseries}
+\setbeamerfont{block title}{family=\sffamily,size=\normalsize,series=\mdseries}
+\setbeamerfont{footline}{family=\sffamily,size=\tiny}
+
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{structure}{fg=PlantillaAzul}
+\setbeamercolor{frametitle}{fg=white,bg=PlantillaAzul}
+\setbeamercolor{title}{fg=white,bg=PlantillaAzul}
+\setbeamercolor{subtitle}{fg=white,bg=PlantillaAzul}
+\setbeamercolor{block title}{fg=white,bg=PlantillaAzulOscuro}
+\setbeamercolor{block body}{fg=black,bg=PlantillaCaja}
+\setbeamercolor{block title alerted}{fg=white,bg=PlantillaAzulOscuro}
+\setbeamercolor{block body alerted}{fg=black,bg=PlantillaCaja}
+\setbeamercolor{block title example}{fg=white,bg=PlantillaAzulOscuro}
+\setbeamercolor{block body example}{fg=black,bg=PlantillaCaja}
+\setbeamercolor{itemize item}{fg=PlantillaAzul}
+\setbeamercolor{itemize subitem}{fg=PlantillaAzul}
+\setbeamercolor{enumerate item}{fg=PlantillaAzul}
+
 \setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{footline}[frame number]
 \setbeamertemplate{items}[circle]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+% Franja superior azul como en la plantilla
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth,ht=0.82cm,dp=0.22cm,leftskip=0.28cm]{frametitle}%
+    \usebeamerfont{frametitle}\insertframetitle
+  \end{beamercolorbox}%
+}
+
+% Pie de página: franja azul oscuro, título centrado y numeración a la derecha
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=.18\paperwidth,ht=2.7ex,dp=1.1ex]{author in head/foot}\end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.64\paperwidth,ht=2.7ex,dp=1.1ex,center]{title in head/foot}%
+      \color{white}\usebeamerfont{footline}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.18\paperwidth,ht=2.7ex,dp=1.1ex,right]{date in head/foot}%
+      \color{white}\usebeamerfont{footline}\insertframenumber\ / \inserttotalframenumber\hspace*{1.2em}
+    \end{beamercolorbox}%
+  }%
+  \vskip0pt%
+}
+\setbeamercolor{author in head/foot}{bg=PlantillaAzulOscuro,fg=white}
+\setbeamercolor{title in head/foot}{bg=PlantillaAzul,fg=white}
+\setbeamercolor{date in head/foot}{bg=PlantillaAzulOscuro,fg=white}
+
+% Portada: banda central azul con sombra visual semejante a la plantilla
+\setbeamertemplate{title page}{%
+  \vfill
+  \begin{beamercolorbox}[sep=0.55cm,wd=\paperwidth,center,rounded=true,shadow=true]{title}%
+    \usebeamerfont{title}\inserttitle\par
+    \ifx\insertsubtitle\@empty\else\vskip0.25em\usebeamerfont{subtitle}\insertsubtitle\par\fi
+    \vskip0.45em
+    {\small\insertauthor\par}
+    {\small\insertdate\par}
+  \end{beamercolorbox}
+  \vfill
+}
+
 \setlength{\parskip}{0.35em}
 \newtheorem{definicion}{Definición}[section]
 \newtheorem{teorema}[definicion]{Teorema}
@@ -36,7 +107,7 @@
 \newcommand{\RREF}{\operatorname{RREF}}
 \newcommand{\sistema}[1]{\[\left\{\begin{aligned}#1\end{aligned}\right.\]}
 \providecommand{\paragraph}[1]{\medskip\textbf{#1.}\enspace}
-\title{\textbf{Notas para el curso de Álgebra Lineal}\\[0.35cm]\Large Unidad 2: Sistemas de ecuaciones lineales}
+\title[Álgebra Lineal — Unidad 2]{\textbf{Notas para el curso de Álgebra Lineal}\\[0.35cm]\Large Unidad 2: Sistemas de ecuaciones lineales}
 \author{Carlos Ernesto Martínez\\Tecnológico Nacional de México}
 \date{Agosto--Diciembre 2026}
 \begin{document}
@@ -794,16 +865,18 @@ Para resolver un sistema por Gauss--Jordan:
 \item Siempre que sea razonable, comprobamos el resultado en el sistema original.
 \end{itemize}
 \end{frame}
+%==============================================================
+%==============================================================
+% Reorganizacion literal: ninguna frase, operacion ni matriz eliminada.
+% Cada bloque de calculo ocupa una diapositiva sin shrink ni footnotesize.
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo}
 \begin{Nota}
 En sistemas grandes es especialmente importante escribir cada operación elemental. Una operación no documentada hace muy difícil localizar un error aritmético varias etapas después.
 \end{Nota}
 \end{frame}
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo — Ejemplo (1/5)}
 \begin{Ejem}
 Consideremos el sistema
 \[
@@ -819,6 +892,11 @@ La matriz aumentada correspondiente es
 2 & -1 & 5
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (2/5)}
+\begin{Ejem}
 Aplicaremos Gauss--Jordan de manera sistemática. En cada etapa indicaremos qué entrada queremos convertir en pivote y qué entradas deseamos anular.
 
 
@@ -832,6 +910,11 @@ R_{2}\leftarrow R_{2}-2R_{1}
 0 & -5 & -5
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (3/5)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 2 para convertirlo en 1.
 \[
 R_{2}\leftarrow \frac{1}{-5}R_{2}
@@ -842,6 +925,11 @@ R_{2}\leftarrow \frac{1}{-5}R_{2}
 0 & 1 & 1
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (4/5)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-2R_{2}
@@ -852,9 +940,11 @@ R_{1}\leftarrow R_{1}-2R_{2}
 0 & 1 & 1
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
 
-
-
+\begin{frame}{Algoritmo de trabajo — Ejemplo (5/5)}
+\begin{Ejem}
 Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse directamente de la última columna.
 \[
 \boxed{x_{1}=3,\quad x_{2}=1}
@@ -862,8 +952,7 @@ Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse d
 \end{Ejem}
 \end{frame}
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo — Ejemplo (1/10)}
 \begin{Ejem}
 Consideremos el sistema
 
@@ -882,6 +971,11 @@ La matriz aumentada correspondiente es
 1 & 2 & -1 & 2
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (2/10)}
+\begin{Ejem}
 Usamos el pivote de la columna 1 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}-2R_{1}
@@ -893,7 +987,12 @@ R_{2}\leftarrow R_{2}-2R_{1}
 1 & 2 & -1 & 2
 \end{array}\right]
 \]
- Usamos el pivote de la columna 1 para anular la entrada del renglón 3.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (3/10)}
+\begin{Ejem}
+Usamos el pivote de la columna 1 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-R_{1}
 \]
@@ -904,7 +1003,12 @@ R_{3}\leftarrow R_{3}-R_{1}
 0 & 1 & -2 & -4
 \end{array}\right]
 \]
- Normalizamos el pivote de la columna 2 para convertirlo en 1.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (4/10)}
+\begin{Ejem}
+Normalizamos el pivote de la columna 2 para convertirlo en 1.
 \[
 R_{2}\leftarrow \frac{1}{-3}R_{2}
 \]
@@ -915,7 +1019,12 @@ R_{2}\leftarrow \frac{1}{-3}R_{2}
 0 & 1 & -2 & -4
 \end{array}\right]
 \]
- Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (5/10)}
+\begin{Ejem}
+Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-R_{2}
 \]
@@ -926,7 +1035,12 @@ R_{1}\leftarrow R_{1}-R_{2}
 0 & 1 & -2 & -4
 \end{array}\right]
 \]
- Usamos el pivote de la columna 2 para anular la entrada del renglón 3.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (6/10)}
+\begin{Ejem}
+Usamos el pivote de la columna 2 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-R_{2}
 \]
@@ -937,6 +1051,11 @@ R_{3}\leftarrow R_{3}-R_{2}
 0 & 0 & - \frac{7}{3} & -7
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (7/10)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 3 para convertirlo en 1.
 \[
 R_{3}\leftarrow \frac{1}{- \frac{7}{3}}R_{3}
@@ -948,6 +1067,11 @@ R_{3}\leftarrow \frac{1}{- \frac{7}{3}}R_{3}
 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (8/10)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-\frac{2}{3}R_{3}
@@ -959,6 +1083,11 @@ R_{1}\leftarrow R_{1}-\frac{2}{3}R_{3}
 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (9/10)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}-\frac{1}{3}R_{3}
@@ -970,18 +1099,20 @@ R_{2}\leftarrow R_{2}-\frac{1}{3}R_{3}
 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (10/10)}
+\begin{Ejem}
 Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse directamente de la última columna.
 \[
 \boxed{x_{1}=1,\quad x_{2}=2,\quad x_{3}=3}
 \]
-
 \end{Ejem}
 \end{frame}
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo — Ejemplo (1/9)}
 \begin{Ejem}
-
 Partimos del sistema
 \[
 \begin{aligned}
@@ -998,6 +1129,11 @@ La matriz aumentada correspondiente es
 2 & 1 & -1 & 0
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (2/9)}
+\begin{Ejem}
 Aplicaremos Gauss--Jordan de manera sistemática. En cada etapa indicaremos qué entrada queremos convertir en pivote y qué entradas deseamos anular.
 
 
@@ -1012,6 +1148,11 @@ R_{1}\leftrightarrow R_{2}
 2 & 1 & -1 & 0
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (3/9)}
+\begin{Ejem}
 Usamos el pivote de la columna 1 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-2R_{1}
@@ -1023,6 +1164,11 @@ R_{3}\leftarrow R_{3}-2R_{1}
 0 & 3 & -5 & -18
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (4/9)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}+R_{2}
@@ -1034,6 +1180,11 @@ R_{1}\leftarrow R_{1}+R_{2}
 0 & 3 & -5 & -18
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (5/9)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-3R_{2}
@@ -1045,6 +1196,11 @@ R_{3}\leftarrow R_{3}-3R_{2}
 0 & 0 & -8 & -24
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (6/9)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 3 para convertirlo en 1.
 \[
 R_{3}\leftarrow \frac{1}{-8}R_{3}
@@ -1056,6 +1212,11 @@ R_{3}\leftarrow \frac{1}{-8}R_{3}
 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (7/9)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-3R_{3}
@@ -1067,6 +1228,11 @@ R_{1}\leftarrow R_{1}-3R_{3}
 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (8/9)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}-R_{3}
@@ -1078,16 +1244,19 @@ R_{2}\leftarrow R_{2}-R_{3}
 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (9/9)}
+\begin{Ejem}
 Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse directamente de la última columna.
 \[
 \boxed{x_{1}=2,\quad x_{2}=-1,\quad x_{3}=3}
 \]
-
 \end{Ejem}
 \end{frame}
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo — Ejemplo (1/17)}
 \begin{Ejem}
 Partimos del sistema
 \[
@@ -1107,6 +1276,11 @@ La matriz aumentada correspondiente es
 3 & 0 & 2 & -1 & 4
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (2/17)}
+\begin{Ejem}
 Aplicaremos Gauss--Jordan de manera sistemática. En cada etapa indicaremos qué entrada queremos convertir en pivote y qué entradas deseamos anular.
 
 
@@ -1122,7 +1296,12 @@ R_{2}\leftarrow R_{2}-2R_{1}
 3 & 0 & 2 & -1 & 4
 \end{array}\right]
 \]
- Usamos el pivote de la columna 1 para anular la entrada del renglón 3.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (3/17)}
+\begin{Ejem}
+Usamos el pivote de la columna 1 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-R_{1}
 \]
@@ -1134,7 +1313,12 @@ R_{3}\leftarrow R_{3}-R_{1}
 3 & 0 & 2 & -1 & 4
 \end{array}\right]
 \]
- Usamos el pivote de la columna 1 para anular la entrada del renglón 4.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (4/17)}
+\begin{Ejem}
+Usamos el pivote de la columna 1 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}-3R_{1}
 \]
@@ -1146,6 +1330,11 @@ R_{4}\leftarrow R_{4}-3R_{1}
 0 & -3 & 2 & 2 & 13
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (5/17)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 2 para convertirlo en 1.
 \[
 R_{2}\leftarrow \frac{1}{-3}R_{2}
@@ -1158,6 +1347,11 @@ R_{2}\leftarrow \frac{1}{-3}R_{2}
 0 & -3 & 2 & 2 & 13
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (6/17)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-R_{2}
@@ -1170,7 +1364,12 @@ R_{1}\leftarrow R_{1}-R_{2}
 0 & -3 & 2 & 2 & 13
 \end{array}\right]
 \]
- Usamos el pivote de la columna 2 para anular la entrada del renglón 3.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (7/17)}
+\begin{Ejem}
+Usamos el pivote de la columna 2 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-R_{2}
 \]
@@ -1182,6 +1381,11 @@ R_{3}\leftarrow R_{3}-R_{2}
 0 & -3 & 2 & 2 & 13
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (8/17)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}+3R_{2}
@@ -1194,6 +1398,11 @@ R_{4}\leftarrow R_{4}+3R_{2}
 0 & 0 & 1 & -1 & -1
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (9/17)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 3 para convertirlo en 1.
 \[
 R_{3}\leftarrow \frac{1}{- \frac{2}{3}}R_{3}
@@ -1206,6 +1415,11 @@ R_{3}\leftarrow \frac{1}{- \frac{2}{3}}R_{3}
 0 & 0 & 1 & -1 & -1
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (10/17)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-\frac{1}{3}R_{3}
@@ -1218,7 +1432,12 @@ R_{1}\leftarrow R_{1}-\frac{1}{3}R_{3}
 0 & 0 & 1 & -1 & -1
 \end{array}\right]
 \]
- Usamos el pivote de la columna 3 para anular la entrada del renglón 2.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (11/17)}
+\begin{Ejem}
+Usamos el pivote de la columna 3 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}+\frac{1}{3}R_{3}
 \]
@@ -1230,7 +1449,12 @@ R_{2}\leftarrow R_{2}+\frac{1}{3}R_{3}
 0 & 0 & 1 & -1 & -1
 \end{array}\right]
 \]
- Usamos el pivote de la columna 3 para anular la entrada del renglón 4.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (12/17)}
+\begin{Ejem}
+Usamos el pivote de la columna 3 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}-R_{3}
 \]
@@ -1242,6 +1466,11 @@ R_{4}\leftarrow R_{4}-R_{3}
 0 & 0 & 0 & 5 & 15
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (13/17)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 4 para convertirlo en 1.
 \[
 R_{4}\leftarrow \frac{1}{5}R_{4}
@@ -1254,7 +1483,12 @@ R_{4}\leftarrow \frac{1}{5}R_{4}
 0 & 0 & 0 & 1 & 3
 \end{array}\right]
 \]
- Usamos el pivote de la columna 4 para anular la entrada del renglón 1.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (14/17)}
+\begin{Ejem}
+Usamos el pivote de la columna 4 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-2R_{4}
 \]
@@ -1266,6 +1500,11 @@ R_{1}\leftarrow R_{1}-2R_{4}
 0 & 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (15/17)}
+\begin{Ejem}
 Usamos el pivote de la columna 4 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}+3R_{4}
@@ -1278,6 +1517,11 @@ R_{2}\leftarrow R_{2}+3R_{4}
 0 & 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (16/17)}
+\begin{Ejem}
 Usamos el pivote de la columna 4 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}+6R_{4}
@@ -1290,16 +1534,19 @@ R_{3}\leftarrow R_{3}+6R_{4}
 0 & 0 & 0 & 1 & 3
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (17/17)}
+\begin{Ejem}
 Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse directamente de la última columna.
 \[
 \boxed{x_{1}=1,\quad x_{2}=-1,\quad x_{3}=2,\quad x_{4}=3}
 \]
-
 \end{Ejem}
 \end{frame}
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo — Ejemplo (1/25)}
 \begin{Ejem}
 Partimos del sistema
 \[
@@ -1321,6 +1568,11 @@ La matriz aumentada correspondiente es
 2 & 1 & 1 & -1 & 3 & 8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (2/25)}
+\begin{Ejem}
 Aplicaremos Gauss--Jordan de manera sistemática. En cada etapa indicaremos qué entrada queremos convertir en pivote y qué entradas deseamos anular. Usamos el pivote de la columna 1 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}-2R_{1}
@@ -1334,6 +1586,11 @@ R_{2}\leftarrow R_{2}-2R_{1}
 2 & 1 & 1 & -1 & 3 & 8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (3/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 1 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}+R_{1}
@@ -1347,6 +1604,11 @@ R_{3}\leftarrow R_{3}+R_{1}
 2 & 1 & 1 & -1 & 3 & 8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (4/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 1 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}-3R_{1}
@@ -1360,6 +1622,11 @@ R_{4}\leftarrow R_{4}-3R_{1}
 2 & 1 & 1 & -1 & 3 & 8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (5/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 1 para anular la entrada del renglón 5.
 \[
 R_{5}\leftarrow R_{5}-2R_{1}
@@ -1373,7 +1640,12 @@ R_{5}\leftarrow R_{5}-2R_{1}
 0 & -1 & 3 & -5 & 1 & -8
 \end{array}\right]
 \]
- Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (6/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 2 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}-R_{2}
 \]
@@ -1386,6 +1658,11 @@ R_{1}\leftarrow R_{1}-R_{2}
 0 & -1 & 3 & -5 & 1 & -8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (7/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-3R_{2}
@@ -1399,8 +1676,12 @@ R_{3}\leftarrow R_{3}-3R_{2}
 0 & -1 & 3 & -5 & 1 & -8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
 
- Usamos el pivote de la columna 2 para anular la entrada del renglón 4.
+\begin{frame}{Algoritmo de trabajo — Ejemplo (8/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 2 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}+4R_{2}
 \]
@@ -1413,6 +1694,11 @@ R_{4}\leftarrow R_{4}+4R_{2}
 0 & -1 & 3 & -5 & 1 & -8
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (9/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 2 para anular la entrada del renglón 5.
 \[
 R_{5}\leftarrow R_{5}+R_{2}
@@ -1426,6 +1712,11 @@ R_{5}\leftarrow R_{5}+R_{2}
 0 & 0 & 6 & -8 & -3 & -20
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (10/25)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 3 para convertirlo en 1.
 \[
 R_{3}\leftarrow \frac{1}{-7}R_{3}
@@ -1439,6 +1730,11 @@ R_{3}\leftarrow \frac{1}{-7}R_{3}
 0 & 0 & 6 & -8 & -3 & -20
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (11/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}+4R_{3}
@@ -1452,7 +1748,12 @@ R_{1}\leftarrow R_{1}+4R_{3}
 0 & 0 & 6 & -8 & -3 & -20
 \end{array}\right]
 \]
- Usamos el pivote de la columna 3 para anular la entrada del renglón 2.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (12/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 3 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}-3R_{3}
 \]
@@ -1465,6 +1766,11 @@ R_{2}\leftarrow R_{2}-3R_{3}
 0 & 0 & 6 & -8 & -3 & -20
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (13/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 3 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}-17R_{3}
@@ -1478,7 +1784,12 @@ R_{4}\leftarrow R_{4}-17R_{3}
 0 & 0 & 6 & -8 & -3 & -20
 \end{array}\right]
 \]
- Usamos el pivote de la columna 3 para anular la entrada del renglón 5.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (14/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 3 para anular la entrada del renglón 5.
 \[
 R_{5}\leftarrow R_{5}-6R_{3}
 \]
@@ -1491,6 +1802,11 @@ R_{5}\leftarrow R_{5}-6R_{3}
 0 & 0 & 0 & \frac{4}{7} & 9 & \frac{130}{7}
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (15/25)}
+\begin{Ejem}
 Normalizamos el pivote de la columna 4 para convertirlo en 1.
 \[
 R_{4}\leftarrow \frac{1}{\frac{58}{7}}R_{4}
@@ -1504,7 +1820,12 @@ R_{4}\leftarrow \frac{1}{\frac{58}{7}}R_{4}
 0 & 0 & 0 & \frac{4}{7} & 9 & \frac{130}{7}
 \end{array}\right]
 \]
- Usamos el pivote de la columna 4 para anular la entrada del renglón 1.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (16/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 4 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}+\frac{5}{7}R_{4}
 \]
@@ -1517,6 +1838,11 @@ R_{1}\leftarrow R_{1}+\frac{5}{7}R_{4}
 0 & 0 & 0 & \frac{4}{7} & 9 & \frac{130}{7}
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (17/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 4 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}-\frac{9}{7}R_{4}
@@ -1530,7 +1856,12 @@ R_{2}\leftarrow R_{2}-\frac{9}{7}R_{4}
 0 & 0 & 0 & \frac{4}{7} & 9 & \frac{130}{7}
 \end{array}\right]
 \]
- Usamos el pivote de la columna 4 para anular la entrada del renglón 3.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (18/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 4 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}+\frac{10}{7}R_{4}
 \]
@@ -1543,7 +1874,12 @@ R_{3}\leftarrow R_{3}+\frac{10}{7}R_{4}
 0 & 0 & 0 & \frac{4}{7} & 9 & \frac{130}{7}
 \end{array}\right]
 \]
- Usamos el pivote de la columna 4 para anular la entrada del renglón 5.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (19/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 4 para anular la entrada del renglón 5.
 \[
 R_{5}\leftarrow R_{5}-\frac{4}{7}R_{4}
 \]
@@ -1556,7 +1892,12 @@ R_{5}\leftarrow R_{5}-\frac{4}{7}R_{4}
 0 & 0 & 0 & 0 & \frac{229}{29} & \frac{458}{29}
 \end{array}\right]
 \]
- Normalizamos el pivote de la columna 5 para convertirlo en 1.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (20/25)}
+\begin{Ejem}
+Normalizamos el pivote de la columna 5 para convertirlo en 1.
 \[
 R_{5}\leftarrow \frac{1}{\frac{229}{29}}R_{5}
 \]
@@ -1569,6 +1910,11 @@ R_{5}\leftarrow \frac{1}{\frac{229}{29}}R_{5}
 0 & 0 & 0 & 0 & 1 & 2
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (21/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 5 para anular la entrada del renglón 1.
 \[
 R_{1}\leftarrow R_{1}+\frac{47}{29}R_{5}
@@ -1582,6 +1928,11 @@ R_{1}\leftarrow R_{1}+\frac{47}{29}R_{5}
 0 & 0 & 0 & 0 & 1 & 2
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (22/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 5 para anular la entrada del renglón 2.
 \[
 R_{2}\leftarrow R_{2}+\frac{14}{29}R_{5}
@@ -1595,7 +1946,12 @@ R_{2}\leftarrow R_{2}+\frac{14}{29}R_{5}
 0 & 0 & 0 & 0 & 1 & 2
 \end{array}\right]
 \]
- Usamos el pivote de la columna 5 para anular la entrada del renglón 3.
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (23/25)}
+\begin{Ejem}
+Usamos el pivote de la columna 5 para anular la entrada del renglón 3.
 \[
 R_{3}\leftarrow R_{3}-\frac{22}{29}R_{5}
 \]
@@ -1608,6 +1964,11 @@ R_{3}\leftarrow R_{3}-\frac{22}{29}R_{5}
 0 & 0 & 0 & 0 & 1 & 2
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (24/25)}
+\begin{Ejem}
 Usamos el pivote de la columna 5 para anular la entrada del renglón 4.
 \[
 R_{4}\leftarrow R_{4}-\frac{56}{29}R_{5}
@@ -1621,6 +1982,11 @@ R_{4}\leftarrow R_{4}-\frac{56}{29}R_{5}
 0 & 0 & 0 & 0 & 1 & 2
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (25/25)}
+\begin{Ejem}
 Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse directamente de la última columna.
 \[
 \boxed{x_{1}=1,\quad x_{2}=2,\quad x_{3}=-1,\quad x_{4}=1,\quad x_{5}=2}
@@ -1628,10 +1994,8 @@ Al finalizar obtenemos la forma escalonada reducida. La solución puede leerse d
 \end{Ejem}
 \end{frame}
 
-\begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
-\footnotesize
+\begin{frame}{Algoritmo de trabajo — Ejemplo (1/4)}
 \begin{Ejem}
-
 Consideremos
 \[
 \begin{aligned}
@@ -1650,6 +2014,11 @@ Su matriz aumentada es
 1 & 3 & 0 & 0 & 5
 \end{array}\right]
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (2/4)}
+\begin{Ejem}
 y al reducirla por renglones obtenemos
 \[
 \left[\begin{array}{cccc|c}
@@ -1664,6 +2033,11 @@ Las columnas 1 y 2 contienen pivotes; por tanto, \(x_1\) y \(x_2\) son variables
 \[
 x_3=s,\qquad x_4=t.
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (3/4)}
+\begin{Ejem}
 De los dos renglones no nulos obtenemos
 \[
 x_1-3x_3+3x_4=2,\qquad x_2+x_3-x_4=1.
@@ -1672,6 +2046,11 @@ Así,
 \[
 x_1=2+3s-3t,\qquad x_2=1-s+t.
 \]
+\end{Ejem}
+\end{frame}
+
+\begin{frame}{Algoritmo de trabajo — Ejemplo (4/4)}
+\begin{Ejem}
 Por tanto,
 \[
 \boxed{(x_1,x_2,x_3,x_4)=(2+3s-3t,\,1-s+t,\,s,\,t),\qquad s,t\in\R.}
@@ -1680,6 +2059,8 @@ La presencia de dos variables libres produce una familia bidimensional de soluci
 \end{Ejem}
 \end{frame}
 
+%==============================================================
+%==============================================================
 \begin{frame}[shrink=5]{Algoritmo de trabajo — Ejemplo}
 \footnotesize
 \begin{Ejem}

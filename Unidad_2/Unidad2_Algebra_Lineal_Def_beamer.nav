@@ -106,313 +106,443 @@
 \headcommand {\beamer@framepages {37}{37}}
 \headcommand {\slideentry {5}{1}{1}{37/38}{Ejemplo con solución única}{0}}
 \headcommand {\beamer@framepages {37}{38}}
-\headcommand {\beamer@subsectionpages {37}{38}}
-\headcommand {\beamer@subsectionentry {0}{5}{2}{39}{Ejemplo inconsistente}}
-\headcommand {\slideentry {5}{2}{1}{39/39}{Ejemplo inconsistente}{0}}
-\headcommand {\beamer@framepages {39}{39}}
-\headcommand {\beamer@subsectionpages {39}{39}}
-\headcommand {\beamer@subsectionentry {0}{5}{3}{40}{Ejemplo con infinitas soluciones}}
-\headcommand {\slideentry {5}{3}{1}{40/40}{Ejemplo con infinitas soluciones}{0}}
+\headcommand {\slideentry {5}{1}{1}{37/39}{Ejemplo con solución única}{0}}
+\headcommand {\beamer@framepages {37}{39}}
+\headcommand {\beamer@subsectionpages {37}{39}}
+\headcommand {\beamer@subsectionentry {0}{5}{2}{40}{Ejemplo inconsistente}}
+\headcommand {\slideentry {5}{2}{1}{40/40}{Ejemplo inconsistente}{0}}
 \headcommand {\beamer@framepages {40}{40}}
 \headcommand {\beamer@subsectionpages {40}{40}}
-\headcommand {\beamer@subsectionentry {0}{5}{4}{41}{Variables básicas y variables libres}}
-\headcommand {\slideentry {5}{4}{1}{41/41}{Variables básicas y variables libres}{0}}
+\headcommand {\beamer@subsectionentry {0}{5}{3}{41}{Ejemplo con infinitas soluciones}}
+\headcommand {\slideentry {5}{3}{1}{41/41}{Ejemplo con infinitas soluciones}{0}}
 \headcommand {\beamer@framepages {41}{41}}
-\headcommand {\slideentry {5}{4}{1}{41/42}{Variables básicas y variables libres}{0}}
-\headcommand {\beamer@framepages {41}{42}}
-\headcommand {\beamer@sectionpages {36}{42}}
-\headcommand {\beamer@subsectionpages {41}{42}}
-\headcommand {\sectionentry {6}{Forma escalonada reducida}{43}{Forma escalonada reducida}{0}}
-\headcommand {\slideentry {6}{0}{1}{43/43}{}{0}}
-\headcommand {\beamer@framepages {43}{43}}
-\headcommand {\slideentry {6}{0}{2}{44/44}{}{0}}
+\headcommand {\beamer@subsectionpages {41}{41}}
+\headcommand {\beamer@subsectionentry {0}{5}{4}{42}{Variables básicas y variables libres}}
+\headcommand {\slideentry {5}{4}{1}{42/42}{Variables básicas y variables libres}{0}}
+\headcommand {\beamer@framepages {42}{42}}
+\headcommand {\slideentry {5}{4}{1}{42/43}{Variables básicas y variables libres}{0}}
+\headcommand {\beamer@framepages {42}{43}}
+\headcommand {\beamer@sectionpages {36}{43}}
+\headcommand {\beamer@subsectionpages {42}{43}}
+\headcommand {\sectionentry {6}{Forma escalonada reducida}{44}{Forma escalonada reducida}{0}}
+\headcommand {\slideentry {6}{0}{1}{44/44}{}{0}}
 \headcommand {\beamer@framepages {44}{44}}
-\headcommand {\slideentry {6}{0}{3}{45/45}{}{0}}
+\headcommand {\slideentry {6}{0}{2}{45/45}{}{0}}
 \headcommand {\beamer@framepages {45}{45}}
-\headcommand {\slideentry {6}{0}{4}{46/46}{}{0}}
+\headcommand {\slideentry {6}{0}{3}{46/46}{}{0}}
 \headcommand {\beamer@framepages {46}{46}}
-\headcommand {\beamer@sectionpages {43}{46}}
-\headcommand {\beamer@subsectionpages {43}{46}}
-\headcommand {\sectionentry {7}{Método de Gauss--Jordan}{47}{Método de Gauss--Jordan}{0}}
-\headcommand {\slideentry {7}{0}{1}{47/47}{}{0}}
+\headcommand {\slideentry {6}{0}{4}{47/47}{}{0}}
 \headcommand {\beamer@framepages {47}{47}}
-\headcommand {\beamer@subsectionpages {47}{47}}
-\headcommand {\beamer@subsectionentry {0}{7}{1}{48}{Algoritmo de trabajo}}
-\headcommand {\slideentry {7}{1}{1}{48/48}{Algoritmo de trabajo}{0}}
+\headcommand {\beamer@sectionpages {44}{47}}
+\headcommand {\beamer@subsectionpages {44}{47}}
+\headcommand {\sectionentry {7}{Método de Gauss--Jordan}{48}{Método de Gauss--Jordan}{0}}
+\headcommand {\slideentry {7}{0}{1}{48/48}{}{0}}
 \headcommand {\beamer@framepages {48}{48}}
-\headcommand {\slideentry {7}{1}{2}{49/49}{Algoritmo de trabajo}{0}}
+\headcommand {\beamer@subsectionpages {48}{48}}
+\headcommand {\beamer@subsectionentry {0}{7}{1}{49}{Algoritmo de trabajo}}
+\headcommand {\slideentry {7}{1}{1}{49/49}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {49}{49}}
-\headcommand {\slideentry {7}{1}{3}{50/50}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{2}{50/50}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {50}{50}}
-\headcommand {\slideentry {7}{1}{4}{51/51}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{3}{51/51}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {51}{51}}
-\headcommand {\slideentry {7}{1}{5}{52/52}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{4}{52/52}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {52}{52}}
-\headcommand {\slideentry {7}{1}{6}{53/53}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{5}{53/53}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {53}{53}}
-\headcommand {\slideentry {7}{1}{7}{54/54}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{6}{54/54}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {54}{54}}
-\headcommand {\slideentry {7}{1}{8}{55/55}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{7}{55/55}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {55}{55}}
-\headcommand {\slideentry {7}{1}{9}{56/56}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{8}{56/56}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {56}{56}}
-\headcommand {\slideentry {7}{1}{10}{57/57}{Algoritmo de trabajo}{0}}
+\headcommand {\slideentry {7}{1}{9}{57/57}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {57}{57}}
-\headcommand {\beamer@sectionpages {47}{57}}
-\headcommand {\beamer@subsectionpages {48}{57}}
-\headcommand {\sectionentry {8}{Sistemas con parámetros}{58}{Sistemas con parámetros}{0}}
-\headcommand {\slideentry {8}{0}{1}{58/58}{}{0}}
+\headcommand {\slideentry {7}{1}{10}{58/58}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {58}{58}}
-\headcommand {\beamer@subsectionpages {58}{58}}
-\headcommand {\beamer@subsectionentry {0}{8}{1}{59}{Parámetros como variables libres}}
-\headcommand {\slideentry {8}{1}{1}{59/59}{Parámetros como variables libres}{0}}
+\headcommand {\slideentry {7}{1}{11}{59/59}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {59}{59}}
-\headcommand {\beamer@subsectionpages {59}{59}}
-\headcommand {\beamer@subsectionentry {0}{8}{2}{60}{Parámetros en los coeficientes}}
-\headcommand {\slideentry {8}{2}{1}{60/60}{Parámetros en los coeficientes}{0}}
+\headcommand {\slideentry {7}{1}{12}{60/60}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {60}{60}}
-\headcommand {\slideentry {8}{2}{1}{60/61}{Parámetros en los coeficientes}{0}}
-\headcommand {\beamer@framepages {60}{61}}
-\headcommand {\beamer@subsectionpages {60}{61}}
-\headcommand {\beamer@subsectionentry {0}{8}{3}{62}{Un parámetro que produce incompatibilidad}}
-\headcommand {\slideentry {8}{3}{1}{62/62}{Un parámetro que produce incompatibilidad}{0}}
+\headcommand {\slideentry {7}{1}{13}{61/61}{Algoritmo de trabajo}{0}}
+\headcommand {\beamer@framepages {61}{61}}
+\headcommand {\slideentry {7}{1}{14}{62/62}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {62}{62}}
-\headcommand {\beamer@sectionpages {58}{62}}
-\headcommand {\beamer@subsectionpages {62}{62}}
-\headcommand {\sectionentry {9}{Matrices: Introducci\'on}{63}{Matrices: Introducci\'on}{0}}
-\headcommand {\slideentry {9}{0}{1}{63/63}{}{0}}
+\headcommand {\slideentry {7}{1}{15}{63/63}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {63}{63}}
-\headcommand {\slideentry {9}{0}{2}{64/64}{}{0}}
+\headcommand {\slideentry {7}{1}{16}{64/64}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {64}{64}}
-\headcommand {\slideentry {9}{0}{3}{65/65}{}{0}}
+\headcommand {\slideentry {7}{1}{17}{65/65}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {65}{65}}
-\headcommand {\beamer@subsectionpages {63}{65}}
-\headcommand {\beamer@subsectionentry {0}{9}{1}{66}{Rango y consistencia}}
-\headcommand {\slideentry {9}{1}{1}{66/66}{Rango y consistencia}{0}}
+\headcommand {\slideentry {7}{1}{18}{66/66}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {66}{66}}
-\headcommand {\slideentry {9}{1}{2}{67/67}{Rango y consistencia}{0}}
+\headcommand {\slideentry {7}{1}{19}{67/67}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {67}{67}}
-\headcommand {\slideentry {9}{1}{3}{68/68}{Rango y consistencia}{0}}
+\headcommand {\slideentry {7}{1}{20}{68/68}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {68}{68}}
-\headcommand {\slideentry {9}{1}{4}{69/69}{Rango y consistencia}{0}}
+\headcommand {\slideentry {7}{1}{21}{69/69}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {69}{69}}
-\headcommand {\beamer@subsectionpages {66}{69}}
-\headcommand {\beamer@subsectionentry {0}{9}{2}{70}{Solución mediante matriz inversa}}
-\headcommand {\slideentry {9}{2}{1}{70/70}{Solución mediante matriz inversa}{0}}
+\headcommand {\slideentry {7}{1}{22}{70/70}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {70}{70}}
-\headcommand {\slideentry {9}{2}{2}{71/71}{Solución mediante matriz inversa}{0}}
+\headcommand {\slideentry {7}{1}{23}{71/71}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {71}{71}}
-\headcommand {\slideentry {9}{2}{3}{72/72}{Solución mediante matriz inversa}{0}}
+\headcommand {\slideentry {7}{1}{24}{72/72}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {72}{72}}
-\headcommand {\beamer@subsectionpages {70}{72}}
-\headcommand {\beamer@subsectionentry {0}{9}{3}{73}{Regla de Cramer}}
-\headcommand {\slideentry {9}{3}{1}{73/73}{Regla de Cramer}{0}}
+\headcommand {\slideentry {7}{1}{25}{73/73}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {73}{73}}
-\headcommand {\slideentry {9}{3}{2}{74/74}{Regla de Cramer}{0}}
+\headcommand {\slideentry {7}{1}{26}{74/74}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {74}{74}}
-\headcommand {\slideentry {9}{3}{3}{75/75}{Regla de Cramer}{0}}
+\headcommand {\slideentry {7}{1}{27}{75/75}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {75}{75}}
-\headcommand {\beamer@sectionpages {63}{75}}
-\headcommand {\beamer@subsectionpages {73}{75}}
-\headcommand {\sectionentry {10}{Aplicaciones}{76}{Aplicaciones}{0}}
-\headcommand {\beamer@subsectionpages {76}{75}}
-\headcommand {\beamer@subsectionentry {0}{10}{1}{76}{Mezclas}}
-\headcommand {\slideentry {10}{1}{1}{76/76}{Mezclas}{0}}
+\headcommand {\slideentry {7}{1}{28}{76/76}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {76}{76}}
-\headcommand {\beamer@subsectionpages {76}{76}}
-\headcommand {\beamer@subsectionentry {0}{10}{2}{77}{Circuitos}}
-\headcommand {\slideentry {10}{2}{1}{77/77}{Circuitos}{0}}
+\headcommand {\slideentry {7}{1}{29}{77/77}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {77}{77}}
-\headcommand {\beamer@subsectionpages {77}{77}}
-\headcommand {\beamer@subsectionentry {0}{10}{3}{78}{Equilibrio de fuerzas}}
-\headcommand {\slideentry {10}{3}{1}{78/78}{Equilibrio de fuerzas}{0}}
+\headcommand {\slideentry {7}{1}{30}{78/78}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {78}{78}}
-\headcommand {\beamer@sectionpages {76}{78}}
-\headcommand {\beamer@subsectionpages {78}{78}}
-\headcommand {\sectionentry {11}{Ejemplos}{79}{Ejemplos}{0}}
-\headcommand {\slideentry {11}{0}{1}{79/79}{}{0}}
+\headcommand {\slideentry {7}{1}{31}{79/79}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {79}{79}}
-\headcommand {\slideentry {11}{0}{2}{80/80}{}{0}}
+\headcommand {\slideentry {7}{1}{32}{80/80}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {80}{80}}
-\headcommand {\beamer@sectionpages {79}{80}}
-\headcommand {\beamer@subsectionpages {79}{80}}
-\headcommand {\sectionentry {12}{Ejercicios}{81}{Ejercicios}{0}}
-\headcommand {\slideentry {12}{0}{1}{81/81}{}{0}}
+\headcommand {\slideentry {7}{1}{33}{81/81}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {81}{81}}
-\headcommand {\slideentry {12}{0}{2}{82/82}{}{0}}
+\headcommand {\slideentry {7}{1}{34}{82/82}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {82}{82}}
-\headcommand {\slideentry {12}{0}{3}{83/83}{}{0}}
+\headcommand {\slideentry {7}{1}{35}{83/83}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {83}{83}}
-\headcommand {\slideentry {12}{0}{4}{84/84}{}{0}}
+\headcommand {\slideentry {7}{1}{36}{84/84}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {84}{84}}
-\headcommand {\slideentry {12}{0}{5}{85/85}{}{0}}
+\headcommand {\slideentry {7}{1}{37}{85/85}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {85}{85}}
-\headcommand {\slideentry {12}{0}{6}{86/86}{}{0}}
+\headcommand {\slideentry {7}{1}{38}{86/86}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {86}{86}}
-\headcommand {\slideentry {12}{0}{7}{87/87}{}{0}}
+\headcommand {\slideentry {7}{1}{39}{87/87}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {87}{87}}
-\headcommand {\slideentry {12}{0}{8}{88/88}{}{0}}
+\headcommand {\slideentry {7}{1}{40}{88/88}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {88}{88}}
-\headcommand {\slideentry {12}{0}{9}{89/89}{}{0}}
+\headcommand {\slideentry {7}{1}{41}{89/89}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {89}{89}}
-\headcommand {\slideentry {12}{0}{10}{90/90}{}{0}}
+\headcommand {\slideentry {7}{1}{42}{90/90}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {90}{90}}
-\headcommand {\slideentry {12}{0}{11}{91/91}{}{0}}
+\headcommand {\slideentry {7}{1}{43}{91/91}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {91}{91}}
-\headcommand {\slideentry {12}{0}{12}{92/92}{}{0}}
+\headcommand {\slideentry {7}{1}{44}{92/92}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {92}{92}}
-\headcommand {\slideentry {12}{0}{13}{93/93}{}{0}}
+\headcommand {\slideentry {7}{1}{45}{93/93}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {93}{93}}
-\headcommand {\slideentry {12}{0}{14}{94/94}{}{0}}
+\headcommand {\slideentry {7}{1}{46}{94/94}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {94}{94}}
-\headcommand {\slideentry {12}{0}{15}{95/95}{}{0}}
+\headcommand {\slideentry {7}{1}{47}{95/95}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {95}{95}}
-\headcommand {\slideentry {12}{0}{16}{96/96}{}{0}}
+\headcommand {\slideentry {7}{1}{48}{96/96}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {96}{96}}
-\headcommand {\slideentry {12}{0}{17}{97/97}{}{0}}
+\headcommand {\slideentry {7}{1}{49}{97/97}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {97}{97}}
-\headcommand {\slideentry {12}{0}{18}{98/98}{}{0}}
+\headcommand {\slideentry {7}{1}{50}{98/98}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {98}{98}}
-\headcommand {\slideentry {12}{0}{19}{99/99}{}{0}}
+\headcommand {\slideentry {7}{1}{51}{99/99}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {99}{99}}
-\headcommand {\slideentry {12}{0}{20}{100/100}{}{0}}
+\headcommand {\slideentry {7}{1}{52}{100/100}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {100}{100}}
-\headcommand {\slideentry {12}{0}{21}{101/101}{}{0}}
+\headcommand {\slideentry {7}{1}{53}{101/101}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {101}{101}}
-\headcommand {\slideentry {12}{0}{22}{102/102}{}{0}}
+\headcommand {\slideentry {7}{1}{54}{102/102}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {102}{102}}
-\headcommand {\slideentry {12}{0}{23}{103/103}{}{0}}
+\headcommand {\slideentry {7}{1}{55}{103/103}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {103}{103}}
-\headcommand {\slideentry {12}{0}{24}{104/104}{}{0}}
+\headcommand {\slideentry {7}{1}{56}{104/104}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {104}{104}}
-\headcommand {\slideentry {12}{0}{25}{105/105}{}{0}}
+\headcommand {\slideentry {7}{1}{57}{105/105}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {105}{105}}
-\headcommand {\slideentry {12}{0}{26}{106/106}{}{0}}
+\headcommand {\slideentry {7}{1}{58}{106/106}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {106}{106}}
-\headcommand {\slideentry {12}{0}{27}{107/107}{}{0}}
+\headcommand {\slideentry {7}{1}{59}{107/107}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {107}{107}}
-\headcommand {\slideentry {12}{0}{28}{108/108}{}{0}}
+\headcommand {\slideentry {7}{1}{60}{108/108}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {108}{108}}
-\headcommand {\slideentry {12}{0}{29}{109/109}{}{0}}
+\headcommand {\slideentry {7}{1}{61}{109/109}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {109}{109}}
-\headcommand {\slideentry {12}{0}{30}{110/110}{}{0}}
+\headcommand {\slideentry {7}{1}{62}{110/110}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {110}{110}}
-\headcommand {\slideentry {12}{0}{31}{111/111}{}{0}}
+\headcommand {\slideentry {7}{1}{63}{111/111}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {111}{111}}
-\headcommand {\slideentry {12}{0}{32}{112/112}{}{0}}
+\headcommand {\slideentry {7}{1}{64}{112/112}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {112}{112}}
-\headcommand {\beamer@sectionpages {81}{112}}
-\headcommand {\beamer@subsectionpages {81}{112}}
-\headcommand {\sectionentry {13}{Apendice: Factorizaciones}{113}{Apendice: Factorizaciones}{0}}
-\headcommand {\slideentry {13}{0}{1}{113/113}{}{0}}
+\headcommand {\slideentry {7}{1}{65}{113/113}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {113}{113}}
-\headcommand {\beamer@subsectionpages {113}{113}}
-\headcommand {\beamer@subsectionentry {0}{13}{1}{114}{Factorización $LU$}}
-\headcommand {\beamer@subsubsectionentry {0}{13}{1}{1}{114}{Recordatorio: de Gauss a $LU$}}
-\headcommand {\slideentry {13}{1}{1}{114/114}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{66}{114/114}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {114}{114}}
-\headcommand {\slideentry {13}{1}{2}{115/115}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{67}{115/115}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {115}{115}}
-\headcommand {\slideentry {13}{1}{3}{116/116}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{68}{116/116}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {116}{116}}
-\headcommand {\slideentry {13}{1}{4}{117/117}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{69}{117/117}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {117}{117}}
-\headcommand {\slideentry {13}{1}{5}{118/118}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{70}{118/118}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {118}{118}}
-\headcommand {\slideentry {13}{1}{6}{119/119}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{71}{119/119}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {119}{119}}
-\headcommand {\slideentry {13}{1}{7}{120/120}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{72}{120/120}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {120}{120}}
-\headcommand {\slideentry {13}{1}{8}{121/121}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{73}{121/121}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {121}{121}}
-\headcommand {\slideentry {13}{1}{9}{122/122}{Factorización $LU$}{0}}
+\headcommand {\slideentry {7}{1}{74}{122/122}{Algoritmo de trabajo}{0}}
 \headcommand {\beamer@framepages {122}{122}}
-\headcommand {\slideentry {13}{1}{10}{123/123}{Factorización $LU$}{0}}
+\headcommand {\beamer@sectionpages {48}{122}}
+\headcommand {\beamer@subsectionpages {49}{122}}
+\headcommand {\sectionentry {8}{Sistemas con parámetros}{123}{Sistemas con parámetros}{0}}
+\headcommand {\slideentry {8}{0}{1}{123/123}{}{0}}
 \headcommand {\beamer@framepages {123}{123}}
-\headcommand {\slideentry {13}{1}{11}{124/124}{Factorización $LU$}{0}}
+\headcommand {\beamer@subsectionpages {123}{123}}
+\headcommand {\beamer@subsectionentry {0}{8}{1}{124}{Parámetros como variables libres}}
+\headcommand {\slideentry {8}{1}{1}{124/124}{Parámetros como variables libres}{0}}
 \headcommand {\beamer@framepages {124}{124}}
-\headcommand {\slideentry {13}{1}{12}{125/125}{Factorización $LU$}{0}}
+\headcommand {\beamer@subsectionpages {124}{124}}
+\headcommand {\beamer@subsectionentry {0}{8}{2}{125}{Parámetros en los coeficientes}}
+\headcommand {\slideentry {8}{2}{1}{125/125}{Parámetros en los coeficientes}{0}}
 \headcommand {\beamer@framepages {125}{125}}
-\headcommand {\slideentry {13}{1}{13}{126/126}{Factorización $LU$}{0}}
-\headcommand {\beamer@framepages {126}{126}}
-\headcommand {\slideentry {13}{1}{14}{127/127}{Factorización $LU$}{0}}
+\headcommand {\slideentry {8}{2}{1}{125/126}{Parámetros en los coeficientes}{0}}
+\headcommand {\beamer@framepages {125}{126}}
+\headcommand {\beamer@subsectionpages {125}{126}}
+\headcommand {\beamer@subsectionentry {0}{8}{3}{127}{Un parámetro que produce incompatibilidad}}
+\headcommand {\slideentry {8}{3}{1}{127/127}{Un parámetro que produce incompatibilidad}{0}}
 \headcommand {\beamer@framepages {127}{127}}
-\headcommand {\slideentry {13}{1}{15}{128/128}{Factorización $LU$}{0}}
+\headcommand {\beamer@sectionpages {123}{127}}
+\headcommand {\beamer@subsectionpages {127}{127}}
+\headcommand {\sectionentry {9}{Matrices: Introducci\'on}{128}{Matrices: Introducci\'on}{0}}
+\headcommand {\slideentry {9}{0}{1}{128/128}{}{0}}
 \headcommand {\beamer@framepages {128}{128}}
-\headcommand {\slideentry {13}{1}{16}{129/129}{Factorización $LU$}{0}}
+\headcommand {\slideentry {9}{0}{2}{129/129}{}{0}}
 \headcommand {\beamer@framepages {129}{129}}
-\headcommand {\beamer@sectionpages {113}{129}}
-\headcommand {\beamer@subsectionpages {114}{129}}
-\headcommand {\sectionentry {14}{Factorización de Cholesky}{130}{Factorización de Cholesky}{0}}
-\headcommand {\slideentry {14}{0}{1}{130/130}{}{0}}
+\headcommand {\slideentry {9}{0}{3}{130/130}{}{0}}
 \headcommand {\beamer@framepages {130}{130}}
-\headcommand {\slideentry {14}{0}{2}{131/131}{}{0}}
+\headcommand {\beamer@subsectionpages {128}{130}}
+\headcommand {\beamer@subsectionentry {0}{9}{1}{131}{Rango y consistencia}}
+\headcommand {\slideentry {9}{1}{1}{131/131}{Rango y consistencia}{0}}
 \headcommand {\beamer@framepages {131}{131}}
-\headcommand {\slideentry {14}{0}{3}{132/132}{}{0}}
+\headcommand {\slideentry {9}{1}{2}{132/132}{Rango y consistencia}{0}}
 \headcommand {\beamer@framepages {132}{132}}
-\headcommand {\slideentry {14}{0}{4}{133/133}{}{0}}
+\headcommand {\slideentry {9}{1}{3}{133/133}{Rango y consistencia}{0}}
 \headcommand {\beamer@framepages {133}{133}}
-\headcommand {\slideentry {14}{0}{5}{134/134}{}{0}}
+\headcommand {\slideentry {9}{1}{4}{134/134}{Rango y consistencia}{0}}
 \headcommand {\beamer@framepages {134}{134}}
-\headcommand {\slideentry {14}{0}{6}{135/135}{}{0}}
+\headcommand {\beamer@subsectionpages {131}{134}}
+\headcommand {\beamer@subsectionentry {0}{9}{2}{135}{Solución mediante matriz inversa}}
+\headcommand {\slideentry {9}{2}{1}{135/135}{Solución mediante matriz inversa}{0}}
 \headcommand {\beamer@framepages {135}{135}}
-\headcommand {\slideentry {14}{0}{7}{136/136}{}{0}}
+\headcommand {\slideentry {9}{2}{2}{136/136}{Solución mediante matriz inversa}{0}}
 \headcommand {\beamer@framepages {136}{136}}
-\headcommand {\slideentry {14}{0}{8}{137/137}{}{0}}
+\headcommand {\slideentry {9}{2}{3}{137/137}{Solución mediante matriz inversa}{0}}
 \headcommand {\beamer@framepages {137}{137}}
-\headcommand {\slideentry {14}{0}{9}{138/138}{}{0}}
+\headcommand {\beamer@subsectionpages {135}{137}}
+\headcommand {\beamer@subsectionentry {0}{9}{3}{138}{Regla de Cramer}}
+\headcommand {\slideentry {9}{3}{1}{138/138}{Regla de Cramer}{0}}
 \headcommand {\beamer@framepages {138}{138}}
-\headcommand {\slideentry {14}{0}{10}{139/139}{}{0}}
+\headcommand {\slideentry {9}{3}{2}{139/139}{Regla de Cramer}{0}}
 \headcommand {\beamer@framepages {139}{139}}
-\headcommand {\slideentry {14}{0}{11}{140/140}{}{0}}
+\headcommand {\slideentry {9}{3}{3}{140/140}{Regla de Cramer}{0}}
 \headcommand {\beamer@framepages {140}{140}}
-\headcommand {\slideentry {14}{0}{12}{141/141}{}{0}}
+\headcommand {\beamer@sectionpages {128}{140}}
+\headcommand {\beamer@subsectionpages {138}{140}}
+\headcommand {\sectionentry {10}{Aplicaciones}{141}{Aplicaciones}{0}}
+\headcommand {\beamer@subsectionpages {141}{140}}
+\headcommand {\beamer@subsectionentry {0}{10}{1}{141}{Mezclas}}
+\headcommand {\slideentry {10}{1}{1}{141/141}{Mezclas}{0}}
 \headcommand {\beamer@framepages {141}{141}}
-\headcommand {\slideentry {14}{0}{13}{142/142}{}{0}}
+\headcommand {\beamer@subsectionpages {141}{141}}
+\headcommand {\beamer@subsectionentry {0}{10}{2}{142}{Circuitos}}
+\headcommand {\slideentry {10}{2}{1}{142/142}{Circuitos}{0}}
 \headcommand {\beamer@framepages {142}{142}}
-\headcommand {\slideentry {14}{0}{14}{143/143}{}{0}}
+\headcommand {\beamer@subsectionpages {142}{142}}
+\headcommand {\beamer@subsectionentry {0}{10}{3}{143}{Equilibrio de fuerzas}}
+\headcommand {\slideentry {10}{3}{1}{143/143}{Equilibrio de fuerzas}{0}}
 \headcommand {\beamer@framepages {143}{143}}
-\headcommand {\slideentry {14}{0}{15}{144/144}{}{0}}
+\headcommand {\beamer@sectionpages {141}{143}}
+\headcommand {\beamer@subsectionpages {143}{143}}
+\headcommand {\sectionentry {11}{Ejemplos}{144}{Ejemplos}{0}}
+\headcommand {\slideentry {11}{0}{1}{144/144}{}{0}}
 \headcommand {\beamer@framepages {144}{144}}
-\headcommand {\slideentry {14}{0}{16}{145/145}{}{0}}
+\headcommand {\slideentry {11}{0}{2}{145/145}{}{0}}
 \headcommand {\beamer@framepages {145}{145}}
-\headcommand {\beamer@sectionpages {130}{145}}
-\headcommand {\beamer@subsectionpages {130}{145}}
-\headcommand {\sectionentry {15}{Diagonalización}{146}{Diagonalización}{0}}
-\headcommand {\slideentry {15}{0}{1}{146/146}{}{0}}
+\headcommand {\beamer@sectionpages {144}{145}}
+\headcommand {\beamer@subsectionpages {144}{145}}
+\headcommand {\sectionentry {12}{Ejercicios}{146}{Ejercicios}{0}}
+\headcommand {\slideentry {12}{0}{1}{146/146}{}{0}}
 \headcommand {\beamer@framepages {146}{146}}
-\headcommand {\slideentry {15}{0}{2}{147/147}{}{0}}
+\headcommand {\slideentry {12}{0}{2}{147/147}{}{0}}
 \headcommand {\beamer@framepages {147}{147}}
-\headcommand {\slideentry {15}{0}{3}{148/148}{}{0}}
+\headcommand {\slideentry {12}{0}{3}{148/148}{}{0}}
 \headcommand {\beamer@framepages {148}{148}}
-\headcommand {\slideentry {15}{0}{4}{149/149}{}{0}}
+\headcommand {\slideentry {12}{0}{4}{149/149}{}{0}}
 \headcommand {\beamer@framepages {149}{149}}
-\headcommand {\slideentry {15}{0}{5}{150/150}{}{0}}
+\headcommand {\slideentry {12}{0}{5}{150/150}{}{0}}
 \headcommand {\beamer@framepages {150}{150}}
-\headcommand {\slideentry {15}{0}{6}{151/151}{}{0}}
+\headcommand {\slideentry {12}{0}{6}{151/151}{}{0}}
 \headcommand {\beamer@framepages {151}{151}}
-\headcommand {\slideentry {15}{0}{7}{152/152}{}{0}}
+\headcommand {\slideentry {12}{0}{7}{152/152}{}{0}}
 \headcommand {\beamer@framepages {152}{152}}
-\headcommand {\slideentry {15}{0}{8}{153/153}{}{0}}
+\headcommand {\slideentry {12}{0}{8}{153/153}{}{0}}
 \headcommand {\beamer@framepages {153}{153}}
-\headcommand {\slideentry {15}{0}{9}{154/154}{}{0}}
+\headcommand {\slideentry {12}{0}{9}{154/154}{}{0}}
 \headcommand {\beamer@framepages {154}{154}}
-\headcommand {\slideentry {15}{0}{10}{155/155}{}{0}}
+\headcommand {\slideentry {12}{0}{10}{155/155}{}{0}}
 \headcommand {\beamer@framepages {155}{155}}
-\headcommand {\slideentry {15}{0}{11}{156/156}{}{0}}
+\headcommand {\slideentry {12}{0}{11}{156/156}{}{0}}
 \headcommand {\beamer@framepages {156}{156}}
-\headcommand {\slideentry {15}{0}{12}{157/157}{}{0}}
+\headcommand {\slideentry {12}{0}{12}{157/157}{}{0}}
 \headcommand {\beamer@framepages {157}{157}}
-\headcommand {\slideentry {15}{0}{13}{158/158}{}{0}}
+\headcommand {\slideentry {12}{0}{13}{158/158}{}{0}}
 \headcommand {\beamer@framepages {158}{158}}
-\headcommand {\slideentry {15}{0}{14}{159/159}{}{0}}
+\headcommand {\slideentry {12}{0}{14}{159/159}{}{0}}
 \headcommand {\beamer@framepages {159}{159}}
-\headcommand {\slideentry {15}{0}{15}{160/160}{}{0}}
+\headcommand {\slideentry {12}{0}{15}{160/160}{}{0}}
 \headcommand {\beamer@framepages {160}{160}}
-\headcommand {\slideentry {15}{0}{16}{161/161}{}{0}}
+\headcommand {\slideentry {12}{0}{16}{161/161}{}{0}}
 \headcommand {\beamer@framepages {161}{161}}
-\headcommand {\beamer@partpages {1}{161}}
-\headcommand {\beamer@subsectionpages {146}{161}}
-\headcommand {\beamer@sectionpages {146}{161}}
-\headcommand {\beamer@documentpages {161}}
-\headcommand {\gdef \inserttotalframenumber {161}}
+\headcommand {\slideentry {12}{0}{17}{162/162}{}{0}}
+\headcommand {\beamer@framepages {162}{162}}
+\headcommand {\slideentry {12}{0}{18}{163/163}{}{0}}
+\headcommand {\beamer@framepages {163}{163}}
+\headcommand {\slideentry {12}{0}{19}{164/164}{}{0}}
+\headcommand {\beamer@framepages {164}{164}}
+\headcommand {\slideentry {12}{0}{20}{165/165}{}{0}}
+\headcommand {\beamer@framepages {165}{165}}
+\headcommand {\slideentry {12}{0}{21}{166/166}{}{0}}
+\headcommand {\beamer@framepages {166}{166}}
+\headcommand {\slideentry {12}{0}{22}{167/167}{}{0}}
+\headcommand {\beamer@framepages {167}{167}}
+\headcommand {\slideentry {12}{0}{23}{168/168}{}{0}}
+\headcommand {\beamer@framepages {168}{168}}
+\headcommand {\slideentry {12}{0}{24}{169/169}{}{0}}
+\headcommand {\beamer@framepages {169}{169}}
+\headcommand {\slideentry {12}{0}{25}{170/170}{}{0}}
+\headcommand {\beamer@framepages {170}{170}}
+\headcommand {\slideentry {12}{0}{26}{171/171}{}{0}}
+\headcommand {\beamer@framepages {171}{171}}
+\headcommand {\slideentry {12}{0}{27}{172/172}{}{0}}
+\headcommand {\beamer@framepages {172}{172}}
+\headcommand {\slideentry {12}{0}{28}{173/173}{}{0}}
+\headcommand {\beamer@framepages {173}{173}}
+\headcommand {\slideentry {12}{0}{29}{174/174}{}{0}}
+\headcommand {\beamer@framepages {174}{174}}
+\headcommand {\slideentry {12}{0}{30}{175/175}{}{0}}
+\headcommand {\beamer@framepages {175}{175}}
+\headcommand {\slideentry {12}{0}{31}{176/176}{}{0}}
+\headcommand {\beamer@framepages {176}{176}}
+\headcommand {\slideentry {12}{0}{32}{177/177}{}{0}}
+\headcommand {\beamer@framepages {177}{177}}
+\headcommand {\beamer@sectionpages {146}{177}}
+\headcommand {\beamer@subsectionpages {146}{177}}
+\headcommand {\sectionentry {13}{Apendice: Factorizaciones}{178}{Apendice: Factorizaciones}{0}}
+\headcommand {\slideentry {13}{0}{1}{178/178}{}{0}}
+\headcommand {\beamer@framepages {178}{178}}
+\headcommand {\beamer@subsectionpages {178}{178}}
+\headcommand {\beamer@subsectionentry {0}{13}{1}{179}{Factorización $LU$}}
+\headcommand {\beamer@subsubsectionentry {0}{13}{1}{1}{179}{Recordatorio: de Gauss a $LU$}}
+\headcommand {\slideentry {13}{1}{1}{179/179}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {179}{179}}
+\headcommand {\slideentry {13}{1}{2}{180/180}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {180}{180}}
+\headcommand {\slideentry {13}{1}{3}{181/181}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {181}{181}}
+\headcommand {\slideentry {13}{1}{4}{182/182}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {182}{182}}
+\headcommand {\slideentry {13}{1}{5}{183/183}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {183}{183}}
+\headcommand {\slideentry {13}{1}{6}{184/184}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {184}{184}}
+\headcommand {\slideentry {13}{1}{7}{185/185}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {185}{185}}
+\headcommand {\slideentry {13}{1}{8}{186/186}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {186}{186}}
+\headcommand {\slideentry {13}{1}{9}{187/187}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {187}{187}}
+\headcommand {\slideentry {13}{1}{10}{188/188}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {188}{188}}
+\headcommand {\slideentry {13}{1}{11}{189/189}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {189}{189}}
+\headcommand {\slideentry {13}{1}{12}{190/190}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {190}{190}}
+\headcommand {\slideentry {13}{1}{13}{191/191}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {191}{191}}
+\headcommand {\slideentry {13}{1}{14}{192/192}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {192}{192}}
+\headcommand {\slideentry {13}{1}{15}{193/193}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {193}{193}}
+\headcommand {\slideentry {13}{1}{16}{194/194}{Factorización $LU$}{0}}
+\headcommand {\beamer@framepages {194}{194}}
+\headcommand {\beamer@sectionpages {178}{194}}
+\headcommand {\beamer@subsectionpages {179}{194}}
+\headcommand {\sectionentry {14}{Factorización de Cholesky}{195}{Factorización de Cholesky}{0}}
+\headcommand {\slideentry {14}{0}{1}{195/195}{}{0}}
+\headcommand {\beamer@framepages {195}{195}}
+\headcommand {\slideentry {14}{0}{2}{196/196}{}{0}}
+\headcommand {\beamer@framepages {196}{196}}
+\headcommand {\slideentry {14}{0}{3}{197/197}{}{0}}
+\headcommand {\beamer@framepages {197}{197}}
+\headcommand {\slideentry {14}{0}{4}{198/198}{}{0}}
+\headcommand {\beamer@framepages {198}{198}}
+\headcommand {\slideentry {14}{0}{5}{199/199}{}{0}}
+\headcommand {\beamer@framepages {199}{199}}
+\headcommand {\slideentry {14}{0}{6}{200/200}{}{0}}
+\headcommand {\beamer@framepages {200}{200}}
+\headcommand {\slideentry {14}{0}{7}{201/201}{}{0}}
+\headcommand {\beamer@framepages {201}{201}}
+\headcommand {\slideentry {14}{0}{8}{202/202}{}{0}}
+\headcommand {\beamer@framepages {202}{202}}
+\headcommand {\slideentry {14}{0}{9}{203/203}{}{0}}
+\headcommand {\beamer@framepages {203}{203}}
+\headcommand {\slideentry {14}{0}{10}{204/204}{}{0}}
+\headcommand {\beamer@framepages {204}{204}}
+\headcommand {\slideentry {14}{0}{11}{205/205}{}{0}}
+\headcommand {\beamer@framepages {205}{205}}
+\headcommand {\slideentry {14}{0}{12}{206/206}{}{0}}
+\headcommand {\beamer@framepages {206}{206}}
+\headcommand {\slideentry {14}{0}{13}{207/207}{}{0}}
+\headcommand {\beamer@framepages {207}{207}}
+\headcommand {\slideentry {14}{0}{14}{208/208}{}{0}}
+\headcommand {\beamer@framepages {208}{208}}
+\headcommand {\slideentry {14}{0}{15}{209/209}{}{0}}
+\headcommand {\beamer@framepages {209}{209}}
+\headcommand {\slideentry {14}{0}{16}{210/210}{}{0}}
+\headcommand {\beamer@framepages {210}{210}}
+\headcommand {\beamer@sectionpages {195}{210}}
+\headcommand {\beamer@subsectionpages {195}{210}}
+\headcommand {\sectionentry {15}{Diagonalización}{211}{Diagonalización}{0}}
+\headcommand {\slideentry {15}{0}{1}{211/211}{}{0}}
+\headcommand {\beamer@framepages {211}{211}}
+\headcommand {\slideentry {15}{0}{2}{212/212}{}{0}}
+\headcommand {\beamer@framepages {212}{212}}
+\headcommand {\slideentry {15}{0}{3}{213/213}{}{0}}
+\headcommand {\beamer@framepages {213}{213}}
+\headcommand {\slideentry {15}{0}{4}{214/214}{}{0}}
+\headcommand {\beamer@framepages {214}{214}}
+\headcommand {\slideentry {15}{0}{5}{215/215}{}{0}}
+\headcommand {\beamer@framepages {215}{215}}
+\headcommand {\slideentry {15}{0}{6}{216/216}{}{0}}
+\headcommand {\beamer@framepages {216}{216}}
+\headcommand {\slideentry {15}{0}{7}{217/217}{}{0}}
+\headcommand {\beamer@framepages {217}{217}}
+\headcommand {\slideentry {15}{0}{8}{218/218}{}{0}}
+\headcommand {\beamer@framepages {218}{218}}
+\headcommand {\slideentry {15}{0}{9}{219/219}{}{0}}
+\headcommand {\beamer@framepages {219}{219}}
+\headcommand {\slideentry {15}{0}{10}{220/220}{}{0}}
+\headcommand {\beamer@framepages {220}{220}}
+\headcommand {\slideentry {15}{0}{11}{221/221}{}{0}}
+\headcommand {\beamer@framepages {221}{221}}
+\headcommand {\slideentry {15}{0}{12}{222/222}{}{0}}
+\headcommand {\beamer@framepages {222}{222}}
+\headcommand {\slideentry {15}{0}{13}{223/223}{}{0}}
+\headcommand {\beamer@framepages {223}{223}}
+\headcommand {\slideentry {15}{0}{14}{224/224}{}{0}}
+\headcommand {\beamer@framepages {224}{224}}
+\headcommand {\slideentry {15}{0}{15}{225/225}{}{0}}
+\headcommand {\beamer@framepages {225}{225}}
+\headcommand {\slideentry {15}{0}{16}{226/226}{}{0}}
+\headcommand {\beamer@framepages {226}{226}}
+\headcommand {\beamer@partpages {1}{226}}
+\headcommand {\beamer@subsectionpages {211}{226}}
+\headcommand {\beamer@sectionpages {211}{226}}
+\headcommand {\beamer@documentpages {226}}
+\headcommand {\gdef \inserttotalframenumber {226}}
