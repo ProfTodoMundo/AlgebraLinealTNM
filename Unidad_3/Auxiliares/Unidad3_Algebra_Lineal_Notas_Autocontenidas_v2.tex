@@ -1,0 +1,2214 @@
+%===============================================================
+% Notas del curso de Algebra Lineal, unidad 3. Versión ampliada.
+% Tecnologico Nacional de Mexico, ACF-0903, agosto-diciembre 2026.
+% Archivo autonomo: compilar con pdflatex (dos veces) o latexmk.
+%===============================================================
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{geometry,enumitem,booktabs,array,xcolor,graphicx,hyperref,fancyhdr,microtype,longtable,multicol}
+\geometry{letterpaper,top=2.4cm,bottom=2.35cm,left=2.45cm,right=2.45cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.52em}
+\setlength{\headheight}{15pt}
+\setlength{\emergencystretch}{2em}
+\setlist[itemize]{leftmargin=1.6em}
+\setlist[enumerate]{leftmargin=1.9em}
+\definecolor{azul}{RGB}{22,72,120}
+\hypersetup{colorlinks=true,linkcolor=azul,urlcolor=azul,pdftitle={Algebra Lineal - Unidad 3: Matrices y determinantes},pdfauthor={Carlos Ernesto Martinez}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small Tecnológico Nacional de México}
+\rhead{\small Álgebra Lineal}
+\lfoot{\footnotesize Carlos Ernesto Martínez}
+\cfoot{\footnotesize\thepage}
+\rfoot{\footnotesize mrdgzcarlose@gmail.com}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.3pt}
+\newtheorem{definicion}{Definición}[section]
+\newtheorem{teorema}[definicion]{Teorema}
+\newtheorem{proposicion}[definicion]{Proposición}
+\newtheorem{corolario}[definicion]{Corolario}
+\theoremstyle{remark}
+\newtheorem{observacion}[definicion]{Observación}
+\newtheorem{ejemplo}[definicion]{Ejemplo}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Mat}[2]{\mathcal{M}_{#1\times #2}}
+\newcommand{\rang}{\operatorname{rang}}
+\newcommand{\nul}{\operatorname{nul}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\adj}{\operatorname{adj}}
+\newcommand{\Ker}{\operatorname{Ker}}
+\newcommand{\RREF}{\operatorname{RREF}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\vect}[1]{\boldsymbol{#1}}
+\newcommand{\idea}[1]{\begin{center}\fcolorbox{azul}{white}{\parbox{0.91\linewidth}{#1}}\end{center}}
+\newcounter{contadorEjercicio}
+\newenvironment{listaejercicios}{\begin{enumerate}[label=\textbf{E\arabic*.},leftmargin=2.4em,itemsep=0.52em]\setcounter{enumi}{\value{contadorEjercicio}}}{\setcounter{contadorEjercicio}{\value{enumi}}\end{enumerate}}
+\title{\textbf{Notas para el curso de Álgebra Lineal}\\[0.35cm]
+\Large Unidad 3: Matrices y determinantes\\[0.25cm]
+\normalsize Versión ampliada y autocontenida}
+\author{Carlos Ernesto Martínez\\Tecnológico Nacional de México\\Clave ACF-0903}
+\date{Agosto--Diciembre 2026}
+\begin{document}
+\maketitle
+\begin{center}\textcolor{azul}{\rule{0.72\textwidth}{0.6pt}}\end{center}
+\begin{abstract}
+Estas notas desarrollan la Unidad 3 del temario de Álgebra Lineal (ACF-0903): concepto y tipos de matrices, operaciones, transposición, inversas, determinantes, menores y cofactores, adjunta, rango y núcleo. Se explican de manera autónoma las operaciones elementales, los procedimientos algorítmicos y sus fundamentos; también se desarrollan demostraciones, ejemplos cuidadosamente resueltos y ejercicios de práctica repetitiva con matrices cuadradas y rectangulares. El banco ampliado ofrece 194 ejercicios nuevos en 15 familias, además de los 34 ejercicios iniciales, y contiene una sección de respuestas para autocorrección.
+\end{abstract}
+\tableofcontents
+\newpage
+
+%===============================================================
+\section{Propósito y organización de la unidad}
+%===============================================================
+En la Unidad 2 utilizamos matrices para representar sistemas de ecuaciones lineales y realizar operaciones elementales por renglones. Ahora estudiaremos las matrices como objetos matemáticos por derecho propio. Nos interesa comprender cuáles son sus operaciones, qué propiedades satisfacen, cuándo es posible invertirlas y cómo los determinantes aportan información sobre una matriz cuadrada.
+
+Finalmente, introduciremos el rango y el núcleo, conceptos que aparecerán de nuevo en las Unidades 4 y 5, al estudiar espacios vectoriales y transformaciones lineales.
+
+\idea{\textbf{Ruta conceptual:}\quad matriz y sus tipos $\longrightarrow$ operaciones $\longrightarrow$ inversa $\longrightarrow$ determinante y adjunta $\longrightarrow$ rango y núcleo.}
+
+\textbf{Contenidos del temario.} Esta unidad cubre los 27 subtemas de la Unidad 3 del documento de trabajo del curso: definición y clasificación de matrices, operaciones, transposición, inversa, determinantes, menores, cofactores, adjunta, rango, núcleo y aplicaciones matriciales.
+
+\textbf{Tiempo previsto:} 10 horas (6 teóricas y 4 prácticas), distribuidas en dos semanas. Los ejercicios y demostraciones adicionales permiten adaptar el ritmo de trabajo y la profundidad según el grupo.
+
+\subsection*{Conocimientos previos}
+Las notas recuperan las nociones de ecuación y sistema lineal, las operaciones elementales por renglones y el uso de parámetros para describir soluciones. Se presupone únicamente aritmética y álgebra elemental. No es necesario consultar otro documento para seguir los algoritmos de esta unidad. Trabajaremos con matrices reales; cuando corresponda, indicaremos qué afirmaciones también valen para matrices complejas.
+
+%===============================================================
+\section{Matrices: definición, orden y clasificación}
+%===============================================================
+\subsection{Del sistema de ecuaciones a la matriz: motivación y lectura correcta}
+En la unidad anterior aparecía la matriz de coeficientes de un sistema. Por ejemplo,
+\[
+\left\{\begin{aligned}2x-y+3z&=4,\\x+2y-z&=1\end{aligned}\right.
+\quad\Longleftrightarrow\quad
+\underbrace{\begin{pmatrix}2&-1&3\\1&2&-1\end{pmatrix}}_{A\in\Mat{2}{3}(\R)}
+\underbrace{\begin{pmatrix}x\\y\\z\end{pmatrix}}_{\vect x\in\R^3}
+=\underbrace{\begin{pmatrix}4\\1\end{pmatrix}}_{\vect b\in\R^2}.
+\]
+La expresión $A\vect x=\vect b$ exige que el número de columnas de $A$ coincida con el número de componentes de $\vect x$. El vector resultante tiene tantas componentes como filas tiene $A$.
+
+También es posible pensar en $A$ como una colección ordenada de vectores columna:
+\[
+A=\begin{pmatrix}|&|&|\\\vect a_1&\vect a_2&\vect a_3\\|&|&|\end{pmatrix},\qquad
+A\vect x=x_1\vect a_1+x_2\vect a_2+x_3\vect a_3.
+\]
+Esta identidad, que demostraremos a partir de la definición del producto, servirá como enlace entre las matrices y las combinaciones lineales en la Unidad 4.
+
+\begin{ejemplo}[Cómo interpretar una matriz $5\times5$]
+Sea $A=(a_{ij})_{5\times5}$ con $a_{ij}=2i-j$. La entrada de la fila $4$ y columna $3$ es $a_{43}=8-3=5$; la primera fila es $(1,0,-1,-2,-3)$ y la última $(9,8,7,6,5)$. En particular, $a_{ij}$ no es un producto de $a$, $i$ y $j$: los subíndices identifican \emph{posiciones}.
+\end{ejemplo}
+
+\begin{proposicion}[Igualdad y operaciones definidas por entradas]
+Para demostrar una identidad entre dos matrices del mismo orden es suficiente demostrar que coinciden sus entradas de posición $(i,j)$ para cada par válido $(i,j)$. Éste será nuestro procedimiento de referencia para justificar las propiedades matriciales.
+\end{proposicion}
+
+
+
+\subsection{Definición y notación}
+Una matriz permite organizar datos o coeficientes mediante filas y columnas. El objeto resultante no es sólo una tabla: su estructura hace posible definir operaciones algebraicas con propiedades precisas.
+
+\begin{definicion}[Matriz]
+Una \emph{matriz real de orden $m\times n$} es un arreglo rectangular de $mn$ números reales, distribuidos en $m$ filas y $n$ columnas:
+\[
+A=\begin{pmatrix}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+a_{m1}&a_{m2}&\cdots&a_{mn}
+\end{pmatrix}=\bigl(a_{ij}\bigr)_{m\times n}.
+\]
+El número $a_{ij}$ es la entrada situada en la fila $i$ y la columna $j$. El conjunto de todas las matrices reales $m\times n$ se denota por $\Mat{m}{n}(\R)$.
+\end{definicion}
+
+\begin{ejemplo}
+Sea
+\[
+A=\begin{pmatrix}2&-1&3\\0&4&5\end{pmatrix}.
+\]
+La matriz $A$ tiene dos filas y tres columnas, así que su orden es $2\times3$. Las entradas $a_{12}=-1$ y $a_{23}=5$ indican, respectivamente, el elemento de la primera fila y segunda columna, y el de la segunda fila y tercera columna.
+\end{ejemplo}
+
+\begin{definicion}[Igualdad de matrices]
+Dos matrices $A=(a_{ij})$ y $B=(b_{ij})$ son iguales si y sólo si tienen el mismo orden y sus entradas correspondientes coinciden:
+\[
+A=B\quad\Longleftrightarrow\quad a_{ij}=b_{ij}\quad\text{para todo }i,j.
+\]
+\end{definicion}
+
+\begin{ejemplo}
+Encontrar $x,y,z$ si
+\[
+\begin{pmatrix}x+1&2y\\z-3&5\end{pmatrix}=
+\begin{pmatrix}4&-6\\1&5\end{pmatrix}.
+\]
+Igualamos las entradas correspondientes:
+\[
+x+1=4,\qquad 2y=-6,\qquad z-3=1.
+\]
+Por tanto, $\boxed{x=3,\ y=-3,\ z=4}$.
+\end{ejemplo}
+
+\subsection{Tipos de matrices}
+\begin{definicion}[Matrices especiales]
+Consideremos una matriz $A=(a_{ij})$.
+\begin{itemize}
+\item \textbf{Fila:} tiene una sola fila, es decir, orden $1\times n$.
+\item \textbf{Columna:} tiene una sola columna, orden $m\times1$.
+\item \textbf{Rectangular:} su número de filas es distinto del de columnas ($m\ne n$).
+\item \textbf{Cuadrada:} tiene el mismo número de filas y columnas ($n\times n$).
+\item \textbf{Nula:} todas sus entradas son cero; se denota por $0$ cuando el orden está claro.
+\item \textbf{Diagonal:} es cuadrada y $a_{ij}=0$ cuando $i\ne j$.
+\item \textbf{Identidad:} es diagonal, con $a_{ii}=1$ para todo $i$; se denota por $I_n$.
+\item \textbf{Triangular superior:} $a_{ij}=0$ si $i>j$.
+\item \textbf{Triangular inferior:} $a_{ij}=0$ si $i<j$.
+\item \textbf{Simétrica:} $A=A^T$.
+\end{itemize}
+\end{definicion}
+
+\begin{ejemplo}
+Clasifiquemos las siguientes matrices:
+\[
+A=\begin{pmatrix}2&0&0\\0&-1&0\\0&0&4\end{pmatrix},\qquad
+B=\begin{pmatrix}1&3&-2\\0&5&4\\0&0&7\end{pmatrix},\qquad
+C=\begin{pmatrix}2&-1\\-1&3\end{pmatrix}.
+\]
+$A$ es diagonal (y, simultáneamente, triangular superior e inferior); $B$ es triangular superior, pero no diagonal; $C$ es simétrica porque sus entradas fuera de la diagonal coinciden al intercambiar filas y columnas.
+\end{ejemplo}
+
+\begin{observacion}
+Una matriz diagonal es siempre simétrica. La recíproca es falsa: por ejemplo, $\begin{psmallmatrix}1&2\\2&3\end{psmallmatrix}$ es simétrica y no es diagonal. Además, una matriz puede pertenecer a varias categorías a la vez.
+\end{observacion}
+
+%===============================================================
+\subsection{Clasificación cuidadosa y relaciones entre tipos}
+Además de las familias ya definidas, llamamos \emph{escalar} a una matriz de la forma $\lambda I_n$. Una matriz \emph{antisimétrica} cumple $A^T=-A$, lo que, trabajando sobre $\R$, obliga a que sus entradas diagonales sean cero.
+\begin{proposicion}
+Toda matriz cuadrada real $A$ admite la descomposición única
+\[
+\boxed{A=S+K,\qquad S=\tfrac12(A+A^T),\quad K=\tfrac12(A-A^T),}
+\]
+donde $S$ es simétrica y $K$ es antisimétrica.
+\end{proposicion}
+\begin{proof}
+Por las propiedades de la transposición,
+\[
+S^T=\tfrac12(A^T+A)=S,\qquad K^T=\tfrac12(A^T-A)=-K.
+\]
+Sumando las dos expresiones obtenemos $S+K=A$. Si $A=S_1+K_1$ con $S_1^T=S_1$ y $K_1^T=-K_1$, entonces $A^T=S_1-K_1$; de allí $S_1=(A+A^T)/2$ y $K_1=(A-A^T)/2$. Esto también demuestra unicidad.
+\end{proof}
+\begin{ejemplo}[Descomposición simétrica--antisimétrica]
+Para $A=\begin{psmallmatrix}1&4\\2&3\end{psmallmatrix}$,
+\[
+S=\frac12\begin{pmatrix}2&6\\6&6\end{pmatrix}=\begin{pmatrix}1&3\\3&3\end{pmatrix},\quad
+K=\frac12\begin{pmatrix}0&2\\-2&0\end{pmatrix}=\begin{pmatrix}0&1\\-1&0\end{pmatrix}.
+\]
+Compruébese que $S+K=A$, $S^T=S$ y $K^T=-K$.
+\end{ejemplo}
+
+
+\section{Operaciones con matrices}
+%===============================================================
+\subsection{Suma y multiplicación por un escalar}
+\begin{definicion}[Suma]
+Para matrices $A=(a_{ij})$ y $B=(b_{ij})$ del \emph{mismo orden}, definimos
+\[
+A+B=(a_{ij}+b_{ij}).
+\]
+La suma no está definida, bajo esta operación, si los órdenes de $A$ y $B$ son diferentes.
+\end{definicion}
+
+\begin{definicion}[Producto por un escalar]
+Sea $\lambda\in\R$ y $A=(a_{ij})$. Definimos
+\[
+\lambda A=(\lambda a_{ij}).
+\]
+El orden de $\lambda A$ es el mismo de $A$.
+\end{definicion}
+
+\begin{ejemplo}
+Sean $A=\begin{psmallmatrix}1&-2\\3&0\end{psmallmatrix}$ y $B=\begin{psmallmatrix}4&1\\-1&5\end{psmallmatrix}$. Entonces
+\[
+A+B=\begin{pmatrix}5&-1\\2&5\end{pmatrix},\qquad
+2A-B=\begin{pmatrix}-2&-5\\7&-5\end{pmatrix}.
+\]
+En $2A-B$ multiplicamos primero cada entrada de $A$ por $2$ y después restamos las entradas correspondientes de $B$.
+\end{ejemplo}
+
+\begin{proposicion}[Propiedades aditivas]
+Para $A,B,C\in\Mat{m}{n}(\R)$ y $\lambda,\mu\in\R$ se cumple
+\begin{align*}
+A+B&=B+A,& (A+B)+C&=A+(B+C),\\
+A+0&=A,& A+(-A)&=0,\\
+\lambda(A+B)&=\lambda A+\lambda B,& (\lambda+\mu)A&=\lambda A+\mu A,\\
+(\lambda\mu)A&=\lambda(\mu A),&1A&=A.
+\end{align*}
+\end{proposicion}
+\begin{proof}
+La demostración es \emph{entrada por entrada}. Por ejemplo,
+\[
+\bigl(\lambda(A+B)\bigr)_{ij}=\lambda(a_{ij}+b_{ij})
+=\lambda a_{ij}+\lambda b_{ij}
+=\bigl(\lambda A+\lambda B\bigr)_{ij}.
+\]
+Las demás identidades se obtienen aplicando las propiedades usuales de los números reales a cada entrada.
+\end{proof}
+
+\subsection{Por qué las operaciones forman una estructura algebraica}
+Las matrices $m\times n$ se suman y multiplican por números reales exactamente como vectores de $\R^{mn}$. Podemos verificar \emph{todos} los axiomas de espacio vectorial mediante sus entradas. Por ejemplo, la asociatividad se deduce de
+\[
+((A+B)+C)_{ij}=(a_{ij}+b_{ij})+c_{ij}=a_{ij}+(b_{ij}+c_{ij})=(A+(B+C))_{ij}.
+\]
+La existencia del inverso aditivo se verifica con $(-A)_{ij}=-a_{ij}$ y la distributividad con
+\[
+\bigl(\lambda(A+B)\bigr)_{ij}=\lambda(a_{ij}+b_{ij})=\lambda a_{ij}+\lambda b_{ij}.
+\]
+No estamos afirmando que dos matrices de órdenes distintos puedan sumarse: las dimensiones son parte del objeto.
+
+\begin{ejemplo}[Cálculo completo $3\times3$]
+Sean
+\[
+A=\begin{pmatrix}1&0&-2\\3&1&4\\0&-1&2\end{pmatrix},\qquad
+B=\begin{pmatrix}0&2&1\\-1&3&0\\5&-2&1\end{pmatrix}.
+\]
+Para obtener $2A-3B$ formamos primero
+\[
+2A=\begin{pmatrix}2&0&-4\\6&2&8\\0&-2&4\end{pmatrix},\qquad
+3B=\begin{pmatrix}0&6&3\\-3&9&0\\15&-6&3\end{pmatrix}.
+\]
+La resta, realizada \emph{posición por posición}, produce
+\[
+\boxed{2A-3B=\begin{pmatrix}2&-6&-7\\9&-7&8\\-15&4&1\end{pmatrix}.}
+\]
+\end{ejemplo}
+
+
+
+\subsection{Producto de matrices}
+El producto matricial no se calcula multiplicando simplemente entradas que ocupen la misma posición. La regla combina las filas de la primera matriz con las columnas de la segunda.
+
+\begin{definicion}[Producto matricial]
+Sean $A=(a_{ij})\in\Mat{m}{n}(\R)$ y $B=(b_{jk})\in\Mat{n}{p}(\R)$. Se define $C=AB\in\Mat{m}{p}(\R)$ mediante
+\[
+\boxed{\quad c_{ik}=\sum_{j=1}^{n}a_{ij}b_{jk}\quad}
+\]
+para $1\le i\le m$, $1\le k\le p$.
+\end{definicion}
+
+La condición de existencia del producto es que el número de columnas de $A$ coincida con el número de filas de $B$:
+\[
+\underbrace{(m\times n)}_A\ \underbrace{(n\times p)}_B
+\longrightarrow\underbrace{(m\times p)}_{AB}.
+\]
+
+\begin{ejemplo}[Producto de una matriz $2\times3$ por una $3\times2$]
+Calculemos $AB$ para
+\[
+A=\begin{pmatrix}1&2&-1\\0&3&4\end{pmatrix},\qquad
+B=\begin{pmatrix}2&1\\-1&0\\3&2\end{pmatrix}.
+\]
+El producto existe y tiene orden $2\times2$. Calculamos cada entrada:
+\begin{align*}
+c_{11}&=1(2)+2(-1)+(-1)(3)=-3,\\
+c_{12}&=1(1)+2(0)+(-1)(2)=-1,\\
+c_{21}&=0(2)+3(-1)+4(3)=9,\\
+c_{22}&=0(1)+3(0)+4(2)=8.
+\end{align*}
+Por tanto,
+\[\boxed{AB=\begin{pmatrix}-3&-1\\9&8\end{pmatrix}.}\]
+\end{ejemplo}
+
+\begin{observacion}
+Aunque el producto $AB$ exista, $BA$ podría no existir. Cuando ambos existen, generalmente tienen órdenes distintos o no son iguales.
+\end{observacion}
+
+\begin{ejemplo}[El producto no es conmutativo]
+Sean
+\[
+A=\begin{pmatrix}1&1\\0&1\end{pmatrix},\qquad
+B=\begin{pmatrix}1&0\\1&1\end{pmatrix}.
+\]
+Entonces
+\[
+AB=\begin{pmatrix}2&1\\1&1\end{pmatrix},\qquad
+BA=\begin{pmatrix}1&1\\1&2\end{pmatrix}.
+\]
+Ambos productos existen, pero $AB\ne BA$. En consecuencia, \emph{no} podemos usar indiscriminadamente las reglas conmutativas de los números reales.
+\end{ejemplo}
+
+\begin{proposicion}[Propiedades del producto]
+Si las dimensiones permiten realizar las operaciones, entonces
+\begin{align*}
+A(BC)&=(AB)C,\\
+A(B+C)&=AB+AC,\\
+(A+B)C&=AC+BC,\\
+(\lambda A)B&=\lambda(AB)=A(\lambda B),\\
+I_mA&=A=AI_n,\qquad A\in\Mat{m}{n}(\R).
+\end{align*}
+\end{proposicion}
+\begin{proof}[Demostración de la asociatividad]
+Sean $A$ de orden $m\times n$, $B$ de orden $n\times p$ y $C$ de orden $p\times q$. La entrada $(i,k)$ de $(AB)C$ es
+\[
+\sum_{\ell=1}^{p}\left(\sum_{j=1}^{n}a_{ij}b_{j\ell}\right)c_{\ell k}
+=\sum_{j=1}^{n}\sum_{\ell=1}^{p}a_{ij}b_{j\ell}c_{\ell k}.
+\]
+La entrada $(i,k)$ de $A(BC)$ es
+\[
+\sum_{j=1}^{n}a_{ij}\left(\sum_{\ell=1}^{p}b_{j\ell}c_{\ell k}\right)
+=\sum_{j=1}^{n}\sum_{\ell=1}^{p}a_{ij}b_{j\ell}c_{\ell k}.
+\]
+Son iguales porque las sumas son finitas; por tanto, $(AB)C=A(BC)$.
+\end{proof}
+
+\subsection{Interpretación del producto como combinación lineal de columnas}
+Si $A=[\vect a_1\ \cdots\ \vect a_n]$ y $\vect x=(x_1,\ldots,x_n)^T$, entonces la entrada $i$-ésima de $A\vect x$ es $\sum_{j=1}^na_{ij}x_j$. Por consiguiente,
+\[
+\boxed{A\vect x=x_1\vect a_1+\cdots+x_n\vect a_n.}
+\]
+Esta fórmula explica por qué cada columna $j$ de $AB$ se obtiene multiplicando $A$ por la columna $j$ de $B$.
+\begin{ejemplo}[Producto $3\times3$ por columnas]
+\[
+A=\begin{pmatrix}1&2&0\\0&1&-1\\2&0&1\end{pmatrix},\quad
+B=\begin{pmatrix}1&0&2\\0&1&1\\1&-1&0\end{pmatrix}.
+\]
+La primera columna del producto es $A(1,0,1)^T=(1,-1,3)^T$; la segunda es $A(0,1,-1)^T=(2,2,-1)^T$; la tercera es $A(2,1,0)^T=(4,1,4)^T$. Por tanto,
+\[
+\boxed{AB=\begin{pmatrix}1&2&4\\-1&2&1\\3&-1&4\end{pmatrix}.}
+\]
+Recomendación de cálculo: indicar primero las dimensiones, después obtener las entradas por productos fila--columna y, finalmente, verificar al menos una columna mediante combinaciones lineales.
+\end{ejemplo}
+
+
+\subsection{Propiedades que NO se heredan de los números reales}
+\begin{proposicion}[Producto nulo con factores no nulos]
+Existen matrices cuadradas no nulas $A$ y $B$ tales que $AB=0$.
+\end{proposicion}
+\begin{proof}
+Elijamos $A=\begin{psmallmatrix}1&0\\0&0\end{psmallmatrix}$ y $B=\begin{psmallmatrix}0&0\\0&1\end{psmallmatrix}$. Por multiplicación directa, $AB=\begin{psmallmatrix}0&0\\0&0\end{psmallmatrix}$, aunque ninguna de las dos matrices es nula.
+\end{proof}
+La cancelación $AB=AC\implies B=C$ es válida cuando $A$ es invertible, pero no en general. En efecto, si existe $A^{-1}$, multiplicamos a la izquierda por $A^{-1}$ para obtener $B=C$.
+\begin{proposicion}[Distributividad por entradas]
+Si $A\in\Mat{m}{n}(\R)$ y $B,C\in\Mat{n}{p}(\R)$, entonces $A(B+C)=AB+AC$.
+\end{proposicion}
+\begin{proof}
+La entrada $(i,k)$ del lado izquierdo es $\sum_{j=1}^{n}a_{ij}(b_{jk}+c_{jk})$. La distributividad real permite separarla como $\sum_{j=1}^{n}a_{ij}b_{jk}+\sum_{j=1}^{n}a_{ij}c_{jk}$, que es exactamente la entrada $(i,k)$ de $AB+AC$.
+\end{proof}
+
+
+\subsection{Transpuesta de una matriz}
+\begin{definicion}[Matriz transpuesta]
+Para $A=(a_{ij})\in\Mat{m}{n}(\R)$, su \emph{transpuesta} es la matriz $A^T\in\Mat{n}{m}(\R)$ definida por
+\[
+(A^T)_{ji}=a_{ij}.
+\]
+En otras palabras, las filas se convierten en columnas.
+\end{definicion}
+\begin{ejemplo}
+Si $A=\begin{psmallmatrix}1&-2&3\\4&0&5\end{psmallmatrix}$, entonces
+\[
+A^T=\begin{pmatrix}1&4\\-2&0\\3&5\end{pmatrix}.
+\]
+\end{ejemplo}
+
+\begin{proposicion}[Propiedades de la transposición]
+Para matrices de tamaños compatibles y $\lambda\in\R$:
+\[
+(A^T)^T=A,\qquad(A+B)^T=A^T+B^T,\qquad
+(\lambda A)^T=\lambda A^T,\qquad (AB)^T=B^TA^T.
+\]
+\end{proposicion}
+\begin{proof}[Demostración de $(AB)^T=B^TA^T$]
+Sean $A\in\Mat{m}{n}(\R)$ y $B\in\Mat{n}{p}(\R)$. Para cada $i,k$:
+\[
+\bigl((AB)^T\bigr)_{ki}=(AB)_{ik}
+=\sum_{j=1}^{n}a_{ij}b_{jk}
+=\sum_{j=1}^{n}(B^T)_{kj}(A^T)_{ji}
+=(B^TA^T)_{ki}.
+\]
+Por igualdad de entradas, la identidad queda demostrada.
+\end{proof}
+
+\begin{observacion}
+Para matrices con entradas complejas, además de la transpuesta se utiliza la \emph{transpuesta conjugada} $A^*=\overline{A}^{\,T}$. La distinción será útil posteriormente al hablar de producto interno. No necesitamos introducirla aún para desarrollar los contenidos obligatorios de esta unidad.
+\end{observacion}
+
+%===============================================================
+\section{Matrices inversas y el método de Gauss--Jordan}
+%===============================================================
+\subsection{Concepto de inversa}
+\begin{definicion}[Matriz invertible]
+Una matriz cuadrada $A\in\Mat{n}{n}(\R)$ es \emph{invertible} si existe una matriz $B$ del mismo orden tal que
+\[
+AB=BA=I_n.
+\]
+La matriz $B$ se llama \emph{inversa} de $A$ y se escribe $A^{-1}$. Si no existe, $A$ es \emph{singular} o \emph{no invertible}.
+\end{definicion}
+
+\begin{proposicion}[Unicidad de la inversa]
+Si $A$ es invertible, su inversa es única.
+\end{proposicion}
+\begin{proof}
+Supongamos que $B$ y $C$ son inversas de $A$. Usando asociatividad,
+\[
+B=BI_n=B(AC)=(BA)C=I_nC=C.
+\]
+Por tanto, no pueden existir dos inversas distintas.
+\end{proof}
+
+\begin{proposicion}[Inversa de un producto]
+Si $A$ y $B$ son matrices cuadradas invertibles del mismo orden, entonces
+\[
+\boxed{(AB)^{-1}=B^{-1}A^{-1}.}
+\]
+\end{proposicion}
+\begin{proof}
+Basta comprobar
+\[
+(AB)(B^{-1}A^{-1})=A(BB^{-1})A^{-1}=AA^{-1}=I_n,
+\]
+y, análogamente, $(B^{-1}A^{-1})(AB)=I_n$. La unicidad de la inversa concluye la demostración.
+\end{proof}
+
+\subsection{Obtención de la inversa mediante Gauss--Jordan}
+La idea consiste en aplicar operaciones elementales simultáneamente a $A$ y a la identidad, mediante la matriz aumentada
+\[
+\left[A\mid I_n\right].
+\]
+Si las operaciones convierten el bloque izquierdo en $I_n$, el bloque derecho resulta ser $A^{-1}$:
+\[
+\boxed{[A\mid I_n]\ \sim\ [I_n\mid A^{-1}].}
+\]
+Cuando el bloque izquierdo no puede reducirse a la identidad, $A$ no es invertible.
+
+\begin{ejemplo}[Cálculo completo por Gauss--Jordan]
+Sea
+\[
+A=\begin{pmatrix}2&1\\1&1\end{pmatrix}.
+\]
+Formamos la matriz aumentada y efectuamos las operaciones indicadas:
+\begin{align*}
+\left(\begin{array}{cc|cc}2&1&1&0\\1&1&0&1\end{array}\right)
+&\xrightarrow{R_1\leftrightarrow R_2}
+\left(\begin{array}{cc|cc}1&1&0&1\\2&1&1&0\end{array}\right)\\[1ex]
+&\xrightarrow{R_2\leftarrow R_2-2R_1}
+\left(\begin{array}{cc|cc}1&1&0&1\\0&-1&1&-2\end{array}\right)\\[1ex]
+&\xrightarrow{R_2\leftarrow -R_2}
+\left(\begin{array}{cc|cc}1&1&0&1\\0&1&-1&2\end{array}\right)\\[1ex]
+&\xrightarrow{R_1\leftarrow R_1-R_2}
+\left(\begin{array}{cc|cc}1&0&1&-1\\0&1&-1&2\end{array}\right).
+\end{align*}
+Leemos la matriz inversa del bloque derecho:
+\[
+\boxed{A^{-1}=\begin{pmatrix}1&-1\\-1&2\end{pmatrix}.}
+\]
+Verificamos multiplicando:
+\[
+AA^{-1}=\begin{pmatrix}2&1\\1&1\end{pmatrix}
+\begin{pmatrix}1&-1\\-1&2\end{pmatrix}
+=\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+\]
+\end{ejemplo}
+
+\begin{ejemplo}[Matriz que no tiene inversa]
+Sea
+\[
+B=\begin{pmatrix}1&2\\2&4\end{pmatrix}.
+\]
+La segunda fila es el doble de la primera. La operación $R_2\leftarrow R_2-2R_1$ crea una fila nula en el bloque izquierdo. Por ello el bloque izquierdo nunca puede convertirse en $I_2$ mediante operaciones elementales; $B$ no es invertible.
+\end{ejemplo}
+
+\begin{observacion}
+Resolver $A\vect{x}=\vect{b}$ mediante $\vect{x}=A^{-1}\vect{b}$ exige que $A$ sea cuadrada e invertible. En problemas grandes suele ser preferible resolver directamente el sistema sin construir explícitamente $A^{-1}$.
+\end{observacion}
+
+%===============================================================
+\subsection{Operaciones elementales y matrices elementales}
+La receta $[A\mid I_n]\sim[I_n\mid A^{-1}]$ tiene una justificación algebraica. Una operación elemental sobre filas equivale a multiplicar por la izquierda por una matriz \emph{elemental} $E$, obtenida al efectuar la misma operación sobre $I_n$.
+\begin{definicion}[Operaciones elementales]
+Son tres: $(i)$ intercambiar dos filas, $(ii)$ multiplicar una fila por un escalar no nulo y $(iii)$ sumar a una fila un múltiplo de otra. Cada operación es reversible; por ello su matriz elemental $E$ es invertible.
+\end{definicion}
+\begin{ejemplo}[Multiplicación a la izquierda y operaciones por renglón]
+Si $E=\begin{psmallmatrix}1&0&0\\-2&1&0\\0&0&1\end{psmallmatrix}$, entonces $EA$ coincide con $A$ después de aplicar $R_2\leftarrow R_2-2R_1$. Para invertir esta operación basta $E^{-1}=\begin{psmallmatrix}1&0&0\\2&1&0\\0&0&1\end{psmallmatrix}$.
+\end{ejemplo}
+\begin{teorema}[Justificación de Gauss--Jordan]
+Sea $A$ cuadrada de orden $n$. Si una sucesión de operaciones elementales produce $E_s\cdots E_2E_1A=I_n$, entonces $A$ es invertible y
+\[
+\boxed{A^{-1}=E_s\cdots E_2E_1.}
+\]
+Por esta razón aplicar dichas operaciones a $[A\mid I_n]$ produce $[I_n\mid A^{-1}]$.
+\end{teorema}
+\begin{proof}
+Sea $P=E_s\cdots E_1$. Todas las matrices elementales son invertibles, de modo que $P$ lo es. De $PA=I_n$ se sigue $A=P^{-1}$; por tanto, $AP=I_n$ y $P=A^{-1}$. Sobre el bloque derecho tenemos $PI_n=P=A^{-1}$.
+\end{proof}
+
+\begin{ejemplo}[Gauss--Jordan detallado, orden $3\times3$]
+Para $A=\begin{psmallmatrix}1&1&0\\0&1&1\\0&0&1\end{psmallmatrix}$, construimos
+\[
+\left(\begin{array}{ccc|ccc}1&1&0&1&0&0\\0&1&1&0&1&0\\0&0&1&0&0&1\end{array}\right).
+\]
+El pivote de la tercera columna ya es uno. Eliminamos primero la entrada encima de ese pivote:
+\[
+\xrightarrow{R_2\leftarrow R_2-R_3}
+\left(\begin{array}{ccc|ccc}1&1&0&1&0&0\\0&1&0&0&1&-1\\0&0&1&0&0&1\end{array}\right).
+\]
+Eliminamos finalmente la entrada de la primera fila en la segunda columna:
+\[
+\xrightarrow{R_1\leftarrow R_1-R_2}
+\left(\begin{array}{ccc|ccc}1&0&0&1&-1&1\\0&1&0&0&1&-1\\0&0&1&0&0&1\end{array}\right).
+\]
+La inversa es $A^{-1}=\begin{psmallmatrix}1&-1&1\\0&1&-1\\0&0&1\end{psmallmatrix}$. La verificación puede hacerse multiplicando $AA^{-1}$ y $A^{-1}A$.
+\end{ejemplo}
+
+\begin{ejemplo}[Inversa $5\times5$ accesible por estructura triangular]
+Consideremos la matriz con unos en la diagonal y la superdiagonal:
+\[
+U=\begin{pmatrix}
+1&1&0&0&0\\0&1&1&0&0\\0&0&1&1&0\\0&0&0&1&1\\0&0&0&0&1
+\end{pmatrix}.
+\]
+Sea $N=U-I_5$. Como $N^5=0$, puede calcularse la inversa sin fracciones:
+\[
+U^{-1}=I_5-N+N^2-N^3+N^4
+=\begin{pmatrix}
+1&-1&1&-1&1\\0&1&-1&1&-1\\0&0&1&-1&1\\0&0&0&1&-1\\0&0&0&0&1
+\end{pmatrix}.
+\]
+\emph{Demostración de la fórmula:} al multiplicar $(I_5+N)(I_5-N+N^2-N^3+N^4)$ los términos intermedios se cancelan y resulta $I_5+N^5=I_5$. Es una técnica adicional que permite comprobar, de una sola vez, la respuesta del algoritmo de Gauss--Jordan.
+\end{ejemplo}
+
+\subsection{Condiciones para una inversa: una demostración operativa}
+\begin{teorema}[Equivalencia básica de invertibilidad]
+Para $A\in\Mat{n}{n}(\R)$ son equivalentes: (a) $A$ tiene inversa; (b) la forma reducida por filas es $I_n$; (c) $A\vect x=\vect0$ posee únicamente la solución trivial.
+\end{teorema}
+\begin{proof}
+(a)$\Rightarrow$(c): si $A\vect x=\vect0$, multiplicar por $A^{-1}$ da $\vect x=\vect0$. (c)$\Rightarrow$(b): al llevar $A$ a forma reducida, cualquier columna sin pivote produciría una variable libre y una solución homogénea no trivial. Así que hay $n$ pivotes y la forma reducida es $I_n$. (b)$\Rightarrow$(a): el teorema de las matrices elementales proporciona una inversa.
+\end{proof}
+
+
+\section{Determinantes}
+%===============================================================
+\subsection{Determinantes de orden dos y tres}
+El determinante asocia a cada matriz cuadrada un número. Este número permite distinguir, entre otras cosas, matrices invertibles de matrices singulares.
+
+\begin{definicion}[Determinante de orden dos]
+Para $A=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}$ definimos
+\[
+\det(A)=\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc.
+\]
+\end{definicion}
+\begin{ejemplo}
+Para $A=\begin{psmallmatrix}2&1\\1&1\end{psmallmatrix}$ tenemos
+\[
+\det(A)=2(1)-1(1)=1.
+\]
+El determinante no nulo anticipa que $A$ es invertible, como ya comprobamos por Gauss--Jordan.
+\end{ejemplo}
+
+\begin{definicion}[Determinante de orden tres]
+Si
+\[
+A=\begin{pmatrix}a&b&c\\d&e&f\\g&h&i\end{pmatrix},
+\]
+su determinante es
+\[
+\boxed{\det(A)=aei+bfg+cdh-ceg-bdi-afh.}
+\]
+Esta expresión puede organizarse mediante la llamada \emph{regla de Sarrus}, válida únicamente para matrices $3\times3$.
+\end{definicion}
+
+\begin{ejemplo}
+Calcular
+\[
+D=\begin{vmatrix}1&2&0\\0&3&1\\2&0&1\end{vmatrix}.
+\]
+Por la fórmula anterior:
+\begin{align*}
+D&=(1)(3)(1)+(2)(1)(2)+(0)(0)(0)\\
+&\quad -(0)(3)(2)-(2)(0)(1)-(1)(1)(0)\\
+&=3+4=\boxed{7}.
+\end{align*}
+\end{ejemplo}
+
+\subsection{Definición rigurosa del determinante de orden $n$}
+Las reglas para órdenes dos y tres son casos particulares de una sola definición que funciona para \emph{cualquier} orden $n$. Recordamos primero que una \emph{permutación} $\sigma$ de $\{1,\ldots,n\}$ es una reordenación de esos índices. Una inversión es un par $i<j$ para el que $\sigma(i)>\sigma(j)$; su signo es $\operatorname{sgn}(\sigma)=(-1)^{N(\sigma)}$, donde $N(\sigma)$ es el número de inversiones.
+\begin{definicion}[Determinante: fórmula de Leibniz]
+Para $A=(a_{ij})\in\Mat{n}{n}(\R)$ definimos
+\[
+\boxed{\det(A)=\sum_{\sigma\in S_n}\operatorname{sgn}(\sigma)\prod_{i=1}^{n}a_{i,\sigma(i)}.}
+\]
+Aquí $S_n$ es el conjunto de todas las $n!$ permutaciones de $\{1,\ldots,n\}$. Cada sumando utiliza exactamente una entrada de cada fila y exactamente una de cada columna.
+\end{definicion}
+\begin{ejemplo}[Recuperación de la fórmula $2\times2$]
+Para $A=\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}$ las permutaciones son $(1,2)$ (signo $+$) y $(2,1)$ (signo $-$). La definición arroja $\det(A)=a_{11}a_{22}-a_{12}a_{21}=ad-bc$.
+\end{ejemplo}
+\begin{observacion}
+La regla de Sarrus es una regla mnemotécnica \emph{exclusiva de orden tres}; no se extiende dibujando diagonales en determinantes $4\times4$ o $5\times5$. Para dichos órdenes utilizaremos cofactores o eliminación controlando el cambio de determinante.
+\end{observacion}
+
+
+
+\subsection{Definición general: menores y cofactores}
+\begin{definicion}[Menor y cofactor]
+Sea $A=(a_{ij})$ una matriz cuadrada de orden $n\ge2$. El \emph{menor} $M_{ij}$ de la entrada $a_{ij}$ es el determinante de la matriz de orden $n-1$ obtenida al suprimir la fila $i$ y la columna $j$.
+
+El \emph{cofactor} correspondiente es
+\[
+C_{ij}=(-1)^{i+j}M_{ij}.
+\]
+\end{definicion}
+
+Los signos de los cofactores alternan siguiendo el patrón
+\[
+\begin{pmatrix}
++&-&+&\cdots\\-&+&-&\cdots\\+&-&+&\cdots\\\vdots&\vdots&\vdots&\ddots
+\end{pmatrix}.
+\]
+
+\begin{teorema}[Expansión por cofactores o de Laplace]
+Sea $A=(a_{ij})$ una matriz cuadrada de orden $n\ge2$. Fijando una fila $i$, su determinante puede calcularse como
+\[
+\boxed{\det(A)=\sum_{j=1}^{n}a_{ij}C_{ij}.}
+\]
+También puede expandirse a lo largo de cualquier columna $j$:
+\[
+\det(A)=\sum_{i=1}^{n}a_{ij}C_{ij}.
+\]
+Para cerrar la definición recursiva se toma $\det([a])=a$ para matrices de orden uno.
+\end{teorema}
+
+\begin{observacion}
+Para calcular un determinante mediante cofactores conviene elegir una fila o una columna con muchos ceros: se reduce así el número de determinantes menores que hay que evaluar.
+\end{observacion}
+
+\begin{ejemplo}[Expansión por la primera fila]
+Consideremos nuevamente
+\[
+A=\begin{pmatrix}1&2&0\\0&3&1\\2&0&1\end{pmatrix}.
+\]
+Los menores de la primera fila son
+\[
+M_{11}=\begin{vmatrix}3&1\\0&1\end{vmatrix}=3,\quad
+M_{12}=\begin{vmatrix}0&1\\2&1\end{vmatrix}=-2,\quad
+M_{13}=\begin{vmatrix}0&3\\2&0\end{vmatrix}=-6.
+\]
+Los cofactores son $C_{11}=3$, $C_{12}=2$ y $C_{13}=-6$. Por tanto,
+\[
+\det(A)=1(3)+2(2)+0(-6)=\boxed{7},
+\]
+en concordancia con el resultado obtenido por Sarrus.
+\end{ejemplo}
+
+\subsection{Propiedades de los determinantes}
+\begin{proposicion}[Propiedades esenciales]
+Para matrices cuadradas de orden $n$:
+\begin{enumerate}
+\item $\det(I_n)=1$.
+\item $\det(A^T)=\det(A)$.
+\item Si $A$ es triangular, $\det(A)=\prod_{i=1}^{n}a_{ii}$.
+\item Si dos filas de $A$ son iguales o proporcionales, entonces $\det(A)=0$.
+\item Intercambiar dos filas cambia el signo del determinante.
+\item Multiplicar una fila por $\lambda$ multiplica el determinante por $\lambda$.
+\item Sumar a una fila un múltiplo de otra fila \emph{no cambia} el determinante.
+\item $\det(AB)=\det(A)\det(B)$.
+\end{enumerate}
+\end{proposicion}
+
+\begin{proof}[Justificación de la regla de suma de filas]
+Una propiedad estructural del determinante es su \emph{linealidad en cada fila}, manteniendo fijas las otras. Si reemplazamos la fila $r_i$ por $r_i+\lambda r_j$, con $i\ne j$, obtenemos la suma de dos determinantes: el original más $\lambda$ veces otro en el que las filas $i$ y $j$ coinciden. El segundo vale cero; por tanto, el determinante no cambia.
+\end{proof}
+
+\begin{observacion}
+Las propiedades anteriores pueden demostrarse rigurosamente a partir de la definición del determinante mediante permutaciones. Aquí las empleamos como resultados del curso; su justificación completa mediante esa construcción combinatoria sería una ampliación teórica adicional.
+\end{observacion}
+
+\begin{ejemplo}[Determinante por eliminación]
+Calcular
+\[
+\det\begin{pmatrix}2&1&0\\4&3&1\\0&2&3\end{pmatrix}.
+\]
+Aplicamos operaciones que no cambian el determinante:
+\[
+\begin{pmatrix}2&1&0\\4&3&1\\0&2&3\end{pmatrix}
+\xrightarrow{R_2\leftarrow R_2-2R_1}
+\begin{pmatrix}2&1&0\\0&1&1\\0&2&3\end{pmatrix}
+\xrightarrow{R_3\leftarrow R_3-2R_2}
+\begin{pmatrix}2&1&0\\0&1&1\\0&0&1\end{pmatrix}.
+\]
+La última matriz es triangular superior. Su determinante es el producto de las entradas diagonales:
+\[
+\boxed{\det(A)=2\cdot1\cdot1=2}.
+\]
+\end{ejemplo}
+
+\subsection{Demostración de las propiedades elementales}
+La fórmula de Leibniz implica tres propiedades fundamentales.
+\begin{proposicion}[Multilinealidad, alternancia y normalización]
+El determinante es lineal en cada fila por separado, cambia de signo si intercambiamos dos filas y cumple $\det(I_n)=1$.
+\end{proposicion}
+\begin{proof}
+\textbf{Linealidad:} cada producto $\prod_{i=1}^na_{i,\sigma(i)}$ contiene exactamente una entrada de la fila que modificamos. Sustituir esa fila por $\lambda\vect u+\mu\vect v$ permite distribuir cada término en dos sumandos, y agrupar la suma finita como $\lambda\det(A_u)+\mu\det(A_v)$.
+
+\textbf{Alternancia:} intercambiar las filas $r$ y $s$ corresponde a asociar a cada permutación de columnas otra permutación obtenida al intercambiar sus posiciones $r$ y $s$. El producto de entradas se conserva y el signo se invierte; toda la suma cambia de signo. En particular, si ambas filas son idénticas, $\det(A)=-\det(A)$, luego $\det(A)=0$.
+
+\textbf{Normalización:} en $I_n$ todo producto de Leibniz es cero salvo el de la permutación identidad, cuyo valor es uno y cuyo signo es positivo.
+\end{proof}
+\begin{corolario}[Efecto de cada operación elemental]
+Si $i\ne j$, entonces
+\begin{align*}
+\det(\text{intercambiar }R_i,R_j)&=-\det(A),\\
+\det(R_i\leftarrow\lambda R_i)&=\lambda\det(A),\\
+\det(R_i\leftarrow R_i+\lambda R_j)&=\det(A).
+\end{align*}
+La segunda identidad vale para cualquier $\lambda$; para que sea una operación elemental reversible se exige $\lambda\ne0$.
+\end{corolario}
+\begin{proof}
+Las dos primeras son consecuencias directas de alternancia y linealidad. Para la tercera, por linealidad obtenemos $\det(A)+\lambda\det(B)$, donde $B$ tiene dos filas iguales (la fila $i$ sustituida por una copia de la fila $j$). Entonces $\det(B)=0$.
+\end{proof}
+\begin{proposicion}[Determinante de una matriz triangular]
+Si $U=(u_{ij})$ es triangular superior, $\det(U)=u_{11}\cdots u_{nn}$. Lo mismo ocurre para matrices triangulares inferiores.
+\end{proposicion}
+\begin{proof}
+En la fórmula de Leibniz, un producto no nulo correspondiente a una permutación $\sigma$ requiere $\sigma(i)\ge i$ para todas las filas de la triangular superior. Como las sumas de los índices $\sigma(i)$ e $i$ son ambas $n(n+1)/2$, todas estas desigualdades deben ser igualdades; sólo contribuye la permutación identidad. Para triangulares inferiores el argumento es análogo.
+\end{proof}
+\begin{proposicion}[Determinante y transposición]
+Para toda matriz cuadrada $A$, $\det(A^T)=\det(A)$.
+\end{proposicion}
+\begin{proof}
+En Leibniz, el término de $A^T$ indexado por $\sigma$ es $\prod_i a_{\sigma(i),i}$. Reindexando con $j=\sigma(i)$ obtenemos el término de $A$ asociado a $\sigma^{-1}$. La permutación y su inversa poseen el mismo signo; por tanto, ambas sumas coinciden.
+\end{proof}
+
+\subsection{¿Por qué funciona la expansión de Laplace?}
+Fijemos la fila $i$. Agrupamos los términos de Leibniz de acuerdo con la columna $j=\sigma(i)$ elegida en esa fila. Al quitar la fila $i$ y la columna $j$, los productos restantes forman el determinante menor $M_{ij}$; el signo adicional asociado a llevar esta entrada a la posición inicial es $(-1)^{i+j}$. En consecuencia,
+\[
+\det(A)=\sum_{j=1}^na_{ij}(-1)^{i+j}M_{ij}=
+\sum_{j=1}^na_{ij}C_{ij}.
+\]
+La expansión por columnas se deduce aplicando el resultado a $A^T$. Este razonamiento justifica el teorema de Laplace sin depender de una regla visual exclusiva de matrices pequeñas.
+
+\begin{ejemplo}[Desarrollo de orden $4\times4$ por una fila con ceros]
+Sea
+\[
+A=\begin{pmatrix}1&2&0&0\\0&3&1&0\\0&0&2&4\\0&0&0&-1\end{pmatrix}.
+\]
+Expandimos por la última fila: sólo aparece $a_{44}=-1$, con signo $(-1)^{4+4}=+1$. Así,
+\[
+\det(A)=(-1)\begin{vmatrix}1&2&0\\0&3&1\\0&0&2\end{vmatrix}
+=(-1)(1\cdot3\cdot2)=\boxed{-6}.
+\]
+El mismo resultado se obtiene usando directamente la propiedad triangular. Este ejemplo muestra que la elección de una fila con muchos ceros puede ahorrar gran cantidad de operaciones.
+\end{ejemplo}
+
+\begin{ejemplo}[Determinante $5\times5$ por eliminación, sin desarrollar $5!$ términos]
+\[
+A=\begin{pmatrix}
+2&1&0&0&0\\4&5&1&0&0\\0&3&4&1&0\\0&0&2&3&1\\0&0&0&2&3
+\end{pmatrix}.
+\]
+Aplicamos sucesivamente operaciones que no modifican el determinante:
+\begin{align*}
+R_2&\leftarrow R_2-2R_1\quad(\text{la nueva segunda fila empieza con }0,3,1,0,0),\\
+R_3&\leftarrow R_3-R_2\quad(\text{la nueva tercera fila empieza con }0,0,3,1,0),\\
+R_4&\leftarrow R_4-\tfrac23R_3\quad(\text{la nueva cuarta fila empieza con }0,0,0,\tfrac73,1),\\
+R_5&\leftarrow R_5-\tfrac67R_4\quad(\text{la nueva quinta fila termina en }\tfrac{15}{7}).
+\end{align*}
+La diagonal de la matriz triangular resultante es $2,3,3,\frac73,\frac{15}{7}$ y, por tanto,
+\[
+\boxed{\det(A)=2\cdot3\cdot3\cdot\tfrac73\cdot\tfrac{15}{7}=90.}
+\]
+\end{ejemplo}
+
+\begin{teorema}[Multiplicatividad del determinante]
+Para matrices cuadradas del mismo orden, $\det(AB)=\det(A)\det(B)$.
+\end{teorema}
+\begin{proof}
+Si $A$ es singular, existen una sucesión de operaciones elementales con matriz producto $P$ y una matriz escalonada $U=PA$ con una fila nula. Entonces $PAB=UB$ tiene también una fila nula, por lo que $\det(PAB)=0$. Como $\det(P)\ne0$, se deduce $\det(AB)=0=\det(A)\det(B)$.
+
+Si $A$ es invertible, puede escribirse como producto de matrices elementales $A=E_1\cdots E_s$. El efecto de cada operación elemental sobre el determinante de cualquier matriz demuestra $\det(EX)=\det(E)\det(X)$. Aplicándolo sucesivamente resulta $\det(AB)=\prod_{j=1}^s\det(E_j)\det(B)=\det(A)\det(B)$.
+\end{proof}
+\begin{corolario}
+Para $A$ invertible, $\det(A^{-1})=1/\det(A)$; para cualquier escalar $\lambda$ y $A$ de orden $n$, $\det(\lambda A)=\lambda^n\det(A)$.
+\end{corolario}
+\begin{proof}
+La primera igualdad sigue de $1=\det(I_n)=\det(A)\det(A^{-1})$. La segunda sigue de multiplicar cada una de las $n$ filas de $A$ por $\lambda$.
+\end{proof}
+
+
+\subsection{Determinantes e invertibilidad}
+\begin{teorema}[Criterio de invertibilidad]
+Para una matriz cuadrada $A$ de orden $n$, las siguientes condiciones son equivalentes:
+\begin{enumerate}
+\item $A$ es invertible.
+\item $\det(A)\ne0$.
+\item Las filas de $A$ son linealmente independientes.
+\item $\rang(A)=n$.
+\item El sistema homogéneo $A\vect{x}=\vect{0}$ sólo tiene la solución trivial.
+\end{enumerate}
+\end{teorema}
+\begin{observacion}
+Algunos conceptos de la lista, como independencia lineal, serán estudiados formalmente en la Unidad 4. Por ahora es suficiente relacionar los criterios operativos: pivotes, rango, determinante y existencia de inversa.
+\end{observacion}
+
+%===============================================================
+\section{Matriz adjunta e inversa mediante cofactores}
+%===============================================================
+\begin{definicion}[Matriz de cofactores y adjunta]
+Sea $A=(a_{ij})$ cuadrada. La \emph{matriz de cofactores} es $C=(C_{ij})$. Su transpuesta recibe el nombre de \emph{matriz adjunta}:
+\[
+\boxed{\adj(A)=C^T.}
+\]
+\end{definicion}
+
+\begin{teorema}[Identidad fundamental de la adjunta]
+Para cualquier matriz cuadrada $A$,
+\[
+A\adj(A)=\adj(A)A=\det(A)I_n.
+\]
+En consecuencia, si $\det(A)\ne0$,
+\[
+\boxed{A^{-1}=\frac{1}{\det(A)}\adj(A).}
+\]
+\end{teorema}
+\begin{proof}
+La entrada $(i,k)$ de $A\adj(A)$ es
+\[
+\sum_{j=1}^{n}a_{ij}C_{kj}.
+\]
+Si $i=k$, esa suma es la expansión por cofactores de la fila $i$ y vale $\det(A)$. Si $i\ne k$, la misma suma corresponde al determinante de una matriz en la que se reemplaza la fila $k$ por la fila $i$. Esa matriz tiene dos filas iguales y su determinante es cero. Por ello $A\adj(A)=\det(A)I_n$. La identidad por el otro lado se obtiene razonando con columnas. Si el determinante no es cero, dividimos entre $\det(A)$ para obtener la inversa.
+\end{proof}
+
+\begin{ejemplo}[Inversa $2\times2$ mediante la adjunta]
+Para
+\[
+A=\begin{pmatrix}a&b\\c&d\end{pmatrix},\qquad \det(A)=ad-bc\ne0,
+\]
+la matriz de cofactores es $\begin{psmallmatrix}d&-c\\-b&a\end{psmallmatrix}$ y su adjunta es $\begin{psmallmatrix}d&-b\\-c&a\end{psmallmatrix}$. Así,
+\[
+\boxed{A^{-1}=\frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}.}
+\]
+En particular, para $A=\begin{psmallmatrix}2&1\\1&1\end{psmallmatrix}$:
+\[
+\det(A)=1,\qquad A^{-1}=\begin{pmatrix}1&-1\\-1&2\end{pmatrix},
+\]
+el mismo resultado obtenido por Gauss--Jordan.
+\end{ejemplo}
+
+\begin{ejemplo}[Adjunta e inversa de una matriz $3\times3$]
+Consideremos
+\[
+A=\begin{pmatrix}2&1&0\\1&2&1\\0&1&2\end{pmatrix}.
+\]
+Expandiendo por la primera fila:
+\[
+\det(A)=2\begin{vmatrix}2&1\\1&2\end{vmatrix}
+-1\begin{vmatrix}1&1\\0&2\end{vmatrix}
+=2(3)-2=4.
+\]
+Calculamos los nueve cofactores:
+\[
+C=\begin{pmatrix}
+3&-2&1\\
+-2&4&-2\\
+1&-2&3
+\end{pmatrix}.
+\]
+En este ejemplo $C=C^T$, por lo que
+\[
+\adj(A)=C^T=\begin{pmatrix}
+3&-2&1\\-2&4&-2\\1&-2&3
+\end{pmatrix}.
+\]
+Se concluye
+\[
+\boxed{A^{-1}=\frac14\begin{pmatrix}
+3&-2&1\\-2&4&-2\\1&-2&3
+\end{pmatrix}.}
+\]
+Comprobación, multiplicando la primera fila de $A$ por las columnas de la adjunta:
+\[
+(2,1,0)\adj(A)=(4,0,0).
+\]
+Por simetría y multiplicación directa en las otras filas, $A\adj(A)=4I_3$, como afirma el teorema.
+\end{ejemplo}
+
+%===============================================================
+\subsection{La adjunta: por qué la fórmula de la inversa es válida}
+El procedimiento de formar los menores, asignar el signo de cofactor y transponer la matriz resultante no es una receta arbitraria. Está diseñado para producir un múltiplo de la identidad.
+\begin{proposicion}[Identidad con cofactores, formulación por entradas]
+Sean $C_{ij}$ los cofactores de una matriz cuadrada $A$. Se tiene
+\[
+\sum_{k=1}^{n}a_{ik}C_{jk}=\begin{cases}\det(A),&i=j,\\0,&i\ne j.\end{cases}
+\]
+\end{proposicion}
+\begin{proof}
+Si $i=j$, el lado izquierdo es la expansión de $\det(A)$ por su fila $i$. Si $i\ne j$, sustituimos la fila $j$ de $A$ por una copia de la fila $i$. El determinante de esta nueva matriz es cero, pues contiene dos filas iguales. Al expandirlo por la fila $j$, sus menores son los $M_{jk}$ originales (se suprime precisamente la fila modificada), y obtenemos $\sum_k a_{ik}C_{jk}=0$.
+\end{proof}
+Como la entrada $(i,j)$ de $A\operatorname{adj}(A)$ es $\sum_k a_{ik}C_{jk}$, concluimos
+\[
+\boxed{A\operatorname{adj}(A)=\det(A)I_n.}
+\]
+Aplicando el mismo argumento a columnas también se obtiene $\operatorname{adj}(A)A=\det(A)I_n$. Si $\det(A)\ne0$, al dividir por este determinante se construye la inversa de $A$.
+
+\begin{observacion}[Diferencia entre adjunta y transpuesta]
+La matriz de cofactores se denota $C=(C_{ij})$ y la \emph{adjunta clásica} es $\operatorname{adj}(A)=C^T$. No debe confundirse con la transpuesta $A^T$ ni, para matrices complejas, con la conjugada transpuesta $A^*$. Son objetos distintos.
+\end{observacion}
+
+\subsection{Decidir si conviene Gauss--Jordan o la fórmula de la adjunta}
+Para órdenes dos o tres, la adjunta puede ofrecer un cálculo manual razonable. En órdenes cuatro y cinco, el número de menores suele hacerla laboriosa. Gauss--Jordan suele resultar más sistemático; si sólo nos interesa decidir invertibilidad, calcular $\det(A)$ por eliminación o contar pivotes puede ser más eficiente.
+\begin{ejemplo}[Cómo reconocer rápidamente una matriz no invertible]
+Sea
+\[
+A=\begin{pmatrix}1&0&2\\2&0&4\\0&1&3\end{pmatrix}.
+\]
+La segunda fila es el doble de la primera. Por alternancia, $\det(A)=0$. Al hacer $R_2\leftarrow R_2-2R_1$ aparece una fila nula. El rango es menor que tres; no existe $A^{-1}$ y el sistema homogéneo tiene soluciones distintas de cero. Las tres conclusiones provienen del mismo hecho.
+\end{ejemplo}
+
+
+\section{Rango y núcleo de una matriz}
+%===============================================================
+Estos conceptos sirven como puente hacia los espacios vectoriales y las transformaciones lineales. En esta unidad los introduciremos a partir del cálculo con matrices.
+
+\begin{definicion}[Rango]
+El \emph{rango} de una matriz $A$, denotado por $\rang(A)$, es el número de pivotes de una forma escalonada obtenida mediante operaciones elementales por filas. Equivalentemente, es el número de columnas linealmente independientes de $A$.
+\end{definicion}
+
+\begin{definicion}[Núcleo]
+Para $A\in\Mat{m}{n}(\R)$, su \emph{núcleo} es el conjunto de soluciones del sistema homogéneo asociado:
+\[
+\boxed{\Ker(A)=\{\vect{x}\in\R^n:A\vect{x}=\vect{0}\}.}
+\]
+\end{definicion}
+
+\begin{observacion}
+Las operaciones elementales por filas preservan las soluciones de $A\vect{x}=\vect0$. Por tanto, podemos calcular el núcleo a partir de la forma escalonada reducida. Sin embargo, esas operaciones no preservan, en general, el \emph{espacio de columnas} como subconjunto de $\R^m$; para construir una base de las columnas utilizaremos las columnas pivote de la \emph{matriz original}.
+\end{observacion}
+
+\begin{ejemplo}[Rango y núcleo paso a paso]
+Sea
+\[
+A=\begin{pmatrix}1&2&3\\2&4&6\\0&1&1\end{pmatrix}.
+\]
+Buscamos la forma escalonada reducida:
+\begin{align*}
+A&\xrightarrow{R_2\leftarrow R_2-2R_1}
+\begin{pmatrix}1&2&3\\0&0&0\\0&1&1\end{pmatrix}
+\xrightarrow{R_2\leftrightarrow R_3}
+\begin{pmatrix}1&2&3\\0&1&1\\0&0&0\end{pmatrix}\\[1ex]
+&\xrightarrow{R_1\leftarrow R_1-2R_2}
+\begin{pmatrix}1&0&1\\0&1&1\\0&0&0\end{pmatrix}.
+\end{align*}
+Hay dos pivotes; por tanto,
+\[\boxed{\rang(A)=2.}\]
+El sistema $A\vect{x}=\vect{0}$ equivale a
+\[
+\begin{cases}
+x_1+x_3=0,\\x_2+x_3=0.
+\end{cases}
+\]
+Tomando $x_3=t$ como variable libre, obtenemos
+\[
+x_1=-t,\qquad x_2=-t,\qquad x_3=t.
+\]
+Luego
+\[
+\boxed{\Ker(A)=\left\{t\begin{pmatrix}-1\\-1\\1\end{pmatrix}:t\in\R\right\}.}
+\]
+Las columnas pivote son la primera y la segunda; en la matriz original son
+\[
+\begin{pmatrix}1\\2\\0\end{pmatrix},\qquad
+\begin{pmatrix}2\\4\\1\end{pmatrix}.
+\]
+La tercera es la suma de las dos primeras. Esta observación da una interpretación concreta de $\rang(A)=2$.
+\end{ejemplo}
+
+\begin{proposicion}
+Para toda matriz $A\in\Mat{m}{n}(\R)$,
+\[
+0\le\rang(A)\le\min\{m,n\}.
+\]
+Si $A$ es cuadrada de orden $n$, entonces es invertible si y sólo si $\rang(A)=n$.
+\end{proposicion}
+
+\begin{observacion}[Anticipo de la Unidad 5]
+Si el núcleo de una matriz $m\times n$ tiene dimensión $d$, el teorema rango--nulidad establece que $\rang(A)+d=n$. En la Unidad 5 demostraremos este resultado en el lenguaje de las transformaciones lineales.
+\end{observacion}
+
+%===============================================================
+\subsection{Espacios columna, espacios fila y el significado de rango}
+Las columnas de $A$ pertenecen a $\R^m$. El conjunto de todas sus combinaciones lineales se llama \emph{espacio columna}:
+\[
+\operatorname{Col}(A)=\{A\vect x:\vect x\in\R^n\}
+=\left\{\sum_{j=1}^{n}x_j\vect a_j:x_j\in\R\right\}.
+\]
+De forma análoga, las combinaciones de filas forman el espacio fila de $A$. El rango es la dimensión de ambos espacios. Aunque la idea abstracta de dimensión se estudiará en la Unidad 4, aquí podemos interpretar el rango como el número de pivotes (o columnas pivote) de una matriz escalonada.
+
+\begin{proposicion}[Qué conservan las operaciones elementales]
+Si $E$ es invertible y $B=EA$, entonces $\Ker(B)=\Ker(A)$ y $\rang(B)=\rang(A)$. El espacio columna \emph{como conjunto de vectores} no tiene por qué conservarse.
+\end{proposicion}
+\begin{proof}
+$B\vect x=\vect0$ equivale a $EA\vect x=\vect0$; multiplicando por $E^{-1}$ equivale a $A\vect x=\vect0$. Las operaciones elementales no cambian el número de pivotes (ni la cantidad de variables libres), por lo que preservan el rango. Pero $\operatorname{Col}(EA)=E\operatorname{Col}(A)$, un conjunto que puede ser diferente de $\operatorname{Col}(A)$.
+\end{proof}
+\begin{ejemplo}[Las columnas pivote deben tomarse de la matriz original]
+Sea $A=\begin{psmallmatrix}1&2&3\\2&4&6\\0&1&1\end{psmallmatrix}$. Su forma reducida por filas tiene columnas pivote primera y segunda. Por tanto,
+\[
+\operatorname{Col}(A)=\operatorname{span}\left\{\begin{pmatrix}1\\2\\0\end{pmatrix},\begin{pmatrix}2\\4\\1\end{pmatrix}\right\}.
+\]
+Sería incorrecto afirmar que las columnas $(1,0,0)^T$ y $(0,1,0)^T$ de la forma reducida original son, por este motivo, una base de $\operatorname{Col}(A)$.
+\end{ejemplo}
+
+\subsection{Teorema rango--nulidad explicado mediante pivotes}
+\begin{definicion}[Nulidad]
+Para $A\in\Mat{m}{n}(\R)$, llamamos $\operatorname{nul}(A)$ al número de parámetros independientes que aparecen en la solución general de $A\vect x=\vect0$. En la Unidad 4 reconoceremos este número como $\dim\Ker(A)$.
+\end{definicion}
+\begin{teorema}[Rango--nulidad para una matriz]
+Para una matriz $A$ con $n$ columnas,
+\[
+\boxed{\rang(A)+\operatorname{nul}(A)=n.}
+\]
+\end{teorema}
+\begin{proof}
+Llevemos $A$ a forma escalonada reducida. Si tiene $r$ pivotes, exactamente $r$ variables son básicas y las restantes $n-r$ son libres. Cada elección de las variables libres determina una única solución de las básicas, por lo que la solución general depende de $n-r$ parámetros independientes. En consecuencia, $\operatorname{nul}(A)=n-r$ y $\rang(A)+\operatorname{nul}(A)=r+(n-r)=n$.
+\end{proof}
+\begin{ejemplo}[Núcleo de una matriz $4\times5$ con tres variables libres]
+Sea
+\[
+A=\begin{pmatrix}
+1&0&2&0&-1\\0&1&-1&0&3\\0&0&0&0&0\\0&0&0&0&0
+\end{pmatrix}.
+\]
+Ya está en forma escalonada reducida, con pivotes en columnas 1 y 2. Por tanto, $\rang(A)=2$ y las columnas 3, 4 y 5 corresponden a variables libres $x_3=s$, $x_4=t$ y $x_5=u$. Las ecuaciones son
+\[
+x_1+2s-u=0,\qquad x_2-s+3u=0,
+\]
+por lo que $x_1=-2s+u$ y $x_2=s-3u$. Resulta
+\[
+\Ker(A)=\left\{s\begin{pmatrix}-2\\1\\1\\0\\0\end{pmatrix}
++t\begin{pmatrix}0\\0\\0\\1\\0\end{pmatrix}
++u\begin{pmatrix}1\\-3\\0\\0\\1\end{pmatrix}:s,t,u\in\R\right\}.
+\]
+En particular, $\operatorname{nul}(A)=3$ y $2+3=5$, igual al número de columnas.
+\end{ejemplo}
+
+\subsection{Cuadro de decisiones para resolver ejercicios}
+\begin{center}\small
+\begin{tabular}{p{0.35\linewidth}p{0.55\linewidth}}
+\toprule
+\textbf{Pregunta} & \textbf{Procedimiento sugerido}\\\midrule
+¿Se puede sumar $A+B$? & Comprobar que tienen las mismas dimensiones.\\
+¿Existe $AB$? & Comparar columnas de $A$ con filas de $B$; resultado de dimensiones externas.\\
+¿Existe $A^{-1}$? & Para matrices cuadradas, comprobar $n$ pivotes o $\det(A)\ne0$.\\
+¿Sólo se requiere $\det(A)$? & Usar una fila/columna con ceros o eliminación, sin construir inversa.\\
+¿Calcular $\Ker(A)$? & Resolver $A\vect x=0$; designar y conservar variables libres.\\
+¿Determinar rango? & Contar pivotes en forma escalonada, no contar filas no nulas de la matriz original sin escalonar.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+
+\section{Aplicación elemental del álgebra matricial}
+%===============================================================
+\begin{ejemplo}[Modelo sencillo mediante un sistema matricial]
+Dos cantidades $x$ e $y$ satisfacen
+\[
+\begin{cases}2x+y=5,\\x+y=3.\end{cases}
+\]
+En forma matricial,
+\[
+\underbrace{\begin{pmatrix}2&1\\1&1\end{pmatrix}}_{A}
+\underbrace{\begin{pmatrix}x\\y\end{pmatrix}}_{\vect{x}}
+=\underbrace{\begin{pmatrix}5\\3\end{pmatrix}}_{\vect{b}}.
+\]
+Como $\det(A)=1$, $A$ es invertible. Usando la inversa calculada anteriormente:
+\[
+\vect{x}=A^{-1}\vect{b}=
+\begin{pmatrix}1&-1\\-1&2\end{pmatrix}
+\begin{pmatrix}5\\3\end{pmatrix}
+=\begin{pmatrix}2\\1\end{pmatrix}.
+\]
+Por tanto, $\boxed{x=2,\ y=1}$. Sustituyendo en las dos ecuaciones originales verificamos que ambas se satisfacen.
+\end{ejemplo}
+
+\begin{observacion}
+Esta aplicación algebraica se presenta deliberadamente sin un contexto artificial. Para otras aplicaciones en ingeniería se requerirá formular variables, unidades y supuestos del modelo; el procedimiento matricial empieza sólo después de ese planteamiento.
+\end{observacion}
+
+%===============================================================
+% =============================================================
+\section{Taller de procedimientos: ejemplos de distintas dimensiones}
+\label{sec:taller}
+Los ejemplos anteriores introdujeron las definiciones y demostraciones. En este taller se desarrolla una \emph{rutina reproducible}: antes de calcular, identificar las dimensiones; durante el procedimiento, escribir la operación que justifica cada igualdad; y al terminar, comprobar el resultado con una propiedad o sustitución. Los ejemplos incluyen matrices rectangulares, pues una matriz no tiene que ser cuadrada.
+
+\subsection{Suma y combinación lineal: matrices $3\times4$}
+Sean
+\[
+A=\begin{pmatrix}1&-2&0&3\\2&1&-1&0\\0&4&2&-2\end{pmatrix},\qquad
+B=\begin{pmatrix}0&1&5&-1\\3&0&2&4\\-2&1&0&3\end{pmatrix}.
+\]
+\textbf{Pregunta:} determinar $2A-B$.
+Ambas matrices tienen $3$ filas y $4$ columnas, por lo que la operación está definida y el resultado tendrá dimensión $3\times4$. Primero:
+\[
+2A=\begin{pmatrix}2&-4&0&6\\4&2&-2&0\\0&8&4&-4\end{pmatrix}.
+\]
+Ahora se resta cada entrada de $B$ a la entrada correspondiente de $2A$:
+\[
+2A-B=\begin{pmatrix}
+2-0&-4-1&0-5&6-(-1)\\
+4-3&2-0&-2-2&0-4\\
+0-(-2)&8-1&4-0&-4-3
+\end{pmatrix}
+=\boxed{\begin{pmatrix}2&-5&-5&7\\1&2&-4&-4\\2&7&4&-7\end{pmatrix}}.
+\]
+\textbf{Comprobación local:} la entrada $(3,2)$ es $2a_{32}-b_{32}=2(4)-1=7$; coincide con la matriz obtenida.
+
+\subsection{Producto $2\times4$ por $4\times3$: todas las entradas}
+\[
+A=\begin{pmatrix}1&0&2&-1\\2&1&0&3\end{pmatrix},\qquad
+B=\begin{pmatrix}1&2&0\\0&-1&3\\2&0&1\\-1&1&2\end{pmatrix}.
+\]
+El número de columnas de $A$ es $4$, igual al número de filas de $B$. Por ello $AB$ existe y es de orden $2\times3$. Para cada entrada realizamos el producto escalar de una fila con una columna:
+\begin{align*}
+c_{11}&=1(1)+0(0)+2(2)+(-1)(-1)=6, &c_{12}&=1(2)+0(-1)+2(0)+(-1)(1)=1,\\
+c_{13}&=1(0)+0(3)+2(1)+(-1)(2)=0, &c_{21}&=2(1)+1(0)+0(2)+3(-1)=-1,\\
+c_{22}&=2(2)+1(-1)+0(0)+3(1)=6, &c_{23}&=2(0)+1(3)+0(1)+3(2)=9.
+\end{align*}
+Así,
+\[\boxed{AB=\begin{pmatrix}6&1&0\\-1&6&9\end{pmatrix}.}\]
+\textbf{Advertencia:} en este caso $BA$ \emph{no existe}, porque las dimensiones internas de $(4\times3)(2\times4)$ no coinciden ($3\ne2$).
+
+\subsection{Producto $5\times3$ por $3\times2$ sin escribir quince sumas}
+\[
+A=\begin{pmatrix}1&0&2\\0&1&-1\\2&1&0\\0&0&3\\1&-1&1\end{pmatrix},\qquad
+B=\begin{pmatrix}1&0\\2&1\\-1&2\end{pmatrix}.
+\]
+Escribimos $B=[\vect b_1\ \vect b_2]$. Cada columna de $AB$ se obtiene como combinación de las columnas de $A$:
+\[
+A\vect b_1=\vect a_1+2\vect a_2-\vect a_3,
+\qquad A\vect b_2=\vect a_2+2\vect a_3.
+\]
+Evaluando las cinco componentes de cada combinación obtenemos
+\[
+A\vect b_1=\begin{pmatrix}-1\\3\\4\\-3\\-2\end{pmatrix},\qquad
+A\vect b_2=\begin{pmatrix}4\\-1\\1\\6\\1\end{pmatrix}.
+\]
+En consecuencia,
+\[\boxed{AB=\begin{pmatrix}-1&4\\3&-1\\4&1\\-3&6\\-2&1\end{pmatrix}.}\]
+Este procedimiento muestra el vínculo entre el producto matricial y las combinaciones lineales de la unidad siguiente.
+
+\subsection{Determinante de orden cuatro: reducción conservando su valor}
+Sea
+\[
+D=\begin{vmatrix}
+1&2&0&0\\
+2&5&1&0\\
+0&1&3&2\\
+0&0&2&3
+\end{vmatrix}.
+\]
+La operación $R_2\leftarrow R_2-2R_1$ no cambia el determinante. Después $R_3\leftarrow R_3-R_2$ (con la segunda fila ya modificada) tampoco lo cambia:
+\[
+D=\begin{vmatrix}1&2&0&0\\0&1&1&0\\0&0&2&2\\0&0&2&3\end{vmatrix}.
+\]
+Finalmente $R_4\leftarrow R_4-R_3$, y se obtiene una matriz triangular superior:
+\[
+D=\begin{vmatrix}1&2&0&0\\0&1&1&0\\0&0&2&2\\0&0&0&1\end{vmatrix}
+=1\cdot1\cdot2\cdot1=\boxed{2}.
+\]
+\textbf{Control:} evitamos dividir una fila por un pivote, porque esa operación sí modifica el determinante.
+
+\subsection{Rango de una matriz $5\times4$: algoritmo con filas dependientes}
+Sea
+\[
+A=\begin{pmatrix}
+1&2&0&1\\0&1&1&-1\\1&3&1&0\\0&0&1&2\\1&2&1&3
+\end{pmatrix}.
+\]
+Observamos que $R_3=R_1+R_2$ y $R_5=R_1+R_4$. En consecuencia, hacemos explícita esa dependencia:
+\[
+\begin{aligned}
+R_3&\leftarrow R_3-R_1-R_2,\\
+R_5&\leftarrow R_5-R_1-R_4.
+\end{aligned}
+\quad\Longrightarrow\quad
+\begin{pmatrix}
+1&2&0&1\\0&1&1&-1\\0&0&0&0\\0&0&1&2\\0&0&0&0
+\end{pmatrix}.
+\]
+Intercambiamos $R_3$ y $R_4$, quedando una forma escalonada con pivotes en las columnas $1,2,3$. Por tanto,
+\[\boxed{\rang(A)=3.}\]
+\textbf{Interpretación:} hay cuatro columnas y sólo tres pivotes; por ello, el sistema homogéneo $A\vect x=0$ tendrá una variable libre. Nótese que $A$ no es cuadrada: no tiene sentido preguntar por $\det(A)$ ni por $A^{-1}$.
+
+\subsection{Núcleo de una matriz $3\times5$ con dos parámetros}
+Consideremos
+\[
+A=\begin{pmatrix}1&2&0&1&-1\\0&1&1&0&2\\0&0&1&1&-1\end{pmatrix}.
+\]
+Hay tres pivotes, en las tres primeras columnas, y dos variables libres. Resolveremos $A\vect x=0$ mediante sustitución hacia atrás, \emph{sin omitir variables}.
+De la tercera fila: $x_3+x_4-x_5=0$, así que $x_3=-x_4+x_5$. De la segunda: $x_2+x_3+2x_5=0$, luego $x_2=x_4-3x_5$. De la primera:
+\[
+x_1+2(x_4-3x_5)+x_4-x_5=0\quad\Longrightarrow\quad x_1=-3x_4+7x_5.
+\]
+Tomando $x_4=s$ y $x_5=t$, la solución general es
+\[
+\vect x=\begin{pmatrix}-3s+7t\\s-3t\\-s+t\\s\\t\end{pmatrix}
+=s\begin{pmatrix}-3\\1\\-1\\1\\0\end{pmatrix}
++t\begin{pmatrix}7\\-3\\1\\0\\1\end{pmatrix},\qquad s,t\in\R.
+\]
+Por tanto,
+\[
+\boxed{\Ker(A)=\operatorname{span}\left\{
+\begin{pmatrix}-3\\1\\-1\\1\\0\end{pmatrix},
+\begin{pmatrix}7\\-3\\1\\0\\1\end{pmatrix}\right\}.}
+\]
+Para comprobar que ambos vectores pertenecen al núcleo, se multiplica $A$ por cada uno y se verifica que se obtiene el vector cero. Hay dos parámetros libres: $\nul(A)=2$ y $\rang(A)+\nul(A)=3+2=5$.
+
+\subsection{Procedimiento de autocorrección: errores frecuentes}
+\begin{enumerate}
+\item \textbf{Confundir orden de una matriz con número de entradas.} Una matriz $3\times5$ posee $15$ entradas, pero su orden se escribe $3\times5$.
+\item \textbf{Intentar multiplicar término a término.} El producto estándar $AB$ se calcula fila por columna; no debe confundirse con el producto de Hadamard, que es otra operación.
+\item \textbf{Afirmar que $AB=BA$.} El orden de los factores importa, incluso cuando ambas multiplicaciones existen.
+\item \textbf{Aplicar determinantes a matrices rectangulares.} $\det(A)$ sólo se define aquí para matrices cuadradas.
+\item \textbf{Olvidar el cambio de signo al intercambiar filas.} Cada intercambio produce un factor $-1$ en el determinante.
+\item \textbf{Transponer cofactores incorrectamente.} La adjunta clásica es la transpuesta de la matriz de cofactores, no la matriz de cofactores misma.
+\item \textbf{Anular las variables libres.} Para describir todo el núcleo se utilizan parámetros; elegir todos iguales a cero describe solamente la solución trivial.
+\end{enumerate}
+
+
+\section{Banco de ejercicios}
+%===============================================================
+Los ejercicios están ordenados por tema. Se recomienda resolverlos primero sin software y, después, utilizar R, Python o una calculadora como instrumento de verificación. El apéndice contiene soluciones detalladas de una selección representativa; el banco ampliado incorpora además respuestas para autocorrección.
+
+\subsection{Definición, clasificación e igualdad}
+\begin{listaejercicios}
+\item Determine el orden de $A=\begin{psmallmatrix}1&0&2\\-3&4&5\end{psmallmatrix}$ e identifique $a_{12}$, $a_{23}$.
+\item Clasifique $A=\begin{psmallmatrix}3&0&0\\0&3&0\\0&0&3\end{psmallmatrix}$; indique todas las categorías de la Unidad 3 a las que pertenece.
+\item Determine $x,y,z$ si $\begin{psmallmatrix}x-2&3y\\z+1&7\end{psmallmatrix}=\begin{psmallmatrix}5&-6\\4&7\end{psmallmatrix}$.
+\item Dé un ejemplo de matriz simétrica $3\times3$ que no sea diagonal y de matriz triangular inferior no diagonal.
+\item Decida cuáles de las matrices $\begin{psmallmatrix}1&2\\2&1\end{psmallmatrix}$, $\begin{psmallmatrix}1&0\\3&1\end{psmallmatrix}$ e $I_2$ son simétricas.
+\end{listaejercicios}
+
+\subsection{Operaciones y transposición}
+\begin{listaejercicios}
+\item Sean $A=\begin{psmallmatrix}1&2\\3&4\end{psmallmatrix}$ y $B=\begin{psmallmatrix}-1&0\\2&5\end{psmallmatrix}$. Calcule $A+B$, $2A-B$ y $A^T$.
+\item Calcule $AB$ y $BA$ para $A=\begin{psmallmatrix}1&2\\0&1\end{psmallmatrix}$ y $B=\begin{psmallmatrix}2&0\\1&3\end{psmallmatrix}$.
+\item Si $A$ es $2\times3$, $B$ es $3\times4$ y $C$ es $4\times2$, indique el orden de $AB$, $BC$, $(AB)C$ y $C(AB)$.
+\item Calcule $AB$ para $A=\begin{psmallmatrix}2&-1&0\\1&3&2\end{psmallmatrix}$ y $B=\begin{psmallmatrix}1&2\\0&-1\\4&1\end{psmallmatrix}$.
+\item Verifique con matrices $2\times2$ concretas la identidad $(AB)^T=B^TA^T$.
+\item Demuestre que $(A+B)^T=A^T+B^T$ para matrices de igual orden.
+\end{listaejercicios}
+
+\subsection{Inversas}
+\begin{listaejercicios}
+\item Mediante Gauss--Jordan, obtenga $A^{-1}$ para $A=\begin{psmallmatrix}3&1\\2&1\end{psmallmatrix}$ y compruebe el resultado.
+\item Determine si $A=\begin{psmallmatrix}1&2\\3&6\end{psmallmatrix}$ tiene inversa; justifique mediante eliminación.
+\item Calcule la inversa, si existe, de $A=\begin{psmallmatrix}1&0&0\\0&2&0\\0&0&-3\end{psmallmatrix}$.
+\item Demuestre que $(A^{-1})^{-1}=A$ cuando $A$ es invertible.
+\item Si $A$ y $B$ son invertibles, demuestre que $(AB)^{-1}=B^{-1}A^{-1}$.
+\end{listaejercicios}
+
+\subsection{Determinantes y cofactores}
+\begin{listaejercicios}
+\item Calcule $\begin{vmatrix}4&-2\\3&5\end{vmatrix}$.
+\item Calcule $\begin{vmatrix}1&2&0\\0&3&1\\2&0&1\end{vmatrix}$ mediante Sarrus y expansión por cofactores.
+\item Calcule el determinante de $\begin{psmallmatrix}2&1&0\\4&3&1\\0&2&3\end{psmallmatrix}$ mediante operaciones elementales.
+\item Obtenga los menores y cofactores de la primera fila de $A=\begin{psmallmatrix}1&0&2\\3&1&-1\\0&2&4\end{psmallmatrix}$.
+\item Sin expandir completamente, determine $\det\begin{psmallmatrix}1&2&3\\2&4&6\\0&1&1\end{psmallmatrix}$ y justifique.
+\item Si $\det(A)=3$ para una matriz $3\times3$, determine $\det(2A)$ y $\det(A^T)$.
+\item Calcule $\det(A)$ para $A=\begin{psmallmatrix}1&2&0&0\\0&3&1&0\\0&0&-2&5\\0&0&0&4\end{psmallmatrix}$.
+\end{listaejercicios}
+
+\subsection{Adjunta, rango y núcleo}
+\begin{listaejercicios}
+\item Mediante la fórmula de la adjunta, obtenga la inversa de $A=\begin{psmallmatrix}3&1\\2&1\end{psmallmatrix}$.
+\item Determine $\adj(A)$ y $A^{-1}$, si existe, para $A=\begin{psmallmatrix}2&1&0\\1&2&1\\0&1&2\end{psmallmatrix}$.
+\item Determine el rango y el núcleo de $A=\begin{psmallmatrix}1&2&3\\2&4&6\\0&1&1\end{psmallmatrix}$.
+\item Obtenga el rango y el núcleo de $A=\begin{psmallmatrix}1&2&1\\0&1&1\end{psmallmatrix}$.
+\item Compruebe que si $A$ es una matriz invertible de orden $n$, entonces $\Ker(A)=\{\vect0\}$.
+\item Sea $A=\begin{psmallmatrix}1&1\\1&1\end{psmallmatrix}$ y $\vect b=\begin{psmallmatrix}2\\2\end{psmallmatrix}$. Describa todas las soluciones de $A\vect{x}=\vect b$ e indique por qué no puede usarse $A^{-1}\vect b$.
+\end{listaejercicios}
+
+\subsection{Ejercicios integradores tipo examen}
+\begin{listaejercicios}
+\item Sean $A=\begin{psmallmatrix}1&2\\-1&0\end{psmallmatrix}$ y $B=\begin{psmallmatrix}2&1\\0&-1\end{psmallmatrix}$. Calcule $AB$, $BA$, $\det(A)$ y determine si $A$ es invertible.
+\item Resuelva $A\vect x=\vect b$ para $A=\begin{psmallmatrix}2&1\\1&1\end{psmallmatrix}$, $\vect b=\begin{psmallmatrix}7\\4\end{psmallmatrix}$ por (a) eliminación y (b) matriz inversa.
+\item Sea $A=\begin{psmallmatrix}1&a\\2&4\end{psmallmatrix}$. Determine los valores de $a$ para los que $A$ no es invertible.
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{psmallmatrix}1&1&0\\0&1&1\\1&2&1\end{psmallmatrix}$.
+\item Calcule el determinante $\begin{vmatrix}1&0&2&0\\0&2&0&1\\0&0&-1&3\\0&0&0&4\end{vmatrix}$ y determine si la matriz correspondiente es invertible.
+\end{listaejercicios}
+
+%===============================================================
+% ===================================================================
+\section{Banco ampliado por familias de ejercicios}
+\label{sec:banco-ampliado}
+Este banco es deliberadamente repetitivo: se presentan \emph{muchos ejercicios que exigen exactamente la misma técnica} antes de aumentar el tamaño o cambiar de operación. No se mezclan de manera prematura problemas sobre determinantes con problemas sobre matrices rectangulares. Las dimensiones máximas utilizadas son $5\times5$; se incluyen sistemáticamente formatos como $2\times3$, $3\times5$, $4\times5$ y $5\times4$.
+
+\textbf{Método de trabajo.} Resuelva primero dos ejercicios con apoyo de un ejemplo del capítulo. Después resuelva de cuatro a seis sin consultar el procedimiento. Finalmente contraste los resultados con el solucionario abreviado del Apéndice y corrija los errores de signos, dimensiones y pivotes. El anexo contiene \emph{respuestas}, no necesariamente todas las operaciones intermedias; para aprender un método se deben mostrar las operaciones en el cuaderno.
+\subsection{Familia A: orden, filas, columnas y entradas}\noindent\textit{Doce ejercicios del mismo tipo. Indique orden, número de entradas y valores de las entradas señaladas. No se pide operar matrices.}\par\medskip
+\begin{listaejercicios}
+
+\item Para $A=\begin{pmatrix}0&0&2&-3\end{pmatrix}$, determine su orden, el número de entradas, $a_{12}$ y $a_{13}$.
+
+\item Para $A=\begin{pmatrix}-2&-2&1\\-3&2&-2\end{pmatrix}$, determine su orden, el número de entradas, $a_{12}$ y $a_{11}$.
+
+\item Para $A=\begin{pmatrix}-2&1\\-2&-3\\3&-3\end{pmatrix}$, determine su orden, el número de entradas, $a_{12}$ y $a_{12}$.
+
+\item Para $A=\begin{pmatrix}-3&-3&3&0\\-3&-1&2&2\\2&-3&2&2\end{pmatrix}$, determine su orden, el número de entradas, $a_{11}$ y $a_{33}$.
+
+\item Para $A=\begin{pmatrix}0&-1&2\\0&3&2\\-1&3&0\\-3&1&3\end{pmatrix}$, determine su orden, el número de entradas, $a_{32}$ y $a_{13}$.
+
+\item Para $A=\begin{pmatrix}2&0\\1&-3\\3&-2\\3&0\\0&-1\end{pmatrix}$, determine su orden, el número de entradas, $a_{31}$ y $a_{12}$.
+
+\item Para $A=\begin{pmatrix}-2&-3&3&-2&1\\3&1&-1&0&0\end{pmatrix}$, determine su orden, el número de entradas, $a_{22}$ y $a_{21}$.
+
+\item Para $A=\begin{pmatrix}0&1&-2&-3\\0&2&3&-2\\1&3&2&3\\3&1&1&2\end{pmatrix}$, determine su orden, el número de entradas, $a_{11}$ y $a_{33}$.
+
+\item Para $A=\begin{pmatrix}-3&-3&-2\\-2&-3&-1\\-1&1&0\\-3&0&-3\\-2&-3&-2\end{pmatrix}$, determine su orden, el número de entradas, $a_{53}$ y $a_{22}$.
+
+\item Para $A=\begin{pmatrix}2&-3&-2&-1&1\\-1&0&2&-1&0\\2&-1&0&-2&-3\end{pmatrix}$, determine su orden, el número de entradas, $a_{11}$ y $a_{14}$.
+
+\item Para $A=\begin{pmatrix}-2&-2&-2&2\\-1&1&-2&3\\0&1&-2&-1\\-2&-1&-3&-1\\1&-3&-2&0\end{pmatrix}$, determine su orden, el número de entradas, $a_{23}$ y $a_{52}$.
+
+\item Para $A=\begin{pmatrix}-3&1&-3&1&-1\\-3&-2&2&3&-1\\3&1&3&-3&-3\\0&1&-2&-1&2\\0&0&-1&0&3\end{pmatrix}$, determine su orden, el número de entradas, $a_{11}$ y $a_{31}$.
+
+\end{listaejercicios}
+
+\subsection{Familia B: igualdad de matrices y parámetros}\noindent\textit{Iguale las entradas en la misma posición para determinar $x$ e $y$. Verifique sustituyendo al final.}\par\medskip
+\begin{listaejercicios}
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}-1&y - 1\\-2&x - 2\end{pmatrix}=\begin{pmatrix}-1&2\\-2&-3\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}3&1&0\\y - 2&x + 1&0\end{pmatrix}=\begin{pmatrix}3&1&0\\1&-2&0\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}x + 1&3\\-2&2\\-1&y - 1\end{pmatrix}=\begin{pmatrix}-3&3\\-2&2\\-1&1\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}0&-1&3\\x + 2&1&3\\y - 2&3&-2\end{pmatrix}=\begin{pmatrix}0&-1&3\\1&1&3\\0&3&-2\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}x + 2&-3&-1&3\\-3&y - 1&-1&-1\end{pmatrix}=\begin{pmatrix}1&-3&-1&3\\-3&-3&-1&-1\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}-2&2\\-3&0\\1&x + 3\\-3&y - 1\end{pmatrix}=\begin{pmatrix}-2&2\\-3&0\\1&-3\\-3&1\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}-1&x + 2&3&-2\\-1&-2&-3&0\\3&y + 1&0&0\end{pmatrix}=\begin{pmatrix}-1&-1&3&-2\\-1&-2&-3&0\\3&-3&0&0\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}-1&-2&-3\\0&1&-1\\-3&2&y - 2\\3&x + 1&3\end{pmatrix}=\begin{pmatrix}-1&-2&-3\\0&1&-1\\-3&2&-1\\3&3&3\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}-3&-3\\y - 1&-3\\-1&-3\\x - 1&3\\-2&-3\end{pmatrix}=\begin{pmatrix}-3&-3\\-2&-3\\-1&-3\\-3&3\\-2&-3\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}y + 2&0&2&2&0\\x + 1&3&3&-2&-3\end{pmatrix}=\begin{pmatrix}2&0&2&2&0\\0&3&3&-2&-3\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}0&0&-2&3\\y - 2&-2&-1&-2\\-1&1&-2&0\\-3&1&x + 1&-2\end{pmatrix}=\begin{pmatrix}0&0&-2&3\\-1&-2&-1&-2\\-1&1&-2&0\\-3&1&-2&-2\end{pmatrix}$.
+
+\item Determine $x,y\in\mathbb R$ si $\begin{pmatrix}3&-3&-3&3&3\\2&1&1&0&3\\-2&2&2&-3&-1\\y + 1&2&-3&2&x + 2\\-1&-3&1&3&-2\end{pmatrix}=\begin{pmatrix}3&-3&-3&3&3\\2&1&1&0&3\\-2&2&2&-3&-1\\-2&2&-3&2&0\\-1&-3&1&3&-2\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia C: clasificación de matrices}\noindent\textit{Para cada matriz identifique todas las categorías aplicables: fila, columna, rectangular, cuadrada, diagonal, identidad, triangular, simétrica y nula.}\par\medskip
+\begin{listaejercicios}
+
+\item Clasifique $A=\begin{pmatrix}2&0\\0&3\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&2&0\\2&1&2\\0&2&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&2&0\\0&1&0\\0&0&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&0&0&0\\-2&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}2&0&-3\\-1&-2&-3\\3&2&1\\0&3&3\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\\0&0&0&0&0\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&1&0&0&0\\2&1&0&0&0\\0&0&1&0&0\\0&0&0&1&0\\0&0&0&0&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&2&0\\2&1&2\\0&2&1\end{pmatrix}$.
+
+\item Clasifique $A=\begin{pmatrix}1&2&0\\0&1&0\\0&0&1\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia D: suma, resta y producto por un escalar}\noindent\textit{En todos los ejercicios calcule $2A-B$, trabajando entrada por entrada. Esta repetición busca automatizar el cálculo sin cambiar la técnica.}\par\medskip
+\begin{listaejercicios}
+
+\item Si $A=\begin{pmatrix}-2&-1\\2&1\end{pmatrix}$ y $B=\begin{pmatrix}-1&-2\\-2&1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}-1&-1&2\\1&-1&0\end{pmatrix}$ y $B=\begin{pmatrix}1&-2&-2\\2&-2&-1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}1&1\\-2&1\\1&1\end{pmatrix}$ y $B=\begin{pmatrix}1&2\\0&2\\1&-2\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}-2&-2&-2\\-1&-2&1\\0&-1&1\end{pmatrix}$ y $B=\begin{pmatrix}1&1&-1\\2&0&-1\\1&2&0\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}-1&2\\-1&1\\-2&-2\\-2&1\end{pmatrix}$ y $B=\begin{pmatrix}1&1\\1&0\\2&-2\\-1&1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}0&-2&-2&-2\\-2&0&0&2\end{pmatrix}$ y $B=\begin{pmatrix}-1&-1&-1&-1\\-1&2&-1&-2\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}1&1&2&2\\0&-1&0&2\\-1&1&-1&0\end{pmatrix}$ y $B=\begin{pmatrix}-2&2&0&1\\0&2&2&1\\1&0&-1&-1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}1&-2&2\\2&2&2\\-2&-2&0\\-2&2&0\end{pmatrix}$ y $B=\begin{pmatrix}-1&-1&-1\\0&0&2\\1&-2&-1\\0&-2&-2\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}-1&1\\-2&-2\\1&2\\0&2\\2&-1\end{pmatrix}$ y $B=\begin{pmatrix}-1&2\\2&1\\-2&-1\\-1&-1\\2&-2\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}0&0&-1&-2&-1\\0&0&0&1&-1\end{pmatrix}$ y $B=\begin{pmatrix}1&2&1&-1&2\\1&-1&-1&1&2\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}1&0&1&-2\\-2&2&1&-2\\2&-1&2&2\\-1&0&1&0\end{pmatrix}$ y $B=\begin{pmatrix}1&-2&1&-2\\0&1&0&-1\\0&1&-1&0\\2&0&-2&-1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}-2&1&1\\1&-1&1\\1&-1&1\\-2&-1&1\\2&1&-1\end{pmatrix}$ y $B=\begin{pmatrix}-2&2&1\\-1&2&0\\-1&1&-1\\-2&-1&2\\-1&1&1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}-1&-2&-2&-1&0\\-2&-1&0&-1&-1\\-2&-2&-2&-1&2\end{pmatrix}$ y $B=\begin{pmatrix}-1&0&2&0&-2\\2&-1&-1&0&2\\0&0&2&-2&1\end{pmatrix}$, calcule $2A-B$.
+
+\item Si $A=\begin{pmatrix}1&2&2&0&2\\-2&-1&2&-2&-2\\1&-2&2&1&1\\-1&-2&2&1&2\\-2&0&-1&0&0\end{pmatrix}$ y $B=\begin{pmatrix}-2&-2&1&1&-2\\-2&-1&1&2&0\\2&1&0&2&-1\\-1&2&-1&1&0\\1&0&2&1&-1\end{pmatrix}$, calcule $2A-B$.
+
+\end{listaejercicios}
+
+\subsection{Familia E: transposición de matrices}\noindent\textit{Calcule la transpuesta y señale su orden; después indique si la suma $A+A^T$ está definida.}\par\medskip
+\begin{listaejercicios}
+
+\item Para $A=\begin{pmatrix}-1&2&0\\-1&-1&1\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}-1&2\\2&-2\\0&0\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}-1&-1&-1\\-2&0&-2\\-2&-1&-2\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}1&0\\0&1\\-2&0\\2&1\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}1&2&-1&-1\\-1&0&-1&-2\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}1&2&2&-2\\2&-1&-1&0\\2&-2&0&-2\\-2&-1&-1&-2\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}0&1\\2&1\\-2&0\\1&1\\-2&-2\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}1&0&-1&2&-1\\0&-2&1&2&-1\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}-2&2&0&-1\\0&0&2&1\\-1&1&1&0\\2&1&2&-1\\1&-2&-1&0\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}1&1&1&-2&-1\\2&-2&-1&0&2\\-2&-1&-2&1&2\\-1&1&-1&-1&2\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}-1&1&-1&1&0\\2&-1&0&-1&-2\\1&2&1&-1&2\\-1&-1&1&1&-2\\0&-1&-2&1&2\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\item Para $A=\begin{pmatrix}1&-1&2&-2&-1\\-2&0&0&2&-2\\0&-1&-1&0&-1\end{pmatrix}$, calcule $A^T$ y decida si existe $A+A^T$.
+
+\end{listaejercicios}
+
+\subsection{Familia F: compatibilidad de dimensiones en productos}\noindent\textit{Sin realizar productos numéricos, determine cuáles existen y el orden del resultado. Si no existen, explique qué dimensiones internas no coinciden.}\par\medskip
+\begin{listaejercicios}
+
+\item Sean $A$ de orden $2\times3$ y $B$ de orden $3\times4$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $3\times2$ y $B$ de orden $2\times5$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $4\times3$ y $B$ de orden $4\times2$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $2\times5$ y $B$ de orden $5\times3$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $5\times4$ y $B$ de orden $4\times2$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $3\times5$ y $B$ de orden $4\times3$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $4\times2$ y $B$ de orden $2\times3$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $3\times3$ y $B$ de orden $3\times4$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $2\times4$ y $B$ de orden $2\times4$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $5\times5$ y $B$ de orden $5\times2$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $1\times5$ y $B$ de orden $5\times1$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $5\times1$ y $B$ de orden $1\times5$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $4\times5$ y $B$ de orden $5\times4$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $5\times3$ y $B$ de orden $3\times5$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $3\times4$ y $B$ de orden $5\times2$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\item Sean $A$ de orden $2\times3$ y $B$ de orden $2\times5$. ¿Existe $AB$? ¿Existe $BA$? Indique los órdenes cuando existan.
+
+\end{listaejercicios}
+
+\subsection{Familia G: producto matricial fila por columna}\noindent\textit{Calcule $AB$, mostrando los productos escalares que conducen a sus entradas. Varíe sólo el tamaño: la técnica siempre es la misma.}\par\medskip
+\begin{listaejercicios}
+
+\item Calcule $AB$ para $A=\begin{pmatrix}1&0\\0&2\end{pmatrix}$ y $B=\begin{pmatrix}0&-1\\-2&-2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}1&2&0\\0&0&2\end{pmatrix}$ y $B=\begin{pmatrix}-2&0\\0&-1\\0&-1\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}1&-2\\0&-2\\0&-1\end{pmatrix}$ y $B=\begin{pmatrix}-1&0&-2&-1\\-1&2&2&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}2&2&-1&-1\\1&2&2&2\end{pmatrix}$ y $B=\begin{pmatrix}-2&1&1\\-1&-1&1\\-2&1&2\\0&1&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}1&1\\2&-1\\2&2\\-2&-1\end{pmatrix}$ y $B=\begin{pmatrix}2&-2&-2\\1&-2&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}-1&0&-1\\1&-1&-1\\-1&-2&1\end{pmatrix}$ y $B=\begin{pmatrix}0&0&-1\\-1&-2&2\\-1&-1&1\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}2&2&0\\-1&0&1\\-2&2&0\\-1&1&-2\end{pmatrix}$ y $B=\begin{pmatrix}2&-2\\-1&2\\0&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}0&1\\-2&-1\\1&-2\\-2&-1\\0&1\end{pmatrix}$ y $B=\begin{pmatrix}-1&-2&-2\\2&-2&0\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}1&-2&0&0&1\\-1&-1&-2&0&-2\\2&0&-2&2&1\end{pmatrix}$ y $B=\begin{pmatrix}2&0\\0&-1\\0&2\\2&1\\-2&0\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}2&-2&-2&-2\\0&2&0&-1\\2&2&1&1\\0&0&-1&-1\end{pmatrix}$ y $B=\begin{pmatrix}-2&-2\\2&1\\0&2\\-2&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}2&2&2\\1&-2&2\\0&2&-1\\2&-2&-1\\2&1&2\end{pmatrix}$ y $B=\begin{pmatrix}1&-1&1&0\\0&-2&-1&-2\\-1&1&-2&1\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}-2&0&0&-2&2\\-2&-1&-1&-1&0\end{pmatrix}$ y $B=\begin{pmatrix}-1&2&2&1&2\\2&-1&-2&2&2\\-1&-1&1&2&-1\\1&-2&-2&-2&2\\2&1&2&0&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}-1&2&0&-2&-1\\0&2&2&-1&2\\-2&-2&-2&0&-2\\1&0&-2&0&0\\-1&-2&-1&1&2\end{pmatrix}$ y $B=\begin{pmatrix}0&1\\-1&-1\\-1&-2\\-2&-2\\0&2\end{pmatrix}$.
+
+\item Calcule $AB$ para $A=\begin{pmatrix}-1&-2&-1&-2&0\\2&0&-2&-2&-1\\2&-1&1&0&2\\-2&0&2&1&-2\end{pmatrix}$ y $B=\begin{pmatrix}0&0&-2&2\\-1&-2&-2&1\\-1&2&-1&-1\\2&-2&-2&2\\-2&-2&-1&0\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia H: inversas con Gauss--Jordan}\noindent\textit{Forme $[A\mid I_n]$, registre cada operación elemental y verifique $AA^{-1}=I_n$. Los ejemplos de orden $4$ y $5$ se eligieron para mantener operaciones manejables.}\par\medskip
+\begin{listaejercicios}
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0\\2&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}5&2\\2&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}-3&2\\-2&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}-3&2&0\\-2&1&0\\2&0&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0&2\\0&1&-2\\0&-2&5\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0&0\\0&1&-1\\0&0&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&1&0\\-1&0&0\\0&2&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&2&0&0\\0&1&0&0\\0&0&1&-1\\0&0&0&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0&-2&0\\-1&1&0&0\\0&0&1&0\\0&0&0&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0&0&1\\0&1&0&0\\0&0&1&0\\0&0&-1&1\end{pmatrix}$.
+
+\item Encuentre $A^{-1}$ mediante Gauss--Jordan, para $A=\begin{pmatrix}1&0&0&0&0\\0&3&0&2&0\\0&0&1&0&0\\0&1&0&1&0\\0&0&0&0&1\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia I: determinantes de orden dos}\noindent\textit{En todos los casos aplique la misma identidad $ad-bc$, con especial atención a los signos.}\par\medskip
+\begin{listaejercicios}
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-4&-4\\4&-4\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}4&-2\\4&4\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}3&2\\-1&-2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-3&-4\\3&4\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}2&-1\\0&2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-1&3\\2&-1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}1&-1\\-3&-2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}3&3\\2&-1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-1&-3\\-1&2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}1&1\\-1&1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}2&4\\3&-2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}4&2\\-4&1\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia J: determinantes de orden tres}\noindent\textit{Calcule cada determinante mediante Sarrus y verifique los primeros ejercicios por expansión de Laplace.}\par\medskip
+\begin{listaejercicios}
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}2&-2&0\\3&3&0\\2&1&3\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}2&-2&-3\\2&-1&-3\\1&-2&-1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}3&3&-1\\3&0&1\\-2&-1&-2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}1&-3&2\\-3&-2&2\\1&-1&-1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}1&-1&2\\0&-2&1\\1&2&3\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-1&1&1\\-2&-1&1\\2&0&1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-1&3&0\\0&-1&2\\2&-1&-2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-3&-3&1\\3&-2&-3\\0&0&-3\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}2&2&-3\\0&2&3\\0&3&-1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-2&3&-1\\-2&0&0\\0&-1&0\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-3&-2&1\\2&2&-3\\1&-3&0\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}3&3&3\\-1&2&1\\2&-2&2\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia K: determinantes de órdenes cuatro y cinco}\noindent\textit{Antes de expandir, busque ceros o utilice eliminación por filas, registrando cambios de signo y factores escalares.}\par\medskip
+\begin{listaejercicios}
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}2&-2&-4&0\\0&-1&0&0\\0&0&-2&-1\\0&0&0&3\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}1&0&1&-2\\0&1&0&0\\0&0&-2&2\\0&0&0&1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}0&0&1&0\\0&-1&0&0\\-2&1&0&0\\0&0&0&2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}0&0&0&1\\0&-1&0&0\\0&0&-2&0\\1&-2&0&0\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}1&0&0&0\\-1&-1&0&-1\\0&0&1&0\\0&0&0&3\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-2&0&2&0\\0&3&0&2\\0&0&1&0\\0&0&0&1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-2&0&2&2&2\\0&2&-2&-2&-2\\0&0&3&0&0\\0&0&0&-1&0\\0&0&0&0&2\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-1&0&0&0&2\\0&-2&0&-2&0\\0&0&-2&2&0\\0&0&0&-1&0\\0&0&0&0&1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-1&0&0&0&0\\0&2&0&0&0\\0&0&1&0&0\\0&-2&0&2&0\\0&0&0&0&1\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-2&0&0&0&2\\0&3&0&0&-2\\0&0&1&0&-1\\0&0&0&-2&0\\0&-3&0&0&4\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}-2&0&0&0&1\\0&-1&0&0&1\\0&0&1&2&0\\0&0&0&1&4\\0&0&0&0&3\end{pmatrix}$.
+
+\item Calcule $\det(A)$ para $A=\begin{pmatrix}3&0&0&0&0\\-6&-1&2&0&1\\0&0&1&0&1\\0&0&0&-2&-1\\0&0&0&0&-1\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia L: menores y cofactores}\noindent\textit{Para cada matriz calcule el menor $M_{ij}$ y el cofactor $C_{ij}$ de la entrada indicada. Explique la diferencia entre el menor y el cofactor.}\par\medskip
+\begin{listaejercicios}
+
+\item Para $A=\begin{pmatrix}-2&2&2\\1&-2&-2\\-2&2&-1\end{pmatrix}$, encuentre $M_{3,3}$ y $C_{3,3}$.
+
+\item Para $A=\begin{pmatrix}0&0&1\\1&-1&1\\0&-2&2\end{pmatrix}$, encuentre $M_{1,2}$ y $C_{1,2}$.
+
+\item Para $A=\begin{pmatrix}1&-1&-1\\0&-2&-2\\0&1&-1\end{pmatrix}$, encuentre $M_{3,3}$ y $C_{3,3}$.
+
+\item Para $A=\begin{pmatrix}1&1&1\\-1&-1&1\\-1&-1&-2\end{pmatrix}$, encuentre $M_{2,3}$ y $C_{2,3}$.
+
+\item Para $A=\begin{pmatrix}2&0&-2\\1&-1&-1\\-2&0&-1\end{pmatrix}$, encuentre $M_{3,2}$ y $C_{3,2}$.
+
+\item Para $A=\begin{pmatrix}1&2&1\\-1&-2&2\\-1&1&0\end{pmatrix}$, encuentre $M_{2,2}$ y $C_{2,2}$.
+
+\item Para $A=\begin{pmatrix}-2&2&-2\\0&2&2\\2&2&0\end{pmatrix}$, encuentre $M_{3,2}$ y $C_{3,2}$.
+
+\item Para $A=\begin{pmatrix}-1&0&0&0\\1&-2&2&-2\\1&0&2&-2\\2&1&-1&-1\end{pmatrix}$, encuentre $M_{1,4}$ y $C_{1,4}$.
+
+\item Para $A=\begin{pmatrix}1&0&1&-1\\-2&1&-2&-2\\-2&-1&-1&2\\-1&0&2&-2\end{pmatrix}$, encuentre $M_{4,2}$ y $C_{4,2}$.
+
+\item Para $A=\begin{pmatrix}-1&-2&-2&0\\0&-2&0&2\\-1&-1&-1&0\\-2&1&1&-2\end{pmatrix}$, encuentre $M_{4,2}$ y $C_{4,2}$.
+
+\item Para $A=\begin{pmatrix}-1&-2&-2&1\\1&-1&1&1\\1&-2&-2&1\\0&-2&2&-1\end{pmatrix}$, encuentre $M_{2,3}$ y $C_{2,3}$.
+
+\item Para $A=\begin{pmatrix}-2&-2&1&2\\-1&-1&1&-2\\-2&-2&2&0\\0&0&0&-1\end{pmatrix}$, encuentre $M_{4,4}$ y $C_{4,4}$.
+
+\end{listaejercicios}
+
+\subsection{Familia M: matriz adjunta y fórmula de la inversa}\noindent\textit{Calcule la matriz de cofactores, transpuesta y, si el determinante es distinto de cero, la inversa. Compare con Gauss--Jordan.}\par\medskip
+\begin{listaejercicios}
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}3&-1\\-2&1\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&1\\1&2\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}3&2\\1&1\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&1\\-1&0\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&0&0\\0&-1&3\\0&-1&2\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&-1&4\\0&1&0\\0&0&1\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&0&0\\-1&1&-2\\2&0&1\end{pmatrix}$.
+
+\item Calcule $\adj(A)$ y $A^{-1}$ usando cofactores, con $A=\begin{pmatrix}1&0&-1\\2&1&-1\\0&0&1\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia N: rango de matrices cuadradas y rectangulares}\noindent\textit{Reduzca cada matriz por filas y cuente pivotes. Los tamaños incluyen $2\times5$, $3\times4$, $4\times5$ y $5\times4$.}\par\medskip
+\begin{listaejercicios}
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}2&0&2\\-1&0&-1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&1&4&3\\-1&0&-2&-1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&2\\0&0\\0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&0&1\\-1&1&0&-2\\-1&1&0&-2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&0\\0&1&0\\0&1&1\\0&-1&-1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&-2&-1&0\\0&1&-1&1&-1\\0&0&0&0&0\\0&1&-1&1&-1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&0&1\\0&1&0&-1\\0&1&1&0\\0&1&1&0\\0&0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&0&0&-1\\1&1&1&1&-1\\0&0&1&1&-2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0\\0&1\\0&0\\0&0\\0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&1&-1&1&-1\\0&0&0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&1&0&3\\0&1&0&1\\0&1&1&2\\0&0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&0&1&3\\0&1&0&0&-1\\0&0&1&1&3\\0&0&0&1&1\\0&0&0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&2&0\\0&0&0\\0&0&0\\0&0&0\\0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&-1\\0&1&1\\1&0&-1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&-1&0&0&-1\\0&1&0&0&2\\0&0&1&0&-1\\-1&0&0&1&-1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ reduciendo $A=\begin{pmatrix}1&0&0&2\\0&1&-2&2\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix}$.
+
+\end{listaejercicios}
+
+\subsection{Familia O: núcleos de matrices no necesariamente cuadradas}\noindent\textit{Resuelva $A\vect x=0$, indique las variables libres y escriba el núcleo en forma paramétrica. Verifique cada vector generador multiplicando por $A$.}\par\medskip
+\begin{listaejercicios}
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&2&0\\-2&-4&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&1&0&2\\1&2&-1&2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0\\0&1\\-2&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&-2&0\\1&1&-4&2\\1&1&-4&2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&0\\0&1&0\\-1&0&1\\0&-1&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&-2&-1&-2\\1&1&-4&0&-1\\0&0&0&0&0\\-1&0&2&1&2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&1&0&1\\0&1&0&1\\0&0&1&-1\\0&0&0&0\\1&1&0&1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&-1&3&0\\0&1&0&-1&0\\0&-1&1&0&2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0\\1&1\\1&1\\0&0\\0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&2&2&2&2\\0&0&0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&1&0&1\\0&1&0&-1\\0&0&1&2\\0&-1&0&1\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&-1&0&0&2\\0&1&0&0&-2\\0&0&1&0&1\\0&1&0&1&0\\0&0&0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&-2&-1\\0&0&0\\1&-2&-1\\0&0&0\\0&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&0\\-1&1&-1\\-1&0&0\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&0&0&2\\0&1&0&-2&3\\0&0&1&0&2\\0&0&0&1&-2\end{pmatrix}$.
+
+\item Determine $\rang(A)$ y $\Ker(A)$ para $A=\begin{pmatrix}1&0&-1&-2\\0&1&0&-1\\0&0&0&0\\0&0&0&0\\0&0&0&0\end{pmatrix}$.
+
+\end{listaejercicios}
+
+
+\appendix
+\section{Soluciones seleccionadas paso a paso}
+%===============================================================
+Estas soluciones muestran el procedimiento, no sólo el resultado. Los números corresponden a la lista continua de ejercicios anterior.
+
+\subsection*{Ejercicio E3: igualdad de matrices}
+De las entradas respectivas:
+\[
+x-2=5,\qquad 3y=-6,\qquad z+1=4.
+\]
+Por tanto, $\boxed{x=7,\ y=-2,\ z=3}$.
+
+\subsection*{Ejercicio E7: productos en distinto orden}
+Para
+\[
+A=\begin{pmatrix}1&2\\0&1\end{pmatrix},\qquad
+B=\begin{pmatrix}2&0\\1&3\end{pmatrix},
+\]
+calculamos
+\[
+AB=\begin{pmatrix}1(2)+2(1)&1(0)+2(3)\\0(2)+1(1)&0(0)+1(3)\end{pmatrix}
+=\boxed{\begin{pmatrix}4&6\\1&3\end{pmatrix}},
+\]
+mientras que
+\[
+BA=\begin{pmatrix}2(1)+0(0)&2(2)+0(1)\\1(1)+3(0)&1(2)+3(1)\end{pmatrix}
+=\boxed{\begin{pmatrix}2&4\\1&5\end{pmatrix}}.
+\]
+Así, $AB\ne BA$.
+
+\subsection*{Ejercicio E12: inversa por Gauss--Jordan}
+Para $A=\begin{psmallmatrix}3&1\\2&1\end{psmallmatrix}$ partimos de
+\[
+\left(\begin{array}{cc|cc}3&1&1&0\\2&1&0&1\end{array}\right)
+\xrightarrow{R_1\leftarrow R_1-R_2}
+\left(\begin{array}{cc|cc}1&0&1&-1\\2&1&0&1\end{array}\right)
+\xrightarrow{R_2\leftarrow R_2-2R_1}
+\left(\begin{array}{cc|cc}1&0&1&-1\\0&1&-2&3\end{array}\right).
+\]
+De aquí,
+\[
+\boxed{A^{-1}=\begin{pmatrix}1&-1\\-2&3\end{pmatrix}}.
+\]
+La verificación es
+\[
+\begin{pmatrix}3&1\\2&1\end{pmatrix}
+\begin{pmatrix}1&-1\\-2&3\end{pmatrix}
+=\begin{pmatrix}1&0\\0&1\end{pmatrix}.
+\]
+
+\subsection*{Ejercicio E17: determinante $2\times2$}
+\[
+\begin{vmatrix}4&-2\\3&5\end{vmatrix}=4(5)-(-2)(3)=20+6=\boxed{26}.
+\]
+
+\subsection*{Ejercicio E22: determinante de $2A$}
+Para una matriz de orden $3$, multiplicar \emph{todas} sus entradas por $2$ equivale a multiplicar cada una de las tres filas por $2$. Luego
+\[
+\det(2A)=2^3\det(A)=8(3)=\boxed{24},\qquad
+\det(A^T)=\det(A)=\boxed{3}.
+\]
+
+\subsection*{Ejercicio E24: inversa mediante adjunta}
+Sea $A=\begin{psmallmatrix}3&1\\2&1\end{psmallmatrix}$. Su determinante es
+\[
+\det(A)=3(1)-1(2)=1.
+\]
+La matriz de cofactores es
+\[
+C=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}.
+\]
+La adjunta es la transpuesta:
+\[
+\adj(A)=\begin{pmatrix}1&-1\\-2&3\end{pmatrix}.
+\]
+Finalmente,
+\[
+\boxed{A^{-1}=\frac{1}{\det(A)}\adj(A)
+=\begin{pmatrix}1&-1\\-2&3\end{pmatrix}.}
+\]
+El resultado coincide con el ejercicio E12.
+
+\subsection*{Ejercicio E27: rango y núcleo de una matriz rectangular}
+Sea $A=\begin{psmallmatrix}1&2&1\\0&1&1\end{psmallmatrix}$. Eliminamos la entrada superior de la segunda columna:
+\[
+\begin{pmatrix}1&2&1\\0&1&1\end{pmatrix}
+\xrightarrow{R_1\leftarrow R_1-2R_2}
+\begin{pmatrix}1&0&-1\\0&1&1\end{pmatrix}.
+\]
+Hay dos pivotes: $\boxed{\rang(A)=2}$. El sistema homogéneo asociado es
+\[
+x_1-x_3=0,\qquad x_2+x_3=0.
+\]
+Tomando $x_3=t$:
+\[
+\boxed{\Ker(A)=\left\{t\begin{pmatrix}1\\-1\\1\end{pmatrix}:t\in\R\right\}.}
+\]
+
+\subsection*{Ejercicio E32: matriz con parámetro}
+Sea
+\[
+A=\begin{pmatrix}1&a\\2&4\end{pmatrix}.
+\]
+La matriz no es invertible exactamente cuando
+\[
+\det(A)=4-2a=0.
+\]
+Despejando obtenemos $\boxed{a=2}$. Para cualquier $a\ne2$, la matriz sí es invertible.
+
+\subsection*{Ejercicio E33: núcleo de una matriz $3\times3$}
+Dada
+\[
+A=\begin{pmatrix}1&1&0\\0&1&1\\1&2&1\end{pmatrix},
+\]
+restamos la primera fila a la tercera:
+\[
+\begin{pmatrix}1&1&0\\0&1&1\\0&1&1\end{pmatrix}
+\xrightarrow{R_3\leftarrow R_3-R_2}
+\begin{pmatrix}1&1&0\\0&1&1\\0&0&0\end{pmatrix}.
+\]
+Así $\rang(A)=2$. El sistema equivalente es
+\[
+x_1+x_2=0,\qquad x_2+x_3=0.
+\]
+Si $x_3=t$, entonces $x_2=-t$ y $x_1=t$, con lo que
+\[
+\boxed{\Ker(A)=\left\{t\begin{pmatrix}1\\-1\\1\end{pmatrix}:t\in\R\right\}.}
+\]
+
+%===============================================================
+\section{Respuestas del banco ampliado}\label{app:respuestas}\noindent Esta sección reúne las respuestas de la práctica repetitiva para autocorrección. Los procedimientos completos aparecen en el cuerpo de las notas y en el taller.\par
+\subsection*{A: orden, filas, columnas y entradas}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E35.] Orden $1\times4$; 4 entradas; $a_{12}=0$, $a_{13}=2$.
+\item[E36.] Orden $2\times3$; 6 entradas; $a_{12}=-2$, $a_{11}=-2$.
+\item[E37.] Orden $3\times2$; 6 entradas; $a_{12}=1$, $a_{12}=1$.
+\item[E38.] Orden $3\times4$; 12 entradas; $a_{11}=-3$, $a_{33}=2$.
+\item[E39.] Orden $4\times3$; 12 entradas; $a_{32}=3$, $a_{13}=2$.
+\item[E40.] Orden $5\times2$; 10 entradas; $a_{31}=3$, $a_{12}=0$.
+\item[E41.] Orden $2\times5$; 10 entradas; $a_{22}=1$, $a_{21}=3$.
+\item[E42.] Orden $4\times4$; 16 entradas; $a_{11}=0$, $a_{33}=2$.
+\item[E43.] Orden $5\times3$; 15 entradas; $a_{53}=-2$, $a_{22}=-3$.
+\item[E44.] Orden $3\times5$; 15 entradas; $a_{11}=2$, $a_{14}=-1$.
+\item[E45.] Orden $5\times4$; 20 entradas; $a_{23}=-2$, $a_{52}=-3$.
+\item[E46.] Orden $5\times5$; 25 entradas; $a_{11}=-3$, $a_{31}=3$.
+\end{description}
+\subsection*{B: igualdad de matrices y parámetros}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E47.] $x=-1$, $y=3$.
+\item[E48.] $x=-3$, $y=3$.
+\item[E49.] $x=-4$, $y=2$.
+\item[E50.] $x=-1$, $y=2$.
+\item[E51.] $x=-1$, $y=-2$.
+\item[E52.] $x=-6$, $y=2$.
+\item[E53.] $x=-3$, $y=-4$.
+\item[E54.] $x=2$, $y=1$.
+\item[E55.] $x=-2$, $y=-1$.
+\item[E56.] $x=-1$, $y=0$.
+\item[E57.] $x=-3$, $y=1$.
+\item[E58.] $x=-2$, $y=-3$.
+\end{description}
+\subsection*{C: clasificación de matrices}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E59.] La matriz es diagonal, simétrica y triangular superior e inferior. Su orden es $2\times2$.
+\item[E60.] La matriz es la identidad, diagonal, simétrica y triangular superior e inferior. Su orden es $2\times2$.
+\item[E61.] La matriz es simétrica, pero no necesariamente diagonal. Su orden es $3\times3$.
+\item[E62.] La matriz es triangular superior, pero no necesariamente simétrica. Su orden es $3\times3$.
+\item[E63.] La matriz es triangular inferior, pero no necesariamente simétrica. Su orden es $4\times4$.
+\item[E64.] La matriz es rectangular; la transposición existe, pero no se habla de simetría sin ser cuadrada. Su orden es $4\times3$.
+\item[E65.] La matriz es nula, diagonal si es cuadrada, y triangular cuando es cuadrada. Su orden es $5\times5$.
+\item[E66.] La matriz es cuadrada, sin otra forma especial de las anteriores. Su orden es $5\times5$.
+\item[E67.] La matriz es diagonal, simétrica y triangular superior e inferior. Su orden es $2\times2$.
+\item[E68.] La matriz es la identidad, diagonal, simétrica y triangular superior e inferior. Su orden es $2\times2$.
+\item[E69.] La matriz es simétrica, pero no necesariamente diagonal. Su orden es $3\times3$.
+\item[E70.] La matriz es triangular superior, pero no necesariamente simétrica. Su orden es $3\times3$.
+\end{description}
+\subsection*{D: suma, resta y producto por un escalar}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E71.] $2A-B=\begin{pmatrix}-3&0\\6&1\end{pmatrix}$.
+\item[E72.] $2A-B=\begin{pmatrix}-3&0&6\\0&0&1\end{pmatrix}$.
+\item[E73.] $2A-B=\begin{pmatrix}1&0\\-4&0\\1&4\end{pmatrix}$.
+\item[E74.] $2A-B=\begin{pmatrix}-5&-5&-3\\-4&-4&3\\-1&-4&2\end{pmatrix}$.
+\item[E75.] $2A-B=\begin{pmatrix}-3&3\\-3&2\\-6&-2\\-3&1\end{pmatrix}$.
+\item[E76.] $2A-B=\begin{pmatrix}1&-3&-3&-3\\-3&-2&1&6\end{pmatrix}$.
+\item[E77.] $2A-B=\begin{pmatrix}4&0&4&3\\0&-4&-2&3\\-3&2&-1&1\end{pmatrix}$.
+\item[E78.] $2A-B=\begin{pmatrix}3&-3&5\\4&4&2\\-5&-2&1\\-4&6&2\end{pmatrix}$.
+\item[E79.] $2A-B=\begin{pmatrix}-1&0\\-6&-5\\4&5\\1&5\\2&0\end{pmatrix}$.
+\item[E80.] $2A-B=\begin{pmatrix}-1&-2&-3&-3&-4\\-1&1&1&1&-4\end{pmatrix}$.
+\item[E81.] $2A-B=\begin{pmatrix}1&2&1&-2\\-4&3&2&-3\\4&-3&5&4\\-4&0&4&1\end{pmatrix}$.
+\item[E82.] $2A-B=\begin{pmatrix}-2&0&1\\3&-4&2\\3&-3&3\\-2&-1&0\\5&1&-3\end{pmatrix}$.
+\item[E83.] $2A-B=\begin{pmatrix}-1&-4&-6&-2&2\\-6&-1&1&-2&-4\\-4&-4&-6&0&3\end{pmatrix}$.
+\item[E84.] $2A-B=\begin{pmatrix}4&6&3&-1&6\\-2&-1&3&-6&-4\\0&-5&4&0&3\\-1&-6&5&1&4\\-5&0&-4&-1&1\end{pmatrix}$.
+\end{description}
+\subsection*{E: transposición de matrices}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E85.] $A^T=\begin{pmatrix}-1&-1\\2&-1\\0&1\end{pmatrix}$ de orden $3\times 2$; no existe la suma (órdenes distintos).
+\item[E86.] $A^T=\begin{pmatrix}-1&2&0\\2&-2&0\end{pmatrix}$ de orden $2\times 3$; no existe la suma (órdenes distintos).
+\item[E87.] $A^T=\begin{pmatrix}-1&-2&-2\\-1&0&-1\\-1&-2&-2\end{pmatrix}$ de orden $3\times 3$; sí existe la suma.
+\item[E88.] $A^T=\begin{pmatrix}1&0&-2&2\\0&1&0&1\end{pmatrix}$ de orden $2\times 4$; no existe la suma (órdenes distintos).
+\item[E89.] $A^T=\begin{pmatrix}1&-1\\2&0\\-1&-1\\-1&-2\end{pmatrix}$ de orden $4\times 2$; no existe la suma (órdenes distintos).
+\item[E90.] $A^T=\begin{pmatrix}1&2&2&-2\\2&-1&-2&-1\\2&-1&0&-1\\-2&0&-2&-2\end{pmatrix}$ de orden $4\times 4$; sí existe la suma.
+\item[E91.] $A^T=\begin{pmatrix}0&2&-2&1&-2\\1&1&0&1&-2\end{pmatrix}$ de orden $2\times 5$; no existe la suma (órdenes distintos).
+\item[E92.] $A^T=\begin{pmatrix}1&0\\0&-2\\-1&1\\2&2\\-1&-1\end{pmatrix}$ de orden $5\times 2$; no existe la suma (órdenes distintos).
+\item[E93.] $A^T=\begin{pmatrix}-2&0&-1&2&1\\2&0&1&1&-2\\0&2&1&2&-1\\-1&1&0&-1&0\end{pmatrix}$ de orden $4\times 5$; no existe la suma (órdenes distintos).
+\item[E94.] $A^T=\begin{pmatrix}1&2&-2&-1\\1&-2&-1&1\\1&-1&-2&-1\\-2&0&1&-1\\-1&2&2&2\end{pmatrix}$ de orden $5\times 4$; no existe la suma (órdenes distintos).
+\item[E95.] $A^T=\begin{pmatrix}-1&2&1&-1&0\\1&-1&2&-1&-1\\-1&0&1&1&-2\\1&-1&-1&1&1\\0&-2&2&-2&2\end{pmatrix}$ de orden $5\times 5$; sí existe la suma.
+\item[E96.] $A^T=\begin{pmatrix}1&-2&0\\-1&0&-1\\2&0&-1\\-2&2&0\\-1&-2&-1\end{pmatrix}$ de orden $5\times 3$; no existe la suma (órdenes distintos).
+\end{description}
+\subsection*{F: compatibilidad de dimensiones en productos}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E97.]  $AB$: sí, $2\times4$; $BA$: no ($4\ne2$).
+\item[E98.]  $AB$: sí, $3\times5$; $BA$: no ($5\ne3$).
+\item[E99.]  $AB$: no ($3\ne4$); $BA$: no ($2\ne4$).
+\item[E100.]  $AB$: sí, $2\times3$; $BA$: no ($3\ne2$).
+\item[E101.]  $AB$: sí, $5\times2$; $BA$: no ($2\ne5$).
+\item[E102.]  $AB$: no ($5\ne4$); $BA$: sí, $4\times5$.
+\item[E103.]  $AB$: sí, $4\times3$; $BA$: no ($3\ne4$).
+\item[E104.]  $AB$: sí, $3\times4$; $BA$: no ($4\ne3$).
+\item[E105.]  $AB$: no ($4\ne2$); $BA$: no ($4\ne2$).
+\item[E106.]  $AB$: sí, $5\times2$; $BA$: no ($2\ne5$).
+\item[E107.]  $AB$: sí, $1\times1$; $BA$: sí, $5\times5$.
+\item[E108.]  $AB$: sí, $5\times5$; $BA$: sí, $1\times1$.
+\item[E109.]  $AB$: sí, $4\times4$; $BA$: sí, $5\times5$.
+\item[E110.]  $AB$: sí, $5\times5$; $BA$: sí, $3\times3$.
+\item[E111.]  $AB$: no ($4\ne5$); $BA$: no ($2\ne3$).
+\item[E112.]  $AB$: no ($3\ne2$); $BA$: no ($5\ne2$).
+\end{description}
+\subsection*{G: producto matricial fila por columna}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E113.] $AB=\begin{pmatrix}0&-1\\-4&-4\end{pmatrix}$.
+\item[E114.] $AB=\begin{pmatrix}-2&-2\\0&-2\end{pmatrix}$.
+\item[E115.] $AB=\begin{pmatrix}1&-4&-6&-5\\2&-4&-4&-4\\1&-2&-2&-2\end{pmatrix}$.
+\item[E116.] $AB=\begin{pmatrix}-4&-2&0\\-8&3&11\end{pmatrix}$.
+\item[E117.] $AB=\begin{pmatrix}3&-4&0\\3&-2&-6\\6&-8&0\\-5&6&2\end{pmatrix}$.
+\item[E118.] $AB=\begin{pmatrix}1&1&0\\2&3&-4\\1&3&-2\end{pmatrix}$.
+\item[E119.] $AB=\begin{pmatrix}2&0\\-2&4\\-6&8\\-3&0\end{pmatrix}$.
+\item[E120.] $AB=\begin{pmatrix}2&-2&0\\0&6&4\\-5&2&-2\\0&6&4\\2&-2&0\end{pmatrix}$.
+\item[E121.] $AB=\begin{pmatrix}0&2\\2&-3\\6&-2\end{pmatrix}$.
+\item[E122.] $AB=\begin{pmatrix}-4&-14\\6&0\\-2&2\\2&-4\end{pmatrix}$.
+\item[E123.] $AB=\begin{pmatrix}0&-4&-4&-2\\-1&5&-1&6\\1&-5&0&-5\\3&1&6&3\\0&-2&-3&0\end{pmatrix}$.
+\item[E124.] $AB=\begin{pmatrix}4&2&4&2&-4\\0&0&-1&-4&-7\end{pmatrix}$.
+\item[E125.] $AB=\begin{pmatrix}2&-1\\-2&0\\4&0\\2&5\\1&5\end{pmatrix}$.
+\item[E126.] $AB=\begin{pmatrix}-1&6&11&-7\\0&2&3&2\\-4&0&-5&2\\4&6&2&-4\end{pmatrix}$.
+\end{description}
+\subsection*{H: inversas con Gauss--Jordan}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E127.] $A^{-1}=\begin{pmatrix}1&0\\-2&1\end{pmatrix}$.
+\item[E128.] $A^{-1}=\begin{pmatrix}1&-2\\-2&5\end{pmatrix}$.
+\item[E129.] $A^{-1}=\begin{pmatrix}1&-2\\2&-3\end{pmatrix}$.
+\item[E130.] $A^{-1}=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+\item[E131.] $A^{-1}=\begin{pmatrix}1&-2&0\\2&-3&0\\-2&4&1\end{pmatrix}$.
+\item[E132.] $A^{-1}=\begin{pmatrix}1&-4&-2\\0&5&2\\0&2&1\end{pmatrix}$.
+\item[E133.] $A^{-1}=\begin{pmatrix}1&0&0\\0&1&1\\0&0&1\end{pmatrix}$.
+\item[E134.] $A^{-1}=\begin{pmatrix}0&-1&0\\1&1&0\\-2&-2&1\end{pmatrix}$.
+\item[E135.] $A^{-1}=\begin{pmatrix}1&-2&0&0\\0&1&0&0\\0&0&1&1\\0&0&0&1\end{pmatrix}$.
+\item[E136.] $A^{-1}=\begin{pmatrix}1&0&2&0\\1&1&2&0\\0&0&1&0\\0&0&0&1\end{pmatrix}$.
+\item[E137.] $A^{-1}=\begin{pmatrix}1&0&-1&-1\\0&1&0&0\\0&0&1&0\\0&0&1&1\end{pmatrix}$.
+\item[E138.] $A^{-1}=\begin{pmatrix}1&0&0&0&0\\0&1&0&-2&0\\0&0&1&0&0\\0&-1&0&3&0\\0&0&0&0&1\end{pmatrix}$.
+\end{description}
+\subsection*{I: determinantes de orden dos}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E139.] $\det(A)=32$.
+\item[E140.] $\det(A)=24$.
+\item[E141.] $\det(A)=-4$.
+\item[E142.] $\det(A)=0$.
+\item[E143.] $\det(A)=4$.
+\item[E144.] $\det(A)=-5$.
+\item[E145.] $\det(A)=-5$.
+\item[E146.] $\det(A)=-9$.
+\item[E147.] $\det(A)=-5$.
+\item[E148.] $\det(A)=2$.
+\item[E149.] $\det(A)=-16$.
+\item[E150.] $\det(A)=12$.
+\end{description}
+\subsection*{J: determinantes de orden tres}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E151.] $\det(A)=36$.
+\item[E152.] $\det(A)=1$.
+\item[E153.] $\det(A)=18$.
+\item[E154.] $\det(A)=17$.
+\item[E155.] $\det(A)=-5$.
+\item[E156.] $\det(A)=7$.
+\item[E157.] $\det(A)=8$.
+\item[E158.] $\det(A)=-45$.
+\item[E159.] $\det(A)=-22$.
+\item[E160.] $\det(A)=-2$.
+\item[E161.] $\det(A)=25$.
+\item[E162.] $\det(A)=24$.
+\end{description}
+\subsection*{K: determinantes de órdenes cuatro y cinco}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E163.] $\det(A)=12$.
+\item[E164.] $\det(A)=-2$.
+\item[E165.] $\det(A)=-4$.
+\item[E166.] $\det(A)=-2$.
+\item[E167.] $\det(A)=-3$.
+\item[E168.] $\det(A)=-6$.
+\item[E169.] $\det(A)=24$.
+\item[E170.] $\det(A)=4$.
+\item[E171.] $\det(A)=-4$.
+\item[E172.] $\det(A)=24$.
+\item[E173.] $\det(A)=6$.
+\item[E174.] $\det(A)=-6$.
+\end{description}
+\subsection*{L: menores y cofactores}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E175.] $M_{3,3}=2$ y $C_{3,3}=2$.
+\item[E176.] $M_{1,2}=2$ y $C_{1,2}=-2$.
+\item[E177.] $M_{3,3}=-2$ y $C_{3,3}=-2$.
+\item[E178.] $M_{2,3}=0$ y $C_{2,3}=0$.
+\item[E179.] $M_{3,2}=0$ y $C_{3,2}=0$.
+\item[E180.] $M_{2,2}=1$ y $C_{2,2}=1$.
+\item[E181.] $M_{3,2}=-4$ y $C_{3,2}=4$.
+\item[E182.] $M_{1,4}=-10$ y $C_{1,4}=10$.
+\item[E183.] $M_{4,2}=4$ y $C_{4,2}=4$.
+\item[E184.] $M_{4,2}=2$ y $C_{4,2}=2$.
+\item[E185.] $M_{2,3}=-8$ y $C_{2,3}=8$.
+\item[E186.] $M_{4,4}=0$ y $C_{4,4}=0$.
+\end{description}
+\subsection*{M: matriz adjunta y fórmula de la inversa}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E187.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&0\\0&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+\item[E188.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&0\\0&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&0\\0&1\end{pmatrix}$.
+\item[E189.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&1\\2&3\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&1\\2&3\end{pmatrix}$.
+\item[E190.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}2&-1\\-1&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}2&-1\\-1&1\end{pmatrix}$.
+\item[E191.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&-2\\-1&3\end{pmatrix}$.
+\item[E192.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}0&-1\\1&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}0&-1\\1&1\end{pmatrix}$.
+\item[E193.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&0&0\\0&2&-3\\0&1&-1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&0&0\\0&2&-3\\0&1&-1\end{pmatrix}$.
+\item[E194.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&1&-4\\0&1&0\\0&0&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&1&-4\\0&1&0\\0&0&1\end{pmatrix}$.
+\item[E195.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&0&0\\-3&1&2\\-2&0&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&0&0\\-3&1&2\\-2&0&1\end{pmatrix}$.
+\item[E196.] $\det(A)=1$, $\adj(A)=\begin{pmatrix}1&0&1\\-2&1&-1\\0&0&1\end{pmatrix}$, $A^{-1}=\begin{pmatrix}1&0&1\\-2&1&-1\\0&0&1\end{pmatrix}$.
+\end{description}
+\subsection*{N: rango de matrices cuadradas y rectangulares}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E197.] $\rang(A)=1$; 1 pivote(s).
+\item[E198.] $\rang(A)=2$; 2 pivote(s).
+\item[E199.] $\rang(A)=1$; 1 pivote(s).
+\item[E200.] $\rang(A)=2$; 2 pivote(s).
+\item[E201.] $\rang(A)=3$; 3 pivote(s).
+\item[E202.] $\rang(A)=2$; 2 pivote(s).
+\item[E203.] $\rang(A)=3$; 3 pivote(s).
+\item[E204.] $\rang(A)=3$; 3 pivote(s).
+\item[E205.] $\rang(A)=2$; 2 pivote(s).
+\item[E206.] $\rang(A)=1$; 1 pivote(s).
+\item[E207.] $\rang(A)=3$; 3 pivote(s).
+\item[E208.] $\rang(A)=4$; 4 pivote(s).
+\item[E209.] $\rang(A)=1$; 1 pivote(s).
+\item[E210.] $\rang(A)=2$; 2 pivote(s).
+\item[E211.] $\rang(A)=4$; 4 pivote(s).
+\item[E212.] $\rang(A)=2$; 2 pivote(s).
+\end{description}
+\subsection*{O: núcleos de matrices no necesariamente cuadradas}
+\begin{description}[style=nextline,leftmargin=3em,itemsep=0.45em]
+\item[E213.] $\rang(A)=1$, $\nul(A)=2$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}-2\\1\\0\end{pmatrix},\ \begin{pmatrix}0\\0\\1\end{pmatrix}\right\}$. 
+\item[E214.] $\rang(A)=2$, $\nul(A)=2$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}-1\\1\\1\\0\end{pmatrix},\ \begin{pmatrix}-2\\0\\0\\1\end{pmatrix}\right\}$. 
+\item[E215.] $\rang(A)=2$, $\nul(A)=0$; $\Ker(A)=\{\vect0\}$. 
+\item[E216.] $\rang(A)=2$, $\nul(A)=2$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}2\\2\\1\\0\end{pmatrix},\ \begin{pmatrix}0\\-2\\0\\1\end{pmatrix}\right\}$. 
+\item[E217.] $\rang(A)=3$, $\nul(A)=0$; $\Ker(A)=\{\vect0\}$. 
+\item[E218.] $\rang(A)=2$, $\nul(A)=3$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}2\\2\\1\\0\\0\end{pmatrix},\ \begin{pmatrix}1\\-1\\0\\1\\0\end{pmatrix},\ \begin{pmatrix}2\\-1\\0\\0\\1\end{pmatrix}\right\}$. 
+\item[E219.] $\rang(A)=3$, $\nul(A)=1$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}0\\-1\\1\\1\end{pmatrix}\right\}$. 
+\item[E220.] $\rang(A)=3$, $\nul(A)=2$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}-2\\1\\1\\1\\0\end{pmatrix},\ \begin{pmatrix}-2\\0\\-2\\0\\1\end{pmatrix}\right\}$. 
+\item[E221.] $\rang(A)=2$, $\nul(A)=0$; $\Ker(A)=\{\vect0\}$. 
+\item[E222.] $\rang(A)=1$, $\nul(A)=4$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}-2\\1\\0\\0\\0\end{pmatrix},\ \begin{pmatrix}-2\\0\\1\\0\\0\end{pmatrix},\ \begin{pmatrix}-2\\0\\0\\1\\0\end{pmatrix},\ \begin{pmatrix}-2\\0\\0\\0\\1\end{pmatrix}\right\}$. 
+\item[E223.] $\rang(A)=3$, $\nul(A)=1$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}-2\\1\\-2\\1\end{pmatrix}\right\}$. 
+\item[E224.] $\rang(A)=4$, $\nul(A)=1$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}0\\2\\-1\\-2\\1\end{pmatrix}\right\}$. 
+\item[E225.] $\rang(A)=1$, $\nul(A)=2$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}2\\1\\0\end{pmatrix},\ \begin{pmatrix}1\\0\\1\end{pmatrix}\right\}$. 
+\item[E226.] $\rang(A)=2$, $\nul(A)=1$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}0\\1\\1\end{pmatrix}\right\}$. 
+\item[E227.] $\rang(A)=4$, $\nul(A)=1$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}-2\\1\\-2\\2\\1\end{pmatrix}\right\}$. 
+\item[E228.] $\rang(A)=2$, $\nul(A)=2$; $\Ker(A)=\operatorname{span}\left\{\begin{pmatrix}1\\0\\1\\0\end{pmatrix},\ \begin{pmatrix}2\\1\\0\\1\end{pmatrix}\right\}$. 
+\end{description}
+
+
+\section{Síntesis para el repaso}
+%===============================================================
+\begin{center}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.32\linewidth}>{\raggedright\arraybackslash}p{0.57\linewidth}}
+\toprule
+\textbf{Concepto} & \textbf{Regla o idea clave}\\\midrule
+Suma de matrices & Mismo orden; entrada por entrada.\\
+Producto $AB$ & Columnas de $A$ = filas de $B$; generalmente $AB\ne BA$.\\
+Transpuesta & $(AB)^T=B^TA^T$.\\
+Inversa & $AA^{-1}=A^{-1}A=I$; sólo para matrices cuadradas invertibles.\\
+Determinante $2\times2$ & $\det\begin{psmallmatrix}a&b\\c&d\end{psmallmatrix}=ad-bc$.\\
+Cofactor & $C_{ij}=(-1)^{i+j}M_{ij}$.\\
+Adjunta & $\adj(A)=C^T$.\\
+Inversa por adjunta & $A^{-1}=\adj(A)/\det(A)$, si $\det(A)\ne0$.\\
+Rango & Número de pivotes.\\
+Núcleo & Soluciones de $A\vect x=\vect0$.\\\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Bibliografía de referencia}
+\begin{itemize}
+\item Grossman, S. I. (2012). \emph{Álgebra Lineal}. 7a edición. McGraw-Hill.
+\item Lay, D. C. (2013). \emph{Álgebra lineal para cursos con enfoque por competencias}. Pearson.
+\item Kolman, B. (2013). \emph{Álgebra Lineal}. Pearson Educación.
+\item Poole, D. (2011). \emph{Álgebra lineal: una introducción moderna}. 3a edición. Cengage Learning.
+\end{itemize}
+
+\vspace{0.8em}\begin{center}\textit{Fin de las notas ampliadas de la Unidad 3.}\end{center}
+\end{document}
